@@ -223,7 +223,7 @@ $(document).ready(function () {
   <a href="resources.html">Resources</a>
 </li>
 <li>
-  <a href="class1.html">Class 1</a>
+  <a href="class1.html">Class Notes</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -265,8 +265,17 @@ $(document).ready(function () {
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Cmd+Option+I</em>.</p>
 <p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Cmd+Shift+K</em> to preview the HTML file).</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5kYXRhIDwtIHJlYWRfY3N2KFwiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL250YWJhY2svVW9mVF9TVEExMzAvbWFzdGVyL2RhdGEuY3N2XCIpXG5kYXRhICU+JSBnZ3Bsb3QoYWVzKHgpKStnZW9tX2hpc3RvZ3JhbSgpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)
+data &lt;- read_csv(&quot;https://raw.githubusercontent.com/ntaback/UofT_STA130/master/data.csv&quot;)
+data %&gt;% ggplot(aes(x))+geom_histogram()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ2xhc3MgMSIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6IGRlZmF1bHQKICBodG1sX25vdGVib29rOiBkZWZhdWx0Ci0tLQoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ21kK1NoaWZ0K0VudGVyKi4gCgpgYGB7cn0KcGxvdChjYXJzKQpgYGAKCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDbWQrT3B0aW9uK0kqLgoKV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDbWQrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ2xhc3MgMSIKb3V0cHV0OiBodG1sX2RvY3VtZW50Ci0tLQoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ21kK1NoaWZ0K0VudGVyKi4gCgpgYGB7cn0KcGxvdChjYXJzKQpgYGAKCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDbWQrT3B0aW9uK0kqLgoKV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDbWQrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4KCgpgYGB7ciwgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRX0KbGlicmFyeSh0aWR5dmVyc2UpCmRhdGEgPC0gcmVhZF9jc3YoImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9udGFiYWNrL1VvZlRfU1RBMTMwL21hc3Rlci9kYXRhLmNzdiIpCmRhdGEgJT4lIGdncGxvdChhZXMoeCkpK2dlb21faGlzdG9ncmFtKCkKYGBgCgo=</div>
 
 
 
