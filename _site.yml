@@ -7,4 +7,6 @@ navbar:
       href: index.html
     - text: "Resources"
       href: resources.html
+    - text: "Class 1"
+      href: class1.html
       
