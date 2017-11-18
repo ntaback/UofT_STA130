@@ -1,0 +1,10 @@
+name: "sta130website"
+output_dir: "."
+navbar:
+  title: "STA130 Course Website"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Resources"
+      href: resources.html
+      
