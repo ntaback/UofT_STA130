@@ -22,3 +22,5 @@ data <- read_csv("https://raw.githubusercontent.com/ntaback/UofT_STA130/master/d
 data %>% ggplot(aes(x))+geom_histogram()
 ```
 
+
+
