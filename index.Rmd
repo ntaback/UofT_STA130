@@ -1,6 +1,11 @@
 ---
-title: "STA130 Course Website"
+title: "STA130H1-S Course Website"
 ---
+
+
+# Instructors
+
+[Professor Alison Gibbs](http://utstat.toronto.edu/~alisong/) and [Professor Nathan Taback](http://utstat.toronto.edu/~nathan/)
 
 All the STA130 course content in one place.
 
