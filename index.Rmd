@@ -10,3 +10,8 @@ title: ""
 ## Computing
 
 The course will use [R](https://www.r-project.org) for computing. R is freely available [here](http://cran.utstat.utoronto.ca). We recommend using [R Studio](https://www.rstudio.com) which can be [downloaded](http://cran.utstat.utoronto.ca) for free.  We will use [R Markdown](http://rmarkdown.rstudio.com) as an authoring framework for creating reproducible data science documents.
+
+### Getting Started with R
+
+- If you have never programmed before then [Hands-On Programming with R, by Garrett Grolemund](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf) is a great place to start.
+- [R for Data Science, by Hadley Wickham and Garrett Grolemund](http://r4ds.had.co.nz) is a wonderful resource.  
