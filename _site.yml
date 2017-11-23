@@ -1,8 +1,8 @@
 name: "sta130website"
 output_dir: "."
 navbar:
-  title: "STA130 Course Website"
-  left:
+  title: "STA130 Winter 2018"
+  right:
     - text: "Home"
       href: index.html
     - text: "Resources"
