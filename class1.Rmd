@@ -3,7 +3,9 @@ title: "Class 1"
 output: html_document
 ---
 
-[Class 3 notes](http://utstat.utoronto.ca/alisong/tmp/Week3_Testing101.pdf)
+[Class 3 notes are here](http://utstat.utoronto.ca/alisong/tmp/Week3_Testing101.pdf)
+
+
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
