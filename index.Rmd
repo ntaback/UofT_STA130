@@ -14,4 +14,11 @@ The course will use [R](https://www.r-project.org) for computing. R is freely av
 ### Getting Started with R
 
 - If you have never programmed before then [Hands-On Programming with R, by Garrett Grolemund](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf) is a great place to start.
-- [R for Data Science, by Hadley Wickham and Garrett Grolemund](http://r4ds.had.co.nz) is a wonderful resource.  
+- [R for Data Science, by Hadley Wickham and Garrett Grolemund](http://r4ds.had.co.nz) is a wonderful resource. 
+
+### RStudio Sever or RStudio Desktop
+
+1. Students in the course will be able to do all computing in a server edition of RStudio.  The environment has been especially setup for this course. RStudio Server for STA130 students can be accessed by going to <https://rstudio.chass.utoronto.ca/>
+
+2. Another alternative is to install RStudio on your own computer.  You will need to download [R](http://cran.utstat.utoronto.ca) then [RStudio](https://www.rstudio.com/products/rstudio/download/#download). 
+
