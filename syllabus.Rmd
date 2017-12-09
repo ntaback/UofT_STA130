@@ -1,0 +1,96 @@
+---
+title: "STA130 Syllabus - Draft"
+output: html_document
+---
+
+# Course Description and Learning Objectives
+
+Data Science is a relatively new interdisciplinary field that involves the computational aspects of carrying out a complete data analysis, including acquisition, management, and analysis of data [Hardin et al.](https://arxiv.org/pdf/1410.3127.pdf) Statistical reasoning and computing with data play important roles in this emerging discipline.
+
+The learning objectives of this course are:
+
+- Understand the statistical and computational processes involved in data analysis,
+
+- Implement the computational steps involved in the management and statistical analysis of data using R,
+
+- Identify appropriate uses of data analysis to answer questions including their strengths and limitations, and
+
+- Develop skills to communicate the results of a data analysis at various techincal levels. 
+
+# Topics 
+
+- Data vizualization
+- Data wrangling and summarizing data
+- Statistical testing 
+- Supervised and Unsupervised Statistical learning
+- Data ethics
+
+# Course Website
+
+Class slides, notes, and other important information can be found on the [course website.](http://sta130.utstat.utoronto.ca/)
+
+# Textbook
+
+The course textbook is, [Baumer, B.S., Kaplan, D.T., and Horton, N.J. Modern Data Science with R. 2017. CRC Press](https://www.crcpress.com/Modern-Data-Science-with-R/Baumer-Kaplan-Horton/p/book/9781498724487).
+
+# Computing
+
+See the computing section of the course website.
+
+# Discussion Forum
+
+We will be using Piazza as a platform for discussions. You can find our class page at: [ https://piazza.com/utoronto.ca/winter2018/sta130h1/home]( https://piazza.com/utoronto.ca/winter2018/sta130h1/home). Students will be able to post anonymous to classmates, but not instructors. 
+
+Be sure to read Piazza’s [Privacy Policy](https://piazza.com/legal/privacy) and [Terms of Service](https://piazza.com/legal/terms) carefully. Take time to understand and be comfortable with what they say. They provide for substantial sharing and disclosure of your personal information held by Piazza, which affects your privacy.  If you decide to participate in Piazza, only provide content that you are comfortable sharing under the terms of the Privacy Policy and Terms of Use.
+
+# Evaluation
+
+
+|                             | Weight | Date                     | Time         | Location                            |
+|-----------------------------|--------|--------------------------|--------------|-------------------------------------|
+| Weekly Tutorial Assignments | 20%    | First assignment Jan. 12 | 10-12^1^ or 2-4 |                                     |
+| Midterm Test                | 30%    | Friday, March 2          | 10-12 or 2-4 | TBA                                 |
+| Final Project               | 10%    | Monday, April 2          | 10-12 or 2-4 | BA Attrium                          |
+| Final Exam                  | 40%    | TBA                      | TBA          | Scheduled by Faculty Arts & Science |
+
+1. If you are enrolled in the 10-12 lecture section then your tutorial will be on Friday 10-12, and if you are enrolled in the 2-4 lecture section then your tutorial will be on Friday 2-4.  Parts of the assignment may be due before tutorial.
+
+# Missed Tests or Assignments
+
+- If a test or assignment is missed for a valid medical reason, you must submit the University of Toronto Verification of [Student Illness or Injury form](http://www.illnessverification.utoronto.ca) to your instructor within one week of the test.
+- The form will only be accepted as valid if the form is filled out according to the instructions on the form.
+- The form must indicate that the degree of incapacitation on academic functioning is moderate, serious, or severe in order to be considered a valid medical reason for missing the term test. If the form indicates that the degree of incapacitation on academic functioning is negligible or mild then this will NOT be considered a valid medical reason.
+- If a tutorial is missed for a valid reason then the weight for that tutorial assignment will be shifted to the remaining assignments.
+- If the midterm test is missed for a valid reason then the weight for the test will be shifted to the final exam.  In other words, the final exam will be worth 70% of your final grade.  
+- Other reasons for missing an assignment or the midterm test will require prior approval by your instructor. If prior approval is not received for non-medical reasons then you will receive a grade of zero for the missed midterm test.
+
+# Marking Concerns
+
+Any requests to have your midterm test remarked must contain a written justification for consideration.  Marking requests should be made within one week of receiving your test.
+
+# How to Communicate with Your Instructors
+
+Questions about course material, such as,
+  
+- How do I do question 3.7 in the textbook? 
+- What is standard deviation?
+- When is the midterm?
+
+Should be posted on the discussion forums on Piazza or asked in person. Questions can be posted anonymously (so that the author is anonymous to other students but not to the instructors), if desired.
+
+If your communication is private, such as, I missed the test because I was ill, then e-mail your instructor. Use your utoronto.ca e-mail account to ensure that your message doesn’t automatically go to a Junk folder and include your full name and student number.
+
+
+# Academic Integrity
+
+You are responsible for knowing the content of the University of Toronto’s Code of Behaviour on (Academic Matters)[http://www.governingcouncil.utoronto.ca/policies/behaveac.htm].
+
+If you have any questions about what is or is not permitted in this course, please do not hesitate to contact your instructor.
+
+# Accessibility Needs
+
+The University of Toronto is committed to accessibility. If you require accommodations for a disability, or have any accessibility concerns about the course, the class room, or course materials, please contact Accessibility Services as soon as possible: <accessibility.services@utoronto.ca> or <http://accessibility.utoronto.ca>
+
+# Your responsibilities
+
+The course is designed to actively engage you in the course material. We hope you’ll find the statistical reasoning and data science interesting, challenging, and fun. In order for classroom sessions and tutorials to be effective, prepare by learning about the week’s concepts through completing the recommended problems and readings. 

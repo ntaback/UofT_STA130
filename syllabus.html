@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>STA130 Syllabus - Draft</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">STA130 Syllabus - Draft</h1>
+
+</div>
+
+
+<div id="course-description-and-learning-objectives" class="section level1">
+<h1>Course Description and Learning Objectives</h1>
+<p>Data Science is a relatively new interdisciplinary field that involves the computational aspects of carrying out a complete data analysis, including acquisition, management, and analysis of data <a href="https://arxiv.org/pdf/1410.3127.pdf">Hardin et al.</a> Statistical reasoning and computing with data play important roles in this emerging discipline.</p>
+<p>The learning objectives of this course are:</p>
+<ul>
+<li><p>Understand the statistical and computational processes involved in data analysis,</p></li>
+<li><p>Implement the computational steps involved in the management and statistical analysis of data using R,</p></li>
+<li><p>Identify appropriate uses of data analysis to answer questions including their strengths and limitations, and</p></li>
+<li><p>Develop skills to communicate the results of a data analysis at various techincal levels.</p></li>
+</ul>
+</div>
+<div id="topics" class="section level1">
+<h1>Topics</h1>
+<ul>
+<li>Data vizualization</li>
+<li>Data wrangling and summarizing data</li>
+<li>Statistical testing</li>
+<li>Supervised and Unsupervised Statistical learning</li>
+<li>Data ethics</li>
+</ul>
+</div>
+<div id="course-website" class="section level1">
+<h1>Course Website</h1>
+<p>Class slides, notes, and other important information can be found on the <a href="http://sta130.utstat.utoronto.ca/">course website.</a></p>
+</div>
+<div id="textbook" class="section level1">
+<h1>Textbook</h1>
+<p>The course textbook is, <a href="https://www.crcpress.com/Modern-Data-Science-with-R/Baumer-Kaplan-Horton/p/book/9781498724487">Baumer, B.S., Kaplan, D.T., and Horton, N.J. Modern Data Science with R. 2017. CRC Press</a>.</p>
+</div>
+<div id="computing" class="section level1">
+<h1>Computing</h1>
+<p>See the computing section of the course website.</p>
+</div>
+<div id="discussion-forum" class="section level1">
+<h1>Discussion Forum</h1>
+<p>We will be using Piazza as a platform for discussions. You can find our class page at: <a href="https://piazza.com/utoronto.ca/winter2018/sta130h1/home" class="uri">https://piazza.com/utoronto.ca/winter2018/sta130h1/home</a>. Students will be able to post anonymous to classmates, but not instructors.</p>
+<p>Be sure to read Piazza’s <a href="https://piazza.com/legal/privacy">Privacy Policy</a> and <a href="https://piazza.com/legal/terms">Terms of Service</a> carefully. Take time to understand and be comfortable with what they say. They provide for substantial sharing and disclosure of your personal information held by Piazza, which affects your privacy. If you decide to participate in Piazza, only provide content that you are comfortable sharing under the terms of the Privacy Policy and Terms of Use.</p>
+</div>
+<div id="evaluation" class="section level1">
+<h1>Evaluation</h1>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Weight</th>
+<th>Date</th>
+<th>Time</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Weekly Tutorial Assignments</td>
+<td>20%</td>
+<td>First assignment Jan. 12</td>
+<td>10-12<sup>1</sup> or 2-4</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Midterm Test</td>
+<td>30%</td>
+<td>Friday, March 2</td>
+<td>10-12 or 2-4</td>
+<td>TBA</td>
+</tr>
+<tr class="odd">
+<td>Final Project</td>
+<td>10%</td>
+<td>Monday, April 2</td>
+<td>10-12 or 2-4</td>
+<td>BA Attrium</td>
+</tr>
+<tr class="even">
+<td>Final Exam</td>
+<td>40%</td>
+<td>TBA</td>
+<td>TBA</td>
+<td>Scheduled by Faculty Arts &amp; Science</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: decimal">
+<li>If you are enrolled in the 10-12 lecture section then your tutorial will be on Friday 10-12, and if you are enrolled in the 2-4 lecture section then your tutorial will be on Friday 2-4. Parts of the assignment may be due before tutorial.</li>
+</ol>
+</div>
+<div id="missed-tests-or-assignments" class="section level1">
+<h1>Missed Tests or Assignments</h1>
+<ul>
+<li>If a test or assignment is missed for a valid medical reason, you must submit the University of Toronto Verification of <a href="http://www.illnessverification.utoronto.ca">Student Illness or Injury form</a> to your instructor within one week of the test.</li>
+<li>The form will only be accepted as valid if the form is filled out according to the instructions on the form.</li>
+<li>The form must indicate that the degree of incapacitation on academic functioning is moderate, serious, or severe in order to be considered a valid medical reason for missing the term test. If the form indicates that the degree of incapacitation on academic functioning is negligible or mild then this will NOT be considered a valid medical reason.</li>
+<li>If a tutorial is missed for a valid reason then the weight for that tutorial assignment will be shifted to the remaining assignments.</li>
+<li>If the midterm test is missed for a valid reason then the weight for the test will be shifted to the final exam. In other words, the final exam will be worth 70% of your final grade.<br />
+</li>
+<li>Other reasons for missing an assignment or the midterm test will require prior approval by your instructor. If prior approval is not received for non-medical reasons then you will receive a grade of zero for the missed midterm test.</li>
+</ul>
+</div>
+<div id="marking-concerns" class="section level1">
+<h1>Marking Concerns</h1>
+<p>Any requests to have your midterm test remarked must contain a written justification for consideration. Marking requests should be made within one week of receiving your test.</p>
+</div>
+<div id="how-to-communicate-with-your-instructors" class="section level1">
+<h1>How to Communicate with Your Instructors</h1>
+<p>Questions about course material, such as,</p>
+<ul>
+<li>How do I do question 3.7 in the textbook?</li>
+<li>What is standard deviation?</li>
+<li>When is the midterm?</li>
+</ul>
+<p>Should be posted on the discussion forums on Piazza or asked in person. Questions can be posted anonymously (so that the author is anonymous to other students but not to the instructors), if desired.</p>
+<p>If your communication is private, such as, I missed the test because I was ill, then e-mail your instructor. Use your utoronto.ca e-mail account to ensure that your message doesn’t automatically go to a Junk folder and include your full name and student number.</p>
+</div>
+<div id="academic-integrity" class="section level1">
+<h1>Academic Integrity</h1>
+<p>You are responsible for knowing the content of the University of Toronto’s Code of Behaviour on (Academic Matters)[<a href="http://www.governingcouncil.utoronto.ca/policies/behaveac.htm" class="uri">http://www.governingcouncil.utoronto.ca/policies/behaveac.htm</a>].</p>
+<p>If you have any questions about what is or is not permitted in this course, please do not hesitate to contact your instructor.</p>
+</div>
+<div id="accessibility-needs" class="section level1">
+<h1>Accessibility Needs</h1>
+<p>The University of Toronto is committed to accessibility. If you require accommodations for a disability, or have any accessibility concerns about the course, the class room, or course materials, please contact Accessibility Services as soon as possible: <a href="mailto:accessibility.services@utoronto.ca">accessibility.services@utoronto.ca</a> or <a href="http://accessibility.utoronto.ca" class="uri">http://accessibility.utoronto.ca</a></p>
+</div>
+<div id="your-responsibilities" class="section level1">
+<h1>Your responsibilities</h1>
+<p>The course is designed to actively engage you in the course material. We hope you’ll find the statistical reasoning and data science interesting, challenging, and fun. In order for classroom sessions and tutorials to be effective, prepare by learning about the week’s concepts through completing the recommended problems and readings.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
