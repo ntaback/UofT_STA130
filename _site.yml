@@ -1,24 +1,17 @@
-name: "sta130website"
-output_dir: "."
+name: sta130website
+output_dir: '.'
 navbar:
-  title: "STA130 Winter 2018"
+  title: STA130 Winter 2018
   right:
-    - title: "Course Documents"
-    - text: "Home"
-      icon: fa-home
-      href: index.html
-    - text: "Syllabus"
-      icon: glyphicon-eye-open
-      href: syllabus.html
-    - text: "Computing Resources"
-      icon: fa-laptop
-      href: resources.html
-      menu:
-    - text: "Class Notes"
-    - text: "--------------"
-    - text: "Class 1"
-      icon: glyphicon-book
-      href: class1.html
-    
-    
-      
+  - title: Course Documents
+  - text: Home
+    icon: fa-home
+    href: index.html
+  - text: Syllabus
+    icon: glyphicon-eye-open
+    href: STA130syllabus2018S.html
+output:
+  html_document:
+    lib_dir: site_libs
+    self_contained: no
+
