@@ -2,7 +2,10 @@
 title: "STA130H1S: An Introduction to Statistical Reasoning and Data Science"
 subtitle: "Syllabus - Draft (subject to change before the start of the course)"
 date: Winter 2018
-output: html_document
+output: 
+  html_document:
+   toc: true
+   toc_float: true
 ---
 
 ## Instructors 
@@ -89,11 +92,12 @@ Be sure to read Piazza’s [Privacy Policy](https://piazza.com/legal/privacy) an
 
 |                             | Weight | Date                     | Time         | Location                            |
 |-----------------------------|--------|--------------------------|--------------|-------------------------------------|
+| Survey completion  | 2%  | Last week of classes |
 | Mentorship program |  3% | Details will be available at your second tutorial (Friday, January 12)
 | Tutorial | 20%^1^    | First assignment Jan. 12 | 10-12^2^ or 2-4^2^ |                                     |
 | Term Test                | 20%    | Friday, March 2          | 10-12 or 2-4 | TBA                                 |
 | Final Project               | 20%    | Monday, April 2          | 10-12 or 2-4 | Bahen Atrium                          |
-| Final Exam                  | 37%    | TBA                      | TBA          | Scheduled by Faculty Arts & Science |
+| Final Exam                  | 35%    | TBA                      | TBA          | Scheduled by Faculty Arts & Science |
 
 1. Your tutorial grade includes any assigned work that is due before tutorial and any work done during tutorial.  Note that if you miss a tutorial, there is no way to make up this component of your mark.
 
