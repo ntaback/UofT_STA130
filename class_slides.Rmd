@@ -1,0 +1,40 @@
+---
+title: "STA130 Class Slides"
+date: 'Winter 2018'
+output: 
+  html_document:
+   toc: true
+   toc_float: true 
+---
+
+# Class 1 - January, 8
+
+# Class 2 - January, 15
+
+# Class 3 - January, 22
+
+# Class 4 - January, 29
+
+# Class 5 - February, 5
+
+# Class 6 - February, 12
+
+# February 19
+
+Reading Week - No Class
+
+# Class 7 - February, 26
+
+Midterm test during tutorial time on March 2.
+
+# Class 8 - March, 5
+
+# Class 9 - March, 12
+
+# Class 10 - March, 19
+
+# Class 11 - March, 26
+
+# Class 12 - April, 2
+
+STA130 Poster Fair

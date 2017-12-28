@@ -10,6 +10,14 @@ navbar:
   - text: Syllabus
     icon: glyphicon-eye-open
     href: STA130syllabus2018S.html
+  - text: R Resources
+    icon: fa-thumb-tack
+    href: R_resources.html
+  - text: Class Slides
+    icon: fa-slideshare
+    href: class_slides.html
+  - text: Tutorial
+    icon: fa-pencil
 output:
   html_document:
     lib_dir: site_libs

@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>STA130 Class Slides</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -164,6 +167,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -222,40 +320,59 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">STA130 Class Slides</h1>
+<h4 class="date"><em>Winter 2018</em></h4>
 
 </div>
 
 
-<div id="instructors" class="section level2">
-<h2>Instructors</h2>
-<p><a href="http://utstat.toronto.edu/~alisong/">Professor Alison Gibbs</a> and <a href="http://utstat.toronto.edu/~nathan/">Professor Nathan Taback</a></p>
+<div id="class-1---january-8" class="section level1">
+<h1>Class 1 - January, 8</h1>
 </div>
-<div id="syllabus" class="section level2">
-<h2>Syllabus</h2>
-<p>Important information about the course can found in the <a href="STA130syllabus2018S.html">syllabus</a>.</p>
+<div id="class-2---january-15" class="section level1">
+<h1>Class 2 - January, 15</h1>
 </div>
-<div id="computing" class="section level2">
-<h2>Computing</h2>
-<p>The course will use <a href="https://www.r-project.org">R</a> for computing. R is freely available <a href="http://cran.utstat.utoronto.ca">here</a>. We recommend using <a href="https://www.rstudio.com">R Studio</a> which can be <a href="http://cran.utstat.utoronto.ca">downloaded</a> for free. We will use <a href="http://rmarkdown.rstudio.com">R Markdown</a> as an authoring framework for creating reproducible data science documents.</p>
-<div id="getting-started-with-r" class="section level3">
-<h3>Getting Started with R</h3>
-<ul>
-<li>If you have never programmed before then <a href="https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf">Hands-On Programming with R, by Garrett Grolemund</a> is a great place to start.</li>
-<li><a href="http://r4ds.had.co.nz">R for Data Science, by Hadley Wickham and Garrett Grolemund</a> is a wonderful resource.</li>
-<li>A list of more resources is available on the course website <a href="R_resources.html">here</a>.</li>
-</ul>
+<div id="class-3---january-22" class="section level1">
+<h1>Class 3 - January, 22</h1>
 </div>
-<div id="rstudio-sever-or-rstudio-desktop" class="section level3">
-<h3>RStudio Sever or RStudio Desktop</h3>
-<ol style="list-style-type: decimal">
-<li><p>Students in the course will be able to do all computing in a server edition of RStudio. The environment has been especially setup for this course. RStudio Server for STA130 students can be accessed by going to <a href="https://rstudio.chass.utoronto.ca/" class="uri">https://rstudio.chass.utoronto.ca/</a></p></li>
-<li><p>Another alternative is to install RStudio on your own computer. You will need to download <a href="http://cran.utstat.utoronto.ca">R</a> then <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a>.</p></li>
-</ol>
+<div id="class-4---january-29" class="section level1">
+<h1>Class 4 - January, 29</h1>
 </div>
+<div id="class-5---february-5" class="section level1">
+<h1>Class 5 - February, 5</h1>
+</div>
+<div id="class-6---february-12" class="section level1">
+<h1>Class 6 - February, 12</h1>
+</div>
+<div id="february-19" class="section level1">
+<h1>February 19</h1>
+<p>Reading Week - No Class</p>
+</div>
+<div id="class-7---february-26" class="section level1">
+<h1>Class 7 - February, 26</h1>
+<p>Midterm test during tutorial time on March 2.</p>
+</div>
+<div id="class-8---march-5" class="section level1">
+<h1>Class 8 - March, 5</h1>
+</div>
+<div id="class-9---march-12" class="section level1">
+<h1>Class 9 - March, 12</h1>
+</div>
+<div id="class-10---march-19" class="section level1">
+<h1>Class 10 - March, 19</h1>
+</div>
+<div id="class-11---march-26" class="section level1">
+<h1>Class 11 - March, 26</h1>
+</div>
+<div id="class-12---april-2" class="section level1">
+<h1>Class 12 - April, 2</h1>
+<p>STA130 Poster Fair</p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 

@@ -1,0 +1,38 @@
+---
+title: "R Resources for STA130H1S"
+date: 'Winter 2018'
+output: html_document
+---
+
+There are lots of free resources available for learning R.  This page contains some excellent resources, but we certainly can't list all the excellent resources available.
+
+# Running R
+
+[R](https://www.r-project.org) is a free software environment for statistical computing and graphics.  R can be freely downloaded at [CRAN](https://cran.r-project.org).
+
+[RStudio](https://www.rstudio.com) is a popular integrated development environment for R.  A [desktop version](https://www.rstudio.com/products/rstudio/#Desktop) is freely available to download on to your computer. 
+
+We have setup a version of RStudio that STA130 students can access RStudio can be accessed from any web browser at http://rstudio.chass.utoronto.ca/. This can be used for all computing in the course.  Only STA130H1S students will have access. This has all R libraries installed that you will require to complete course assignments. 
+
+
+# Getting Started with R
+
+- If you have never programmed before then [Hands-On Programming with R, by Garrett Grolemund](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf) is a great place to start.
+- [R for Data Science, by Hadley Wickham and Garrett Grolemund](http://r4ds.had.co.nz) is a wonderful resource. 
+- [Datacamp](https://www.datacamp.com) offers a free online [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r).
+
+
+# R Markdown 
+
+[R Markdown](http://rmarkdown.rstudio.com) documents can be used to create documents that weave together code and text.  
+
+An R Markdown Cheat Sheet downloaded from [RStudio](https://www.rstudio.com/resources/cheatsheets/) is available [here](rmarkdown-2.0.pdf).
+
+A guide to producing R Markdown documents for class assignments is available [here](Rmarkdownforclassreports.html).  This guide also includes a short introduction to $\LaTeX$ for including math in R Markdown.
+
+# Getting Help with R
+
+Students can always ask a member of the teaching staff for help during office hours, tutorial, or on the class [discussion forum](https://piazza.com/utoronto.ca/winter2018/sta130h1/home).
+
+[stackoverflow](https://stackoverflow.com) is a popular forum for posting and answering questions related to programming.  Questions tagged R can be found [here](https://stackoverflow.com/questions/tagged/r) and questions tagged RStudio can be found [here](https://stackoverflow.com/questions/tagged/rstudio).
+
