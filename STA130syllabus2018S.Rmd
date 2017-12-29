@@ -13,7 +13,7 @@ output:
 ## Instructors 
 - <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Prof. A. Gibbs, alison.gibbs@utoronto.ca, SS 6009  
 Prof. Gibbs is your primary point of contact if your last (family) name starts with A-L.
-- <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Prof. N. Taback,nathan.taback@utoronto.ca,SS 6027C  
+- <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Prof. N. Taback,nathan.taback@utoronto.ca, SS 6027C  
 Prof. Taback is your primary point of contact if your last (family) name starts with M-Z.
 - A large team of teaching assistants
 
