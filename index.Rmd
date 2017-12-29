@@ -3,8 +3,9 @@ title: ""
 output: 
   html_document:
    theme: flatly
+   includes:
+     in_header: header.html
 ---
-
 
 ##Instructors
 
