@@ -19,7 +19,7 @@ Coming soon
 
 ## January 12 Tutorial
 
-Coming soon
+[Practice problems](Week1PracticeProblems-student.html)
 
 <br>
 <html>
