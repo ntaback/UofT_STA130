@@ -13,11 +13,10 @@ navbar:
   - text: R Resources
     icon: fa-thumb-tack
     href: R_resources.html
-  - text: Class Slides
+  - text: Course Content
     icon: fa-slideshare
-    href: class_slides.html
-  - text: Tutorial
-    icon: fa-pencil
+    href: course_content.html
+  
 output:
   html_document:
     lib_dir: site_libs

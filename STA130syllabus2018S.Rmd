@@ -147,3 +147,5 @@ The University of Toronto is committed to accessibility. If you require accommod
 ## Your Responsibilities
 
 The course is designed to actively engage you in the course material. We hope you’ll find the statistical reasoning and data science interesting, challenging, and fun. In order for classroom sessions and tutorials to be effective, prepare by learning about the week’s concepts through completing the recommended problems and readings. 
+
+The source file for this syllabus is available on Github  [here](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/STA130syllabus2018S.Rmd)

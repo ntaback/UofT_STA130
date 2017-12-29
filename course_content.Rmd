@@ -1,0 +1,38 @@
+---
+title: "STA130 Course Content"
+date: 'Winter 2018'
+output: 
+  html_document:
+   toc: true
+   toc_depth: 2
+   toc_float: true 
+---
+
+This page contains course material such as class slides, practice problems, and tutorial assignments. These files will be stored in a Google Drive [here](https://drive.google.com/drive/folders/1lJMcww3p6E7E3fHHxFJRMTB1e2Yezoc9?usp=sharing), although individual links will be posted below.
+
+# Week 1
+
+## January 8 Class
+
+Coming soon
+
+## January 12 Tutorial
+
+Coming soon
+
+<br>
+<html>
+<span style="opacity: 0.5;">
+Week 2 - January 15 <br>
+Week 3 - January 22 <br>
+Week 4 - January 29 <br>
+Week 5 - February 5 <br>
+Week 6 - February 12 <br>
+February 19 - Reading Week - No Week <br>
+Week 7 - February 26 Midterm test during tutorial time on March 2. <br>
+Week 8 - March 5 <br>
+Week 9 - March 12 <br>
+Week 10 - March 19 <br>
+Week 11 - March 26 <br>
+Week 12 - April 2 STA130 Poster Fair 
+</html>
