@@ -8,10 +8,10 @@ navbar:
     icon: fa-home
     href: index.html
   - text: Syllabus
-    icon: glyphicon-eye-open
+    icon: fa-info
     href: STA130syllabus2018S.html
   - text: R Resources
-    icon: fa-thumb-tack
+    icon: fa-book
     href: R_resources.html
   - text: Course Content
     icon: fa-slideshare

@@ -5,6 +5,7 @@ output:
   html_document:
     toc: true
     toc_float: true
+    theme: flatly
 ---
 
 # Overview
@@ -638,3 +639,7 @@ rather more user-friendly, and called the result `LaTeX` (pronounced
 ### Acknowledgments
 
 This document borrows heavily from Prof. [Cozma Shalizi](http://www.stat.cmu.edu/~cshalizi/)'s [Using R Markdown for Class Reports](http://www.stat.cmu.edu/~cshalizi/rmarkdown/).
+
+R Markdown source for this page <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Rmarkdownforclassreports.Rmd">
+<i class="fa fa-github fa-2x" aria-hidden="true"></i>
+</a>

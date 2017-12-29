@@ -6,6 +6,7 @@ output:
    toc: true
    toc_depth: 2
    toc_float: true 
+   theme: flatly
 ---
 
 This page contains course material such as class slides, practice problems, and tutorial assignments. These files will be stored in a Google Drive [here](https://drive.google.com/drive/folders/1lJMcww3p6E7E3fHHxFJRMTB1e2Yezoc9?usp=sharing), although individual links will be posted below.
@@ -36,3 +37,8 @@ Week 10 - March 19 <br>
 Week 11 - March 26 <br>
 Week 12 - April 2 STA130 Poster Fair 
 </html>
+
+R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/course_content.Rmd">
+<i class="fa fa-github fa-2x" aria-hidden="true"></i>
+</a>
+

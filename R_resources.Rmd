@@ -1,7 +1,9 @@
 ---
 title: "R Resources for STA130H1S"
 date: 'Winter 2018'
-output: html_document
+output: 
+  html_document:
+    theme: flatly
 ---
 
 There are lots of free resources available for learning R.  This page contains some excellent resources, but we certainly can't list all the excellent resources available.
@@ -35,4 +37,9 @@ A guide to producing R Markdown documents for class assignments is available [he
 Students can always ask a member of the teaching staff for help during office hours, tutorial, or on the class [discussion forum](https://piazza.com/utoronto.ca/winter2018/sta130h1/home).
 
 [stackoverflow](https://stackoverflow.com) is a popular forum for posting and answering questions related to programming.  Questions tagged R can be found [here](https://stackoverflow.com/questions/tagged/r) and questions tagged RStudio can be found [here](https://stackoverflow.com/questions/tagged/rstudio).
+
+R Markdown source for this page  <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/R_resources.Rmd">
+<i class="fa fa-github fa-2x" aria-hidden="true"></i>
+</a>
+
 

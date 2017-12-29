@@ -1,5 +1,8 @@
 ---
 title: ""
+output: 
+  html_document:
+   theme: flatly
 ---
 
 
@@ -27,3 +30,7 @@ The course will use [R](https://www.r-project.org) for computing. R is freely av
 
 2. Another alternative is to install RStudio on your own computer.  You will need to download [R](http://cran.utstat.utoronto.ca) then [RStudio](https://www.rstudio.com/products/rstudio/download/#download). 
 
+
+R Markdown source for this page <a href="https://github.com/ntaback/UofT_STA130">
+<i class="fa fa-github fa-2x" aria-hidden="true"></i>
+</a>
