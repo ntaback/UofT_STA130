@@ -27,7 +27,7 @@ The course will use [R](https://www.r-project.org) for computing. R is freely av
 
 ### RStudio Sever or RStudio Desktop
 
-1. Students in the course will be able to do all computing in a server edition of RStudio.  The environment has been especially setup for this course. RStudio Server for STA130 students can be accessed by going to <https://rstudio.chass.utoronto.ca/>
+1. Students in the course will be able to do all computing in a server edition of RStudio.  RStudio Server for STA130 students can be accessed by going to <https://rstudio.chass.utoronto.ca/>
 
 2. Another alternative is to install RStudio on your own computer.  You will need to download [R](http://cran.utstat.utoronto.ca) then [RStudio](https://www.rstudio.com/products/rstudio/download/#download). 
 
