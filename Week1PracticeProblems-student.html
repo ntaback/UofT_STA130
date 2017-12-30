@@ -239,7 +239,12 @@ $(document).ready(function () {
 <div id="first-steps-to-answering-these-questions." class="section level2">
 <h2>First steps to answering these questions.</h2>
 <ul>
-<li><p>Open this R Notebook in RStudio.</p></li>
+<li>Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.</li>
+</ul>
+<pre class="r"><code>file_url &lt;- &quot;https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Week1PracticeProblems-student.Rmd&quot;
+download.file(url = file_url , destfile = &quot;Week1PracticeProblems-student.Rmd&quot;)</code></pre>
+<p>Look for the file “Week1PracticeProblems-student.Rmd” under the Files tab then click on it to open.</p>
+<ul>
 <li><p>Type your answers below each question. Remember that <a href="http://rmarkdown.rstudio.com/authoring_rcodechunks.html">R code chunks</a> can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using <a href="https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html">R Markdown for Class Assignments</a>). In addition this R Markdown <a href="http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">cheatsheet</a>, and <a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">reference</a> are great resources as you get started with R Markdown.</p></li>
 <li><p>If you are NOT working on <a href="https://rstudio.chass.utoronto.ca/" class="uri">https://rstudio.chass.utoronto.ca/</a> then you will need to install the <code>tidyverse</code> and <code>mosaic</code> packages to complete the questions.</p></li>
 </ul>
@@ -334,7 +339,7 @@ library(mdsr)
 SAT_2010 %&gt;% ggplot(aes(math))  + geom_histogram(aes(y=..density..),binwidth = 10,fill=&quot;gold1&quot;,colour=&quot;goldenrod2&quot;,alpha=0.6) +theme_minimal() + geom_density(kernel=&quot;rectangular&quot;,colour=&quot;red&quot;,adjust=.1)</code></pre>
 <p>Change the value of <code>adjust</code> to 0.3, 0.5, and 0.8. What do you observe? Now, repeat what you just did, but this time change the value of <code>kernel</code>=“gaussian”. Which value of bandwidth and kernal gives the most accurate representation of the distribution of math scores?</p>
 <p>NB: The Gaussian kernal is the famous bell curve (normal desnity curve) with mean 0 and standard deviation 1:</p>
-<p><span class="math display">\[K(x)=\frac{1}{\sqrt{2\pi}} \exp\left(x^2/2\right), -\infty&lt;x&lt;\infty.\]</span> We can plot this function using <code>ggplot</code> using the built in density function <code>dnorm()</code> (we will come back to this function later in the course).</p>
+<p><span class="math display">\[K(x)=\frac{1}{\sqrt{2\pi}} \exp\left(-x^2/2\right), -\infty&lt;x&lt;\infty.\]</span> We can plot this function using <code>ggplot</code> using the built in density function <code>dnorm()</code> (we will come back to this function later in the course).</p>
 <pre class="r"><code>library(tidyverse)
 dat &lt;- data_frame(x = seq(-3.5, 3.5, by = 0.1))
 dat %&gt;% ggplot(aes(x)) + stat_function(fun = dnorm)</code></pre>

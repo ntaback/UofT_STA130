@@ -15,11 +15,19 @@ output:
 
 ## First steps to answering these questions.
 
-- Open this R Notebook in RStudio.
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r,eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Week1PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week1PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week1PracticeProblems-student.Rmd" under the Files tab then click on it to open.
 
 - Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
 
 - If you are NOT working on <https://rstudio.chass.utoronto.ca/> then you will need to install the `tidyverse` and `mosaic` packages to complete the questions.
+
 
 # Practice Problems
 
@@ -140,7 +148,7 @@ Change the value of `adjust` to 0.3, 0.5, and 0.8.  What do you observe?  Now, r
 
 NB:  The Gaussian kernal is the famous bell curve (normal desnity curve) with mean 0 and standard deviation 1:
 
-$$K(x)=\frac{1}{\sqrt{2\pi}} \exp\left(x^2/2\right), -\infty<x<\infty.$$
+$$K(x)=\frac{1}{\sqrt{2\pi}} \exp\left(-x^2/2\right), -\infty<x<\infty.$$
 We can plot this function using `ggplot` using the built in density function `dnorm()` (we will come back to this function later in the course).
 
 ```{r,warning=FALSE,message=FALSE}
