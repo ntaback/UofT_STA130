@@ -11,6 +11,26 @@ output:
 
 This page contains course material such as class slides, practice problems, and tutorial assignments. These files will be stored in a Google Drive [here](https://drive.google.com/drive/folders/1lJMcww3p6E7E3fHHxFJRMTB1e2Yezoc9?usp=sharing), although individual links will be posted below.
 
+# Week 0
+
+## January 5 Tutorial
+
+There are no tutorials on January 5.  Instead of attending tutorial we suggest that you spend some time getting acquainted with the basics of [R](https://www.r-project.org).  We will be using R throughout the course.
+
+The first classes are on January 8.  Before you come to class do the following:
+
+0. Read through the [course syllabus](STA130syllabus2018S.html)
+
+1. Read the [R resources section](R_resources.html) of the course webpage.  Make sure to login to http://rstudio.chass.utoronto.ca/ (see [R resources section](R_resources.html) for more details).
+
+2. Get introduced to R.  Two ways to get you started are:
+
+(i) Complete [Datacamp's](https://www.datacamp.com) free online [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
+
+(ii)  Read chapters 1, 2, and 3 of [Hands-On Programming with R, by Garrett Grolemund](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf).  
+
+You can do both (i) and (ii), but a lot of the same content is covered. If you decide to only complete the readings then make sure to type the commands into the console window in RStudio.    
+
 # Week 1
 
 ## January 8 Class
