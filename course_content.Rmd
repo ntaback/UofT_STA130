@@ -23,7 +23,9 @@ The first classes are on January 8.  Before you come to class do the following:
 
 1. Read the [R resources section](R_resources.html) of the course webpage.  Make sure to login to http://rstudio.chass.utoronto.ca/ (see [R resources section](R_resources.html) for more details).
 
-2. Get introduced to R.  Two ways to get you started are:
+2. Sign up for the [Piazza discussion forum](https://piazza.com/utoronto.ca/winter2018/sta130h1/home).
+
+3. Get introduced to R.  Two ways to get you started are:
 
 (i) Complete [Datacamp's](https://www.datacamp.com) free online [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
 
