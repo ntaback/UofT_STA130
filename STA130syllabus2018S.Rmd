@@ -76,7 +76,7 @@ The course textbook is, [Baumer, B.S., Kaplan, D.T., and Horton, N.J. Modern Dat
 
 ## <i class="fa fa-code" aria-hidden="true"></i> Computing
 
-See the computing section of the course website.
+See the [R Resources section](R_resources.html) of the course website.
 
 ## <i class="fa fa-forumbee" aria-hidden="true"></i> Discussion Forum
 
