@@ -1,0 +1,177 @@
+---
+title: 'STA130H1 - Class # 1: Introduction to R, Histograms and Density Functions'
+author: "Prof. Nathan Taback"
+date: '2018-01-08'
+output:
+  ioslides_presentation: default
+  beamer_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(gridExtra)
+happinessdata2016 <- read_csv("happiness2016.csv")
+```
+
+
+## Welcome to STA130H1
+
+- Login to Portal to get the location of your tutorial room (look under My Groups).
+
+- Let's explore the [course website](http://sta130.utstat.utoronto.ca/)
+
+# A Brief Introduction to R 
+
+## What is R?
+
+<img src="rcran.jpg" style="width:8in;height:4in;">
+
+## R Coding basics
+
+Go to console ...
+
+# Histograms and Density Functions
+
+## Histograms and Density Functions
+
+- The histogram of a variable is a graphical method to vizualize the distribution of a single variable.
+
+## Histograms and Density Functions
+
+- Different bin width will yield different histograms
+
+
+```{r,warning=FALSE,message=FALSE,echo=TRUE, fig.height=2, fig.width=4}
+p1 <- ggplot(data = happinessdata2016, aes(x = life_ladder)) + 
+  geom_histogram(binwidth = 0.1) 
+p2 <- ggplot(data = happinessdata2016, aes(x = life_ladder)) + 
+  geom_histogram(binwidth = 1.0) 
+grid.arrange(p1,p2,nrow = 1)
+```
+
+## Mathematical Definition of Histogram 
+
+- The bins of the histogram are the intervals: $$[x_0+mh,x_0+(m+1)h).$$ 
+$x_0$ is the origin, $m = \ldots,-1,0,1,\ldots$ indexes the bins, and $h = (x_0+(m+1)h) - (x_0+mh)$ is the bin width.
+- The bins can be used to construct rectangles with width $h$ and height $\hat f(x)$.
+- The area of these rectangles is $h\hat f(x)$.
+- The area of the rectangles is the same as the proportion of data in the same bin as $x$.
+
+## Example - Mathematical Definition of Histogram 
+
+```{r,echo=TRUE,comment=""}
+dat <- data_frame(x = c(1,2,2.5,3,7))
+dat$x
+```
+
+Let $x_0=0.5, h=0.25, m=1,\dots,29$
+
+```{r,echo=TRUE,comment=""}
+seq(0.5,7.5,by = 0.25)
+```
+
+The bins are: $[0.50,0.75),[0.75,1.00),[1.00,1.25),\ldots,[7.25,7.50).$
+
+## Example - Mathematical Definition of Histogram 
+
+```{r fig.height=1,comment=""}
+p <- ggplot(data = dat, aes(x = x,..density..)) + 
+  geom_histogram(breaks = seq(0.5,7.5,.25), closed = "left" )
+p
+d <- ggplot_build(p)
+hist_dat <- data_frame(y = d$data[[1]]$y, count = d$data[[1]]$count, x = d$data[[1]]$x, xmin = d$data[[1]]$xmin, xmax = d$data[[1]]$xmax, density = d$data[[1]]$density)
+knitr::kable(head(hist_dat))
+```
+
+
+## Mathematical Definition of Histogram
+
+- Suppose we have data: $X_1, X_2, \ldots, X_n$.
+- Let  $\#\{X_i \text{ in same bin as } x\}$ be the number of data points $X_i$ in the same bin as $x$.
+- Let $n$ be the total number of data points. So, $\frac{\#\{X_i \text{ in same bin as } x\}}{n}$ is the proportion of data in the same bin as $x$.
+- $\text{Area of rectangle containing }x \approx \frac{\#\{X_i \text{ in same bin as } x\}}{n}.$
+- $$h \hat f(x) = \frac{\#\{X_i \text{ in same bin as } x\}}{n}.$$
+
+## Mathematical Definition of Histogram
+
+$$\hat f(x) = \frac{1}{hn} \#\{X_i \text{ in same bin as } x\}$$ is called the __histogram estimator__. 
+
+$\hat f(x)$ is an estimate of the density at a point $x$.
+
+To construct the histogram we have to choose an origin $x_0$ and bin width $h$.
+
+## Choosing Origin and Bin Width in R
+
+Same bin width but different origin
+
+```{r}
+dat <- data_frame(x = c(1,2,2.5,3,7))
+p0.5 <- ggplot(data = dat, aes(x = x)) + 
+  geom_histogram(breaks = seq(0.5,7.5,.25))
+p2 <- ggplot(data = dat, aes(x = x)) + 
+  geom_histogram(breaks = seq(2,7.5,.25))
+grid.arrange(p0.5,p2,nrow = 1)
+```
+
+## Naive Estimator of Density
+
+The histogram can be centered on a point $x$. 
+
+$$\hat f(x) = \frac{1}{2hn} \#\{X_i \in (x-h, x+h) \}$$
+This estimate is often called the __naive estimator__ of the density.
+
+This can be expressed by defining the weight function $w(x)$ by
+
+$$w(x) =
+\left\{
+	\begin{array}{ll}
+		1/2  & \mbox{if } |x| < 1 \\
+		0 & \mbox{if } |x| \ge 1.
+	\end{array}
+\right. $$
+
+Then the naive estimator can be written 
+
+$$ \hat f (x) = \frac{1}{n}\sum_{i=1}^n \frac{1}{h}w\left(\frac{x-X_i}{h} \right).$$
+
+## Naive Estimator of Density
+
+$$ \hat f (x) = \frac{1}{n}\sum_{i=1}^n \frac{1}{h}w\left(\frac{x-X_i}{h} \right).$$
+
+- Consider the histogram constructed from data using bins of width $2h$.
+- Assume that $x$ is at the centre of one of the histogram bins then the naive estimate will be the same as the $y$ value of the histogram estimate.
+
+## Naive Estimator in R
+
+```{r,echo=TRUE}
+ggplot(data = happinessdata2016, aes(x = life_ladder, ..density..)) + 
+  geom_histogram(binwidth = 0.25) + geom_density(kernel = "rectangular" )
+```
+
+
+## Kernel Estimator
+
+Replace the weight function is by a kernel function $K(x) \ge 0$ which satisfies $\int_{-\infty}^{\infty}K(x)=1.$ The __kernel estimator__ of the density function is defined by
+
+$$ \hat f (x) = \frac{1}{n}\sum_{i=1}^n \frac{1}{h}K\left(\frac{x-X_i}{h} \right).$$
+
+The Gaussian kernel is a popular choice $$K(x)=\frac{1}{\sqrt{2\pi}} \exp\left(-x^2/2\right), -\infty<x<\infty.$$
+
+## Kernel Estimator in R
+
+```{r,echo=TRUE,fig.height=3.5}
+p_gauss <- ggplot(data = happinessdata2016, aes(x = life_ladder, ..density..)) + 
+  geom_histogram(binwidth = 0.25) + geom_density(kernel = "gaussian" )
+p_rect <- ggplot(data = happinessdata2016, aes(x = life_ladder, ..density..)) + 
+  geom_histogram(binwidth = 0.25) + geom_density(kernel = "rectangular" )
+grid.arrange(p_gauss,p_rect)
+```
+
+
+
+
+
+
+
+
