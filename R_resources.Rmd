@@ -24,6 +24,12 @@ We have setup a version of RStudio that STA130 students can access from any web 
 - [Datacamp](https://www.datacamp.com) offers a free online [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r).
 
 
+# R Style Guide
+
+> Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. Just as with punctuation, while there are many code styles to choose from, some are more reader-friendly than others. _Hadley Wickham, [Tidyverse Style Guide](http://style.tidyverse.org/index.html)._
+
+When you write code, especially when it will be read by other people (e.g., your TA), refer to the [Tidyverse Style Guide](http://style.tidyverse.org/index.html) for best practices.  
+
 # R Markdown 
 
 [R Markdown](http://rmarkdown.rstudio.com) documents can be used to create documents that weave together code and text.  

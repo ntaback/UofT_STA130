@@ -37,13 +37,13 @@ You can do both (i) and (ii), but a lot of the same content is covered. If you d
 
 ## January 8 Class
 
-Prof. Taback - [Class slides](STA130H1_Class1_NT.pdf),  [Introduction to R script](introduction_to_R.R)
+Prof. Taback - [Class slides](week1/STA130H1_Class1_NT.pdf),  [Introduction to R script]()
 
-Prof. Gibbs - [Class slides](introtoggplot.pdf)
+Prof. Gibbs - [Class slides](week1/introtoggplot.pdf)
 
 ## January 12 Tutorial
 
-[Practice problems](Week1PracticeProblems-student.html)
+[Practice problems](week1/Week1PracticeProblems-student.html)
 
 <br>
 <html>
