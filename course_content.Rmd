@@ -37,7 +37,7 @@ You can do both (i) and (ii), but a lot of the same content is covered. If you d
 
 ## January 8 Class
 
-Prof. Taback - [Class slides](week1/STA130H1_Class1_NT.pdf),  [Introduction to R script]()
+Prof. Taback - [Class slides](week1/STA130H1_Class1_NT.pdf),  [Introduction to R script](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/introduction_to_R.R)
 
 Prof. Gibbs - [Class slides](week1/introtoggplot.pdf)
 
