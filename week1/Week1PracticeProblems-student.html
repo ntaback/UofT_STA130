@@ -130,14 +130,13 @@ $(document).ready(function () {
 <div id="what-should-i-bring-to-tutorial-on-january-12" class="section level2">
 <h2>What should I bring to tutorial on January 12?</h2>
 <ul>
-<li><p>R output (e.g., plots) for Question 2. You can either bring a hardcopy or bring your laptop with the output.</p></li>
-<li><p>Answer to Question 4(d), parts (i), (ii).</p></li>
+<li>R output (e.g., plots) for Question 2. You can either bring a hardcopy or bring your laptop with the output.</li>
 </ul>
 </div>
 <div id="first-steps-to-answering-these-questions." class="section level2">
 <h2>First steps to answering these questions.</h2>
 <ul>
-<li><p>Login to RStudio <a href="https://rstudio.chass.utoronto.ca/" class="uri">https://rstudio.chass.utoronto.ca/</a></p></li>
+<li><p>Login to RStudio <a href="https://rstudio.chass.utoronto.ca/" class="uri">https://rstudio.chass.utoronto.ca/</a> (RStudio on this website is not functioning properly. It is recommended that you install R and RStudio on your personal computer.)</p></li>
 <li><p>Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.</p></li>
 </ul>
 <pre class="r"><code>file_url &lt;- &quot;https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/Week1PracticeProblems-student.Rmd&quot;
@@ -188,7 +187,8 @@ skeleton_data &lt;- read_table(data_url)</code></pre>
 </div>
 <div id="question-4" class="section level2">
 <h2>Question 4</h2>
-<p>Recall from class that the histogram is a density estimator. Suppose that we have a sample of real observations (data) <span class="math inline">\(X_1,X_2, \ldots,X_n\)</span> and we wish to estimate the underlying density function.</p>
+<p><strong>NB: Material related to this question will be covered in class on Jan. 15. Students are not required to bring solutions to any part of this question to tutorial on Jan. 12.</strong></p>
+<p>The histogram is a density estimator. Suppose that we have a sample of real observations (data) <span class="math inline">\(X_1,X_2, \ldots,X_n\)</span> and we wish to estimate the underlying density function.</p>
 <p>A left-closed, right-open interval is defined as: <span class="math inline">\([a,b)=\{x \in \mathbb R :-\infty &lt; a \le x &lt; b &lt; \infty\}\)</span>. The length of an interval is <span class="math inline">\(b-a\)</span>. NB: The definition of interval length doesn’t change if the intervals are, for example, left-open, right-open or left-closed, right-open.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Given an <em>origin</em> <span class="math inline">\(x_0\)</span> and a <em>bin width</em> <span class="math inline">\(h\)</span>, the <em>bins</em> of the histogram are the left-closed, right-open intervals</li>
@@ -210,7 +210,6 @@ skeleton_data &lt;- read_table(data_url)</code></pre>
 library(tidyverse)
 SAT_2010 %&gt;% ggplot(aes(x=math)) + geom_histogram(aes(y=..density..),binwidth = 10,fill=&quot;darkgrey&quot;,colour=&quot;black&quot;,alpha=.1) </code></pre>
 <p>Try different values of <code>alpha</code> and colours to create a histogram that’s easy to interpret. Also, try the histogram with frequency and relative frequency on the <span class="math inline">\(y\)</span>-axis. Which is easier to interpret?</p>
-<p><strong>Bring your solution for this question (4.(d) parts (i), (ii)) to tutorial on Friday January 12</strong></p>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>The naive estimator <span class="math inline">\(\hat f\)</span> of a density function <span class="math inline">\(f\)</span> is given by choosing a small number <span class="math inline">\(h&gt;0\)</span> and setting</li>
 </ol>

@@ -12,11 +12,9 @@ output:
 
 - R output (e.g., plots) for Question 2.  You can either bring a hardcopy or bring your laptop with the output.
 
-- Answer to Question 4(d), parts (i), (ii).
-
 ## First steps to answering these questions.
 
-- Login to RStudio <https://rstudio.chass.utoronto.ca/> 
+- Login to RStudio <https://rstudio.chass.utoronto.ca/> (RStudio on this website is not functioning properly.  It is recommended that you install R and RStudio on your personal computer.) 
 
 - Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
 
@@ -84,7 +82,9 @@ c. Describe what you learned about the data from your graphs.
 
 ## Question 4
 
-Recall from class that the histogram is a density estimator. Suppose that we have a sample of real observations (data) $X_1,X_2, \ldots,X_n$ and we wish to estimate the underlying density function. 
+**NB: Material related to this question will be covered in class on Jan. 15.  Students are not required to bring solutions to any part of this question to tutorial on Jan. 12.** 
+
+The histogram is a density estimator. Suppose that we have a sample of real observations (data) $X_1,X_2, \ldots,X_n$ and we wish to estimate the underlying density function. 
 
 A left-closed, right-open interval is defined as: $[a,b)=\{x \in \mathbb R :-\infty < a \le x < b < \infty\}$.  The length of an interval is $b-a$. NB: The definition of interval length doesn't change if the intervals are, for example, left-open, right-open or left-closed, right-open.
 
@@ -113,7 +113,6 @@ SAT_2010 %>% ggplot(aes(x=math)) + geom_histogram(aes(y=..density..),binwidth = 
 
 Try different values of `alpha` and colours to create a histogram that's easy to interpret.  Also, try the histogram with frequency and relative frequency on the $y$-axis.  Which is easier to interpret?  
 
-**Bring your solution for this question (4.(d) parts (i), (ii)) to tutorial on Friday January 12**
 
 (d) The naive estimator $\hat f$ of a density function $f$ is given by choosing a small number $h>0$ and setting
 
