@@ -37,9 +37,14 @@ You can do both (i) and (ii), but a lot of the same content is covered. If you d
 
 ## January 8 Class
 
-Prof. Taback - [Class slides](week1/STA130H1_Class1_NT.pdf),  [Introduction to R script](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/introduction_to_R.R)
+Prof. Taback - [Class slides](week1/STA130H1_Class1_NT.pdf),  [Introduction to R script](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/introduction_to_R.R), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/lect1_sta130_nt.Rmd">
+<i class="fa fa-github" aria-hidden="true"></i>
+</a>
 
-Prof. Gibbs - [Class slides](week1/introtoggplot.pdf)
+
+Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/introtogglot.Rmd">
+<i class="fa fa-github" aria-hidden="true"></i>
+</a>, [Happiness Datasets](https://github.com/ntaback/UofT_STA130/tree/master/week1)
 
 ## January 12 Tutorial
 
