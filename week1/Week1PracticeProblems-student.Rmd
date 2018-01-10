@@ -14,7 +14,7 @@ output:
 
 ## First steps to answering these questions.
 
-- Login to RStudio <https://rstudio.chass.utoronto.ca/> (RStudio on this website is not functioning properly.  It is recommended that you install R and RStudio on your personal computer.) 
+- Login to RStudio <https://rstudio.chass.utoronto.ca/> 
 
 - Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
 
