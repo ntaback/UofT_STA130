@@ -46,6 +46,8 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 <i class="fa fa-github" aria-hidden="true"></i>
 </a>, [Happiness Datasets](https://github.com/ntaback/UofT_STA130/tree/master/week1)
 
+<i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: Section 2.1 and chapter 3 up to and including section 3.2.2.
+
 ## January 12 Tutorial
 
 [Practice problems](week1/Week1PracticeProblems-student.html)
