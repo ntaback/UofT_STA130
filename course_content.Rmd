@@ -11,6 +11,8 @@ output:
 
 This page contains course material such as class slides, practice problems, and tutorial assignments.
 
+
+
 # Week 0
 
 ## January 5 Tutorial
@@ -68,6 +70,10 @@ Week 10 - March 19 <br>
 Week 11 - March 26 <br>
 Week 12 - April 2 STA130 Poster Fair 
 </html>
+
+# Tutorial Content
+
+Documents created by TAs for tutorials can be found [here](https://drive.google.com/open?id=1ip3MLIWDOe-pKs2Qs4FBzhbSoNcbhRiY).
 
 R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/course_content.Rmd">
 <i class="fa fa-github fa-2x" aria-hidden="true"></i>
