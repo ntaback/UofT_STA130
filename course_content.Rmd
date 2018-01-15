@@ -54,6 +54,8 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 [Practice problems](week1/Week1PracticeProblems-student.html)
 
+[Example solutions to practice problems (html)](week1/Week1PracticeProblems-solutions.html), [Example solutions to practice problems (Rmd)](week1/Week1PracticeProblems-solutions.Rmd)
+
 # Week 2
 
 ## January 15 Class

@@ -1,0 +1,240 @@
+---
+title: "STA130H1 -- Winter 2018"
+subtitle: Week 1 Practice Problems
+author: Example Solutions
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Practice Problems
+
+## Question 1
+Exercise 3.1 in the textbook uses data that come with `R`.  The dataset is in the `mosaic` package, which you must first load with the command `library(mosaic)`.
+The name of the dataframe is `Galton`.  
+
+   a. Construct the plots that you are asked to construct in Exercise 3.1.    
+
+   b. Name three additional plots that would be interesting to examine.  
+
+Load libraries and look at data:
+
+```{r}
+# load libraries
+library(tidyverse) 
+library(mosaic)
+glimpse(Galton)
+```
+
+Part 1: scatterplot pf each person's height
+```{r}
+Galton %>% ggplot(aes(height,father)) + geom_point()
+```
+
+Parts 2 and 3: separate by facets and add regression lines to each facet
+```{r}
+Galton %>% ggplot(aes(height,father)) + geom_point() + facet_wrap(~sex) + geom_smooth(method="lm")
+```
+
+Some other plots that might be interesting:
+
+* Distribution of the number of kids in each family in a bar plot.  (Could also be a histogram but there are only a few values.)
+
+```{r}
+Galton %>% ggplot(aes(nkids)) + geom_bar() 
+```
+
+* Side-by-side boxplots of height by sex
+
+```{r}
+Galton %>% ggplot(aes(sex, height)) + geom_boxplot()
+```
+
+* Scatterplot to show the relationship of each person's height and their mother's height
+
+```{r}
+Galton %>% ggplot(aes(height, mother)) + geom_point()
+```
+
+* Scatterplot colour-coded by sex, and separated by the number of kids in the family
+
+```{r}
+Galton %>% ggplot(aes(height, mother)) + geom_point() + facet_wrap(~sex)
+Galton %>% ggplot(aes(height, mother, color=sex)) + geom_point() + facet_wrap(~nkids)
+```
+
+## Question 2
+
+**Bring your output for this question to tutorial on Friday January 12 (either a hardcopy or on your laptop). **
+For this question, we will use the data in Exercise 3.4 in the texbook.  You can read more about the data and the variables here:  [https://rdrr.io/cran/mosaicData/man/Marriage.html](https://rdrr.io/cran/mosaicData/man/Marriage.html).
+ 
+Look at the data: 
+```{r}
+glimpse(Marriage)
+```
+a. Construct at least two plots that each show the distribution of one categorical variable.
+
+Make barplots of any of the categorical variables, such as the following:
+```{r}
+Marriage %>% ggplot(aes(officialTitle)) + geom_bar() + coord_flip()
+Marriage %>% ggplot(aes(race)) + geom_bar()
+Marriage %>% ggplot(aes(prevcount)) + geom_bar() # not categorical but only a small number of values
+Marriage %>% ggplot(aes(prevconc)) + geom_bar() # not categorical but only a small number of values
+Marriage %>% ggplot(aes(sign)) + geom_bar() # not categorical but only a small number of values
+```
+  
+b. Construct at least two plots that each show the distribution of one quantitative variable.
+
+A histogram or boxplot is appropriate here.  Some examples:
+```{r}
+Marriage %>% ggplot(aes(age)) + geom_histogram(binwidth=5)
+Marriage %>% ggplot(aes(x="age", y=age)) + geom_boxplot()
+Marriage %>% ggplot(aes(college)) + geom_histogram()
+Marriage %>% ggplot(aes(x="college", y=college)) + geom_boxplot()
+Marriage %>% ggplot(aes(dayOfBirth)) + geom_histogram(binwidth=30)
+Marriage %>% ggplot(aes(x="dayOfBirth", y=dayOfBirth)) + geom_boxplot()
+```
+
+  
+c. Construct a plot that shows the relationship between two variables.  What can you say about the relationship?
+
+These plots could be side-by-side boxplots or scatterplots.  Here are some examples and observations about the relationships from the plots:
+
+```{r}
+Marriage %>% ggplot(aes(race, age)) + geom_boxplot()
+```
+
+From the plot above, we see that thehe distribution of age is approximately the same for all races.  Note that there are very few observations for American Indian and Hispanic people.
+
+```{r}
+Marriage %>% ggplot(aes(person, age)) + geom_boxplot()
+```
+
+The location of the distribution of ages for grooms is higher than for brides, indicating grooms tend to be older when they marry.
+
+```{r}
+Marriage %>% ggplot(aes(prevcount, age)) + geom_point()
+```
+
+There is a weak relationship positive relationship between age and the number of previous marriages.  The age of marriage increases, on average, with the number of previous marriages.
+
+```{r}
+Marriage %>% ggplot(aes(college, age)) + geom_point()
+```
+
+There is no relationship between age at marriage and the number of years of college education.
+
+```{r}
+Marriage %>% ggplot(aes(dayOfBirth, age)) + geom_point()
+```
+
+There is no systematic relationship between age at marriage and day of birth.
+  
+d. Can you construct a plot using three variables?  four variables?  If you can, construct them!
+
+Some example plots with 3 variables:
+
+```{r}
+Marriage %>% ggplot(aes(prevcount, age, color=person)) + geom_point()
+Marriage %>% ggplot(aes(prevcount, age)) + geom_point() + facet_wrap(~person)
+Marriage %>% ggplot(aes(college, age)) + geom_point() + facet_wrap(~person)
+```
+
+An example plot with 4 variables:
+
+```{r}
+Marriage %>% ggplot(aes(college, age, color=person)) + geom_point() + facet_wrap(~sign)
+```
+
+## Question 3
+    
+For this exercise, you will load data from an external source.  You can read about the data here: [http://sta220.utstat.utoronto.ca/data/the-skeleton-data/](http://sta220.utstat.utoronto.ca/data/the-skeleton-data/).  
+
+The data are in a plain text file with spaces between columns here: [http://stats.onlinelearning.utoronto.ca/wp-content/uploaded/Data/SkeletonDatacomplete.txt](http://stats.onlinelearning.utoronto.ca/wp-content/uploaded/Data/SkeletonDatacomplete.txt).  The following code will load the data into a tibble (the tidyverse version of a data frame).
+
+a. Read the data into `R` using the following code.  
+
+```{r}
+library(tidyverse)
+data_url <- "http://stats.onlinelearning.utoronto.ca/wp-content/uploaded/Data/SkeletonDatacomplete.txt"
+skeleton_data <- read_table(data_url)
+```
+
+Inspect the data to make sure it is read in completely.  You can compare by going directly to the `data_url`.  
+
+```{r}
+# View(skeleton_data) # useful when you're working but not for the knit document
+head(skeleton_data) # see the first few rows
+glimpse(skeleton_data) # see its structure
+```
+
+b. Construct at least four interesting graphs with the data, including: a graph of one categorical variable, a graph of one quantitative variable, a graph with at least two variables, a graph with at least three variables.  
+
+Example graphs of one categorical variable:
+
+```{r}
+skeleton_data %>% ggplot(aes(BMIcat)) + geom_bar()
+skeleton_data %>% ggplot(aes(Sex)) + geom_bar()
+```
+
+Example graphs of one quantitative variable:
+
+```{r}
+skeleton_data %>% ggplot(aes(BMIquant)) + geom_histogram(binwidth=2)
+skeleton_data %>% ggplot(aes(Age)) + geom_histogram(binwidth=5)
+skeleton_data %>% ggplot(aes(DGerror)) + geom_histogram(binwidth=5)
+skeleton_data %>% ggplot(aes(SBerror)) + geom_histogram(binwidth=5)
+skeleton_data %>% ggplot(aes("BMIquant", BMIquant)) + geom_boxplot()
+skeleton_data %>% ggplot(aes("Age", Age)) + geom_boxplot()
+skeleton_data %>% ggplot(aes("DGerror", DGerror)) + geom_boxplot()
+skeleton_data %>% ggplot(aes("SBerror", SBerror)) + geom_boxplot()
+```
+
+Example graphs with two variables:
+
+```{r}
+skeleton_data %>% ggplot(aes(factor(Sex), DGerror)) + geom_boxplot()
+skeleton_data %>% ggplot(aes(BMIcat, DGerror)) + geom_boxplot()
+skeleton_data %>% ggplot(aes(factor(Sex), SBerror)) + geom_boxplot()
+skeleton_data %>% ggplot(aes(BMIcat, SBerror)) + geom_boxplot()
+skeleton_data %>% ggplot(aes(Age, DGerror)) + geom_point()
+skeleton_data %>% ggplot(aes(Age, SBerror)) + geom_point()
+skeleton_data %>% ggplot(aes(BMIquant, DGerror)) + geom_point() + geom_smooth()
+skeleton_data %>% ggplot(aes(BMIquant, SBerror)) + geom_point() + geom_smooth()
+skeleton_data %>% ggplot(aes(DGerror, SBerror)) + geom_point()
+```
+
+Example graphs with three variables:
+
+```{r}
+skeleton_data %>% ggplot(aes(Age, DGerror)) + geom_point() + facet_wrap(~Sex)
+skeleton_data %>% ggplot(aes(Age, SBerror)) + geom_point() + facet_wrap(~Sex)
+skeleton_data %>% ggplot(aes(Age, DGerror)) + geom_point() + facet_wrap(~BMIcat)
+skeleton_data %>% ggplot(aes(Age, SBerror)) + geom_point() + facet_wrap(~BMIcat)
+```
+
+
+c. Describe what you learned about the data from your graphs.
+
+Some observations that can be made from the plots:
+
+* Most (more than half) of the skeletons in the data were from people of normal weight.  Very few were obese.
+* There are more than twice as many skeletons in the data who are male than female.
+* The distribution of the quantitative measurement of BMI is symmetric and unimodal.  The mode is between 21 and 25 kg/m$^2$.
+* The distribution of error using the Di Gangi method is slightly left-skewed.  The distribution of error using the Suchey-Brooks method is closer to symmetric.
+* Errors using the Di Gangi method tend to be negative.  More than 75% of the values are less than 0.  The range of errors using the Suchey-Brooks method is smaller.
+* Errors using the Di Gangi method tend to be more negative for females than males.  This is not the case for errors using the Suchey-Brooks method.
+* Errors using the Di Gangi method tend to be more negative for skeletons from underweight people than for people who were obese or normal weight.  
+* There is a large positive outlier in the error using the Di Gangi method for the skeleton of an underweight person. 
+* There is a strong, negative, linear relationship between age and error for both methods.  This relationship is true for both sexes and is similar for both sexes.  It is also true for all BMI categories.
+* There is no relationship between the quantitative measurement of BMI and error for both methods.
+* There is a strong, positive, linear relationship between the error estimates for the two methods.
+
+
+R Markdown source <a href="">
+<i class="fa fa-github fa-2x" aria-hidden="true"></i>
+</a>
