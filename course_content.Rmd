@@ -54,10 +54,22 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 [Practice problems](week1/Week1PracticeProblems-student.html)
 
+# Week 2
+
+## January 15 Class
+
+### Slides
+
+[Class slides (pdf)](week2/STA130_Class 2_NT.pdf), [Class slides (html)](week2/lect2_sta130_nt-ver1.html)
+
+## January 19 Tutorial
+
+[Practice problems]()
+
+
 <br>
 <html>
 <span style="opacity: 0.5;">
-Week 2 - January 15 <br>
 Week 3 - January 22 <br>
 Week 4 - January 29 <br>
 Week 5 - February 5 <br>
