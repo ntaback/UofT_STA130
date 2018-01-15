@@ -3,10 +3,9 @@ title: 'STA130 - Class #2: '
 author: "Nathan Taback"
 date: '2018-01-15'
 output:
-  slidy_presentation: default
-  fontsize: 10pt
-  ioslides_presentation: default
-  beamer_presentation: default
+  ioslides_presentation:
+    widescreen: true
+    smaller: true
 ---
 
 
@@ -42,13 +41,11 @@ happinessdata2016 <- read_csv("happiness2016.csv")
 - Different bin width will yield different histograms
 
 
-```{r,warning=FALSE,message=FALSE,echo=TRUE, fig.height=2, fig.width=8}
+```{r,warning=FALSE,message=FALSE,echo=FALSE, fig.height=2, fig.width=8}
 p1 <- ggplot(data = happinessdata2016, aes(x = life_ladder)) + 
   geom_histogram(binwidth = 0.1) 
 p2 <- ggplot(data = happinessdata2016, aes(x = life_ladder)) + 
   geom_histogram(binwidth = 1.0) 
-
-ggplot_build(p2)
 grid.arrange(p1,p2,nrow = 1)
 ```
 
@@ -111,7 +108,7 @@ To construct the histogram we have to choose an origin $x_0$ and bin width $h$.
 
 Same bin width but different origin
 
-```{r, echo=TRUE, eval=TRUE}
+```{r, echo=FALSE, eval=TRUE}
 dat <- data_frame(x = c(1,2,2.5,3,7))
 p0.5 <- ggplot(data = dat, aes(x = x)) + 
   geom_histogram(breaks = seq(0.5,7.5,.25)) +
@@ -168,6 +165,10 @@ There are three interrelated rules which make a dataset tidy:
 2. Each observation must have its own row.
 3. Each value must have its own cell.
 
+## Tidy data
+
+Which data set is tidy?
+
 ```{r,warning=FALSE,message=FALSE,echo=FALSE}
 library(tidyverse)
 table1
@@ -208,8 +209,6 @@ A general rule of thumb:
 ## Data behind the article
 
 ```{r,echo=TRUE}
-# uncomment this next line if fivethirtyeight lib is not installed 
-# install.packages("fivethirtyeight") 
 library(fivethirtyeight) # load the library
 glimpse(college_recent_grads)
 ```
@@ -243,7 +242,7 @@ NB:  `==` is a test for equality and is different than `=`.
 select(filter(college_recent_grads, median >= 60000), major, men, women)
 ```
 
-<img src="poll1.png" style="width:8in;height:8in;">
+<img src="poll1.png" style="width:8in;height:4in;">
 
 
 ## The pipe operator `%>%`
@@ -377,7 +376,7 @@ glimpse(trumptweets)
 
 ## Trump's tweets
 
-```{r,echo=TRUE,warning=FALSE,message=FALSE}
+```{r,echo=TRUE,warning=FALSE,message=FALSE, fig.height=4, message=FALSE, warning=FALSE, r,echo=TRUE}
 trumptweets %>% 
   count(word) %>% 
   mutate(word = reorder(word,n)) %>% 
@@ -420,22 +419,19 @@ trumptweets %>% inner_join(get_sentiments("nrc"))
 
 ## Sentiment of Words used in Tweets
 
-```{r}
-tweet_counts <- trumptweets %>% 
+```{r,echo=TRUE,message=FALSE}
+trumptweets %>% 
   inner_join(get_sentiments("nrc")) %>% 
   group_by(sentiment,source) %>% 
   summarise(n=n()) %>% 
   mutate(pct= round(n/sum(n)*100,2)) %>%
   arrange(desc(pct))
-tweet_counts
 ```
 
 
 ## Sentiment of Words used in Tweets
 
-Now let's plot our results
-
-```{r, echo=TRUE,eval=TRUE,message=FALSE}
+```{r, echo=TRUE,eval=TRUE,message=FALSE, echo=FALSE}
 trumptweets %>% 
   inner_join(get_sentiments("nrc")) %>% 
   group_by(sentiment,source) %>%
@@ -494,8 +490,11 @@ college_recent_grads %>%
   ggplot(aes(x = men / total, y = median)) + geom_point()
 ```
 
+## Transforming Variables in R
 
-```{r, echo=TRUE}
+The same plot but on the log-log scale.
+
+```{r, echo=TRUE, fig.height=4}
 college_recent_grads %>% 
   mutate(log_men = log(men / total), log_salary = log(median)) %>%
   ggplot(aes(x = log_men, y = log_salary)) + geom_point()
