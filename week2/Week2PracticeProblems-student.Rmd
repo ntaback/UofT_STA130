@@ -99,7 +99,6 @@ $$\frac{\hat p_{\text Newfoundland}/(1-\hat p_{\text Newfoundland})}{\hat p_{\te
 
 ## Question 3
 
-
 (a) In this exercise you will create several histograms of math scores in `SAT_2010` data in the `mdsr` library (see page 39, 41 of MDSR) where you specify different lengths of histogram bins using `ggplot()`.
 
 - Create a histogram without specifying the `binwidth` argument.  What do you notice?
@@ -118,4 +117,4 @@ SAT_2010 %>% ggplot(aes(x=math)) + geom_histogram(aes(y=..density..),binwidth = 
 
 Try different values of `alpha` and colours to create a histogram that's easy to interpret.  Also, try the histogram with frequency and relative frequency on the $y$-axis.  Which is easier to interpret?  
 
-R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"> <i class="fa fa-github fa-2x" aria-hidden="true"></i> </a>
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"> R Markdown source   <i class="fa fa-github" aria-hidden="true"></i></a> 
