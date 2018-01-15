@@ -60,11 +60,12 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 ### Slides
 
-[Class slides (pdf)](week2/STA130_Class 2_NT.pdf), [Class slides (html)](week2/lect2_sta130_nt-ver1.html)
+[Class slides (pdf)](week2/STA130_Class 2_NT.pdf), [Class slides (html)](week2/lect2_sta130_nt-ver1.html), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/lect2_sta130_nt-ver1.Rmd">
+<i class="fa fa-github" aria-hidden="true"></i></a>
 
 ## January 19 Tutorial
 
-[Practice problems]()
+[Practice problems](week2/Week2PracticeProblems-student.html)
 
 
 <br>

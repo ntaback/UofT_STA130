@@ -17,13 +17,13 @@ Your answers to 1. (a) and 2. (b)
 - Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
 
 ```{r,eval=FALSE}
-file_url <- ""
-download.file(url = file_url , destfile = "Week1PracticeProblems-student.Rmd")
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week2PracticeProblems-student.Rmd")
 ```
 
-Look for the file "Week1PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+Look for the file "Week2PracticeProblems-student.Rmd" under the Files tab then click on it to open.
 
-- Change the subtitle to "Week 1 Practice Problems Solutions" and change the author to your name and student number.
+- Change the subtitle to "Week 2 Practice Problems Solutions" and change the author to your name and student number.
 
 - Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
 
@@ -61,6 +61,8 @@ NB:  You will not be responsible for understanding how this code and the `rvest`
 
 
 ```{r,eval=FALSE}
+# Uncomment next line if the rvest package is not installed
+# install.packages("rvest") 
 library(rvest)
 
 url <- "https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-1-ending-january-6-2018.html"
@@ -118,6 +120,6 @@ Try different values of `alpha` and colours to create a histogram that's easy to
 
 
 
-R Markdown source <a href="">
+R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd">
 <i class="fa fa-github fa-2x" aria-hidden="true"></i>
 </a>

@@ -136,11 +136,11 @@ $(document).ready(function () {
 <ul>
 <li>Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.</li>
 </ul>
-<pre class="r"><code>file_url &lt;- &quot;&quot;
-download.file(url = file_url , destfile = &quot;Week1PracticeProblems-student.Rmd&quot;)</code></pre>
-<p>Look for the file “Week1PracticeProblems-student.Rmd” under the Files tab then click on it to open.</p>
+<pre class="r"><code>file_url &lt;- &quot;https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd&quot;
+download.file(url = file_url , destfile = &quot;Week2PracticeProblems-student.Rmd&quot;)</code></pre>
+<p>Look for the file “Week2PracticeProblems-student.Rmd” under the Files tab then click on it to open.</p>
 <ul>
-<li><p>Change the subtitle to “Week 1 Practice Problems Solutions” and change the author to your name and student number.</p></li>
+<li><p>Change the subtitle to “Week 2 Practice Problems Solutions” and change the author to your name and student number.</p></li>
 <li><p>Type your answers below each question. Remember that <a href="http://rmarkdown.rstudio.com/authoring_rcodechunks.html">R code chunks</a> can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using <a href="https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html">R Markdown for Class Assignments</a>). In addition this R Markdown <a href="http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">cheatsheet</a>, and <a href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">reference</a> are great resources as you get started with R Markdown.</p></li>
 </ul>
 </div>
@@ -173,7 +173,9 @@ glimpse(weather)</code></pre>
 <li>For this exercise you will need to install the library <code>rvest</code>. This code will “scrape” the table from the website and load it into an R data frame. Run the following code to download Table 1 directly into the a data frame called <code>fludat</code>.</li>
 </ol>
 <p>NB: You will not be responsible for understanding how this code and the <code>rvest</code> library works (i.e., there will not be a test question on this topic). But, if you are intrested in scraping data from the web <a href="https://blog.rstudio.com/2014/11/24/rvest-easy-web-scraping-with-r/">see</a>.</p>
-<pre class="r"><code>library(rvest)
+<pre class="r"><code># Uncomment next line if the rvest package is not installed
+# install.packages(&quot;rvest&quot;) 
+library(rvest)
 
 url &lt;- &quot;https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-1-ending-january-6-2018.html&quot;
  
@@ -218,7 +220,7 @@ fludat &lt;- cbind(`Reporting Laboratory`=fludat[,1],dat)</code></pre>
 library(tidyverse)
 SAT_2010 %&gt;% ggplot(aes(x=math)) + geom_histogram(aes(y=..density..),binwidth = 10,fill=&quot;darkgrey&quot;,colour=&quot;black&quot;,alpha=.1) </code></pre>
 <p>Try different values of <code>alpha</code> and colours to create a histogram that’s easy to interpret. Also, try the histogram with frequency and relative frequency on the <span class="math inline">\(y\)</span>-axis. Which is easier to interpret?</p>
-<p>R Markdown source <a href> <i class="fa fa-github fa-2x" aria-hidden="true"></i> </a></p>
+<p>R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"> <i class="fa fa-github fa-2x" aria-hidden="true"></i> </a></p>
 </div>
 </div>
 
