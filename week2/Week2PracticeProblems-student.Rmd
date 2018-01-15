@@ -68,6 +68,7 @@ NB:  You will not be responsible for understanding how this code and how the `rv
 # Uncomment next line if the rvest package is not installed
 # install.packages("rvest") 
 library(rvest)
+library(tidyverse)
 
 url <- "https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-1-ending-january-6-2018.html"
  
