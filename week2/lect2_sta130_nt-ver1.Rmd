@@ -5,7 +5,7 @@ date: '2018-01-15'
 output:
   ioslides_presentation:
     widescreen: true
-    smaller: true
+    smaller: false
 ---
 
 
@@ -22,8 +22,9 @@ happinessdata2016 <- read_csv("happiness2016.csv")
 
 - Histograms and density functions
 - Statistical data
-- Data wrangling
 - Tidy data
+- Data wrangling
+- Transforming data
 
 # Histograms and Density Functions
 
@@ -242,7 +243,7 @@ NB:  `==` is a test for equality and is different than `=`.
 select(filter(college_recent_grads, median >= 60000), major, men, women)
 ```
 
-<img src="poll1.png" style="width:8in;height:4in;">
+<img src="poll1.png" style="width:8in;height:3in;">
 
 
 ## The pipe operator `%>%`
@@ -376,7 +377,7 @@ glimpse(trumptweets)
 
 ## Trump's tweets
 
-```{r,echo=TRUE,warning=FALSE,message=FALSE, fig.height=4, message=FALSE, warning=FALSE, r,echo=TRUE}
+```{r,echo=TRUE,warning=FALSE,message=FALSE, fig.height=3, message=FALSE, warning=FALSE, r,echo=TRUE}
 trumptweets %>% 
   count(word) %>% 
   mutate(word = reorder(word,n)) %>% 
@@ -485,7 +486,7 @@ ggplot(data.frame(x = c(0.05, 50)), aes(x)) +
 
 The relationship between Salary (`median`) and percentage of male graduates.
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,fig.height=3}
 college_recent_grads %>% 
   ggplot(aes(x = men / total, y = median)) + geom_point()
 ```
@@ -494,7 +495,7 @@ college_recent_grads %>%
 
 The same plot but on the log-log scale.
 
-```{r, echo=TRUE, fig.height=4}
+```{r, echo=TRUE, fig.height=3}
 college_recent_grads %>% 
   mutate(log_men = log(men / total), log_salary = log(median)) %>%
   ggplot(aes(x = log_men, y = log_salary)) + geom_point()
