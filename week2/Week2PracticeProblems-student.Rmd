@@ -118,8 +118,4 @@ SAT_2010 %>% ggplot(aes(x=math)) + geom_histogram(aes(y=..density..),binwidth = 
 
 Try different values of `alpha` and colours to create a histogram that's easy to interpret.  Also, try the histogram with frequency and relative frequency on the $y$-axis.  Which is easier to interpret?  
 
-
-
-R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd">
-<i class="fa fa-github fa-2x" aria-hidden="true"></i>
-</a>
+R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"> <i class="fa fa-github fa-2x" aria-hidden="true"></i> </a>
