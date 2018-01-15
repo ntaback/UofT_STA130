@@ -235,6 +235,6 @@ Some observations that can be made from the plots:
 * There is a strong, positive, linear relationship between the error estimates for the two methods.
 
 
-R Markdown source <a href="">
+R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/Week1PracticeProblems-solutions.Rmd">
 <i class="fa fa-github fa-2x" aria-hidden="true"></i>
 </a>
