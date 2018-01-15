@@ -63,6 +63,8 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 [Class slides (pdf)](week2/STA130_Class 2_NT.pdf), [Class slides (html)](week2/lect2_sta130_nt-ver1.html), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/lect2_sta130_nt-ver1.Rmd">
 <i class="fa fa-github" aria-hidden="true"></i></a>, [Trump's Tweets](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/trumptweets.csv)
 
+[Annotated slides (pdf) - 10:00 class](week2/STA130_Class 2_NT_10.pdf)
+
 <i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: 4.1, 4.2, 4.3, 4.4, 5.1
 
 ## January 19 Tutorial
