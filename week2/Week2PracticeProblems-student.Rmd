@@ -6,6 +6,10 @@ output:
   html_document: default
 ---
 
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
 # Instructions
 
 ## What should I bring to tutorial on January 19?
@@ -117,4 +121,5 @@ SAT_2010 %>% ggplot(aes(x=math)) + geom_histogram(aes(y=..density..),binwidth = 
 
 Try different values of `alpha` and colours to create a histogram that's easy to interpret.  Also, try the histogram with frequency and relative frequency on the $y$-axis.  Which is easier to interpret?  
 
-<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"> R Markdown source   <i class="fa fa-github" aria-hidden="true"></i></a> 
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 
