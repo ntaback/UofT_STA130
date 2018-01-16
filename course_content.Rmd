@@ -69,6 +69,10 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 [Annotated slides (pdf) - 14:00 class](week2/STA130_Class 2_2pm.pdf)
 
+[For Big-Data Scientists, ‘Janitor Work’ Is Key Hurdle to Insights - NYT](https://nyti.ms/2jNUfHo)
+
+[The Economic Guide To Picking A College Major - FiveThirtyEight](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/)
+
 <i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: 4.1, 4.2, 4.3, 4.4, 5.1
 
 ## January 19 Tutorial
