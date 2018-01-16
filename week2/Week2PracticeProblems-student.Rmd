@@ -14,7 +14,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ## What should I bring to tutorial on January 19?
 
-Your answers to 1. (a) and 2. (b)
+Your answers to 1. (a) and 2. (i)
 
 ## First steps to answering these questions.
 
@@ -36,7 +36,7 @@ Look for the file "Week2PracticeProblems-student.Rmd" under the Files tab then c
 
 ## Question 1
 
-Exercise 4.2 - 4.6 in the textbook uses data that come with `R`.  The dataset is in the `nycflights13` package, which you must first load with the command `library(nycflights13)`.
+Exercise 4.4 - 4.6 in the textbook use data that come with `R`.  The dataset is in the `nycflights13` package, which you must first load with the command `library(nycflights13)`.
 
 **Bring your output for this question to tutorial on Friday January 19 (either a hardcopy or on your laptop). **
 
@@ -50,6 +50,121 @@ glimpse(planes)
 glimpse(weather)
 ```
 
+The data frames in the `nycflights13` are described in the help documentation for the package.  This can be accessed from the help tab or, for example, by running `help(topic = "flights", package = "nycflights13")` to access the documentation for the `flights` data frame.
+
+Below is some code to help you get started. Wherever you see `FILL IN CODE HERE` is a prompt for you to figure out what code should inserted at this point.  In other words, `FILL IN CODE HERE` is not valid R code. 
+
+## Question 4.4
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(nycflights13)
+
+
+# Explore flights data frame
+
+# The number of distinct planes in the flights data frame
+flights %>% summarize(num_planes = n_distinct(tailnum))
+
+# The number of planes with non-missing plane tail number in the flights data frame
+flights %>% summarize(sum(is.na(tailnum) == FALSE))
+
+# Create a data frame called flight_tailnum that contains 
+# only planes with tailnum info. in the flights data frame
+
+flight_tailnum <- flights %>% filter(is.na(tailnum) == FALSE) %>% select(tailnum)
+
+# Explore planes data frame
+
+# The number of distinct planes in the planes data frame
+planes %>% summarize(num_planes = n_distinct(tailnum))
+
+# The number of planes with non-missing plane year 
+# manufacture date in planes data frame
+
+planes %>% summarize(sum(is.na(year) == FALSE))
+
+# The number of planes with missing plane year 
+# manufacture date in planes data frame
+
+planes %>% summarize(sum(is.na(year) == TRUE))
+
+# Create a data frame where year in planes data frame is renamed to
+# plane_year then choose rows where plane year is not missing
+
+plane_year <- planes %>% rename(plane_year = year) %>% 
+  FILL IN CODE HERE %>% FILL IN CODE HERE 
+  
+
+# Join flight_tailnum and plane_year and calculate oldest plane
+FILL IN CODE HERE %>% inner_join(FILL IN CODE HERE) %>% summarise(FILL IN CODE HERE)
+
+# Calculate the number of planes that flew from NYC that are in planes table
+FILL IN CODE HERE %>% inner_join(FILL IN CODE HERE, by = "tailnum") %>% summarize(num_plane=n_distinct(tailnum))
+
+```
+
+
+## Question 4.5
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(nycflights13)
+
+# how many planes have a missing date of manufacture?
+
+planes %>% mutate(missing_year = is.na(year) == FILL IN CODE HERE) %>% count(FILL IN CODE HERE)
+
+# five most common manufacturers
+
+planes %>% 
+  count(FILL IN CODE HERE) %>% 
+  arrange(desc(n)) %>%
+  top_n(5)
+
+# distribution of manufacturer over time
+# combine smaller manufacturers into 'other' category
+
+planes1 <- planes %>% 
+  count(manufacturer) %>% 
+  mutate(manufacturer_cat = ifelse(n >= 5, manufacturer, "Other")) 
+
+# use recode function in dplyr to recode some manufacturer names
+
+planes1$manufacturer_cat <- recode(planes1$manufacturer_cat, "AIRBUS INDUSTRIE" = "AIRBUS", FILL IN CODE HERE)
+
+# join with planes1 data frame with planes to add year to data frame planes 2
+
+planes2 <- planes1 %>% inner_join(planes, by = "manufacturer") %>% select(manufacturer_cat,year,n)
+
+# plot distribution of manufacturer over time
+
+planes2 %>% ggplot(aes(x = FILL IN CODE HERE, y = FILL IN CODE HERE)) + geom_col(aes(fill = FILL IN CODE HERE))
+
+
+```
+
+## Question 4.6
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(nycflights13)
+
+# Distribution of temperature in July 2013
+weather %>% filter(FILL IN CODE HERE) %>% ggplot(aes(FILL IN CODE HERE)) + FILL IN CODE HERE
+
+# Outliers in wind speed
+weather %>% ggplot(aes(FILL IN CODE HERE)) + geom_boxplot() + labs(x = "")
+
+# Relationship between dewpoint and humidity
+
+weather %>% ggplot(aes(FILL IN CODE HERE)) + FILL IN CODE HERE 
+
+# Relationship between visibility and precipitation
+ 
+weather %>% ggplot(aes(FILL IN CODE HERE)) + FILL IN CODE HERE
+
+```
 
 ## Question 2
 
