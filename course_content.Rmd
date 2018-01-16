@@ -67,6 +67,8 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 [Annotated slides (pdf) - 10:00 class](week2/STA130_Class 2_NT_10.pdf)
 
+[Annotated slides (pdf) - 14:00 class](week2/STA130_Class 2_2pm.pdf)
+
 <i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: 4.1, 4.2, 4.3, 4.4, 5.1
 
 ## January 19 Tutorial
