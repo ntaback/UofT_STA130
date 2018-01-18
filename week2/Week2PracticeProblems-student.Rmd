@@ -126,20 +126,16 @@ planes %>%
 # combine smaller manufacturers into 'other' category
 
 planes1 <- planes %>% 
-  count(manufacturer) %>% 
+  count(manufacturer, year) %>% 
   mutate(manufacturer_cat = ifelse(n >= 5, manufacturer, "Other")) 
 
 # use recode function in dplyr to recode some manufacturer names
 
 planes1$manufacturer_cat <- recode(planes1$manufacturer_cat, "AIRBUS INDUSTRIE" = "AIRBUS", FILL IN CODE HERE)
 
-# join with planes1 data frame with planes to add year to data frame planes 2
-
-planes2 <- planes1 %>% inner_join(planes, by = "manufacturer") %>% select(manufacturer_cat,year,n)
-
 # plot distribution of manufacturer over time
 
-planes2 %>% ggplot(aes(x = FILL IN CODE HERE, y = FILL IN CODE HERE)) + geom_col(aes(fill = FILL IN CODE HERE))
+planes1 %>% ggplot(aes(x = FILL IN CODE HERE, y = FILL IN CODE HERE)) + geom_col(aes(fill = FILL IN CODE HERE))
 
 
 ```
