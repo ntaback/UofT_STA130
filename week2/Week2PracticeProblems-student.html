@@ -230,34 +230,17 @@ planes %&gt;%
 # combine smaller manufacturers into 'other' category
 
 planes1 &lt;- planes %&gt;% 
-<<<<<<< HEAD
-<<<<<<< HEAD
   count(manufacturer,year) %&gt;% 
   mutate(manufacturer_cat = ifelse(n &gt;= 5, manufacturer, &quot;Other&quot;)) %&gt;%
   filter(is.na(year) == FALSE)
-=======
-=======
->>>>>>> d17973851a4417d5994525209c69f3260b1d061c
-  count(manufacturer, year) %&gt;% 
-  mutate(manufacturer_cat = ifelse(n &gt;= 5, manufacturer, &quot;Other&quot;)) 
->>>>>>> d17973851a4417d5994525209c69f3260b1d061c
 
-planes1$manufacturer_cat &lt;- recode(planes1$manufacturer_cat, &quot;AIRBUS INDUSTRIE&quot; = &quot;AIRBUS&quot;, 
-       &quot;MCDONNELL DOUGLAS AIRCRAFT CO&quot; = &quot;MCDONNELL DOUGLAS&quot;,
-       &quot;MCDONNELL DOUGLAS CORPORATION&quot; = &quot;MCDONNELL DOUGLAS&quot;)
+# use recode function in dplyr to recode some manufacturer names
 
-<<<<<<< HEAD
-planes1 %&gt;% ggplot(aes(x = year, y = n)) + geom_col(aes(fill = manufacturer_cat), position = &quot;dodge&quot;)</code></pre>
-=======
 planes1$manufacturer_cat &lt;- recode(planes1$manufacturer_cat, &quot;AIRBUS INDUSTRIE&quot; = &quot;AIRBUS&quot;, FILL IN CODE HERE)
 
 # plot distribution of manufacturer over time
 
 planes1 %&gt;% ggplot(aes(x = FILL IN CODE HERE, y = FILL IN CODE HERE)) + geom_col(aes(fill = FILL IN CODE HERE))</code></pre>
-<<<<<<< HEAD
->>>>>>> d17973851a4417d5994525209c69f3260b1d061c
-=======
->>>>>>> d17973851a4417d5994525209c69f3260b1d061c
 </div>
 <div id="question-4.6" class="section level2">
 <h2>Question 4.6</h2>

@@ -101,7 +101,6 @@ FILL IN CODE HERE %>% inner_join(FILL IN CODE HERE) %>% summarise(FILL IN CODE H
 
 # Calculate the number of planes that flew from NYC that are in planes table
 FILL IN CODE HERE %>% inner_join(FILL IN CODE HERE, by = "tailnum") %>% summarize(num_plane=n_distinct(tailnum))
-
 ```
 
 
@@ -116,7 +115,6 @@ library(nycflights13)
 planes %>% mutate(missing_year = is.na(year) == FILL IN CODE HERE) %>% count(FILL IN CODE HERE)
 
 # five most common manufacturers
-
 planes %>% 
   count(FILL IN CODE HERE) %>% 
   arrange(desc(n)) %>%
@@ -124,36 +122,17 @@ planes %>%
 
 # distribution of manufacturer over time
 # combine smaller manufacturers into 'other' category
-
 planes1 <- planes %>% 
-<<<<<<< HEAD
-<<<<<<< HEAD
   count(manufacturer,year) %>% 
   mutate(manufacturer_cat = ifelse(n >= 5, manufacturer, "Other")) %>%
   filter(is.na(year) == FALSE)
-=======
-=======
->>>>>>> d17973851a4417d5994525209c69f3260b1d061c
-  count(manufacturer, year) %>% 
-  mutate(manufacturer_cat = ifelse(n >= 5, manufacturer, "Other")) 
 
 # use recode function in dplyr to recode some manufacturer names
 
 planes1$manufacturer_cat <- recode(planes1$manufacturer_cat, "AIRBUS INDUSTRIE" = "AIRBUS", FILL IN CODE HERE)
 
 # plot distribution of manufacturer over time
-
 planes1 %>% ggplot(aes(x = FILL IN CODE HERE, y = FILL IN CODE HERE)) + geom_col(aes(fill = FILL IN CODE HERE))
-<<<<<<< HEAD
->>>>>>> d17973851a4417d5994525209c69f3260b1d061c
-=======
->>>>>>> d17973851a4417d5994525209c69f3260b1d061c
-
-planes1$manufacturer_cat <- recode(planes1$manufacturer_cat, "AIRBUS INDUSTRIE" = "AIRBUS", 
-       "MCDONNELL DOUGLAS AIRCRAFT CO" = "MCDONNELL DOUGLAS",
-       "MCDONNELL DOUGLAS CORPORATION" = "MCDONNELL DOUGLAS")
-
-planes1 %>% ggplot(aes(x = year, y = n)) + geom_col(aes(fill = manufacturer_cat), position = "dodge")
 ```
 
 ## Question 4.6
