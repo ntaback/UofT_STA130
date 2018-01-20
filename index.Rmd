@@ -15,6 +15,13 @@ output:
 
 Important information about the course can found in the [syllabus](STA130syllabus2018S.html). 
 
+## Office Hours
+
+|                       | Day/Time                         | Location                                          |
+|-----------------------|----------------------------------|---------------------------------------------------|
+| Professor Office Hour | Monday: 12-1 and 4-5            | Professor Gibbs: SS6009 Professor Taback: SS6027c |
+| TA Office Hours       | Wednesday: 2-5PM Thursday:11-2PM |                                                   |
+
 ## Computing
 
 The course will use [R](https://www.r-project.org) for computing. R is freely available [here](http://cran.utstat.utoronto.ca). We recommend using [R Studio](https://www.rstudio.com) which can be [downloaded](http://cran.utstat.utoronto.ca) for free.  We will use [R Markdown](http://rmarkdown.rstudio.com) as an authoring framework for creating reproducible data science documents.
