@@ -81,11 +81,21 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 [Practice problems](week2/Week2PracticeProblems-student.html)
 
+# Week 3
+
+## January 22 Class
+
+### Slides and References
+
+<i class="fa fa-book" aria-hidden="true"></i> 
+1. [Hands on Programming With R. G. Grolemund - Chapters 1-5](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf)
+
+<i class="fa fa-book" aria-hidden="true"></i> 
+2. [R for Data Science. G. Grolemund and H. Wickham. Chapter 5](http://r4ds.had.co.nz/transform.html)
 
 <br>
 <html>
 <span style="opacity: 0.5;">
-Week 3 - January 22 <br>
 Week 4 - January 29 <br>
 Week 5 - February 5 <br>
 Week 6 - February 12 <br>
