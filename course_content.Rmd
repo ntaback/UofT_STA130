@@ -95,6 +95,8 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 <i class="fa fa-book" aria-hidden="true"></i> 
 2. [R for Data Science. G. Grolemund and H. Wickham. Chapter 5](http://r4ds.had.co.nz/transform.html)
 
+[Class slides (html)](week3/lect4_sta130_nt.html)
+
 <br>
 <html>
 <span style="opacity: 0.5;">
