@@ -97,6 +97,11 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 [Class slides (pdf)](week3/STA130_class3_nt.pdf), [Class slides (html)](week3/lect4_sta130_nt.html)
 
+[Annotated slides (pdf) - 10:00 class](week3/STA130_class3_10.pdf)
+
+[Annotated slides (pdf) - 14:00 class](week3/STA130_class3_nt_2pm.pdf)
+
+
 ## January 26 Tutorial
 
 [Practice Problems](week3/Week3PracticeProblems-student.html)

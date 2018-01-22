@@ -101,8 +101,10 @@ You can use the code below or use the Import Dataset tab in RStudio (choose From
 
 ```{r}
 library(tidyverse)
-fludat_prov <- read_csv("fludat_prov.csv") # import data from file
-popdat <- read_csv("popdat.csv") # import data from file
+fludat_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week3/fludat_prov.csv"
+fludat_prov <- read_csv(fludat_url) # import data from file
+popdat_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week3/popdat.csv"
+popdat <- read_csv(popdat_url) # import data from file
 ```
 
 Examine the data frames using the Environment tab in RStudio.  Do the data frames have the same number of rows and columns? 
