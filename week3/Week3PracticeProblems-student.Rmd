@@ -1,0 +1,151 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 3 Practice Problems
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,eval = FALSE)
+```
+
+# Instructions
+
+## What should I bring to tutorial on January 26?
+
+Bring your answers to Questions 1 and 2.
+
+## First steps to answering these questions.
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week3/Week3PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week3PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week3PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week3PracticeProblemsSolutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+a. Student's must bring answers to questions that were assigned to bring to tutorial.  Answers do not have to be perfect in order to receive full credit, but a serious attempt at the problem is required for full credit.  Your must work be your own.
+
+# Practice Problems
+
+## Question 1
+
+(a)  Create an object in R named `coin` that represents the outcomes of flipping a coin.
+
+(b)  Use the `sample()` function to simulate flipping a coin 10 times.  Run it twice do you get the same results?
+
+(c)  Calculate the number of heads you obtained in part (b).  (HINT: save the result of the coin toss in part (b) as a vector then create a logical vector to check which elements are heads).
+
+```{r}
+coin <- FILL IN CODE
+results <- sample(FILL IN CODE, 10, replace = T)
+sum(results == FILL IN CODE)
+```
+
+
+(d)  Write a function that returns the sum of heads in 10 coin tosses.
+
+```{r}
+flipcoin <- function(){
+  FILL IN CODE
+}
+flipcoin()
+```
+
+(e) Change the function that you wrote in part (d) to include an argument for the number of flips.  So, your function should return the number of heads in $n$ flips, where $n$ is the number of flips.
+
+
+(f) Modify the function that you wrote in part (e) to return the percentage of heads in $n$ flips instead of the total number of flips.
+
+
+(g) Create a scatterplot of the number of the percent of heads versus the number of coin tosses, where the number of coin tosses ranges from 1 to 500. The following starter code assumes that your function is named `flipcoin()`.
+
+
+```{r}
+library(tidyverse)
+numtoss <- 1:500
+perchead <- sapply(1:500,flipcoin) #applies the function flipcoin to each element of 1:500
+coinflips <- data.frame(FILL IN CODE)
+coinflips %>% ggplot(aes(FILL IN CODE)) + other geoms
+```
+
+What do you observe as the number of tosses approaches 500?
+
+
+# Question 2
+
+(a) Read in the data sets fludat_prov.csv and popdat.csv into separate R data frames
+
+You can use the code below or use the Import Dataset tab in RStudio (choose From text).
+
+```{r}
+library(tidyverse)
+fludat_prov <- read_csv("fludat_prov.csv") # import data from file
+popdat <- read_csv("popdat.csv") # import data from file
+```
+
+Examine the data frames using the Environment tab in RStudio.  Do the data frames have the same number of rows and columns? 
+
+
+(b) The names of the Provinces and Territories are different in `fludat_prov` and `popdat`.  Recode so that the names are the same in both data frames.
+
+
+```{r}
+fludat_prov$prov <- recode(fludat_prov$prov, "Province of Québec" = "Quebec", FILL IN CODE)
+```
+
+
+(c)  Use the `popdat` data frame to calculate the number of provinces/territories in each region?
+
+
+```{r}
+popdat %>% group_by(FILL IN CODE) %>% summarise(FILL IN CODE)
+```
+
+
+(d) Using the `popdat` data fill in the missing regions in the `region` variable and repeat part (c).
+
+```{r, cache=TRUE}
+popdat$region[FILL IN CODE] <- FILL IN CODE 
+```
+
+(e) Join the `popdat` and `fludat` tables to create a new data frame.  How many variables and observations are in the new data frame?  Is this what you expected?  Explain.
+
+```{r}
+FILL IN CODE %>% inner_join(FILL IN CODE, by = FILL IN CODE)
+```
+
+(f) Calculate the rate of Flu A, the number of flu A cases divided by the number tested, in each province territory.  Which province has the highest rate?
+
+```{r}
+FILL IN CODE %>% 
+  inner_join(FILL IN CODE) %>% 
+  group_by(FILL IN CODE) %>% 
+  mutate(FILL IN CODE) %>%
+  arrange(FILL IN CODE)
+```
+
+
+
+<a href=""https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week3/Week3PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 
