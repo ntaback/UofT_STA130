@@ -146,7 +146,4 @@ FILL IN CODE %>%
   arrange(FILL IN CODE)
 ```
 
-
-
-
-<a href=""https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week3/Week3PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a>
+<a href=""https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week3/Week3PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 
