@@ -101,6 +101,10 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 [Practice Problems](week3/Week3PracticeProblems-student.html)
 
+## January 26 Tutorial
+
+[Practice Problems](week3/Week3PracticeProblems-student.html)
+
 <br>
 <html>
 <span style="opacity: 0.5;">
