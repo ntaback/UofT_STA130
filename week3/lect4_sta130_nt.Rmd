@@ -17,11 +17,29 @@ library(tidyverse)
 
 ## Today's Class
 
-- R and RStudio
-- Base R
-- R libraries
-- Main tidyverse libraries: ggplot2 and dplyr
+- RStudio user interface
+- R Objects
+- R Functions
+- R Scripts
+- R Packages
+- R Lists
+- R Notation
+- R Missing Data
+- dplyr
 
+## Announcements
+
+- Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+- You will learn about the mentorship program in this week's tutorial (3% of final grade).
 
 ## RStudio User Interface
 
