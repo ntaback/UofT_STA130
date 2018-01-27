@@ -22,9 +22,11 @@ Important information about the course can found in the [syllabus](STA130syllabu
 | Professor Office Hours^\*^ | Monday: 12-1 and 4-5            | Professor Gibbs: SS6009 Professor Taback: SS6027c |
 | TA Office Hours       | Wednesday: 2-5PM Thursday:11-2PM |     SS623                                              |
 |                       | Wednesday: 12-2PM                | RW109 (Computer Lab)
-|                       | Thursday: 1-3PM                  | RW107 (Computer Lab)
+|                       | Thursday: 2-3PM^\*\*^                  | RW107 (Computer Lab)
 
 \* The first part will be walking office hours since the office hours are directly after class. Professors may not get back to their office for the start of the hour, you are welcome to walk back from class with the professor and discuss course material.
+
+\*\* The computer lab is reserved from 1-2PM for STA130 in case students wish to access the computers in the lab prior to the office hours starting at 2PM.
 
 ## Computing
 
