@@ -59,7 +59,7 @@ Some of the questions in this set of practice problems are adapted from [*Introd
 (a) What are appropriate null and alternative hypothesis to test the claim?
 
 (b) Assume you conduct a test of significance using simulation and get the following empirical distribution for values of the test statistic assuming the null hypothesis is true.  For simplicity, this distribution shows the results of only **100** simulations.  There are 100 dots on the plot, one for each simulation. (In practice, 100 simulations is not sufficient.)
-```{r, echo=F, message=F}
+```{r, echo=F, message=F, warning=FALSE}
 library(tidyverse)
 set.seed(4)
 repetitions <- 100
@@ -79,6 +79,8 @@ ggplot(sim, aes(p_correct)) +
   geom_dotplot() + labs(x="Proportion correct assuming no difference") +
   scale_y_continuous(NULL, breaks = NULL) # get rid of strange label on y-axis for dotplot
 ```
+
+
 * What does each single dot in the plot represent?
 * Based on this plot, what is your estimate of the P-value?
 
