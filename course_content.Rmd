@@ -80,7 +80,7 @@ You can do both (i) and (ii), but a lot of the same content is covered. If you d
 
 #### Articles of Interest
 
-[For Big-Data Scientists, ‘Janitor Work’ Is Key Hurdle to Insights - NYT](https://nyti.ms/2jNUfHo) <i class="fa fa-external-link" aria-hidden="true"></i>
+[For Big-Data Scientists, ‘Janitor Work’ Is Key Hurdle to Insights - NYT](https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html) <i class="fa fa-external-link" aria-hidden="true"></i>
 
 [The Economic Guide To Picking A College Major - FiveThirtyEight](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/) <i class="fa fa-external-link" aria-hidden="true"></i>
 
@@ -159,7 +159,7 @@ Week 12 - April 2 STA130 Poster Fair
 
 Documents created by TAs for tutorials can be found [here](https://drive.google.com/open?id=1ip3MLIWDOe-pKs2Qs4FBzhbSoNcbhRiY).
 
-R Markdown source <a href="">
+R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/course_content.Rmd">
 <i class="fa fa-github fa-2x" aria-hidden="true"></i>
 </a>
 
