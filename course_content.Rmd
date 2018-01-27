@@ -39,22 +39,25 @@ You can do both (i) and (ii), but a lot of the same content is covered. If you d
 
 ## January 8 Class
 
-Prof. Taback - [Class slides](week1/STA130H1_Class1_NT.pdf),  [Introduction to R script](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/introduction_to_R.R), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/lect1_sta130_nt.Rmd">
-<i class="fa fa-github" aria-hidden="true"></i>
-</a>
+[Class slides - Prof. Taback](week1/STA130H1_Class1_NT.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i> 
 
+[Introduction to R script](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/introduction_to_R.R) <i class="fa fa-code" aria-hidden="true"></i>
 
-Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/introtogglot.Rmd">
-<i class="fa fa-github" aria-hidden="true"></i>
-</a>, [Happiness Datasets](https://github.com/ntaback/UofT_STA130/tree/master/week1)
+[R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/lect1_sta130_nt.Rmd) <i class="fa fa-github" aria-hidden="true"></i>
+
+[Class slides - Prof. Gibbs](week1/introtoggplot.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i> 
+
+[R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/introtogglot.Rmd) <i class="fa fa-github" aria-hidden="true"></i>
+ 
+[Happiness Datasets](https://github.com/ntaback/UofT_STA130/tree/master/week1) <i class="fa fa-table" aria-hidden="true"></i>
 
 <i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: Section 2.1 and chapter 3 up to and including section 3.2.2.
 
 ## January 12 Tutorial
 
-[Practice problems](week1/Week1PracticeProblems-student.html)
+[Practice problems](week1/Week1PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
-[Example solutions to practice problems (html)](week1/Week1PracticeProblems-solutions.html), [Example solutions to practice problems (Rmd)](week1/Week1PracticeProblems-solutions.Rmd)
+[Example solutions to practice problems](week1/Week1PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
 # Week 2
 
@@ -62,16 +65,24 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 ### Slides and References
 
-[Class slides (pdf)](week2/STA130_Class 2_NT.pdf), [Class slides (html)](week2/lect2_sta130_nt-ver1.html), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/lect2_sta130_nt-ver1.Rmd">
-<i class="fa fa-github" aria-hidden="true"></i></a>, [Trump's Tweets](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/trumptweets.csv)
+[Class slides](week2/STA130_Class 2_NT.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
-[Annotated slides (pdf) - 10:00 class](week2/STA130_Class 2_NT_10.pdf)
+[Class slides](week2/lect2_sta130_nt-ver1.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
-[Annotated slides (pdf) - 14:00 class](week2/STA130_Class 2_2pm.pdf)
+[R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/lect2_sta130_nt-ver1.Rmd)
+<i class="fa fa-github" aria-hidden="true"></i></a>
 
-[For Big-Data Scientists, ‘Janitor Work’ Is Key Hurdle to Insights - NYT](https://nyti.ms/2jNUfHo)
+[Annotated slides - 10:00 class](week2/STA130_Class 2_NT_10.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
-[The Economic Guide To Picking A College Major - FiveThirtyEight](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/)
+[Annotated slides - 14:00 class](week2/STA130_Class 2_2pm.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Trump's Tweets](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/trumptweets.csv) <i class="fa fa-table" aria-hidden="true"></i>
+
+#### Articles of Interest
+
+[For Big-Data Scientists, ‘Janitor Work’ Is Key Hurdle to Insights - NYT](https://nyti.ms/2jNUfHo) <i class="fa fa-external-link" aria-hidden="true"></i>
+
+[The Economic Guide To Picking A College Major - FiveThirtyEight](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/) <i class="fa fa-external-link" aria-hidden="true"></i>
 
 [dplyr cheat sheet #1](data-transformation.pdf), [dplyr cheat sheet #2](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
@@ -79,9 +90,9 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 ## January 19 Tutorial
 
-[Practice problems](week2/Week2PracticeProblems-student.html)
+[Practice problems](week2/Week2PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
-[Example solutions to practice problems](week2/Week2PracticeProblems-NT.html)
+[Example solutions to practice problems](week2/Week2PracticeProblems-NT.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
 # Week 3
 
@@ -89,35 +100,44 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 ### Slides and References
 
-<i class="fa fa-book" aria-hidden="true"></i> 
-1. [Hands on Programming With R. G. Grolemund - Chapters 1-5](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf)
+[Class slides](week3/STA130_class3_nt.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Class slides](week3/lect4_sta130_nt.html) <i class="fa fa-html5" aria-hidden="true"></i>
+
+[R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week3/lect4_sta130_nt.Rmd) <i class="fa fa-github" aria-hidden="true"></i></a>
+
+
+[Annotated slides - 10:00 class](week3/STA130_class3_10.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Annotated slides - 14:00 class](week3/STA130_class3_nt_2pm.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
 <i class="fa fa-book" aria-hidden="true"></i> 
-2. [R for Data Science. G. Grolemund and H. Wickham. Chapter 5](http://r4ds.had.co.nz/transform.html)
+1. [Hands on Programming With R. G. Grolemund - Chapters 1-5](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
-[Class slides (pdf)](week3/STA130_class3_nt.pdf), [Class slides (html)](week3/lect4_sta130_nt.html), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week3/lect4_sta130_nt.Rmd"> <i class="fa fa-github" aria-hidden="true"></i></a>
-
-[Annotated slides (pdf) - 10:00 class](week3/STA130_class3_10.pdf)
-
-[Annotated slides (pdf) - 14:00 class](week3/STA130_class3_nt_2pm.pdf)
+<i class="fa fa-book" aria-hidden="true"></i> 
+2. [R for Data Science. G. Grolemund and H. Wickham. Chapter 5](http://r4ds.had.co.nz/transform.html) <i class="fa fa-external-link" aria-hidden="true"></i>
 
 
 ## January 26 Tutorial
 
-[Practice Problems](week3/Week3PracticeProblems-student.html)
+[Practice Problems](week3/Week3PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
-[Example solutions to practice problems](week3/Week3PracticeProblems-NT.html)
+[Example solutions to practice problems](week3/Week3PracticeProblems-NT.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
 # Week 4
 
 ## January 29 Class
 
 ### Slides and References
-[Class slides (pdf)](week4/Week4_Testing1.pdf), [Class slides (html)](week4/Week4_Testing1.html), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week4/Week4_Testing1.Rmd"> <i class="fa fa-github" aria-hidden="true"></i></a>
+[Class slides](week4/Week4_Testing1.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Class slides](week4/Week4_Testing1.html) <i class="fa fa-html5" aria-hidden="true"></i> 
+
+[R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week4/Week4_Testing1.Rmd) <i class="fa fa-github" aria-hidden="true"></i></a>
 
 ## Februrary 2 Tutorial
 
-[Practice Problems](week4/Week4PracticeProblems-student.html)
+[Practice Problems](week4/Week4PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
 
 ---
