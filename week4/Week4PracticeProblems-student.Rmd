@@ -1,0 +1,126 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 4 Practice Problems
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+# Instructions
+
+## What should I bring to tutorial on February 2?
+
+Your answer to question 3a and 3b.
+
+## First steps to answering these questions.
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r,eval=FALSE}
+file_url <- ""
+download.file(url = file_url , destfile = "Week4PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week4PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week 4 Practice Problems Solutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+a. Student's must bring answers to questions that were assigned to bring to tutorial.  Answers do not have to be perfect in order to receive full credit, but a serious attempt at the problem is required for full credit.  Your must work be your own.
+
+
+
+# Practice Problems
+
+Some of the questions in this set of practice problems are adapted from [*Introductory Statistics with Randomization and Simulation* from OpenIntro (ISRS)](https://www.openintro.org/stat/textbook.php?stat_book=isrs).
+
+## Question 1
+
+(Adapted from ISRS 3.17) Some people claim that they can tell the difference between a diet soda and a regular soda in the first sip.  A researcher wanting to test this claim randomly sampled 80 such people.  He then filled 80 plain white cups with soda, half diet and half regular through random assignment, and asked each person to take one sip from their cup and identify the soda as diet or regular.  53 participants correctly identified the soda.
+
+(a) What are appropriate null and alternative hypothesis to test the claim?
+
+(b) Assume you conduct a test of significance using simulation and get the following empirical distribution for values of the test statistic assuming the null hypothesis is true.  For simplicity, this distribution shows the results of only **100** simulations.  There are 100 dots on the plot, one for each simulation. (In practice, 100 simulations is not sufficient.)
+```{r, echo=F, message=F}
+library(tidyverse)
+set.seed(4)
+repetitions <- 100
+simulated_stats <- rep(NA, repetitions) 
+n_observations <- 80
+test_stat <- 53/n_observations
+
+for (i in 1:repetitions)
+{
+  new_sim <- sample(c("correct", "incorrect"), size=n_observations, replace=TRUE)
+  sim_p <- sum(new_sim == "correct") / n_observations
+  simulated_stats[i] <- sim_p
+}
+
+sim <- data_frame(p_correct = simulated_stats)
+ggplot(sim, aes(p_correct)) + 
+  geom_dotplot() + labs(x="Proportion correct assuming no difference") +
+  scale_y_continuous(NULL, breaks = NULL) # get rid of strange label on y-axis for dotplot
+```
+* What does each single dot in the plot represent?
+* Based on this plot, what is your estimate of the P-value?
+
+(c) Suppose the analysis described in b. was carried out.  This time 1000 simulations were used to get a better estimate of the P-value, and the resulting P-value was 0.005.  What is an appropriate conclusion?
+
+(d) Which of the following are valid interpretations of the P-value:
+    i.  The probability that participants can correctly identify the type of soda.
+    ii.  The probability that participants can not correctly identify the type of soda.
+    iii. The probability of getting results as extreme as or more extreme than the result in this study.
+    iv.  The probability of getting results as extreme as or more extreme than the result in this study if participants can not correctly identify the type of soda.
+
+
+
+
+## Question 2
+
+(Adapted from ISRS 3.15)
+A 2012 survey of 2,254 American adults indicates that 17% do their browsing on their phone rather than a computer or other device.  According to an online article, a report from a mobile research company indicates that 38% of Chinese adults only access the internet through their cell phones.  Suppose you wanted to conduct an hypothesis test to determine if the American survey data provide strong evidence that the proportion of Americans who only use their cell phones to access the internet is different than the Chinese proportion of 38%.   
+
+(a) What are appropriate null and alternative hypotheses?  Why are they different than those in Question 1?
+
+(b) Carry out the test and make an appropriate conclusion.
+
+
+## Question 3
+
+A Scottish woman noticed that her husband's smell changed.  Six years later he was diagnosed with Parkinson's disease.  His wife joined a Parkinson's charity and met other people with that odour.  She mentioned this to researchers who decided to test her abilities.  They recruited 6 people with Parkinson's disease and 6 people without the disease.  Each of the recruits wore a t-shirt for a day, and the woman was asked to smell the t-shirts and determine which were worn by someone with Parkinson's disease.  She was correct for 11 of the 12 t-shirts.  You can read about this [here](http://www.bbc.com/news/uk-scotland-34583642).
+
+(a) **Bring your output for this question to tutorial on Friday February 2 (either a hardcopy or on your laptop). **
+Carry out a test using simulation to determine if there is evidence that this woman has some ability to identify Parkinson's disease by smell, or if she was a lucky guesser.
+Set the random number seed to the last two digits of your student number before carrying out your simulation.  Use 1,000 repetitions.
+
+(b) **Bring your output for this question to tutorial on Friday February 2 (either a hardcopy or on your laptop). **
+Carry out a test using simulation to determine if there is evidence that this woman has some ability to identify Parkinson's disease by smell, or if she was a lucky guesser.
+Set the random number seed to the last two digits of your student number before carrying out your simulation.  Use 100,000 repetitions.  (This is a repeat of part a., with many more simulated values of the test statistic under the  null hypothesis. 100,000 is a lot of repetitions, but we'll do this many repetitions this one time to make a point.)
+
+(c) The woman correctly identified all 6 people who had been diagnosed with Parkinson's but incorrectly identified one of the others as having Parkinson's.  Eight months later he was was diagnosed with the disease.  So the woman was actually correct 12 out of 12 times.  Are you able to get the P-value for the test that that this woman has some ability to identify Parkinson's disease by smell using this new data, without running a new simulation?  What would you change from your answer to a.?  What wouldn't you change?
+
+
+
+
+
+
+
+<a href=""> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 

@@ -106,11 +106,23 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 [Practice Problems](week3/Week3PracticeProblems-student.html)
 
+
+# Week 4
+
+## January 29 Class
+
+### Slides and References
+[Class slides (pdf)](week4/Week4_Testing1.pdf), [Class slides (html)](week4/Week4_Testing1.html)
+
+## Februrary 2 Tutorial
+
+[Practice Problems](week4/Week4PracticeProblems-student.html)
+
+
 ---
 <br>
 <html>
 <span style="opacity: 0.5;">
-Week 4 - January 29 <br>
 Week 5 - February 5 <br>
 Week 6 - February 12 <br>
 February 19 - Reading Week - No Week <br>

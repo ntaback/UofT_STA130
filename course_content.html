@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -394,10 +396,24 @@ div.tocify {
 <div id="january-26-tutorial" class="section level2">
 <h2>January 26 Tutorial</h2>
 <p><a href="week3/Week3PracticeProblems-student.html">Practice Problems</a></p>
+</div>
+</div>
+<div id="week-4" class="section level1">
+<h1>Week 4</h1>
+<div id="january-29-class" class="section level2">
+<h2>January 29 Class</h2>
+<div id="slides-and-references-2" class="section level3">
+<h3>Slides and References</h3>
+<p><a href="week4/Week4_Testing1.pdf">Class slides (pdf)</a>, <a href="week4/Week4_Testing1.html">Class slides (html)</a></p>
+</div>
+</div>
+<div id="februrary-2-tutorial" class="section level2">
+<h2>Februrary 2 Tutorial</h2>
+<p><a href="week4/Week4PracticeProblems-student.html">Practice Problems</a></p>
 <hr />
 <br>
 <html>
-<span style="opacity: 0.5;"> Week 4 - January 29 <br> Week 5 - February 5 <br> Week 6 - February 12 <br> February 19 - Reading Week - No Week <br> Week 7 - February 26 Midterm test during tutorial time on March 2. <br> Week 8 - March 5 <br> Week 9 - March 12 <br> Week 10 - March 19 <br> Week 11 - March 26 <br> Week 12 - April 2 STA130 Poster Fair
+<span style="opacity: 0.5;"> Week 5 - February 5 <br> Week 6 - February 12 <br> February 19 - Reading Week - No Week <br> Week 7 - February 26 Midterm test during tutorial time on March 2. <br> Week 8 - March 5 <br> Week 9 - March 12 <br> Week 10 - March 19 <br> Week 11 - March 26 <br> Week 12 - April 2 STA130 Poster Fair
 </html>
 </div>
 </div>
