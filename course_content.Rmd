@@ -95,7 +95,7 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 <i class="fa fa-book" aria-hidden="true"></i> 
 2. [R for Data Science. G. Grolemund and H. Wickham. Chapter 5](http://r4ds.had.co.nz/transform.html)
 
-[Class slides (pdf)](week3/STA130_class3_nt.pdf), [Class slides (html)](week3/lect4_sta130_nt.html)
+[Class slides (pdf)](week3/STA130_class3_nt.pdf), [Class slides (html)](week3/lect4_sta130_nt.html), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week3/lect4_sta130_nt.Rmd"> <i class="fa fa-github" aria-hidden="true"></i></a>
 
 [Annotated slides (pdf) - 10:00 class](week3/STA130_class3_10.pdf)
 
@@ -106,13 +106,14 @@ Prof. Gibbs - [Class slides](week1/introtoggplot.pdf), R Markdown source of slid
 
 [Practice Problems](week3/Week3PracticeProblems-student.html)
 
+[Example solutions to practice problems](week3/Week3PracticeProblems-NT.html)
 
 # Week 4
 
 ## January 29 Class
 
 ### Slides and References
-[Class slides (pdf)](week4/Week4_Testing1.pdf), [Class slides (html)](week4/Week4_Testing1.html)
+[Class slides (pdf)](week4/Week4_Testing1.pdf), [Class slides (html)](week4/Week4_Testing1.html), R Markdown source of slides <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week4/Week4_Testing1.Rmd"> <i class="fa fa-github" aria-hidden="true"></i></a>
 
 ## Februrary 2 Tutorial
 
