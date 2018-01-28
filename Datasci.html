@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Data Science Resources</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,79 +19,13 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
-<html>
-<head>
-<style type="text/css">
-.knitr .inline {
-  background-color: #f7f7f7;
-  border:solid 1px #B0B0B0;
-}
-.error {
-	font-weight: bold;
-	color: #FF0000;
-}
-.warning {
-	font-weight: bold;
-}
-.message {
-	font-style: italic;
-}
-.source, .output, .warning, .error, .message {
-	padding: 0 1em;
-  border:solid 1px #F7F7F7;
-}
-.source {
-  background-color: #f5f5f5;
-}
-.rimage .left {
-  text-align: left;
-}
-.rimage .right {
-  text-align: right;
-}
-.rimage .center {
-  text-align: center;
-}
-.hl.num {
-  color: #AF0F91;
-}
-.hl.str {
-  color: #317ECC;
-}
-.hl.com {
-  color: #AD95AF;
-  font-style: italic;
-}
-.hl.opt {
-  color: #000000;
-}
-.hl.std {
-  color: #585858;
-}
-.hl.kwa {
-  color: #295F94;
-  font-weight: bold;
-}
-.hl.kwb {
-  color: #B05A65;
-}
-.hl.kwc {
-  color: #55aa55;
-}
-.hl.kwd {
-  color: #BC5A65;
-  font-weight: bold;
-}
-</style>
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-        <meta http-equiv="Pragma" content="no-cache" />
-        <meta http-equiv="Expires" content="0" />
-</head>
-</html>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -233,6 +167,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -297,82 +326,33 @@ $(document).ready(function () {
 
 
 
+<h1 class="title toc-ignore">Data Science Resources</h1>
 
 </div>
 
 
-<div id="instructors" class="section level2">
-<h2>Instructors</h2>
-<p><a href="http://utstat.toronto.edu/~alisong/">Professor Alison Gibbs</a> and <a href="http://utstat.toronto.edu/~nathan/">Professor Nathan Taback</a></p>
+<div id="statistical-society-of-canada" class="section level2">
+<h2>Statistical Society of Canada</h2>
+<p><a href="https://ssc.ca/en">SSC</a></p>
 </div>
-<div id="syllabus" class="section level2">
-<h2>Syllabus</h2>
-<p>Important information about the course can found in the <a href="STA130syllabus2018S.html">syllabus</a>.</p>
+<div id="american-statistical-association" class="section level2">
+<h2>American Statistical Association</h2>
+<p><a href="http://amstat.org">ASA</a></p>
 </div>
-<div id="office-hours" class="section level2">
-<h2>Office Hours</h2>
-<table>
-<colgroup>
-<col width="21%" />
-<col width="31%" />
-<col width="46%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>Day/Time</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Professor Office Hours<sup>*</sup></td>
-<td>Monday: 12-1 and 4-5</td>
-<td>Professor Gibbs: SS6009 Professor Taback: SS6027c</td>
-</tr>
-<tr class="even">
-<td>TA Office Hours</td>
-<td>Wednesday: 2-5PM Thursday:11-2PM</td>
-<td>SS623B</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>Wednesday: 12-2PM</td>
-<td>RW109 (Computer Lab)</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>Thursday: 2-3PM<sup>**</sup></td>
-<td>RW107 (Computer Lab)</td>
-</tr>
-</tbody>
-</table>
-<p>* The first part will be walking office hours since the office hours are directly after class. Professors may not get back to their office for the start of the hour, you are welcome to walk back from class with the professor and discuss course material.</p>
-<p>** The computer lab is reserved from 1-2PM for STA130 in case students wish to access the computers in the lab prior to the office hours starting at 2PM.</p>
+<div id="rstats-on-twitter" class="section level2">
+<h2>#rstats on Twitter</h2>
+<a class="twitter-timeline" href="https://twitter.com/hashtag/rstats" data-widget-id="957728948674162688">#rstats Tweets</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </div>
-<div id="computing" class="section level2">
-<h2>Computing</h2>
-<p>The course will use <a href="https://www.r-project.org">R</a> for computing. R is freely available <a href="http://cran.utstat.utoronto.ca">here</a>. We recommend using <a href="https://www.rstudio.com">R Studio</a> which can be <a href="http://cran.utstat.utoronto.ca">downloaded</a> for free. We will use <a href="http://rmarkdown.rstudio.com">R Markdown</a> as an authoring framework for creating reproducible data science documents.</p>
-<div id="getting-started-with-r" class="section level3">
-<h3>Getting Started with R</h3>
-<ul>
-<li>If you have never programmed before then <a href="https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf">Hands-On Programming with R, by Garrett Grolemund</a> is a great place to start.</li>
-<li><a href="http://r4ds.had.co.nz">R for Data Science, by Hadley Wickham and Garrett Grolemund</a> is a wonderful resource.</li>
-<li>A list of more resources is available on the course website <a href="R_resources.html">here</a>.</li>
-</ul>
-</div>
-<div id="rstudio-sever-or-rstudio-desktop" class="section level3">
-<h3>RStudio Sever or RStudio Desktop</h3>
-<ol style="list-style-type: decimal">
-<li><p>Students in the course will be able to do all computing in a server edition of RStudio. RStudio Server for STA130 students can be accessed by going to <a href="https://rstudio.chass.utoronto.ca/" class="uri">https://rstudio.chass.utoronto.ca/</a></p></li>
-<li><p>Another alternative is to install RStudio on your own computer. You will need to download <a href="http://cran.utstat.utoronto.ca">R</a> then <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a>.</p></li>
-</ol>
-<p>R Markdown source for this website <a href="https://github.com/ntaback/UofT_STA130"> <i class="fa fa-github fa-2x" aria-hidden="true"></i> </a></p>
-</div>
+<div id="simply-statistics-blog" class="section level2">
+<h2>Simply Statistics Blog</h2>
+<p><a href="https://simplystatistics.org">Simply Statistics</a></p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 

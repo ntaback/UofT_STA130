@@ -16,6 +16,9 @@ navbar:
   - text: Course Content
     icon: fa-slideshare
     href: course_content.html
+  - text: Data Science 
+    icon: fa fa-search-plus
+    href: Datasci.html
   
 output:
   html_document:
