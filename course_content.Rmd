@@ -12,7 +12,6 @@ output:
 This page contains course material such as class slides, practice problems, and tutorial assignments.
 
 
-
 # Week 0
 
 ## January 5 Tutorial
