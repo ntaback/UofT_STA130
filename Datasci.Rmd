@@ -1,20 +1,21 @@
 ---
-title: "Data Science Resources"
+title: "Data Science Resources and Media"
 output: 
   html_document:
-   toc: true
+   toc: false
    toc_depth: 2
-   toc_float: true 
+   toc_float: false
    theme: flatly
 ---
 
-## Statistical Society of Canada
+## [Statistical Society of Canada](https://ssc.ca/en)
 
-[SSC](https://ssc.ca/en)
 
-## American Statistical Association
+## [American Statistical Association](http://amstat.org)
 
-[ASA](http://amstat.org)
+
+## [Simply Statistics](https://simplystatistics.org)
+
 
 --- 
 
@@ -26,6 +27,3 @@ output:
 <script>if (typeof (fg_widgets) === "undefined") fg_widgets = new Array(); fg_widgets.push("fgid_4378fa17781e182df268770ea");</script>
 <script async src="https://www.feedgrabbr.com/widget/fgwidget.js"></script>
 
-## Simply Statistics Blog
-
-[Simply Statistics](https://simplystatistics.org)
