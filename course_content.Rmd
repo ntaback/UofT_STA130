@@ -128,16 +128,23 @@ You can do both (i) and (ii), but a lot of the same content is covered. If you d
 ## January 29 Class
 
 ### Slides and References
+
+[Announcements](week4/STA130announcement_January29.pdf)
+
 [Class slides](week4/Week4_Testing1.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
 [Class slides](week4/Week4_Testing1.html) <i class="fa fa-html5" aria-hidden="true"></i> 
 
 [R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week4/Week4_Testing1.Rmd) <i class="fa fa-github" aria-hidden="true"></i></a>
 
+[Annotated slides - 10:00 class](week4/STA130_Week4_Testing1_am.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Annotated slides - 14:00 class](week4/STA130_Week4_Testing1_pm.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
 <i class="fa fa-book" aria-hidden="true"></i> [Introductory Statistics with
 Randomization and Simulation - Sections 2.3.1, 2.3.2, 2.3.7 and 2.4 ](https://www.openintro.org/stat/textbook.php?stat_book=isrs) <i class="fa fa-external-link" aria-hidden="true"></i> 
 
-## Februrary 2 Tutorial
+## February 2 Tutorial
 
 [Practice Problems](week4/Week4PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
