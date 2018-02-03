@@ -1,0 +1,202 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 4 Practice Problems Solutions
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+
+# Practice Problems
+
+## Question 1
+
+(Adapted from ISRS 3.17) Some people claim that they can tell the difference between a diet soda and a regular soda in the first sip.  A researcher wanting to test this claim randomly sampled 80 such people.  He then filled 80 plain white cups with soda, half diet and half regular through random assignment, and asked each person to take one sip from their cup and identify the soda as diet or regular.  53 participants correctly identified the soda.
+
+(a) What are appropriate null and alternative hypothesis to test the claim?
+
+$$H_0: p=0.5$$
+$$H_A: p \ne 0.5$$
+where $p$ is the proportion of all people who can correctly tell the difference between a diet soda and a regular soda in the first sip
+
+(b) Assume you conduct a test of significance using simulation and get the following empirical distribution for values of the test statistic assuming the null hypothesis is true.  For simplicity, this distribution shows the results of only **100** simulations.  There are 100 dots on the plot, one for each simulation. (In practice, 100 simulations is not sufficient.)
+```{r, echo=F, message=F}
+library(tidyverse)
+set.seed(4)
+repetitions <- 100
+simulated_stats <- rep(NA, repetitions) 
+n_observations <- 80
+test_stat <- 53/n_observations
+
+for (i in 1:repetitions)
+{
+  new_sim <- sample(c("correct", "incorrect"), size=n_observations, replace=TRUE)
+  sim_p <- sum(new_sim == "correct") / n_observations
+  simulated_stats[i] <- sim_p
+}
+
+sim <- data_frame(p_correct = simulated_stats)
+ggplot(sim, aes(p_correct)) + 
+  geom_dotplot() + labs(x="Proportion correct assuming no difference") +
+  scale_y_continuous(NULL, breaks = NULL) # get rid of strange label on y-axis for dotplot
+```
+* What does each single dot in the plot represent?
+
+Each dot represents one simulation.  For each simulation, 80 values are randomly generated, that are equally likely to be correct or incorrect, since the null hypothesis is that people are equally likely to be right or wrong in identifying the type of soda.  The dots are placed at the proportion of the 80 values that are "correct" in the simulation.  This is an estimate of the test statistic assuming the nyll hypothesis is true.
+
+* Based on this plot, what is your estimate of the P-value?
+
+Our test statistic is $53/80=0.6625$.  There are no dots in the plot that are at a value greater than or equal to 0.6625 or less than or equal to 0.3375.  (0.3375 is the same distance below 0.5 that 0.6625 is above it.)  So the estimate of the P-value is 0. (Note that it's not actually 0, but 0 to many decimal places.  Since we did 100 repetitions in this plot, the P-value is $<.01.$)
+
+(c) Suppose the analysis described in b. This time 1000 simulations were used to get a better estimate of the P-value, and the resulting P-value was 0.005.  What is an appropriate conclusion?
+
+We would conclude that we have strong evidence that people tasting the sodas are not just randomly guessing so we have strong evidence that people have some ability to tell the difference between a diet soda and a regular soda in the first sip. 
+
+(d) Which of the following are valid interpretations of the P-value:
+    i.  The probability that participants can correctly identify the type of soda.
+    ii.  The probability that participants can not correctly identify the type of soda.
+    iii. The probability of getting results as extreme as or more extreme than the result in this study.
+    iv.  The probability of getting results as extreme as or more extreme than the result in this study if participants can not correctly identify the type of soda.
+
+Only iv. is a valid interpretation.  iii. is missing the fact that the P-value is calculated by comparing the value of the test statistic to results generated assuming that the null hypothesis is true.  i. and ii. are incorrect because a P-value is not an estimate of the parameter we are testing.  It gives us a measure of how likely or unlikely our data are, assuming that the value of the parameter in our null hypothesis is true. 
+
+
+## Question 2
+
+(Adapted from ISRS 3.15)
+A 2012 survey of 2,254 American adults indicates that 17% do their browsing on their phone rather than a computer or other device.  According to an online article, a report from a mobile research company indicates that 38% of Chinese adults only access the internet through their cell phones.  Suppose you wanted to conduct an hypothesis test to determine if the American survey data provide strong evidence that the proportion of Americans who only use their cell phones to access the internet is different than the Chinese proportion of 38%.  
+
+(a) What are appropriate null and alternative hypotheses?  Why are they different than those in Question 1?
+
+$$H_0: p=0.38$$
+$$H_A: p \ne 0.38$$
+
+$p$ is the proportion of all American adults who do their browsing on their phone rather than a computer or other device.
+In Question 1, we were determining if people were doing better than random guessing, with equal chance of being right or wrong.  Here we are testing whether a proportion (0.17) calculated from the sample data from a survey is consistent with another value (0.38) being the value for the population.
+
+(b) Carry out the test and make an appropriate conclusion.
+
+The test statistic is 0.38.
+
+```{r, message=F}
+library(tidyverse)
+repetitions <- 1000
+simulated_stats <- rep(NA, repetitions) 
+n_observations <- 2254
+test_stat <- 0.38
+
+for (i in 1:repetitions)
+{
+  new_sim <- sample(c("phone", "other"), size=n_observations, prob=c(0.38, 0.62), replace=TRUE)
+  sim_p <- sum(new_sim == "phone") / n_observations
+  simulated_stats[i] <- sim_p
+}
+
+sim <- data_frame(p_phone = simulated_stats)
+ggplot(sim, aes(p_phone)) + 
+  geom_histogram(binwidth=0.01) + 
+  labs(x="Proportion who use phone assuming that it is 0.38") +
+  geom_vline(xintercept=0.17, color="red") + geom_vline(xintercept=0.38+(0.38-0.17), color="red")
+
+sim %>% 
+  filter(p_phone >= 0.38+(0.38-0.17) | p_phone <= 0.17) %>%
+  summarise(p_value = n() / repetitions)
+  
+```
+The estimated P-value is 0 as, assuming the proportion who use their phones is 0.38, no simulations gave a value as extreme or more extreme than 0.17.  (Actually, we know the P-value is $<0.001$, since we can conclude that fewer than 1 in 1000 simulations assuming the null hypothesis is true give a value as extreme as what we observed in our data.)  We have very strong evidence that the proportion of American adults who do their browsing on their phone is different than the proportion of Chinese adults.
+
+## Question 3
+
+A Scottish woman noticed that her husband's smell changed.  Six years later he was diagnosed with Parkinson's disease.  His wife joined a Parkinson's charity and met other people with that odour.  She mentioned this to researchers who decided to test her abilities.  They recruited 6 people with Parkinson's disease and 6 people without the disease.  Each of the recruits wore a t-shirt for a day, and the woman was asked to smell the t-shirts and determine which were worn by someone with Parkinson's disease.  She was correct for 11 of the 12 t-shirts.  You can read about this [here](http://www.bbc.com/news/uk-scotland-34583642).
+
+(a) **Bring your output for this question to tutorial on Friday February 2 (either a hardcopy or on your laptop). **
+Carry out a test using simulation to determine if there is evidence that this woman has some ability to identify Parkinson's disease by smell, or if she was a lucky guesser.
+Set the random number seed to the last two digits of your student number before carrying out your simulation.  Use 1,000 repetitions.
+
+```{r, message=F}
+set.seed(11)  # assume the last 2 digits of my student number are 11
+repetitions <- 1000
+simulated_stats <- rep(NA, repetitions) 
+n_observations <- 12
+test_stat <- 11/12
+
+for (i in 1:repetitions)
+{
+  new_sim <- sample(c("correct", "incorrect"), size=n_observations, prob=c(0.5, 0.5), replace=TRUE)
+  sim_p <- sum(new_sim == "correct") / n_observations
+  simulated_stats[i] <- sim_p
+}
+
+sim <- data_frame(p_correct = simulated_stats)
+ggplot(sim, aes(p_correct)) + 
+  geom_histogram(binwidth=0.01) + 
+  geom_vline(xintercept=11/12, color="red") + 
+  geom_vline(xintercept=0.5-(11/12-.5), color="red")
+
+sim %>% 
+  filter(p_correct >= 11/12 | p_correct <= 0.5-(11/12-.5)) %>%
+  summarise(p_value = n() / repetitions)
+
+```
+  The hypotheses being tested are
+  $$H_0: p=0.5$$
+  $$H_A: p \ne 0.5$$
+  where $p$ is the proportion of shirts that the woman correctly identified.  
+  The test statistic is $\hat{p}=11/12=0.9167$.
+  We simulate 1000 values presuming that the woman is randomly guessing, so the probability she is correct is 0.5.  From these 1000 simulations, 5 give a value greater than or equal to 0.9167 or less than or equal to 0.0833.  So the proportion of observations in our simulation that are as extreme or more extreme than what we observed is 0.005.  This is our estimate of the P-value.  
+  We conclude that we have strong evidence that the woman is identifying people with Parkinson's differently than she would have had she been randomly guessing.
+  
+(b) **Bring your output for this question to tutorial on Friday February 2 (either a hardcopy or on your laptop). **
+Carry out a test using simulation to determine if there is evidence that this woman has some ability to identify Parkinson's disease by smell, or if she was a lucky guesser.
+Set the random number seed to the last two digits of your student number before carrying out your simulation.  Use 100,000 repetitions.  (This is a repeat of part a., with many more simulated values of the test statistic under the  null hypothesis.  100,000 is a lot of repetitions, but we'll do this many repetitions this one time to make a point.)
+
+```{r, message=F}
+set.seed(11)  # assume the last 2 digits of my student number are 11
+repetitions <- 100000
+simulated_stats <- rep(NA, repetitions) 
+n_observations <- 12
+test_stat <- 11/12
+
+for (i in 1:repetitions)
+{
+  new_sim <- sample(c("correct", "incorrect"), size=n_observations, prob=c(0.5, 0.5), replace=TRUE)
+  sim_p <- sum(new_sim == "correct") / n_observations
+  simulated_stats[i] <- sim_p
+}
+
+sim <- data_frame(p_correct = simulated_stats)
+ggplot(sim, aes(p_correct)) + 
+  geom_histogram(binwidth=0.01) + 
+  geom_vline(xintercept=11/12, color="red") + 
+  geom_vline(xintercept=0.5-(11/12-.5), color="red")
+
+sim %>% 
+  filter(p_correct >= 11/12 | p_correct <= 0.5-(11/12-.5)) %>%
+  summarise(p_value = n() / repetitions)
+
+```
+  The hypotheses being tested are
+  $$H_0: p=0.5$$
+  $$H_A: p \ne 0.5$$
+  where $p$ is the proportion of shirts that the woman correctly identified.  
+  The test statistic is $\hat{p}=11/12=0.9167$.
+  We simulate 100,000 values presuming that the woman is randomly guessing, so the probability she is correct is 0.5.  From these 100,000 simulations, 614 give a value greater than or equal to 0.9167 or less than or equal to 0.0833.  So the proportion of observations in our simulation that are as extreme or more extreme than what we observed is 0.00614.  This is our estimate of the P-value.  
+  We conclude that we have strong evidence that the woman is identifying people with Parkinson's differently than she would have had she been randomly guessing.
+  
+  Note: in tutorial you compared your answers to a. and b. with your classmates.  A larger number of repetitions results in a more precise estimate of the P-value.  So you should have seen less variability among the P-values you and your classmates obtained for b. than for a.  
+
+(c) The woman correctly identified all 6 people who had been diagnosed with Parkinson's but incorrectly identified one of the others as having Parkinson's.  Eight months later he was was diagnosed with the disease.  So the woman was actually correct 12 out of 12 times.  Are you able to get the P-value for the test that that this woman has some ability to identify Parkinson's disease by smell using this new data, without running a new simulation?  What would you change from your answer to a.?  What wouldn't you change?
+
+The hypotheses and number of observations (12) would be the same so there would be no need to re-run the simulation.  To get the P-value, we would now look at how many of the simulations resulted in a proportion of correct values that are 12 or 0.  Nothing else would change.  In this case, our P-value would be 0 (or $<0.001$).
+
+
+
+
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week4/Week4PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 
