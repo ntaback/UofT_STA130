@@ -113,7 +113,7 @@ glimpse(bias)
 
 ```{r}
 n_female <- bias %>% filter(gender=="female") %>% summarise(n())
-n_male <- bias %>% filter(gender=="female") %>% summarise(n())
+n_male <- bias %>% filter(gender=="male") %>% summarise(n())
 
 yes_female <- bias %>% 
   filter(promoted=="yes" & gender=="female") %>%  # only promoted females
@@ -270,7 +270,7 @@ simulated_stats <- rep(NA, repetitions) # 1000 missing values
 
 # initialize some values
 n_female <- bias %>% filter(gender=="female") %>% summarise(n())
-n_male <- bias %>% filter(gender=="female") %>% summarise(n())
+n_male <- bias %>% filter(gender=="male") %>% summarise(n())
 ```
 
 ---
@@ -359,14 +359,14 @@ extreme_count <- sim %>%
   filter(p_diff >= abs(test_stat) | p_diff <= -1*abs(test_stat)) %>%
   summarise(n())
 as.numeric(extreme_count)
-p_value <- as.numeric(extreme_count)/(repetitions)  # add 1 for the observed data
+p_value <- as.numeric(extreme_count)/repetitions
 as.numeric(p_value)
 ```
 
 ## 5. Make a conclusion
 
 - A large P-value means the data are consistent with the null hypothesis.
-- A small P-value means the data are inconsistent with the null hypothesis. inst $H_0$
+- A small P-value means the data are inconsistent with the null hypothesis. 
 
 
 The P-value is 0.048 for our test that the proportion of people promoted is the same for females and males.  
@@ -386,7 +386,7 @@ Stickgold, James and Hobson (2000).  Visual discrimination learning requires sle
 - Subjects were then randomly assigned into two groups:
     - *sleep deprived*: kept up all night after the training and then not allowed to sleep until 9pm the next day
     - *unrestricted sleep*: no restrictions on their sleep
-    - 10 subjects were in the sleep deprived group and 11 subjects were in the unrestricted sleep group
+    - 11 subjects were in the sleep deprived group and 10 subjects were in the unrestricted sleep group
 - Subjects then were allowed unrestricted sleep for the next two nights
 - Subjects were then retested on the visual discrimination task
 
@@ -475,7 +475,7 @@ So:
 
 - shuffle the categorical variable that says to which sleep group each observation belongs  
 - calculate the difference in the means of change in ISI for the observations in each of these new groups; this gives a value of what the test statistic would be if the null hypotheses were true 
-- repeat lots of times giving an empirical distribution for the test statistic is the null hypothesis were true 
+- repeat lots of times giving an empirical distribution for the test statistic if the null hypothesis were true 
 - compare the test statistic observed from the data to the empirical disribution
 
 ## One value of what the test statistic could be if the null hypothesis were true
@@ -522,7 +522,7 @@ ggplot(sim, aes(x=mean_diff)) + geom_histogram(binwidth=5)
 ## The P-value
 
 P-value
-is the proportion of observations in the empirical distribution that are greater than  
+is the proportion of observations in the empirical distribution that are greater than or equal to
 
 $$ | \hat{\mu}_1-\hat{\mu}_2 | $$
   
@@ -604,8 +604,8 @@ Some principles related to interpreting P-values from the American Statistical A
 2. *P-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.*
 3. *Scientific conclusions and business or policy decisions should not be based only on whether a P-value passes a specific threshold.*
 4. *Proper inference requires full reporting and transparency.* (sometimes researchers publish only results where they found evidence against the null hypothesis and don't report everything else they looked at)
-5. *A P-value does not measure the size of an effect or the importance of a result.* (just because you got a small P-vaue, doesn't mean the result is meaningful in a practical way)
-6. *By itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.* (we need the whole scientific story)
+5. *A P-value does not measure the size of an effect or the importance of a result.* (just because you got a small P-value, doesn't mean the result is meaningful in a practical way)
+6. *By itself, a P-value does not provide a good measure of evidence regarding a model or hypothesis.* (we need the whole scientific story)
 
 ---
 
