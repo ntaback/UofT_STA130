@@ -315,15 +315,15 @@ a_vector</pre>
 
 <pre class = 'prettyprint lang-r'>sample(a_vector)</pre>
 
-<pre >## [1] 1 2 1 2 1</pre>
+<pre >## [1] 1 1 1 2 2</pre>
 
 <pre class = 'prettyprint lang-r'>sample(a_vector)</pre>
 
-<pre >## [1] 2 2 1 1 1</pre>
+<pre >## [1] 2 1 1 1 2</pre>
 
 <pre class = 'prettyprint lang-r'>sample(a_vector)</pre>
 
-<pre >## [1] 1 2 2 1 1</pre>
+<pre >## [1] 2 1 2 1 1</pre>
 
 </article></slide><slide class=""><hgroup><h2>Before the shuffle</h2></hgroup><article  id="before-the-shuffle">
 
@@ -588,10 +588,10 @@ glimpse(sleep_data)</pre>
 mean_data</pre>
 
 <pre >## # A tibble: 2 x 2
-##   sleep        means
-##   &lt;chr&gt;        &lt;dbl&gt;
-## 1 deprived      3.90
-## 2 unrestricted 19.8</pre>
+##          sleep means
+##          &lt;chr&gt; &lt;dbl&gt;
+## 1     deprived  3.90
+## 2 unrestricted 19.82</pre>
 
 <p>\(\mbox{Test statistic} = \hat{\mu}_1 - \hat{\mu}_2 = 19.82-3.90 = 15.92\)</p>
 
@@ -627,7 +627,7 @@ sim %&gt;%
 <pre >## # A tibble: 1 x 1
 ##   sim_test_stat
 ##           &lt;dbl&gt;
-## 1         -3.09</pre>
+## 1     -3.094545</pre>
 
 </article></slide><slide class=""><hgroup><h2>Many values of what the test statistic could be if the null hypothesis were true</h2></hgroup><article  id="many-values-of-what-the-test-statistic-could-be-if-the-null-hypothesis-were-true">
 
@@ -686,7 +686,7 @@ ggplot(sim, aes(x=mean_diff)) + geom_histogram(binwidth=5)</pre>
 <pre >## # A tibble: 1 x 1
 ##   p_value
 ##     &lt;dbl&gt;
-## 1  0.0100</pre>
+## 1    0.01</pre>
 
 <p>Assuming that there is no difference in change in ISI between the sleep deprived and unrestricted sleep groups, the chance of seeing as large a difference in the means of change in ISI or even larger than what we observed is 0.01.<br/>We have strong evidence that the mean of change in ISI is different between the two sleep groups.</p>
 
@@ -804,13 +804,13 @@ ggplot(sim, aes(x=mean_diff)) + geom_histogram(binwidth=5)</pre>
 <ul>
 <li><p><em>The Multiplication Principle</em>: If there are \(m\) possible outcomes or choices for a first experiment or decision and \(n\) possible outcomes for a second experiment or decision and the two choices / decisions are independent, then the number of ways the series of decisions can be made (or the number of outocmes for the series of experiments) is \(m \times n\).</p></li>
 <li><p><em>Permutations</em>: The number of ways \(n\) things can be ordered is \(n \times (n-1) \times (n-2) \times \ldots \times 3 \times 2 \times 1\). This is \(n!\); in words: &quot;\(n\) factorial&quot;.</p></li>
-<li><p>The number of ways we can choose \(k\) things from \(n\) without replacement when we care about their order is \(n \times (n-1) \times (n-2) \times \ldots \times 3 \times 2 \times (n-k-1)\).</p></li>
+<li><p>The number of ways we can choose \(k\) things from \(n\) without replacement when we care about their order is \(n \times (n-1) \times (n-2) \times \ldots \times (n-k+1)\).</p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
 <ul>
-<li><em>Combinations</em>: If we don&#39;t care about the order in which we choose them, the number of ways we can choose \(k\) things from \(n\) without replacement when we care about their order is \[ \frac{n \times (n-1) \times (n-2) \times \ldots  \times (n-k-1)}{k!}\] since we don&#39;t care about the \(k!\) ways they can be ordered. In words, this is &quot;\(n\) choose \(k\)&quot; and can by calculated by the <code>choose</code> function in <code>R</code>.</li>
+<li><em>Combinations</em>: If we don&#39;t care about the order in which we choose them, the number of ways we can choose \(k\) things from \(n\) without replacement is \[ \frac{n \times (n-1) \times (n-2) \times \ldots  \times (n-k+1)}{k!}\] since we don&#39;t care about the \(k!\) ways they can be ordered. In words, this is &quot;\(n\) choose \(k\)&quot; and can by calculated by the <code>choose</code> function in <code>R</code>.</li>
 </ul></article></slide>
 
 

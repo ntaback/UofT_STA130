@@ -646,11 +646,11 @@ Fundamental Principles of Counting:
 
 - *Permutations*: The number of ways $n$ things can be ordered is $n \times (n-1) \times (n-2) \times \ldots \times 3 \times 2 \times 1$.  This is $n!$; in words: "$n$ factorial".
 
-- The number of ways we can choose $k$ things from $n$ without replacement when we care about their order is $n \times (n-1) \times (n-2) \times \ldots \times 3 \times 2 \times (n-k-1)$.
+- The number of ways we can choose $k$ things from $n$ without replacement when we care about their order is $n \times (n-1) \times (n-2) \times \ldots \times (n-k+1)$.
 
 ---
 
-- *Combinations*: If we don't care about the order in which we choose them, the number of ways we can choose $k$ things from $n$ without replacement when we care about their order is 
-$$ \frac{n \times (n-1) \times (n-2) \times \ldots  \times (n-k-1)}{k!}$$
+- *Combinations*: If we don't care about the order in which we choose them, the number of ways we can choose $k$ things from $n$ without replacement is 
+$$ \frac{n \times (n-1) \times (n-2) \times \ldots  \times (n-k+1)}{k!}$$
 since we don't care about the $k!$ ways they can be ordered.  In words, this is "$n$ choose $k$" and can by calculated by the `choose` function in `R`.
 

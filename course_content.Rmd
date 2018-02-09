@@ -156,6 +156,8 @@ Randomization and Simulation - Sections 2.3.1, 2.3.2, 2.3.7 and 2.4 ](https://ww
 
 ### Slides and References
 
+**Note:** A new version of the unannotated slides was posted February 8 (both html and pdf).  This version corrects a few typos noted in class plus a typo on pages 58 and 59 (in the mathematical note that you're not responsible for).
+
 [Class slides](week5/Week5_Testing2.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
 [Class slides](week5/Week5_Testing2.html) <i class="fa fa-html5" aria-hidden="true"></i> 
