@@ -1,0 +1,241 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 5 Practice Problems Solutions
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+library(tidyverse)
+```
+
+
+# Practice Problems
+
+## Question 1
+
+In lecture this week, we looked at examples of hypothesis tests for comparing two groups in two situations: (1) comparing  proportions between two groups and (2) comparing means between two groups.  For the following scenarios, identify whether (1) proportions or (2) means are appropriate for comparing the variable of interest between the groups.
+
+(a) A health survey collected body mass index (BMI, measured in kg/m$^2$).  Researchers were interested in whether BMI differed between people who consume alcohol and people who do not consume alcohol.
+
+Use means since BMI is a numerical variable.  We can test whether the mean of BMI is the same in people who consume alcohol and people who do not consume alcohol.
+
+(b) A health survey collected body mass index (BMI, measured in kg/m$^2$).  Researchers were interested in whether the prevalence of obesity (BMI of 30 kg/m$^2$ or over)  is the same for people who consume alcohol and people who do not consume alcohol.
+
+Use proportions, to compare the proportion of people who are obese between the people who consume alcohol and the people who do not consume alcohol.
+
+(c) A study was carried out to examine whether the sex of a baby is related to whether the baby's mother smoked while she was pregnant.
+
+Use proportions.  Sex is a categorical variable and we can compare the proportions of boys (or girls) in mothers who smoked and mothers who didn't.
+
+(d) Using results from a survey of recent college graduates, we would like to compare employment rates between graduates of statistics programs of study and graduates from economics programs of study.
+
+We can measure employment rate as the proportion of recent college graduate who are employed, so we should use proportions.
+
+(e) Using results from a survey of recent college graduates, we would like to compare salary between graduates of statistics programs of study and graduates from economics programs of study.
+
+Use means since salary is a numerical variable.  We can compare the mean salary between graduates from statistics and economics programs of study.
+
+
+
+## Question 2
+
+(Adapted from ISRS 3.36)  A 2012 Gallup poll surveyed Americans about their employment status and whether or not they have diabetes. The survey results indicate that 1.5% of the 47,774 employed (full or part time) and 2.5% of the 5,855 unemployed 18-29 year olds have diabetes.
+
+To create a tidy data frame for this situation, note that 1.5% of 47,774 is 717 people and 2.5% of 5,855 is 146 people.  The `R` command `rep` creates a vector which replicates its first argument the number of times indicated by its second argument.  For example, the following command creates a vector with 5 elements, each of which is "hello".  (Try it.)
+```{r, eval=F}
+rep("hello",5)
+```
+
+Here's how to create the data for this question.  Create and view this data frame to verify that it is what you expect.
+
+```{r}
+library(tidyverse)
+
+databig <- data_frame(group=c(rep("employed",47774),rep("unemployed",5855)),
+                        diabetes=c(rep("yes",717),rep("no",47774-717),rep("yes",146),rep("no",5855-146)))
+```
+
+(a)  Carry out an hypothesis test to test the hypothesis that there is no difference in the proportion of people with diabetes between people who are employed and people who are unemployed.
+
+```{r, echo=F}
+set.seed(10)
+```
+
+```{r}
+repetitions <- 1000  
+simulated_stats <- rep(NA, repetitions)
+
+n_employed <- databig %>% filter(group=="employed") %>% summarise(n())
+n_unemployed <- databig %>% filter(group=="unemployed") %>% summarise(n())
+
+# calculate the test statistic
+diab_employed <- databig %>% 
+  filter(diabetes=="yes" & group=="employed") %>% 
+  summarize(n())   
+diab_unemployed <- databig %>% 
+  filter(diabetes=="yes" & group=="unemployed") %>%  
+  summarize(n())   
+test_stat <- as.numeric(diab_employed/n_employed - diab_unemployed/n_unemployed) 
+test_stat
+
+for (i in 1:repetitions)
+{
+  sim <- databig %>% mutate(group = sample(group)) 
+ diab_employed <- sim %>% 
+  filter(diabetes=="yes" & group=="employed") %>% 
+  summarize(n())   
+diab_unemployed <- sim %>% 
+  filter(diabetes=="yes" & group=="unemployed") %>%  
+  summarize(n())   
+  p_diff <- diab_employed/n_employed - diab_unemployed/n_unemployed
+  simulated_stats[i] <- as.numeric(p_diff) 
+}  
+
+sim <- data_frame(p_diff=simulated_stats)
+sim %>% 
+  filter(p_diff >= abs(test_stat) | p_diff <= -1*abs(test_stat)) %>%
+  summarise(p_value = n() / repetitions)
+```
+Assuming that there is no difference in proportion of people with diabetes between people 18-29 years old who are employed or not employed, the probability of seeing a difference in the proportion of people with diabetes as large or larger that was observed in the survey is estimated to be 0 (it is $<0.001$).   We have very strong evidence that the proportion of 18-29 year old people with diabetes differs between those who are employed and those who are unemployed.
+
+(b)  Suppose that Gallup had only observed about one-tenth the number of people, but still with (approxmiated) 1.5% of employed people having diabetes and 2.5% of unemployed people having diabetes.  We can create a data frame for this scenario with this code:
+
+```{r}
+datasmall <- data_frame(group=c(rep("employed",4777),rep("unemployed",586)),
+                        diabetes=c(rep("yes",72),rep("no",4777-72),rep("yes",15),rep("no",586-15)))
+
+repetitions <- 1000  
+simulated_stats <- rep(NA, repetitions)
+
+n_employed <- datasmall %>% filter(group=="employed") %>% summarise(n())
+n_unemployed <- datasmall %>% filter(group=="unemployed") %>% summarise(n())
+
+diab_employed <- datasmall %>% 
+  filter(diabetes=="yes" & group=="employed") %>% 
+  summarize(n())   
+diab_unemployed <- datasmall %>% 
+  filter(diabetes=="yes" & group=="unemployed") %>%  
+  summarize(n())  
+test_stat <- as.numeric(diab_employed/n_employed - diab_unemployed/n_unemployed)
+test_stat
+
+for (i in 1:repetitions)
+{
+  sim <- datasmall %>% mutate(group = sample(group)) 
+ diab_employed <- sim %>% 
+  filter(diabetes=="yes" & group=="employed") %>% 
+  summarize(n())  
+diab_unemployed <- sim %>% 
+  filter(diabetes=="yes" & group=="unemployed") %>%  
+  summarize(n())   
+  p_diff <- diab_employed/n_employed - diab_unemployed/n_unemployed
+  simulated_stats[i] <- as.numeric(p_diff) 
+}  
+
+sim <- data_frame(p_diff=simulated_stats)
+sim %>% 
+  filter(p_diff >= abs(test_stat) | p_diff <= -1*abs(test_stat)) %>%
+  summarise(p_value = n() / repetitions)
+```
+
+
+Assuming that there is no difference in proportion of people with diabetes between people 18-29 years old who are employed or not employed, the probability of seeing a difference in the proportion of people with diabetes as large or larger that was observed in the survey is estimated to be 0.079.   We have only weak evidence that the proportion of 18-29 year old people with diabetes differs between those who are employed and those who are unemployed.
+
+(c) In both parts a. and b., the difference in the proportions between the two groups was only 1%, but the number of people in the data differed.  How did this affect the results of your hypothesis tests?
+
+Even though the observed difference in proportions was the same in both a. and b., we got a much smaller P-value with the larger sample size.  In general, with large sample sizes, hypothesis tests can detect smaller differences between two groups.  
+     
+## Question 3
+
+**Bring your output for this question to tutorial on Friday February 9 (either a hardcopy or on your laptop). **
+
+(Adapted from ISRS 4.22)  The China Health and Nutrition Survey aims to examine the effects of the health, nutrition, and family planning policies and programs implemented by national and local governments.  One of the variables collected on the survey is the number of hours parents spend taking care of children in their household under age 6 (feeding, bathing, dressing, holding, or watching them).  In our data for 2006, 664 females and 358 males were surveyed for this question. We will examine whether there is a difference in hours spent on child care between females and males.
+
+(a) The data are available in the `openintro` package in the `china` dataframe.  Load the data and look at it using
+
+```{r}
+library(openintro)
+glimpse(china)
+```
+
+(a)
+    i. How many observations are in the data?  Is this what you expected?
+    
+    There are 9,788 observations in the data, but we expected $664+358=1022$ from the description of the survey above.
+    
+    ii. What are the values of the `child_care` variable for the observations shown (which are the first observations in the data frame)?  Is this what you expected?
+    
+    The first several values of `child_care` are $-99$, which doesn't make sense as a value for the number of hours taking care of children.
+
+(b)  In this part, we'll clean up the data.
+    i. Many more people were surveyed than the 664 females and 358 males who were asked the child care question.  For the people who were surveyed but not asked this question, an impossible response was entered in the data for the number of hours spent on child care.  Create a new data frame `new_china` removing the people with this value from the data.  (What `dplyr` function should you use? For indicating which values to remove, the operator `!=` means not equal.) 
+    
+```{r}
+new_china <- china %>% filter(child_care != -99)
+glimpse(new_china)
+```
+  
+(b)  
+    ii. The `gender` variable is coded with an integer, which is harder to remember than a coding that makes it clear which value corresponds to males and which corresponds to females.  Use the following code to create a new variable called `sex` in the data frame `new_china`.  Look at the data to verify that it has accomplished what you expect.
+    
+```{r}
+new_china <- new_china %>% mutate(sex = recode(gender, `1`="male", `2`="female"))
+glimpse(new_china)
+```
+
+(c) Now investigate the `child_care` variable for males and females.
+
+   i. Use `group_by` and `summarize` functions to find the average and median values of `child_care` for females and males.  Within `summarize`, the average can by found using the function `mean(VARIABLE_NAME)` and the median can be found using the function `median(VARIABLE_NAME)`.  Recall that the median of `child_care` is the value such that 50% of people reported spending more hours taking care of children than this value, and 50% of people reported spending fewer hours taking care of children than this value.
+   
+```{r}
+new_china %>% group_by(sex) %>% summarize(means=mean(child_care), medians=median(child_care))
+```
+
+    ii. Construct boxplots and histograms of `child_care` for each sex.  How do the distributions of `child_care` compare for males and females?  Look at the plots so see where the values of the means and medians are located.  (For code to emulate for the boxplots, see the code on page 27 of the `ggplot` slides from Week 1.  For the histograms, try combining the code to create a histogram (page 14 of the slides) with a `facet_wrap` (page 41 of the slides).)
+
+```{r}
+ggplot(new_china, aes(x=sex, y=child_care)) + geom_boxplot()
+ggplot(new_china, aes(x=child_care)) + geom_histogram(binwidth=10) + facet_wrap(~sex)
+```
+    
+The distributions of `child_care` for both females and males is very right-skewed, with most people having a small number of hours and a few having very large values.
+The medians are the middle lines in the boxes of the boxplots.
+In this histograms, the medians are in the bin that includes the most observations (for males) or the bin just to the right of of the bin that includes the most observations (for females).  The mean values are to the right of these on the histogram, in a bin where there are fewer observations.
+
+(d) For these data, why might you want to look at medians rather than means?
+
+The large values in the right tail of the distribution results in larger means than medians.  In data with this type of distribution, the median typically gives a one-number summary that better captures the data than the mean.
+     
+(d)  Carry out an hypothesis test, using the sleep deprivation example from lecture as a sample code, to test the null hypothesis
+that the median of the number of hours spent on child care for Chinese women is the same as the median of the number of hours spent on child care for Chinese men. (Note that the sleep deprivation example compared the means between two groups, but here we want to compare the medians.)
+     
+```{r, echo=F}
+set.seed(2) # remove in practice
+```
+```{r}
+repetitions <- 1000  
+simulated_stats <- rep(NA, repetitions) 
+
+test_stat <- as.numeric( new_china %>% group_by(sex) %>% summarize(medians=median(child_care)) %>% summarise(test_stat = diff(medians)))
+
+for (i in 1:repetitions)
+{
+  sim <- new_china %>% mutate(sex = sample(sex))  # shuffle sleep group labels
+  sim_test_stat <- sim %>% group_by(sex) %>% summarise(medians = median(child_care)) %>% summarise(sim_test_stat = diff(medians))
+  simulated_stats[i] <- as.numeric(sim_test_stat)
+}  
+
+sim <- data_frame(median_diff=simulated_stats)
+sim %>% 
+  filter(median_diff >= abs(test_stat) | median_diff <= -1*abs(test_stat)) %>%
+  summarise(p_value = n() / repetitions)
+```
+We simulated 1000 values of what the difference between females and males in the medians of number of hours spent on child care would be if we assumed that there was no difference, that is the values observed were just as likely to come from a female survey participant or a male survey participant.  There were no simulated values with a difference as large or larger than the difference in medians that we observed in our data.  Our estimate of the P-value is thus 0 ($<1/1000$).  We conclude that we have very strong evidence that there is a difference in the median number of hours spent on child care between females and males.
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week5/Week5PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 

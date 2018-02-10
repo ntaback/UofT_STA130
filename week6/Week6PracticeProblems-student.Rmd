@@ -1,0 +1,134 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 6 Practice Problems
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+library(tidyverse)
+```
+
+# Instructions
+
+## What should I bring to tutorial on February 16?
+
+Bring your answer to question 2.
+
+
+## First steps to answering these questions.
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r,eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week6/Week6PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week6PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week6PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week 6 Practice Problems Solutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+
+
+
+# Practice Problems
+
+## Question 1
+In lecture, we looked at the sampling distribution of the mean arrival delay for 2013 flights from New York to San Francisco for samples of size 25 and 100.  We'll now look at the median of the arrival delay.  We'll take as our population all flights from New to San Francisco in the  `flights` data.
+
+(a)  Look at a histogram of: 
+    - `arr_delay` for the population
+    - `arr_delay` for a sample of size 25
+    - `arr_delay` for a sample of size 100  
+    How do the shapes and the location of the centres compare for these three histograms?
+    
+(b) In lecture we looked at the sampling distributions of the mean arrival delay for samples of size 25 and 100.  How do they compare to the histograms in part a.?
+
+(c) Examine the sampling distribution of the median arrival delay for samples of size 25 by looking at a histogram of the medians for 500 samples of size 25.  Examine the sampling distribution of the median arrival delay for samples of size 100 by looking at a histogram of the medians for 500 samples of size 100.  Describe how these histograms compare to the histograms in part a. and to the histograms showing the sampling distributions of the mean for samples of size 25 and 100. 
+    
+
+
+
+## Question 2
+
+**Bring your output for this question to tutorial on Friday February 16 (either a hardcopy or on your laptop). **
+
+In this question, we'll look at the `Gestation` data in the `mosaicData` library.
+First load the library:
+```{r}
+library(mosaicData)
+```
+You can read about the data by looking at the help information for the data frame
+```{r, eval=F}
+help(Gestation)
+```
+In this question, you will find confidence intervals for parameters related to the distribution of the mother's age, which is the variable `age`.  First remove the two observations which have missing values for `age`.
+```{r}
+Gestation <- Gestation %>% filter(!is.na(age))
+```
+
+(a)  The plot below shows the bootstrap distribution for the mean of mother's age, for 100 bootstrap samples.  The red dot is the estimate of the mean for the first bootstrap sample, and the grey dots are the estimates of the mean for the other 99 bootstrap samples.
+
+```{r, message=F, warning=F, echo=F}
+
+set.seed(2)
+
+boot_means <- rep(NA, 100)  # where we'll store the bootstrap means
+
+sample_size <- as.numeric(Gestation %>% summarize(n()))
+
+for (i in 1:100)
+{
+  boot_samp <- Gestation %>% sample_n(size = sample_size, replace=TRUE)
+  boot_means[i] <- as.numeric(boot_samp %>% summarize(mean(age)))
+}
+
+boot_means1 <- data_frame(boot_means[1])
+boot_means2to100 <- data_frame(boot_means=boot_means[2:100])
+
+
+ggplot(boot_means2to100, aes(x=boot_means)) + geom_dotplot(alpha=.5) + 
+  geom_dotplot(data=boot_means1, aes(x=boot_means1), fill="red", alpha=.5) +
+  labs( title="Bootstrap distribution for mean of mother's age") +
+  scale_y_continuous(NULL, breaks = NULL) # get rid of strange label on y-axis for dotplot
+
+```
+
+(a) 
+    i. Explain how the value of the red dot is calculated.
+    ii. Using this plot, estimate as accurately as possible a 90% confidence interval for the mean of mother's age.
+    
+(b)  Find a 99% bootstrap confidence interval for the median of mother's age.  Use 5000 bootstrap samples.
+
+
+## Question 3
+
+In lecture this week, we used Güntürkün's data to calculate confidence intervals for the proportion of couples who tilt their heads to the right when they kiss.  Our 95% confidence interval was  (0.56, 0.73).
+
+(a) If we want to be very certain that we capture the population parameter of interest, should we use a larger confidence level or a smaller confidence level?  Will this result in a wider confidence interval or a narrower confidence interval?
+
+(b) Which of the following statements are true and which are false?
+    i. We are 95% confident that between 56% and 73% of kissing couples in this sample tilt their head to the right when they kiss.
+    ii. We are 95% confident that between 56% and 73% of all kissing couples in the population tilt their head to the right when they kiss.
+    iii. If we considered many random samples of 124 couples, and we calculated 95% confidence intervals for each sample, 95% of these confidence intervals will include the true proportion of kissing couples in the population who tilt their heads to the right when they kiss.
+
+(c) In the week 4 lecture, we carried out an hypothesis test to determine whether couples are equally likely to tilt their heads to the right or to the left when they kiss.  We tested the hypotheses:
+$$H_0: p = 0.5$$ versus $$H_A: p \ne 0.5$$
+where $p$ is the proportion of couples who tilt their heads to the right when they kiss.  Using Güntürkün's data, our P-value was 0.003.  
+How do this hypothesis test and the confidence interval tell a similar story?
+
+
+
+
+     
+
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week6/Week6PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 

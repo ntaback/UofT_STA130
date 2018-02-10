@@ -175,11 +175,30 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 
 [Practice Problems](week5/Week5PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
+[Example solutions to practice problems](week5/Week5PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
+
+# Week 6
+
+## February 12 Class
+
+### Slides and References
+
+[Class slides](week6/Week6_CIs.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Class slides](week6/Week6_CIs.html) <i class="fa fa-html5" aria-hidden="true"></i> 
+
+[R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week6/Week6_CIs.Rmd) <i class="fa fa-github" aria-hidden="true"></i></a>
+
+<i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: 7.1, 7.2, 7.3
+
+## February 16 Tutorial
+
+[Practice Problems](week6/Week6PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
+
 ---
 <br>
 <html>
 <span style="opacity: 0.5;">
-Week 6 - February 12 <br>
 February 19 - Reading Week - No Week <br>
 Week 7 - February 26 Midterm test during tutorial time on March 2. <br>
 Week 8 - March 5 <br>
