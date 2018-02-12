@@ -21,13 +21,16 @@ Note that the test will be written in a different room than usual.  The room you
 
 ## What material is covered?
 
-The term test covers all material up to the end of tutorial on Friday, February 16 (week 6).
+- The term test covers all material up to the end of tutorial on Friday, February 16 (week 6).
+- You will not be required to write `R` code.  However you may be required to read and interpret `R` code, make small modifications to code, and know what the functions being used do.
+- The content of the course has changed significantly from last year (and the year before), so past tests are unlikely to be of value to you.  We'll ppost some additional practice problems before the test.
 
 ## What to bring
 
 - Your student card
 - Writing implements 
 - An aid sheet that you prepare yourself.  Your aid sheet must be one 8 1/2 by 11 inch piece of paper, one-sided, and handwritten.  You will be required to hand in your aid sheet with your test, so if you want to keep it, make a copy in advance.
+- Don't bring a calculator
 
 ## In the test room
 

@@ -183,11 +183,17 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 
 ### Slides and References
 
-[Class slides](week6/Week6_CIs.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+[Class slides](week6/Week6_CIs.pdf) (Watch for the typo on slide 46!) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
-[Class slides](week6/Week6_CIs.html) <i class="fa fa-html5" aria-hidden="true"></i> 
+[Class slides](week6/Week6_CIs.html) (Watch for the typo on slide 46!) <i class="fa fa-html5" aria-hidden="true"></i> 
 
 [R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week6/Week6_CIs.Rmd) <i class="fa fa-github" aria-hidden="true"></i></a>
+
+[Announcement about Mental Health Project](week6/Mental_Health_Project_Recruitment.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Annotated slides - 10:00 class](week6/Week6_CIs_am_annotated.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Annotated slides - 14:00 class](week6/Week6_CIs_pm_annotated.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
 <i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: 7.1, 7.2, 7.3
 
