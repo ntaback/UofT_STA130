@@ -22,8 +22,8 @@ Note that the test will be written in a different room than usual.  The room you
 ## What material is covered?
 
 - The term test covers all material up to the end of tutorial on Friday, February 16 (week 6).
-- You will not be required to write `R` code.  However you may be required to read and interpret `R` code, make small modifications to code, and know what the functions being used do.
-- The content of the course has changed significantly from last year (and the year before), so past tests are unlikely to be of value to you.  We'll ppost some additional practice problems before the test.
+- You will not be required to write `R` code.  However you may be required to read and interpret `R` code, make small modifications to code, and know the purpose of functions that we've used.
+- The content of the course has changed significantly from last year (and the year before), so past tests are unlikely to be of value to you.  We'll post some additional practice problems before the test.
 
 ## What to bring
 
