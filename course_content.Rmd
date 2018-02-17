@@ -201,6 +201,8 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 
 [Practice Problems](week6/Week6PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
+[Example solutions to practice problems](week6/Week6PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
+
 ---
 <br>
 <html>

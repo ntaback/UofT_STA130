@@ -1,0 +1,190 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 6 Practice Problems Solutions
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+library(tidyverse)
+```
+
+# Practice Problems
+
+## Question 1
+In lecture, we looked at the sampling distribution of the mean arrival delay for 2013 flights from New York to San Francisco for samples of size 25 and 100.  We'll now look at the median of the arrival delay.  We'll take as our population all flights from New to San Francisco in the  `flights` data.
+
+(a)  Look at a histogram of: 
+    - `arr_delay` for the population
+    - `arr_delay` for a sample of size 25
+    - `arr_delay` for a sample of size 100  
+    How do the shapes and the location of the centres compare for these three histograms?
+    
+```{r}
+library(nycflights13)
+SF <- flights %>% filter(dest == "SFO", !is.na(arr_delay))
+
+ggplot(SF, aes(x=arr_delay)) + geom_histogram() + xlim(-100,1000) +
+  labs(title="Population of all NY to San Francisco flights")
+
+sample25 <- SF %>% sample_n(size = 25)
+ggplot(sample25, aes(x=arr_delay)) + geom_histogram() + xlim(-100,1000) +
+  labs(title="Sample of size 25 from all NY to San Francisco flights")
+
+sample100 <- SF %>% sample_n(size = 100)
+ggplot(sample100, aes(x=arr_delay)) + geom_histogram() + xlim(-100,1000) +
+  labs(title="Sample of size 100 from all NY to San Francisco flights")
+```
+
+For ease of comparison, I put all histograms on the same horizontal scale.  For all of the population and both samples, the distribution of `arr_delay` is very right skewed, with a mode near 0.  The values of `arr_delay` that we can observe in the histogram range from -100 to very large values (close to 500, possibly larger given the vertical scale makes it impossible to see small counts). Depending on the samples you got, the distribution may look less smooth for the samples, as there are fewer observations.  But, overall, the distribution of the samples reflects the distribution of the population.
+    
+(b) In lecture we looked at the sampling distributions of the mean arrival delay for samples of size 25 and 100.  How do they compare to the histograms in part a.?
+
+The sampling distributions of the mean of `arr_delay` have a single mode near 0, as did the histograms of the data values in a.  The histograms in a. are very right-skewed, but the histogram for the sampling distribution of the mean for samples of size 25 is only slighty right-skewed and the histogram for the sampling distribution of the mean for samples of size 100 is close to symmetric.  The range of values for the mean of `arr_delay` is much smaller than the range of values for the original data, and is smaller with larger sample size.
+
+(c) Examine the sampling distribution of the median arrival delay for samples of size 25 by looking at a histogram of the medians for 500 samples of size 25.  Examine the sampling distribution of the median arrival delay for samples of size 100 by looking at a histogram of the medians for 500 samples of size 100.  Describe how these histograms compare to the histograms in part a. and to the histograms showing the sampling distributions of the mean for samples of size 25 and 100. 
+    
+```{r}
+sample_medians <- rep(NA, 500)  # where we'll store the means
+ 
+for (i in 1:500)
+{
+  sample25 <- SF %>% sample_n(size = 25)
+  sample_medians[i] <- as.numeric(sample25 %>% summarize(median(arr_delay)))
+}
+
+sample_medians <- data_frame(median_delay=sample_medians)
+
+ggplot(sample_medians, aes(x=median_delay)) + geom_histogram(binwidth=5) + 
+  labs(x="Medians from samples of size 25", 
+       title="Sample size 25")
+
+sample_medians100 <- rep(NA, 500)  # where we'll store the means
+for (i in 1:500)
+{
+  sample100 <- SF %>% sample_n(size = 100)
+  sample_medians100[i] <- as.numeric(sample100 %>% summarize(median(arr_delay)))
+}
+sample_medians100 <- data_frame(median_delay=sample_medians100)
+
+ggplot(sample_medians100, aes(x=median_delay)) + geom_histogram(binwidth=2) + 
+  labs(x="Medians from samples of size 100", 
+       title="Sample size 100")
+```
+
+Both sampling distributions of the median are symmetric with one mode between -10 and 0.  Comparing the horizontal scales, there is a smaller range of values for medians from samples of size 100 than for medians of samples of size 25.  Note that the shape of the sampling distributions of the median is different than the shape of the original data and has a smaller range of values.
+
+A general note: samples should look like the original data, but sampling distributions don't have to.
+
+
+## Question 2
+
+**Bring your output for this question to tutorial on Friday February 16 (either a hardcopy or on your laptop). **
+
+In this question, we'll look at the `Gestation` data in the `mosaicData` library.
+First load the library:
+```{r}
+library(mosaicData)
+```
+You can read about the data by looking at the help information for the data frame
+```{r, eval=F}
+help(Gestation)
+```
+In this question, you will find confidence intervals for parameters related to the distribution of the mother's age, which is the variable `age`.  First remove the two observations which have missing values for `age`.
+```{r}
+Gestation <- Gestation %>% filter(!is.na(age))
+```
+
+(a)  The plot below shows the bootstrap distribution for the mean of mother's age, for 100 bootstrap samples.  The red dot is the estimate of the mean for the first bootstrap sample, and the grey dots are the estimates of the mean for the other 99 bootstrap samples.
+
+```{r, message=F, warning=F, echo=F}
+set.seed(2)
+
+boot_means <- rep(NA, 100)  # where we'll store the bootstrap means
+
+sample_size <- as.numeric(Gestation %>% summarize(n()))
+
+for (i in 1:100)
+{
+  boot_samp <- Gestation %>% sample_n(size = sample_size, replace=TRUE)
+  boot_means[i] <- as.numeric(boot_samp %>% summarize(mean(age)))
+}
+
+boot_means1 <- data_frame(boot_means[1])
+boot_means2to100 <- data_frame(boot_means=boot_means[2:100])
+
+
+ggplot(boot_means2to100, aes(x=boot_means)) + geom_dotplot(alpha=.5) + 
+  geom_dotplot(data=boot_means1, aes(x=boot_means1), fill="red", alpha=.5) +
+  labs( title="Bootstrap distribution for mean of mother's age") +
+  scale_y_continuous(NULL, breaks = NULL) # get rid of strange label on y-axis for dotplot
+
+```
+
+(a) 
+    i. Explain how the value of the red dot is calculated.
+    
+    The red dot is the mean of mother's age for one bootstrap sample.  The bootstrap sample is obtained by taking a random sample, with replacement, from the original data, with the same number of observations as the original data.
+    
+    ii. Using this plot, estimate as accurately as possible a 90% confidence interval for the mean of mother's age.
+    
+    The 90% confidence interval ranges from appoximately the 5th largest data point to the 95th largest data point. This interval will be from a value a little above 27.0 to a value a little above 27.5.
+    
+(b)  Find a 99% bootstrap confidence interval for the median of mother's age.  Use 5000 bootstrap samples.
+
+```{r}
+boot_medians <- rep(NA, 5000)  # where we'll store the bootstrap means
+
+sample_size <- as.numeric(Gestation %>% summarize(n()))
+
+for (i in 1:5000)
+{
+  boot_samp <- Gestation %>% sample_n(size = sample_size, replace=TRUE)
+  boot_medians[i] <- as.numeric(boot_samp %>% summarize(median(age)))
+}
+
+quantile(boot_medians,c(.005,.995))
+```
+
+The 99% boostrap confidence interval for the median of mother's age is (26, 27).
+
+## Question 3
+
+In lecture this week, we used Güntürkün's data to calculate confidence intervals for the proportion of couples who tilt their heads to the right when they kiss.  Our 95% confidence interval was  (0.56, 0.73).
+
+(a) If we want to be very certain that we capture the population parameter of interest, should we use a larger confidence level or a smaller confidence level?  Will this result in a wider confidence interval or a narrower confidence interval?
+
+A larger confidence level ensure that we would capture the population parameter in more samples.  This would give a wider confidence interval, extending to more of the bootstrap sampling distribution.
+
+(b) Which of the following statements are true and which are false?
+    i. We are 95% confident that between 56% and 73% of kissing couples in this sample tilt their head to the right when they kiss.
+    
+    False.  We know in this sample that 64.5% of kissing couples tilt their head to the right so we're 100% confident.
+    
+    ii. We are 95% confident that between 56% and 73% of all kissing couples in the population tilt their head to the right when they kiss.
+    
+    True.  (Someone reading this interpretation of a confidence interval would have to know what "95% confident: means!)
+    
+    iii. If we considered many random samples of 124 couples, and we calculated 95% confidence intervals for each sample, 95% of these confidence intervals will include the true proportion of kissing couples in the population who tilt their heads to the right when they kiss.
+    
+    True.  This is an accurate description of a confidence interval.
+
+(c) In the week 4 lecture, we carried out an hypothesis test to determine whether couples are equally likely to tilt their heads to the right or to the left when they kiss.  We tested the hypotheses:
+$$H_0: p = 0.5$$ versus $$H_A: p \ne 0.5$$
+where $p$ is the proportion of couples who tilt their heads to the right when they kiss.  Using Güntürkün's data, our P-value was 0.003.  
+How do this hypothesis test and the confidence interval tell a similar story?
+
+From the hypothesis test, we have strong evidence that the proportion of couples who tilt their head to the right is not 0.5 because our P-value is small.  Our 95% confidence interval for this proportion does not include 0.5, so 0.5 is not a plausible value from our data.  So the hypothesis test and confidence interval both indicate that couples aren't equally likely to tilt their heads to the left or right when they kiss.
+
+
+
+
+     
+
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week6/Week6PracticeProblems-solutions.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 
