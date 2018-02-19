@@ -19,11 +19,24 @@ output:
 
 Note that the test will be written in a different room than usual.  The room you will write in depends on your tutorial.  [See this link for the list of rooms.](TestRooms.pdf)
 
+## Test format
+
+The test includes a combination of different types of questions including:
+
+- multiple choice
+- fill in the blanks
+- short answer (often requiring you to explain an answer and requiring complete sentences)
+
 ## What material is covered?
 
-- The term test covers all material up to the end of tutorial on Friday, February 16 (week 6).
+- The term test covers all material up to the end of tutorial on Friday, February 16 (week 6).  This includes material covered in lectures, the weekly practice problems, and work done in your tutorials.
 - You will not be required to write `R` code.  However you may be required to read and interpret `R` code, make small modifications to code, and know the purpose of functions that we've used.
-- The content of the course has changed significantly from last year (and the year before), so past tests are unlikely to be of value to you.  We'll post some additional practice problems before the test.
+- The content of the course has changed significantly from last year (and the year before), so past tests are unlikely to be of value to you.  
+
+## Additional practice problems
+
+- Test your knowledge using the online [midterm review quiz](http://52.235.36.76:3838/STA130MidtermReview/).  Note that the quiz doesn't cover all of the content that you are responsible for and mostly tests your knowledge, and not your ability to apply or explain your knowledge, which you will also be required to do on the test.
+- The lecture time on Monday February 26 will be a review session.
 
 ## What to bring
 
