@@ -31,6 +31,9 @@ The test includes a combination of different types of questions including:
 ## What material is covered?
 
 - The term test covers all material up to the end of tutorial on Friday, February 16 (week 6).  This includes material covered in lectures, the weekly practice problems, and work done in your tutorials.
+- A few clarifications on content on the test: 
+    - You are responsible for knowing the material about histograms and densities that was covered in Week 2 (which was a subset of the Week 1 material on this topic).  You are not responsible for knowing the material in the Week 1 slides on this topic that was not covered in Week 2 and not covered in lecture (for example, kernel estimator).  
+    - You are not responsible for knowing the mathematical note at the end of the Week 4 slides and you are not responsible for knowing the material on counting principles at the end of the Week 5 slides.
 - You will not be required to write `R` code.  However you may be required to read and interpret `R` code, make small modifications to code, and know the purpose of functions that we've used.
 - The content of the course has changed significantly from last year (and the year before), so past tests are unlikely to be of value to you.  
 
