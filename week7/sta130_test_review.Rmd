@@ -1,0 +1,463 @@
+---
+title: "STA130H1 -- Winter 2018 -- Test Review"
+author: "Prof. Gibbs"
+date: "February 26, 2018"
+output:
+  ioslides_presentation:
+    smaller: no
+    widescreen: yes
+  beamer_presentation: default
+  html_document:
+    df_print: paged
+  slidy_presentation:
+    font_adjustment: 1
+---
+
+```{r, echo=F, message=F, warning=F}
+library(tidyverse)
+library(openintro)
+library(gridExtra)
+```
+
+---
+
+### Purpose of today's class
+
+* Review some material and ideas for the test 
+* Not 100% comprehensive.  What else should you study?  all lecture slides, weekly practice problems, online midterm review quiz
+
+### Clarification about content
+* You are responsible for knowing the material about histograms and densities that was covered in Week 2 (which was a subset of the Week 1 material on this topic). You are not responsible for knowing the material in the Week 1 slides on this topic that was not covered in Week 2 and not covered in lecture (for example, kernel estimator).
+* You are not responsible for knowing the mathematical note at the end of the Week 4 slides and you are not responsible for knowing the material on counting principles at the end of the Week 5 slides.
+  
+---
+
+### Structure of test
+
+The test is a combination of:
+
+* multiple choice
+* true / false
+* fill in the blanks
+* short answer (explain why / apply)
+* answers that require you to write some sentences
+
+
+# Lightning Round
+
+---
+
+### Lightning Round Question 1
+
+A clinical oncologist is investigating the efficacy of a new treatment on reduction in tumour size. She randomly assigns patients to the new treatment or old treatment and compares the mean of the reduction in tumour size between the two groups. She carries out a statistical test and the P-value is 0.001. How many of the following are valid interpretations of the P-value?
+
+I. The probability of observing a difference between the treatment groups as large or larger than she observed if the new treatment has the same efficacy as the old treatment.  
+II. The probability that the new treatment works the same as the old treatment.  
+III. The probability that the new treatment, on average, reduces tumour size more than the old treatment.  
+
+A. None  
+B. One  
+C. Two  
+D. Three  
+
+---
+
+### Lightning Round Question 2
+
+Environmental scientists want to estimate the mean mercury content in ppm of fish in a lake.  They collect a random sample of 50 fish from the lake, measure the mercury content of each, calculate the average mercury content for these 50 fish and use the bootstrap to find a 99% confidence interval for the mean.  The confidence interval is (0.82, 1.13).  How many of the following are valid interpretations of the confidence interval?
+
+I. We are 99% certain that each fish has approximately 0.82 to 1.13 ppm of mercury.  
+II. We expect 99% of the fish to have between 0.82 and 1.13 ppm of mercury.  
+III. We would expect about 99% of all possible sample means from this population to be in between 0.82 and 1.13 ppm of mercury.  
+IV. We are 99% certain that the confidence interval of (0.82, 1.13) includes the true mean of the mercury content of fish in the lake.  
+  
+A. None;  B. One;  C. Two;  D. Three;  E. All four  
+
+---
+
+### Lightning Round Question 3
+
+Fill in the respective blanks:  
+Suppose we wish to test the null hypothesis that a Yoga method does not have an effect on blood pressure versus the alternative that it does have an effect.  A _____________ error would be make by concluding that the Yoga method _____________ on  blood pressure if in fact the Yoga method  ____________ on blood pressure.
+
+A. Type 2; does not have an effect; does have an effect  
+B. Type 2; does not have an effect; does not have an effect  
+C. Type 2; does have an effect; does not have an effect  
+D. Type 1; does not have an effect; does have an effect  
+E. Type 1; does not have an effect; does not have an effect  
+
+---
+
+### Lightning Round Question 4
+
+On the next slide are 4 histograms:
+
+* One is the histogram of the variable `x` in the population (which consists of 1,000,000 individuals).  
+* One is the histogram of the variable `x` for a sample of size 1000 from the population.  
+* One is the histogram for 1000 means of `x`, each from a sample of size 25.   
+* One is the histogram for 1000 means of `x`, each from a sample of size 100.
+
+Which is which?
+
+---
+
+```{r, echo=F, warning=F}
+pop <- data_frame(x=rchisq(100000,10))
+
+sample1000 <- pop %>% sample_n(1000)
+
+sample_means100 <- rep(NA, 1000)  
+for (i in 1:1000)
+{
+  tt <- pop %>% sample_n(size = 100)
+  sample_means100[i] <- as.numeric(tt %>% summarize(mean(x)))
+}
+sample_means100 <- data_frame(mean_x=sample_means100)
+
+sample_means25 <- rep(NA, 1000)  
+for (i in 1:1000)
+{
+  tt <- pop %>% sample_n(size = 25)
+  sample_means25[i] <- as.numeric(tt %>% summarize(mean(x)))
+}
+sample_means25 <- data_frame(mean_x=sample_means25)
+
+p1 <- ggplot(sample1000, aes(x=x)) + geom_histogram(binwidth=1) + xlim(0,40) +
+  labs(x="", title="Histogram 1") # labs(x="",y="") # + theme(axis.text.y = element_blank())
+p2 <- ggplot(sample_means25, aes(x=mean_x)) + geom_histogram(binwidth=.5) + xlim(0,40) +
+  labs(x="", title="Histogram 2") # labs(x="",y="") # + theme(axis.text.y = element_blank())
+p3 <- ggplot(pop, aes(x=x)) + geom_histogram(binwidth=1) + xlim(0,40) +
+  labs(x="", title="Histogram 3") # labs(x="",y="") # + theme(axis.text.y = element_blank())
+p4 <- ggplot(sample_means100, aes(x=mean_x)) + geom_histogram(binwidth=.5) + xlim(0,40) +
+  labs(x="", title="Histogram 4") # labs(x="",y="") # + theme(axis.text.y = element_blank())
+grid.arrange(p1, p2, p3, p4, nrow=2)
+```
+
+
+---
+
+From the above plots, consider these two plots:
+
+* The histogram for 1000 means of `x`, each from a sample of size 25
+* The histogram for 1000 means of `x`, each from a sample of size 100
+
+A.   What is a name for what is plotted in these two plots?    
+B.   What do these plots tell you about the effect of sample size on a confidence interval for the mean?
+
+---
+
+### Lightning Round Question 5
+
+In statistical inference, we want to make conclusions about what we think about the **theoretical world** (a scientific model or population) based on what we've observed in the **real world** (data, typically observed on a random sample).   
+Do the following items exist in the theoretical world or the real world?
+
+* Statistic
+* Parameter
+* Null hypothesis (and alternative hypothesis)
+* Test statistic
+* Simulated values of the test statistic under the null hypothesis
+* P-value
+* Sampling distribution
+* Bootstrap sampling distribution
+
+
+---
+
+### Lightning Round Question 6
+
+Suppose we have a vector of data values, `x`
+```{r}
+x <- c(1, 3, 4, 4, 7)
+```
+
+We've used the `sample()` function various ways.  What output is possible with each of the following commands?
+
+```{r, eval=F}
+sample(x)
+```
+```{r, eval=F}
+sample(x, replace=TRUE)
+```
+```{r, eval=F}
+sample(x, size=2, replace=TRUE)
+```
+```{r, eval=F}
+sample(x, size=2, prob=c(0.5, 0.5, 0, 0, 0))
+```
+Which one of these is a bootstrap sample?
+
+
+# Case Study: American Community Survey 2012
+
+
+## Case Study: American Community Survey 2012
+
+The American Community Survey is conducted by the US Census Bureau each year on a random sample of 3.5 million households. Findings from the survey influence the allocation of more than $400 billion in federal and state funds. The dataset `acs12` is a random sample from the people who completed the American Community Survey in 2012.
+
+---
+
+Here is a look at the data and some of the variables we will consider later:
+```{r}
+glimpse(acs12)
+
+```
+
+---
+
+```{r}
+table(acs12$employment)
+table(acs12$edu)
+```
+---
+
+### Case study question 1
+
+Describe the data frames that are created by each of the following commands:
+
+```{r}
+labor_force <- acs12 %>% filter(!is.na(employment)) %>% 
+  filter(employment == "employed" | employment == "unemployed")
+
+
+employed <- labor_force %>% filter(employment == "employed")
+
+
+employed <- employed %>% 
+  mutate(edu2 = recode(edu, "hs or lower" = "hs_or_lower", 
+                       "college"="more_than_hs", "grad"="more_than_hs"))
+
+
+cat_vars <- acs12 %>% select(employment, race, gender, citizen, lang, married, edu, 
+                             disability, birth_qrtr)
+```
+
+
+---
+
+### Case study question 2
+
+We've used these plot geometries:   
+`geom_bar, geom_boxplot, geom_dotplot, geom_histogram, geom_line, geom_point, geom_vline`
+
+Recall this plot vocabulary:
+
+* Bar plots: modes, frequency
+* Histograms / boxplots: centre, spread, modes (unimodal, bimodal, multimodal, no mode), frequency, symmetric / left-skewed / right-skewed, outliers
+* Scatterplots: strong / weak / no relationship, linear (positive or negative) / nonlinear relationshiop, outliers, clusters
+
+---
+
+On the next several slides are a number of plots, each constructed from the dataset `employed`.  For each:
+
+* What type of plot is it?
+* What `ggplot` geometry is used?
+* What is the purpose of the plot?
+* Describe the distribution(s) of the variable(s).
+
+---
+
+### Plot 1
+
+```{r, echo=F}
+ggplot(employed, aes(x=edu, y=income)) + geom_boxplot() + theme_minimal()
+```
+
+---
+
+### Plot 2
+
+Why use a log transformation?
+
+```{r, echo=F}
+ggplot(employed, aes(x=hrs_work, y=log(income))) + geom_point() + theme_minimal()
+```
+
+---
+
+### Plot 3
+
+```{r, echo=F}
+ggplot(employed, aes(x=edu)) + geom_bar() + theme_minimal()
+```
+
+---
+
+### Plot 4
+
+```{r, echo=F}
+p1 <- ggplot(employed, aes(x=income)) + geom_histogram(binwidth=20000) + theme_minimal()
+p2 <- ggplot(employed, aes(x=income, y=..density..)) + geom_histogram(binwidth=20000) + theme_minimal()
+grid.arrange(p1, p2, nrow=1)
+```
+
+What is the difference in these histograms?  How do you get the second from the first?
+
+---
+
+### Case study question 3
+
+
+We've looked at simulations to:
+
+1. See how a statistic calculated from a population might vary from sample to sample (what is this called?)
+2. Estimate 1. when we only have one set of data (what is this called?)
+3. See the distribution of possible values of a statistic under an assumption (what is this assumption called?).  Two cases of this we considered: 
+     * (a) simulate outcomes for a proportion (how did we do this under our assumption?)
+     * (b) simulate the difference in a statistic between groups (how did we do this under our assumption?)
+   
+---
+
+Below is code for three simulations.  For each:
+
+* What is the purpose of the simulation (from the 5 choices above)?
+* Is the simulation used for a test or for a confidence interval or neither?
+* For the dotplot of simulated values, where is its centre?
+
+If the purpose of the simulation is to ...
+
+* ... find a confidence interval for a parameter, describe how you would estimate a 90% confidence interval from the dotplot of simulated values.
+* ... carry out an hypothesis test, what is the null hypothesis?  Estimate the P-value from the values plotted in the dotplot.  What is your conclusion?
+
+
+---
+
+### Some statistics that might be useful
+
+```{r}
+labor_force  %>% group_by(employment) %>% summarise(n_group = n()) %>% 
+  mutate(percent = n_group / sum(n_group))
+```
+```{r, echo=F, eval=F}
+employed %>% summarise(mean(income))
+employed %>% group_by(edu) %>% summarise(mean(income))
+```
+```{r}
+employed %>% group_by(edu2) %>% summarise(mean(income))
+```
+
+
+---
+
+### Simulation 1 
+
+```{r, echo=F}
+set.seed(130) 
+# mean unemployment rate in 2011 was 8.9% (average of monthly rates); is 2012 the same?
+```
+```{r}
+repetitions <- 100
+x <- rep(NA, repetitions) 
+
+n <- as.numeric(labor_force %>% summarize(n()))
+
+for (i in 1:repetitions)
+{
+  sim <- sample(c("unemployed", "employed"), size=n, prob=c(0.089, 1-0.089), replace=TRUE)
+  sim_stat <- sum(sim == "unemployed") / n
+  x[i] <- as.numeric(sim_stat)
+}
+```
+
+---
+
+
+```{r, echo=F, warning=F, messsage=F}
+x <- data_frame(x)
+
+ggplot(x, aes(x)) + 
+  geom_dotplot(alpha=.5) + theme_bw() +
+  theme(axis.text.x=element_blank(), axis.ticks.x= element_blank()) +
+  labs(title="Plot for Simulation 1") +
+  scale_y_continuous(NULL, breaks = NULL) 
+```
+  
+Note: The grid marks are 0.005 apart on the horizontal axis.
+
+---
+  
+### Simulation 2
+
+```{r, echo=F}
+set.seed(1) 
+# for those employed, does income vary by edu2 
+```
+```{r}
+repetitions <- 100  
+x <- rep(NA, repetitions) 
+
+for (i in 1:repetitions)
+{
+  sim <- employed %>% mutate(edu2 = sample(edu2))  
+  sim_stat <- sim %>% group_by(edu2) %>% 
+                    summarise(means = mean(income)) %>% 
+                    summarise(diff(means))
+  x[i] <- as.numeric(sim_stat)
+}  
+```
+
+---
+
+
+```{r, echo=F, warning=F, message=F}
+x <- data_frame(x)
+ggplot(x, aes(x)) + 
+  geom_dotplot(alpha=.5) + theme_bw() +
+  theme(axis.text.x=element_blank(), axis.ticks.x= element_blank()) +
+ labs(title="Plot for Simulation 2") +
+ scale_y_continuous(NULL, breaks = NULL) 
+```
+
+Note: The grid marks are 2500 apart on the horizontal axis.
+
+---
+
+
+
+
+### Simulation 3
+
+```{r, echo=F}
+set.seed(4)
+# BOOTSTRAP CI FOR p where p is proportion unemployed
+```
+```{r}
+repetitions <- 100
+x <- rep(NA, repetitions) 
+
+n <- as.numeric(labor_force %>% summarize(n()))
+ 
+for (i in 1:repetitions)
+{
+  sim <- labor_force %>% sample_n(size = n, replace=TRUE)
+  x[i] <- as.numeric(sim %>% filter(employment == "unemployed") %>% 
+                            summarize(n())) / n
+}
+```
+
+---
+
+
+```{r, echo=F, message=F}
+df <- data_frame(x)
+ggplot(df, aes(x=x)) + geom_dotplot(alpha=.5) + theme_bw() +
+  theme(axis.text.x=element_blank(), axis.ticks.x= element_blank()) +
+ labs(title="Plot for Simulation 3") +
+  scale_y_continuous(NULL, breaks = NULL) 
+```
+
+Note: The grid marks are 0.005 apart on the horizontal axis.
+
+```{r, echo=F, eval=F}
+quantile(df$x, c(0.025, 0.975))
+```
+
+---
+
+Below is a boxplot for Simulation 3, plotting the same data as the histogram.  
+Can you use it to estimate a confidence interval?  For any confidence level?
+
+```{r, echo=F}
+df <- data_frame(x)
+ggplot(df, aes(x="", y=x)) + geom_boxplot()  + theme_bw() + labs(title="Boxplot for Simulation 3")
+```
+

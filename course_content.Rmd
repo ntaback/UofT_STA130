@@ -203,12 +203,26 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 
 [Example solutions to practice problems](week6/Week6PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
+
+# Week 7
+
+## February 26 Class
+
+### Slides 
+
+This week is test review.  Answers will be posted Monday evening.
+
+[Class slides](week7/test_review.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Class slides](week7/sta130_test_review.html) <i class="fa fa-html5" aria-hidden="true"></i> 
+
+[R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week7/sta130_test_review.Rmd) <i class="fa fa-github" aria-hidden="true"></i></a>
+
+
 ---
 <br>
 <html>
 <span style="opacity: 0.5;">
-February 19 - Reading Week - No Week <br>
-Week 7 - February 26 Midterm test during tutorial time on March 2. <br>
 Week 8 - March 5 <br>
 Week 9 - March 12 <br>
 Week 10 - March 19 <br>
