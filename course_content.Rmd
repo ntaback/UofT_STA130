@@ -210,6 +210,8 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 
 ### Slides 
 
+[Announcement: Statistical Sciences Career Panel, Saturday March 3](week7/SSU_Career_Panel_2018.png)
+
 This week is test review.  Answers will be posted Monday evening.
 
 [Class slides](week7/test_review.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
