@@ -212,13 +212,17 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 
 [Announcement: Statistical Sciences Career Panel, Saturday March 3](week7/SSU_Career_Panel_2018.png)
 
-This week is test review.  Answers will be posted Monday evening.
-
 [Class slides](week7/test_review.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
 [Class slides](week7/sta130_test_review.html) <i class="fa fa-html5" aria-hidden="true"></i> 
 
 [R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week7/sta130_test_review.Rmd) <i class="fa fa-github" aria-hidden="true"></i></a>
+
+[Annotated slides - 10:00 class](week7/test_review_annotated_am.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Annotated slides - 14:00 class](week7/test_review_annotated_pm.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Example solutions to test review](week7/sta130_test_review_solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
 
 ---
