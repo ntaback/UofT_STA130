@@ -18,6 +18,8 @@ output:
 
 ## Test location
 
+<span style="color:red">**NOTE: test room has changed for students in TUT0101I and TUT0101L.**</span>
+
 Note that the test will be written in a different room than usual.  The room you will write in depends on your tutorial.  [See this link for the list of rooms.](TestRooms.pdf)
 
 ## Test format
