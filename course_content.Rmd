@@ -57,6 +57,7 @@ You can do both (i) and (ii), but a lot of the same content is covered. If you d
 [Practice problems](week1/Week1PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
 [Example solutions to practice problems](week1/Week1PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
+<br>Note: in question 1, the textbook asks for scatterplots of each person's height against their father's height.  The  x- and y-axes in the plots in the solutions should be switched.
 
 # Week 2
 
