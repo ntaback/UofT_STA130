@@ -145,7 +145,7 @@ $(document).ready(function () {
 <ul>
 <li>Based on this plot, what is your estimate of the P-value?</li>
 </ul>
-<p>Our test statistic is <span class="math inline">\(53/80=0.6625\)</span>. There are no dots in the plot that are at a value greater than or equal to 0.6625 or less than or equal to 0.3375. (0.3375 is the same distance below 0.5 that 0.6625 is above it.) So the estimate of the P-value is 0. (Note that it’s not actually 0, but 0 to many decimal places. Since we did 100 repetitions in this plot, the P-value is <span class="math inline">\(&lt;.01.\)</span>)</p>
+<p>Our test statistic is <span class="math inline">\(53/80=0.6625\)</span>. There are no dots in the plot that are at a value greater than or equal to 0.6625 or less than or equal to 0.3375. (0.3375 is the same distance below 0.5 that 0.6625 is above it.) So the estimate of the P-value is 0.</p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Suppose the analysis described in b. This time 1000 simulations were used to get a better estimate of the P-value, and the resulting P-value was 0.005. What is an appropriate conclusion?</li>
 </ol>
@@ -172,7 +172,7 @@ $(document).ready(function () {
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Carry out the test and make an appropriate conclusion.</li>
 </ol>
-<p>The test statistic is 0.38.</p>
+<p>The test statistic is 0.17.</p>
 <pre class="r"><code>library(tidyverse)
 repetitions &lt;- 1000
 simulated_stats &lt;- rep(NA, repetitions) 
@@ -199,7 +199,7 @@ ggplot(sim, aes(p_phone)) +
 ##   p_value
 ##     &lt;dbl&gt;
 ## 1       0</code></pre>
-<p>The estimated P-value is 0 as, assuming the proportion who use their phones is 0.38, no simulations gave a value as extreme or more extreme than 0.17. (Actually, we know the P-value is <span class="math inline">\(&lt;0.001\)</span>, since we can conclude that fewer than 1 in 1000 simulations assuming the null hypothesis is true give a value as extreme as what we observed in our data.) We have very strong evidence that the proportion of American adults who do their browsing on their phone is different than the proportion of Chinese adults.</p>
+<p>The estimated P-value is 0 as, assuming the proportion who use their phones is 0.38, no simulations gave a value as extreme or more extreme than 0.17. We have very strong evidence that the proportion of American adults who do their browsing on their phone is different than the proportion of Chinese adults.</p>
 </div>
 <div id="question-3" class="section level2">
 <h2>Question 3</h2>
@@ -272,7 +272,8 @@ We conclude that we have strong evidence that the woman is identifying people wi
 <ol start="3" style="list-style-type: lower-alpha">
 <li>The woman correctly identified all 6 people who had been diagnosed with Parkinson’s but incorrectly identified one of the others as having Parkinson’s. Eight months later he was was diagnosed with the disease. So the woman was actually correct 12 out of 12 times. Are you able to get the P-value for the test that that this woman has some ability to identify Parkinson’s disease by smell using this new data, without running a new simulation? What would you change from your answer to a.? What wouldn’t you change?</li>
 </ol>
-<p>The hypotheses and number of observations (12) would be the same so there would be no need to re-run the simulation. To get the P-value, we would now look at how many of the simulations resulted in a proportion of correct values that are 12 or 0. Nothing else would change. In this case, our P-value would be 0 (or <span class="math inline">\(&lt;0.001\)</span>).</p>
+<p>The hypotheses and number of observations (12) would be the same so there would be no need to re-run the simulation. To get the P-value, we would now look at how many of the simulations resulted in a proportion of correct values that are 12 or 0. Nothing else would change. In this case, our P-value would be 0.</p>
+<p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week4/Week4PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> he simulations resulted in a proportion of correct values that are 12 or 0. Nothing else would change. In this case, our P-value would be 0 (or <span class="math inline">\(&lt;0.001\)</span>).</p>
 <p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week4/Week4PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a></p>
 </div>
 </div>

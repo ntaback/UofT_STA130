@@ -150,6 +150,7 @@ Randomization and Simulation - Sections 2.3.1, 2.3.2, 2.3.7 and 2.4 ](https://ww
 [Practice Problems](week4/Week4PracticeProblems-student.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
 [Example solutions to practice problems](week4/Week4PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
+<br>Typo in solution to Question 2 corrected on March 1.  It used to say the test statistic is 0.38 in one spot, but the test statistic is 0.17, as used elsewhere else in the solution.  
 
 # Week 5
 
