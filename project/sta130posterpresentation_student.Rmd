@@ -1,0 +1,122 @@
+---
+title: "STA130H1 Final Project - Poster Presentation Information"
+output:
+  html_document:
+    number_sections: no
+---
+
+# Poster Presentation
+
+The final project for this course will be a statistical analysis of data from [Geotab](https://www.geotab.com) on the topic below.  You will present your findings in the style of a poster display of a professional scientific conference.  You and your team will post your work on a board, give a short oral presentation of your findings when visited by evaluators, and be prepared to answer questions about your work.
+
+### Deliverables:
+
+1. A poster to be displayed at the STA130H1 poster fair.  See more details about the poster and poster fair below.
+2. The R markdown document (.Rmd) that produced the poster and the html (.html) output file, to be submitted before 9:30 on Monday, April 2 if you are in section LEC0101 and before 13:30 on Monday, April 2 if you are in section LEC0201. Submission details to follow.
+3. A 5 minute oral presentation summarizing your work that you will give at the poster fair.
+
+## The Poster Fair
+
+### When
+
+- __Date:__ April 2, 2018
+
+- __Time:__ During the lecture time that you are registered.  If you are registered in LEC0101 then the time is 10:10 - 12:00, or if you are registered in LEC0201 then the time is 14:10 - 16:00.  Make sure to come in time to post your work before 10 minutes past the hour.  Take down your poster at the end of your class time.
+
+### Location 
+
+- Atrium of Bahen Centre, 40 St George Street  
+(Note: come to the Bahen atrium and not your lecture room on April 2.)
+
+
+
+
+## The Poster
+
+- The poster boards on which you will display your work are 6 feet wide by 3 feet high.  You must ensure that what your group decides to post will fit on one board.
+- Groups can attach individual sheets of paper to the poster board using the velcro that will be provided.  No other methods of attachment to the board are permitted. 
+- You should produce your poster using R markdown to create slides.  We recommend ioslides.  You can then print the slides on 8.5 x 11 inch sheets of paper, to be posted on the poster board.  The skeleton of an R markdown document to produce the slides for your poster is [here](sta130_project_template.Rmd).  When planning your pages, think of your poster as a grid of these pages, which you will arrange in columns, to effectively show your work.  
+For more details on using R markdown see:
+    - [The course guide to producing R markdown documents](../Rmarkdownforclassreports.html)
+    - [R markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+    - [Information specific to `ioslides`](https://rmarkdown.rstudio.com/ioslides_presentation_format.html)
+- Your poster should include R output, but not R code.  See the [template](sta130_project_template.Rmd) for an example of how to write code chunks to do this.
+- Your poster must include the names of your team members, your tutorial section (e.g., TUT0101A), and your group number as assigned by your TA.
+- Your poster should include the following sections: Introduction, Statistical Methods, Results, Conclusion.  See the [template](sta130_project_template.Rmd) for optional sections.
+- See the [Self-Evaluation Checklist for STA130 Project](STA130_project_checklist.pdf) and the [template R markdown document](sta130_project_template.Rmd) for details on what to include.
+
+A few guidelines for an effective poster display:
+
+- Your poster should be clear, concise, and easy to read quickly.
+- Do not use small fonts as it will need to be read at a distance of about 6 feet.
+- Figures display information more efficiently than text.  
+- Numbered or bulleted lists convey points in a poster setting more effectively than blocks of text. 
+
+## The Oral Presentation
+
+At the poster fair you will be asked to give a 5 minute presentation summarizing your work.  This time limit is firm and you will be asked to stop when time is up.  Each team member must speak during this presentation.
+
+
+## Teamwork
+
+- You will work in a group comprised of either 3 or 4 students.   
+- You must work with students in your tutorial only.  Some tutorial time will be used for project work.
+- Your TA can help you form a group with other students in your tutorial.
+- All team members are expected to contribute equally to the completion of the project.  All team members must present part of the oral presentation at the poster fair.
+- Your group may not work with members of another group.  You may not discuss the project with anyone except for your team, professors, and the course TAs.
+
+## Evaluation
+
+- Preparatory work will be carried out in tutorial and will form part of your tutorial grade.
+- During the poster fair, you will be visited by members of the STA130H1 teaching team.  You will give them a 5 minute presentation about your work.  The rubric for the oral presentation is [here](STA130_project_oral_presentation_rubric.pdf).  The oral presentation mark will comprise 40% of your mark for the project.
+- Before the poster fair, you must send your TA  the html and R markdown files of your poster.  These are due at 10:10 if you are in section LEC0101 and at 14:10 if you are in section LEC0201.  The rubric for the poster evaluation is [here](STA130_project_poster_rubric.pdf).  Your mark on the poster will comprise 60% of your mark for the project.
+- You will be evaluated as a team.
+
+
+## The Content
+
+You will carry out a statistical analysis on data from [Geotab](https://www.geotab.com) to address the topic below.  
+
+We expect that your analysis may require data wrangling, exploratory data analysis (plots and summary statistics), tests, confidence intervals, classification trees, and regression models.  Your project does not need to include all of these statistical methods nor does it need to include all of the variables in the data set.  You might also choose not to include all observations, or to make new variables from the data that may be more suitable for answering your questions of interest.
+
+The goal is not to carry out an exhaustive analysis, nor to apply everything you have learned in the course.  The goal is to demonstrate that you have learned how to use R, that you can appropriately apply the methods we have covered in class to address a question, and that you can effectively interpret and present the results.
+
+
+
+# The Data 
+
+
+The red dots on the map below show hazardous driving instances in Canada recorded in Geotab's hazardous driving data set.
+
+```{r, echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggmap)
+
+hazardousdriving <- read_csv("hazardousdriving.csv")
+hazardousdriving_can <- hazardousdriving %>% filter(Country == "Canada")
+qmplot(AvgLongitude, AvgLatitude, data = hazardousdriving_can, maptype = "toner-lite", color = I("red"))
+```
+
+Your group will explore the hazardous driving dataset.  We have proposed questions for your group to address in your project.  There are many ways you can address these questions in the data.  Your group will need to focus your project, choosing what you will consider.  You do not need to consider every variable in the dataset.
+
+The [hazardous driving data set](hazardousdriving.csv) is described [here](https://data.geotab.com/urban-infrastructure/hazardous-driving).  The "Datasheet" link provides an explanation of each of the variables in the data.
+
+
+## Questions to Consider
+
+There is conflicting evidence about which province in Canada has the most dangerous driving conditions. A recent [study](https://atlantic.ctvnews.ca/halifax-most-dangerous-canadian-city-to-drive-in-study-1.2729103) claimed that Halifax is the most dangerous Canadian city to drive. Does this mean that Nova Scotia has the most dangerous driving in Canada?  According to a [report](https://www.allstate.ca/webpages/docs/custcare/allstate-2017-data-tables-national-final.pdf) by the Allstate Insurance Company New Bruswick had the highest collision claims.  [dangerousroads.org](http://www.dangerousroads.org/north-america/canada/546-the-top-12-most-dangerous-highways-in-canada.html) claims some of the most dangerous highways in Canada are in Manitoba and Nova Scotia. 
+
+Use the [hazardous driving data](hazardousdriving.csv) to answer the following questions:
+
+1. Define what your group considers to be “hazardous driving” for the purposes of your project.  Note that we expect that each group may have a different definition.  The analysis your group does will follow from how you choose to define hazardous driving.
+2. According to your definition of hazardous driving, which province has the most driving hazards? 
+3. How does hazardous driving in the province you identified in 2. compare to each of the other provinces? 
+
+To answer questions 1. - 3., you must use the hazardous driving data.  It is not necessary to use data from any other source.  However you are allowed to supplement the hazardous driving data with other data if you’d like. 
+
+
+ 
+
+
+
+

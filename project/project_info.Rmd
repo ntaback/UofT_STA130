@@ -1,0 +1,13 @@
+---
+title: "Final Project Information"
+output: html_document
+---
+
+# Information on the Final Project
+
+[Final project information](sta130posterpresentation_student.html)
+
+[Final project oral presentation marking rubric](STA130_project_oral_presentation_rubric.pdf)
+
+[Final project poster marking rubric](STA130_project_poster_rubric.pdf)
+

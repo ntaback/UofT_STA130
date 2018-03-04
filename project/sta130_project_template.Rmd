@@ -1,0 +1,104 @@
+---
+title: "Project title"
+author: "Team members names, tutorial section, and group number"
+subtitle: The subtitle of my project
+output:
+  ioslides_presentation: default
+  widescreen: yes
+---
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# echo=FALSE will stop the code chunk from appearing in the knit document
+# warning=FALSE and message=FALSE will stop R messages from appearing in the knit document
+library(tidyverse)
+```
+
+# A Section Heading on its own page
+
+## A heading that starts on a new page
+
+This document shows a few basics on making slides with R markdown.
+
+To produce the slides, Knit to HMTL (ioslides).
+
+(You can also knit to PDF if you have LaTeX installed on your computer.)
+
+
+---
+
+Three dashes starts a new page when it is not started by a new header.
+
+---
+
+### This is a heading that doesn't start a new page
+
+You can make text **bold** or in *italics*.
+
+To make bullet points, start the points after a blank line:
+ 
+- point one
+- another point
+
+
+---
+
+Include some R output
+
+```{r}
+ggplot(cars, aes(x=speed, y=dist)) + geom_point()
+```
+
+---
+
+Include the output without showing the code and R messages (which is what you want for your poster presentation).  This R code chunk also changes the size of the plot.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=3}
+ggplot(cars, aes(x=speed, y=dist)) + geom_point()
+```
+
+This plot shows that there is a positive relationship between distance and speed.
+
+## Read more
+
+There is more information on R markdown on the course website at [https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)
+
+For more on creating an `ioslides` presentation see [https://rmarkdown.rstudio.com/ioslides_presentation_format.html](https://rmarkdown.rstudio.com/ioslides_presentation_format.html)
+
+# Headings you should include in your project
+
+## Introduction
+
+Include here a few sentences to introduce the problem and provide context. You might want to briefly summarize the data in words (what is the data and what is it used for). You can present the questions you are investigating here. 
+
+
+## Objectives (optional)
+
+You can list the questions of interest in complete English sentences here to highlight them. 
+
+## Data Summary (optional)
+
+Here you can explain how you cleaned the data and created variables suitable for answering your questions. 
+You can also include graphical displays that either motivated or address the questions.
+
+## Statistical Methods
+
+Describe here what you have done to the data without presenting any results (output). If you want to indicate variables by symbols or variable names, define them here. 
+
+## Results
+
+Present the main results here, in order of importance, related to the questions asked. You might use tables or graphs, or other ways to summarize your results.
+
+## Conclusion
+
+Give your main conclusions here. Follow the order of questions you presented. 
+
+Here you can also mention any additional considerations, concerns, or issues you might have. For example, if the results were unexpected, you can discuss this and perhaps offer possible explanations.
+
+## Acknowledgements (optional)
+
+If you received any help from someone other than your team members you can acknowledge them. For example:   
+*The authors thank Wei for providing information on additional data resources. The authors would like to thank "TA name" for helpful suggestions and comments that improved the presentation of this poster.*
+
+
+

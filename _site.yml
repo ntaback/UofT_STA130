@@ -10,6 +10,9 @@ navbar:
   - text: Syllabus
     icon: fa-info
     href: STA130syllabus2018S.html
+  - text: Final Project
+    icon: fa-users
+    href: project/project_info.html
   - text: Test Information
     icon: fa-info
     href: term_test_information.html
