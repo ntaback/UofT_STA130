@@ -1,37 +1,39 @@
 ---
 title: "STA130H1 Final Project - Poster Presentation Information"
-output:
+date: "Winter 2018"
+output: 
   html_document:
-    number_sections: no
+   toc: true
+   toc_depth: 2
+   toc_float: true 
+   theme: flatly
 ---
 
 # Poster Presentation
 
 The final project for this course will be a statistical analysis of data from [Geotab](https://www.geotab.com) on the topic below.  You will present your findings in the style of a poster display of a professional scientific conference.  You and your team will post your work on a board, give a short oral presentation of your findings when visited by evaluators, and be prepared to answer questions about your work.
 
-### Deliverables:
+## Deliverables
 
 1. A poster to be displayed at the STA130H1 poster fair.  See more details about the poster and poster fair below.
 2. The R markdown document (.Rmd) that produced the poster and the html (.html) output file, to be submitted before 9:30 on Monday, April 2 if you are in section LEC0101 and before 13:30 on Monday, April 2 if you are in section LEC0201. Submission details to follow.
 3. A 5 minute oral presentation summarizing your work that you will give at the poster fair.
 
-## The Poster Fair
+# The Poster Fair
 
-### When
+## When
 
 - __Date:__ April 2, 2018
 
 - __Time:__ During the lecture time that you are registered.  If you are registered in LEC0101 then the time is 10:10 - 12:00, or if you are registered in LEC0201 then the time is 14:10 - 16:00.  Make sure to come in time to post your work before 10 minutes past the hour.  Take down your poster at the end of your class time.
 
-### Location 
+## Location 
 
 - Atrium of Bahen Centre, 40 St George Street  
 (Note: come to the Bahen atrium and not your lecture room on April 2.)
 
 
-
-
-## The Poster
+# The Poster
 
 - The poster boards on which you will display your work are 6 feet wide by 3 feet high.  You must ensure that what your group decides to post will fit on one board.
 - Groups can attach individual sheets of paper to the poster board using the velcro that will be provided.  No other methods of attachment to the board are permitted. 
@@ -52,28 +54,55 @@ A few guidelines for an effective poster display:
 - Figures display information more efficiently than text.  
 - Numbered or bulleted lists convey points in a poster setting more effectively than blocks of text. 
 
-## The Oral Presentation
+# The Oral Presentation
 
 At the poster fair you will be asked to give a 5 minute presentation summarizing your work.  This time limit is firm and you will be asked to stop when time is up.  Each team member must speak during this presentation.
 
+# Teamwork
 
-## Teamwork
-
+- Preparatory work will be carried out in tutorial and will form part of your tutorial grade.
 - You will work in a group comprised of either 3 or 4 students.   
 - You must work with students in your tutorial only.  Some tutorial time will be used for project work.
 - Your TA can help you form a group with other students in your tutorial.
 - All team members are expected to contribute equally to the completion of the project.  All team members must present part of the oral presentation at the poster fair.
 - Your group may not work with members of another group.  You may not discuss the project with anyone except for your team, professors, and the course TAs.
 
-## Evaluation
 
-- Preparatory work will be carried out in tutorial and will form part of your tutorial grade.
+# Evaluation
+
+
+Grade component                     Value 
+---------------                     -------
+Poster Content                      50%
+Reproducibility of Poster Content   10%
+Oral Presentation                   40%
+
+## Poster Content and Reproducability
+
+- The rubric for the poster evaluation is [here](STA130_project_poster_rubric.pdf).
+
+- Before the poster fair, you must send your TA  the html and R Markdown files of your poster.  These are due at 9:30 if you are in section LEC0101 and at 13:30 if you are in section LEC0201.    
+
+- Your TA will attempt to reproduce your poster using the R Markdown (.rmd) files you submit.  
+
+- If your TA cannot run the .rmd files you submit to reproduce your poster content then your group will receive 0; if the TA has to make minor changes to get it to run then your group will receive 1; and if it runs with no changes then your group will recieve 2. 
+
+- If the R Markdown file is submitted after the deadline then every member of your group will lose 10% of your overall final project mark.  If the R Markdown file is submitted more than 24 hours past the due date then  
+
+## Oral presentation
+
+- During the poster fair, you will be visited by members of the STA130H1 teaching team.  You will give them a 5 minute presentation about your work.  The rubric for the oral presentation is [here](STA130_project_oral_presentation_rubric.pdf).  
+
 - During the poster fair, you will be visited by members of the STA130H1 teaching team.  You will give them a 5 minute presentation about your work.  The rubric for the oral presentation is [here](STA130_project_oral_presentation_rubric.pdf).  The oral presentation mark will comprise 40% of your mark for the project.
-- Before the poster fair, you must send your TA  the html and R markdown files of your poster.  These are due at 10:10 if you are in section LEC0101 and at 14:10 if you are in section LEC0201.  The rubric for the poster evaluation is [here](STA130_project_poster_rubric.pdf).  Your mark on the poster will comprise 60% of your mark for the project.
+
 - You will be evaluated as a team.
 
+- If a student in a group isn’t present or late for their group’s presentation then they will need a valid excuse (e.g., UofT illness form), otherwise they will receive 50% of the group mark.
 
-## The Content
+- If a student doesn’t speak at all during the presentation and is unable to answer a direct question then they will receive 50% of the group mark. If a student neither speaks nor responds to any questions they will receive 0. 
+
+
+## Data Analysis
 
 You will carry out a statistical analysis on data from [Geotab](https://www.geotab.com) to address the topic below.  
 
@@ -82,9 +111,7 @@ We expect that your analysis may require data wrangling, exploratory data analys
 The goal is not to carry out an exhaustive analysis, nor to apply everything you have learned in the course.  The goal is to demonstrate that you have learned how to use R, that you can appropriately apply the methods we have covered in class to address a question, and that you can effectively interpret and present the results.
 
 
-
 # The Data 
-
 
 The red dots on the map below show hazardous driving instances in Canada recorded in Geotab's hazardous driving data set.
 
@@ -102,7 +129,7 @@ Your group will explore the hazardous driving dataset.  We have proposed questio
 The [hazardous driving data set](hazardousdriving.csv) is described [here](https://data.geotab.com/urban-infrastructure/hazardous-driving).  The "Datasheet" link provides an explanation of each of the variables in the data.
 
 
-## Questions to Consider
+# Final Project Questions
 
 There is conflicting evidence about which province in Canada has the most dangerous driving conditions. A recent [study](https://atlantic.ctvnews.ca/halifax-most-dangerous-canadian-city-to-drive-in-study-1.2729103) claimed that Halifax is the most dangerous Canadian city to drive. Does this mean that Nova Scotia has the most dangerous driving in Canada?  According to a [report](https://www.allstate.ca/webpages/docs/custcare/allstate-2017-data-tables-national-final.pdf) by the Allstate Insurance Company New Bruswick had the highest collision claims.  [dangerousroads.org](http://www.dangerousroads.org/north-america/canada/546-the-top-12-most-dangerous-highways-in-canada.html) claims some of the most dangerous highways in Canada are in Manitoba and Nova Scotia. 
 
@@ -112,7 +139,7 @@ Use the [hazardous driving data](hazardousdriving.csv) to answer the following q
 2. According to your definition of hazardous driving, which province has the most driving hazards? 
 3. How does hazardous driving in the province you identified in 2. compare to each of the other provinces? 
 
-To answer questions 1. - 3., you must use the hazardous driving data.  It is not necessary to use data from any other source.  However you are allowed to supplement the hazardous driving data with other data if you’d like. 
+To answer questions 1 - 3, you must use the hazardous driving data.  It is not necessary to use data from any other source.  However you are allowed to supplement the hazardous driving data with other data if you’d like. 
 
 
  

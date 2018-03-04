@@ -1,6 +1,12 @@
 ---
 title: "Final Project Information"
-output: html_document
+date: "Winter 2018"
+output: 
+  html_document:
+   toc: true
+   toc_depth: 2
+   toc_float: true 
+   theme: flatly
 ---
 
 # Information on the Final Project
@@ -10,4 +16,27 @@ output: html_document
 [Final project oral presentation marking rubric](STA130_project_oral_presentation_rubric.pdf)
 
 [Final project poster marking rubric](STA130_project_poster_rubric.pdf)
+
+[A description of the hazardous driving data from Geotab](https://data.geotab.com/urban-infrastructure/hazardous-driving)
+
+# Working with the data on your own computer
+
+The data for the final project can be read into R on your own computer by running the following code chunk.
+
+```{r, eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/project/hazardousdriving.csv"
+hazarddat <- read.csv(file_url)
+```
+
+
+# Working with the data on rstudio.cloud
+
+Instead of working on the project on your local computer you can work on it using [rstudio.cloud](https://rstudio.cloud) by going to the [final project link](https://rstudio.cloud/spaces/1016/join?access_code=k9lvocPs1m78AmPxcpr31j36JmFQjZJ7xeNt2kvx).  
+
+When you access the project created by Prof. Taback, RStudio Cloud automatically creates a temporary copy of the original project for you. You can play with and make edits to it, but none of your changes will be reflected in the original. If you’d like to keep the changes you’ve made, just save a copy of the project for yourself by pressing the Save a Copy button.
+
+You can learn more about rstudio.cloud [here](https://rstudio.cloud/learn/guide).
+
+![](forkProject.png)
+
 
