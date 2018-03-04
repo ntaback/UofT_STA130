@@ -227,11 +227,25 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 [Example solutions to test review](week7/sta130_test_review_solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
 
+# Week 8
+
+## March 8 Class
+
+### Slides and References
+
+[Class slides](week8/Week8_ClassificationTrees.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Class slides](week8/Class8_sta130_nt_ver1.html) <i class="fa fa-html5" aria-hidden="true"></i> 
+
+## March 9 Tutorial
+
+[Practice Problems](week8/Week8PracticeProblems-student1.html)
+
+
 ---
 <br>
 <html>
 <span style="opacity: 0.5;">
-Week 8 - March 5 <br>
 Week 9 - March 12 <br>
 Week 10 - March 19 <br>
 Week 11 - March 26 <br>
