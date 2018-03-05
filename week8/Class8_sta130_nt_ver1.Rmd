@@ -1,8 +1,9 @@
 ---
 title: 'Class #8 - Classification Trees'
-output: 
+output:
+  slidy_presentation: default
   ioslides_presentation:
-    smaller: true
+    smaller: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -92,10 +93,10 @@ plot(as.party(tree), type = "simple", gp = gpar(cex = 0.8))
 
 ## Interpreting a Classification Tree
 
-- This classification tree has 7 seven nodes, and 4 of these nodes are __terminal nodes__.
+- This classification tree has five nodes, and three of these nodes are __terminal nodes__.
 - Terminal nodes are indicated by rectangular boxes, and nonterminal nodes are indicated by ovals.
-- If a subject has $x1 < 0.137$ then the prediction is that effectiveness = No (i.e., the treatment is not effective). 7 subjects have $x1 < 0.137$  and 14.3% (1 subject) have effectiveness = Yes, and 85.7% (6 subjects) have effectiveness = No.
-- If a subject has $x1 \geq 0.137$ and $x2 < 0.463$ then the prediction is that effectiveness = Yes.  23 subjects have $x1 \geq 0.137$ and $x2 < 0.463$ and 34.8% (8 subjects) have effectiveness = No, and 65.2% (15 subjects) have effectiveness = Yes.
+- If a subject has $x1 < 0.211$ then the prediction is that effectiveness = Yes (i.e., the treatment is effective). 7 subjects have $x1 < 0.211$  and 42.9% (3 subjects) have effectiveness = No, and 57.1% (4 subjects) have effectiveness = Yes.
+- If a subject has $x1 \geq 0.211$ and $x2 < 0.586$ then the prediction is that effectiveness = No.  16 subjects have $x1 \geq 0.211$ and $x2 < 0.586$ and 18.8% (3 subjects) have effectiveness = Yes, and 81.2% (13 subjects) have effectiveness = No.
 
 
 ## Geometric Interpretation of a Classification Trees
@@ -121,13 +122,13 @@ ggplot(dat, aes(x1, x2, shape = factor(type_cat), colour = factor(type_cat))) +
   theme_minimal() + 
   scale_color_discrete(name = "Effectiveness", breaks = c("Yes", "No")) +
   scale_shape_discrete(name = "Effectiveness", breaks = c("Yes", "No")) +
-  geom_segment(aes(y = 0, yend = 1, x = 0.137, xend = 0.137), size = 0.1, colour = "navyblue") +
-  geom_segment(aes(x = 0.137, xend = 1, y = 0.463, yend = 0.463), size = 0.1, colour = "navyblue") +
-  geom_segment(aes(y = 0.463, yend = 1, x = 0.575, xend = 0.575), size = 0.1, colour = "navyblue") +
-  annotate("text", x = 0.05, y = 0.8, label = "Node 2") +
-  annotate("text", x = 0.35, y = 0.8, label = "Node 6") +
-  annotate("text", x = 0.7, y = 0.8, label = "Node 5") +
-  annotate("text", x = 0.5, y = 0.3, label = "Node 7")
+  geom_segment(aes(y = 0, yend = 1, x = 0.211, xend = 0.211), size = 0.1, colour = "navyblue") +
+  geom_segment(aes(x = 0.211, xend = 1, y = 0.586, yend = 0.586), size = 0.1, colour = "navyblue") +
+  #geom_segment(aes(y = 0.463, yend = 1, x = 0.575, xend = 0.575), size = 0.1, colour = "navyblue") +
+  annotate("text", x = 0.05, y = 0.8, label = "Node 5") +
+  annotate("text", x = 0.35, y = 0.8, label = "Node 4") +
+  #annotate("text", x = 0.7, y = 0.8, label = "Node 5") +
+  annotate("text", x = 0.35, y = 0.3, label = "Node 3")
 ```
 
 
