@@ -80,7 +80,7 @@ Oral Presentation                   40%
 \* Students will be evaluated as a team.
 
 
-## Poster Content and Reproducability
+## Poster Content and Reproducibility
 
 - The rubric for the poster evaluation is [here](STA130_project_poster_rubric.pdf).
 
@@ -92,7 +92,7 @@ Oral Presentation                   40%
 
 - If the R Markdown and HTML files are submitted after the deadline every member of your group will lose 10% of your overall final project mark as long as they are submitted at most 24 hours after the deadline. The R Markdown and HTML files will not be accepted more than 24 hours after the deadline.
 
-## Oral presentation
+## Oral Presentation
 
 - During the poster fair, you will be visited by members of the STA130H1 teaching team.  You will give them a 5 minute presentation about your work.  The rubric for the oral presentation is [here](STA130_project_oral_presentation_rubric.pdf).  
 
@@ -124,13 +124,13 @@ hazardousdriving_can <- hazardousdriving %>% filter(Country == "Canada")
 qmplot(AvgLongitude, AvgLatitude, data = hazardousdriving_can, maptype = "toner-lite", color = I("red"))
 ```
 
-Your group will explore the hazardous driving dataset.  We have proposed questions for your group to address in your project.  There are many ways you can address these questions in the data.  Your group will need to focus your project, choosing what you will consider.  You do not need to consider every variable in the dataset.
+Your group will explore the hazardous driving data set.  We have proposed questions for your group to address in your project.  There are many ways you can address these questions in the data.  Your group will need to focus your project, choosing what you will consider.  You do not need to consider every variable in the data set.
 
 The [hazardous driving data set](hazardousdriving.csv) is described [here](https://data.geotab.com/urban-infrastructure/hazardous-driving).  The "Datasheet" link provides an explanation of each of the variables in the data.
 
 # Final Project Questions
 
-There is conflicting evidence about which province in Canada has the most dangerous driving conditions. A recent [study](https://atlantic.ctvnews.ca/halifax-most-dangerous-canadian-city-to-drive-in-study-1.2729103) claimed that Halifax is the most dangerous Canadian city to drive. Does this mean that Nova Scotia has the most dangerous driving in Canada?  According to a [report](https://www.allstate.ca/webpages/docs/custcare/allstate-2017-data-tables-national-final.pdf) by the Allstate Insurance Company New Bruswick had the highest collision claims.  [dangerousroads.org](http://www.dangerousroads.org/north-america/canada/546-the-top-12-most-dangerous-highways-in-canada.html) claims some of the most dangerous highways in Canada are in Manitoba and Nova Scotia. 
+There is conflicting evidence about which province in Canada has the most dangerous driving conditions. A recent [study](https://atlantic.ctvnews.ca/halifax-most-dangerous-canadian-city-to-drive-in-study-1.2729103) claimed that Halifax is the most dangerous Canadian city to drive. Does this mean that Nova Scotia has the most dangerous driving in Canada?  According to a [report](https://www.allstate.ca/webpages/docs/custcare/allstate-2017-data-tables-national-final.pdf) by the Allstate Insurance Company New Brunswick had the highest collision claims.  [dangerousroads.org](http://www.dangerousroads.org/north-america/canada/546-the-top-12-most-dangerous-highways-in-canada.html) claims some of the most dangerous highways in Canada are in Manitoba and Nova Scotia. 
 
 Use the [hazardous driving data](hazardousdriving.csv) to answer the following questions:
 
