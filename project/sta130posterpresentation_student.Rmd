@@ -103,16 +103,15 @@ Oral Presentation                   40%
 - If a student doesn’t speak at all during the presentation and is unable to answer a direct question then they will receive 50% of the group mark. If a student neither speaks nor responds to any questions they will receive 0. 
 
 
-## Data Analysis
+# Data Analysis Expectations
 
-You will carry out a statistical analysis on data from [Geotab](https://www.geotab.com) using R to address the topic below.  
+You will carry out a data analysis on data from [Geotab](https://www.geotab.com) using R to address the topic below.  
 
 We expect that your analysis may require data wrangling, exploratory data analysis (plots and summary statistics), tests, confidence intervals, classification trees, and regression models.  Your project does not need to include all of these statistical methods nor does it need to include all of the variables in the data set.  You might also choose not to include all observations, or to make new variables from the data that may be more suitable for answering your questions of interest.
 
 The goal is not to carry out an exhaustive analysis, nor to apply everything you have learned in the course.  The goal is to demonstrate that you have learned how to use R, that you can appropriately apply the methods we have covered in class to address a question, and that you can effectively interpret and present the results.
 
-
-# The Data 
+## The Data 
 
 The red dots on the map below show hazardous driving instances in Canada recorded in Geotab's hazardous driving data set.
 
@@ -128,7 +127,6 @@ qmplot(AvgLongitude, AvgLatitude, data = hazardousdriving_can, maptype = "toner-
 Your group will explore the hazardous driving dataset.  We have proposed questions for your group to address in your project.  There are many ways you can address these questions in the data.  Your group will need to focus your project, choosing what you will consider.  You do not need to consider every variable in the dataset.
 
 The [hazardous driving data set](hazardousdriving.csv) is described [here](https://data.geotab.com/urban-infrastructure/hazardous-driving).  The "Datasheet" link provides an explanation of each of the variables in the data.
-
 
 # Final Project Questions
 
