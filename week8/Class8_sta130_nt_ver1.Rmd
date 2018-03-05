@@ -1,9 +1,9 @@
 ---
 title: 'Class #8 - Classification Trees'
 output:
-  slidy_presentation: default
   ioslides_presentation:
-    smaller: yes
+    widescreen: true
+    smaller: true
 ---
 
 ```{r setup, include=FALSE}
