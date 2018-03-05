@@ -71,11 +71,14 @@ At the poster fair you will be asked to give a 5 minute presentation summarizing
 # Evaluation
 
 
-Grade component                     Value 
+Grade component^(*)                 Value 
 ---------------                     -------
 Poster Content                      50%
 Reproducibility of Poster Content   10%
 Oral Presentation                   40%
+
+(*) You will be evaluated as a team.
+
 
 ## Poster Content and Reproducability
 
@@ -87,17 +90,15 @@ Oral Presentation                   40%
 
 - If your TA cannot run the .rmd files you submit to reproduce your poster content then your group will receive 0; if the TA has to make minor changes to get it to run then your group will receive 1; and if it runs with no changes then your group will recieve 2. 
 
-- If the R Markdown file is submitted after the deadline then every member of your group will lose 10% of your overall final project mark.  If the R Markdown file is submitted more than 24 hours past the due date then  
+- If the R Markdown and HTML files are submitted after the deadline every member of your group will lose 10% of your overall final project mark as long as they are submitted at most 24 hours after the deadline. The R Markdown and HTML files will not be accepted more than 24 hours after the deadline.
 
 ## Oral presentation
 
 - During the poster fair, you will be visited by members of the STA130H1 teaching team.  You will give them a 5 minute presentation about your work.  The rubric for the oral presentation is [here](STA130_project_oral_presentation_rubric.pdf).  
 
-- During the poster fair, you will be visited by members of the STA130H1 teaching team.  You will give them a 5 minute presentation about your work.  The rubric for the oral presentation is [here](STA130_project_oral_presentation_rubric.pdf).  The oral presentation mark will comprise 40% of your mark for the project.
+- Every member of the team is expected to speak as part of the oral presentation.
 
-- You will be evaluated as a team.
-
-- If a student in a group isn’t present or late for their group’s presentation then they will need a valid excuse (e.g., UofT illness form), otherwise they will receive 50% of the group mark.
+- If a student in a group isn’t present at their group’s presentation then they will need a valid excuse (e.g., UofT illness form), otherwise they will receive 50% of the group mark.
 
 - If a student doesn’t speak at all during the presentation and is unable to answer a direct question then they will receive 50% of the group mark. If a student neither speaks nor responds to any questions they will receive 0. 
 
