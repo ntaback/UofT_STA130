@@ -105,7 +105,7 @@ Oral Presentation                   40%
 
 ## Data Analysis
 
-You will carry out a statistical analysis on data from [Geotab](https://www.geotab.com) to address the topic below.  
+You will carry out a statistical analysis on data from [Geotab](https://www.geotab.com) using R to address the topic below.  
 
 We expect that your analysis may require data wrangling, exploratory data analysis (plots and summary statistics), tests, confidence intervals, classification trees, and regression models.  Your project does not need to include all of these statistical methods nor does it need to include all of the variables in the data set.  You might also choose not to include all observations, or to make new variables from the data that may be more suitable for answering your questions of interest.
 
