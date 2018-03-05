@@ -6,6 +6,8 @@ tidyr
 readr
 purrr
 dplyr
+stringr
+forcats
 jpeg
 rpart
 libcoin

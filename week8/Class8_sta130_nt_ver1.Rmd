@@ -49,8 +49,8 @@ census <- read_csv("census.csv")
 
 - Many statistical learning problems fall into one of two categories: supervised or unsupervised.
 - In supervised learning problems there is a response measurement $y$ that we would like to __predict__, based on variables $x_1, x_2, \ldots, x_p$.
-- Variables are often called features, predictors, covariates, dependent variables, or inputs.
-- Response measurements are often called outputs, labels, or independent variables.
+- Variables are often called features, predictors, covariates, independent variables, or inputs.
+- Response measurements are often called outputs, labels, or dependent variables.
 
 ## Image Classification Example
 

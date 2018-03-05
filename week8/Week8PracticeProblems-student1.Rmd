@@ -53,7 +53,7 @@ a. Student's must bring answers to questions that were assigned to bring to tuto
 
 ## Question 0
 
-Read through the [Final Project information](../project/project_info.html).
+Read through the [Final Project information](../project_info.html).
 
 ## Question 1
 
