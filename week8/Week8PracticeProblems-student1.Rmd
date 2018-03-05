@@ -25,7 +25,7 @@ Your answer to question 2 parts (d), (e), (f), and (g)
 
 ```{r,eval=FALSE}
 file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week8/Week8PracticeProblems-student1.Rmd"
-download.file(url = file_url , destfile = "Week4PracticeProblems-student.Rmd")
+download.file(url = file_url , destfile = "Week8PracticeProblems-student.Rmd")
 ```
 
 Look for the file "Week8PracticeProblems-student.Rmd" under the Files tab then click on it to open.
@@ -53,7 +53,7 @@ a. Student's must bring answers to questions that were assigned to bring to tuto
 
 ## Question 0
 
-Read through the project 
+Read through the [Final Project information](../project/project_info.html).
 
 ## Question 1
 
