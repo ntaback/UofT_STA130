@@ -35,8 +35,7 @@ Instead of working on the project on your local computer you can work on it usin
 
 When you access the project created by Prof. Taback, RStudio Cloud automatically creates a temporary copy of the original project for you. You can play with and make edits to it, but none of your changes will be reflected in the original. If you’d like to keep the changes you’ve made, just save a copy of the project for yourself by pressing the Save a Copy button.
 
-You can learn more about rstudio.cloud [here](https://rstudio.cloud/learn/guide)
-
 ![](forkProject.png)
 
 
+You can learn more about rstudio.cloud [here](https://rstudio.cloud/learn/guide).
