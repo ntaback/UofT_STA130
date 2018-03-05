@@ -71,13 +71,13 @@ At the poster fair you will be asked to give a 5 minute presentation summarizing
 # Evaluation
 
 
-Grade component^(*)                 Value 
----------------                     -------
+Grade component^\*^                 Value 
+------------------                  -------
 Poster Content                      50%
 Reproducibility of Poster Content   10%
 Oral Presentation                   40%
 
-(*) You will be evaluated as a team.
+\* Students will be evaluated as a team.
 
 
 ## Poster Content and Reproducability
