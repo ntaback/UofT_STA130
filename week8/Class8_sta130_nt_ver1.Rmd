@@ -375,9 +375,9 @@ Assume we are trying to predict >50K. So this outcome will be considered positiv
 - False negative rate: b/(b+d)
 - Accuracy: (a+d)/N
 
+
 ## Classification Tree Accuracy
 
-- Let's compute the accuracy of using the training data.
 
 ```{r}
 predicted_tree <- predict(object = tree, newdata = train, type = "class")
@@ -425,6 +425,9 @@ table(predicted_mod, test$income)
 ```
 
 - The overall accuracy is ...
+
+## Accuracy of Classification Tree 
+
 - Instead of predicting class we can predict probability.
 
 ```{r,echo=TRUE}
