@@ -11,11 +11,11 @@ output:
 
 # Information on the Final Project
 
-[Final project information](sta130posterpresentation_student.html)
+[Final project information](project/sta130posterpresentation_student.html)
 
-[Final project oral presentation marking rubric](STA130_project_oral_presentation_rubric.pdf)
+[Final project oral presentation marking rubric](project/STA130_project_oral_presentation_rubric.pdf)
 
-[Final project poster marking rubric](STA130_project_poster_rubric.pdf)
+[Final project poster marking rubric](project/STA130_project_poster_rubric.pdf)
 
 [A description of the hazardous driving data from Geotab](https://data.geotab.com/urban-infrastructure/hazardous-driving)
 
