@@ -48,13 +48,11 @@ The test includes a combination of different types of questions including:
 
 
 ## Additional practice problems 
-=======
 
 - Test your knowledge using the online [midterm review quiz](http://52.235.36.76:3838/STA130MidtermReview/).  Note that the quiz doesn't cover all of the content that you are responsible for and mostly tests your knowledge, and not your ability to apply or explain your knowledge, which you will also be required to do on the test.
 - The lecture time on Monday February 26 will be a review session.
 
 ## What to bring 
-=======
 
 - Your student card
 - Writing implements 
