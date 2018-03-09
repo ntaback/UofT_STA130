@@ -22,6 +22,8 @@ navbar:
   - text: Data Science 
     icon: fa fa-search-plus
     href: Datasci.html
+  - text: Test Solutions
+    href: term_test_2018.html
   
 output:
   html_document:
