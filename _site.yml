@@ -13,9 +13,6 @@ navbar:
   - text: Final Project
     icon: fa-users
     href: project_info.html
-  - text: Test Information
-    icon: fa-info
-    href: term_test_2018.html
   - text: R Resources
     icon: fa-book
     href: R_resources.html
