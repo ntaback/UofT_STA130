@@ -16,7 +16,7 @@ output:
 
 [STA130-L0201, Monday 14:00 - 16:00 Test Solutions](diamonds_test-solutions.pdf)
 
-## Test date and time {#noemph}
+## Test date and time
 
 - The test is on Friday, March 2 during your usual tutorial time (but in a different room).  
 - You will have 90 minutes to write the test.
