@@ -249,6 +249,9 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 
 [Practice Problems](week8/Week8PracticeProblems-student1.html)
 
+[Example solutions to practice problems](week8/Week8PracticeProblems-solutions1.html) <i class="fa fa-html5" aria-hidden="true"></i>
+
+
 
 ---
 <br>
