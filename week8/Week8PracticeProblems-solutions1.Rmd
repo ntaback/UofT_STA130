@@ -1,0 +1,284 @@
+---
+title: "STA130H1 -- Winter 2018 - Sample Solutions"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 8 Practice Problems
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+library(tidyverse)
+```
+
+# Instructions
+
+## What should I bring to tutorial on March 9?
+
+Your answer to question 2 parts (d), (e), (f), (g).
+
+## First steps to answering these questions.
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r,eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week8/Week8PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week8PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week8PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week 8 Practice Problems Solutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+a. Student's must bring answers to questions that were assigned to bring to tutorial.  Answers do not have to be perfect in order to receive full credit, but a serious attempt at the problem is required for full credit.  Your must work be your own.
+
+
+
+# Practice Problems
+
+## Question 1
+
+A classification tree was built to predict a dependent variable categorized as "Yes", "No". 80% of the data set were used to train the classification tree and the remaining 20% was used to test the resulting model. The prediction accuracy was evaluated using the test set. The confusion matrix is below. 
+
+
+| Predicted | Yes | No |
+|-----------|-----|----|
+| Yes       | 100 | 30 |
+| No        | 10  | 37 |
+
+
+(a)  How many observations were used to train the model?  How many observations were used to test the model?
+
+We are given that `N_total * 0.2 = N_test`, where `N_test` is the number of observations in the test set, and `N_total` is the number of observations in the data set.
+
+```{r}
+N_test <- 100 + 10 + 30 + 37
+N_total <- N_test / 0.2
+N_total
+N_train <- N_total - N_test
+N_train
+```
+
+
+
+(b) What is the accuracy, false-positive rate, and false-negative rate?  Assume that "Yes" is positive and "No" is negative.
+
+The overall accuracy is: (100 + 37)/177 = `r (100 + 37)/177`.
+The false-negative rate is: 10/ (100 + 10) = `r 10 /110`.
+The false-positive rate is: 30 /(30 + 37) = `r 30/67`.
+
+
+(c)  Is it possible to use this table to draw an ROC curve?  Explain.
+
+No.  The curve would only have one point.  In order to draw an ROC curve we would need confusion matricies at different cutpoints.  
+
+## Question 2
+
+```{r, eval=FALSE}
+library(NHANES)
+glimpse(NHANES)
+```
+
+Read the description in Exercise 8.1 and answer the following questions.
+
+(a)  Use the variables `SleepHrsNight` and `Depressed` in the `NHANES` data to build a classification tree to predict `SleepTrouble`.
+
+```{r}
+library(NHANES)
+library(rpart) 
+library(partykit)
+tree <- rpart(SleepTrouble ~ SleepHrsNight + Depressed, data = NHANES, parms = list(split = "gini"))
+tree
+plot(as.party(tree),type = "simple")
+```
+
+
+(b) Summarize the classification tree in part (a) in a four to six sentence paragraph, using complete English sentences. The paragraph should address: how the splits on the variables were selected; which nodes are terminal; and how a new observation would be predicted by this classifciation tree. 
+
+The classification tree evaluated the prediction error of all possible splits of the variables `SleepHrsNight` and `Depressed` using the Gini splitting criteria.  The best splits were: sleeping at least 5.5 hours per night, which resulted in a prediction of No sleep trouble; sleeping less than 5.5 hours with no depression resulted in a prediction of no sleep trouble; and sleeping less than 5.5 hours with several or majority of days depressed predicted sleep trouble.
+
+(c) What proportion of subjects in the NHANES data have trouble sleeping?
+
+```{r}
+NHANES %>% 
+  filter(is.na(SleepTrouble) == F) %>% 
+  group_by(SleepTrouble) %>%
+  summarise(n = n()) %>%
+  mutate(pct = n/sum(n))
+```
+
+
+(d) Separate the NHANES data set uniformly at random into 75% training and 25% testing sets. Use the training set to build the classification tree using the variables in part (a).  Use the test set to calculate the confusion matrix for two cut-points: 0.5 and proportion of subjects in the NHANES data that have trouble sleeping (use the value from part (c)).  For each cut-point use the confusion matrix to calculate the following values:
+
+i. True positive rate (sensitivity)
+ii. True negative rate (specificity)
+iii. False positive rate
+iv. False negative rate
+v. Accuracy
+
+Which values change and which values are the same for different cut-points?  Explain.
+
+```{r, cache=TRUE}
+library(NHANES)
+library(rpart) 
+library(partykit)
+set.seed(364)
+n <- nrow(NHANES)
+test_idx <- sample.int(n, size = round(0.25 * n)) 
+train <- NHANES[-test_idx, ]
+nrow(train)
+test <- NHANES[test_idx, ] %>% filter(is.na(SleepTrouble) == F)
+nrow(test)
+tree <- rpart(SleepTrouble ~ SleepHrsNight + Depressed, data = train, parms = list(split = "gini"))
+predicted_tree <- predict(object = tree, newdata = test, type = "prob")
+
+# Cut-point using 0.5
+
+# if predicted prob of "Yes" is >= 0.5 then predicted class is "Yes"
+# otherwise predicted class is "No"
+confusion_matrix <- table(predicted_tree[,2] >= 0.5,test$SleepTrouble)
+row.names(confusion_matrix) <- c("No","Yes")
+confusion_matrix
+sensit_50 <- confusion_matrix[4]/(confusion_matrix[4] + confusion_matrix[3])
+sensit_50
+specif_50 <- confusion_matrix[1]/(confusion_matrix[1] + confusion_matrix[2])
+specif_50
+fpr_50 <- 1 - specif_50
+fpr_50
+fnr_50 <- 1 - sensit_50
+fnr_50
+accuracy_50 <- (confusion_matrix[1] + confusion_matrix[4])/sum(confusion_matrix)
+accuracy_50
+
+# Cut-point using 0.25
+
+confusion_matrix <- table(predicted_tree[,2] >= 0.25,test$SleepTrouble)
+row.names(confusion_matrix) <- c("No","Yes")
+confusion_matrix
+sensit <- confusion_matrix[4]/(confusion_matrix[4] + confusion_matrix[3])
+sensit
+specif <- confusion_matrix[1]/(confusion_matrix[1] + confusion_matrix[2])
+specif
+fpr <- 1 - specif
+fpr
+fnr <- 1 - sensit
+fnr
+accuracy <- (confusion_matrix[1] + confusion_matrix[4])/sum(confusion_matrix)
+accuracy
+```
+
+All of the values change since the cut-point only changes how the predictions are classified (i.e., the FPR and FNR).  
+
+(e) In a few sentences, using complete English, interpret i-v in part (d) for the 0.5 cut-point. Be sure to use the dependent variables meaning in your interpretation.   
+
+The overall accuracy in predicting trouble sleeping using only number of hours slept and depression is `r round(accuracy_50,2)`. If a person has trouble sleeping then the model will predict this with `r round(sensit_50,2)` accuracy, and if a person does not have trouble sleeping then the model will predict this with `r round(specif_50,2)` accuracy.  The model has higher accuracy in predicting trouble sleeping compared to no trouble sleeping, this is due to the high false-negative rate of `r round(fnr_50,2)`. 
+
+
+(f)  Create an ROC curve of the classification tree that you developed in (c).  Suggest a cutpoint to use for classifying a person as having sleep trouble. In one to two sentences, using complete English, explain why you chose this cutpoint.
+
+```{r}
+predicted_tree <- predict(object = tree, newdata = test, type = "prob")
+pred <- ROCR::prediction(predictions = predicted_tree[,2], test$SleepTrouble)
+perf <- ROCR::performance(pred, 'tpr', 'fpr')
+perf_df <- data.frame(perf@x.values, perf@y.values) 
+names(perf_df) <- c("fpr", "tpr") 
+roc <- ggplot(data = perf_df, aes(x = fpr, y = tpr)) +
+geom_line(color = "blue") + geom_abline(intercept = 0, slope = 1, lty = 3) + ylab(perf@y.name) + xlab(perf@x.name)
+roc
+```
+
+
+(g)  Use the training and testing sets that you created in part (c) to create a classification tree to predict `SleepTrouble`, but use all the variables in the `NHANES` training data. Plot the ROC curves for the Tree Classifier you developed in part (d) and the Tree Classifier you developed using all the variables on a single plot (see sample code below).  What is the accuracy of the Tree Classifier using all the variables?  Interpret the plot.  Can you say which Tree Classifier has higher accuracy?     
+
+NB:  The R syntax for using all the variables in the data frame not otherwise in the formula is to use `.` in place of the dependent variable.
+
+```{r}
+tree_full <- rpart(SleepTrouble ~ ., data = train, parms = list(split = "gini"))
+predicted_tree_full <- predict(object = tree_full, newdata = test, type = "prob")
+confusion_matrix <- table(predicted_tree_full[,2] >= 0.5,test$SleepTrouble)
+row.names(confusion_matrix) <- c("No","Yes")
+confusion_matrix
+#Accuracy
+(confusion_matrix[1] + confusion_matrix[4])/sum(confusion_matrix)
+
+# Use this code 
+pred <- ROCR::prediction(predictions = predicted_tree_full[,2], test$SleepTrouble)
+perf <- ROCR::performance(pred, 'tpr', 'fpr')
+perf_df_full <- data.frame(perf@x.values, perf@y.values) 
+names(perf_df_full) <- c("fpr", "tpr")
+
+plot_dat <- cbind(rbind(perf_df_full,perf_df), model = c(rep("All Vars",7),rep("Two Vars",4)))
+ggplot(data = plot_dat, aes(x = fpr, y = tpr, colour = model)) + 
+  geom_line() + geom_abline(intercept = 0, slope = 1, lty = 3) + 
+  ylab(perf@y.name) + 
+  xlab(perf@x.name)
+```
+
+The tree classifier using all the variables in the data has very similar performance. The accuracy of both models using a cut-point of 0.5 is 0.76.   The plot shows that the ROC curve for the model with all variables is above the ROC curve for the model with two variables.  This indicates that the model with all variables has slightly higher overall accuracy, although the difference does not appear to be large.
+
+
+## Question 3
+
+Data was collected on 30 cancer patients to investigate the effectivness (Yes/No) of a treatment.  Two quantitative variables, $x_i \in (0,1), i=1,2$, are considered to be important predictors of effectiveness. Suppose that the rectangles labelled as nodes in the scatterplot below represent nodes of a classification tree.  What is the predicted class of each node?  What proportion of observations in each node is correctly classified?  Create a confusion matrix, and calculate the overall accuracy.
+
+
+
+```{r, echo=FALSE}
+dat <- read_csv("dat.csv")
+ggplot(dat, aes(x1, x2, shape = factor(type_cat), colour = factor(type_cat))) +
+  geom_point(size = 2) + 
+  theme_minimal() + 
+  scale_color_discrete(name = "Effectiveness", breaks = c("Yes", "No")) +
+  scale_shape_discrete(name = "Effectiveness", breaks = c("Yes", "No")) +
+  geom_segment(aes(y = 0, yend = 0.5, x = 0.53, xend = 0.53), size = 0.1, colour = "navyblue") +
+  geom_segment(aes(x = 0, xend = 1, y = 0.5, yend = 0.5), size = 0.1, colour = "navyblue") +
+  geom_segment(aes(y = 0.5, yend = 1, x = 0.5, xend = 0.5), size = 0.1, colour = "navyblue") +
+  annotate("text", x = 0.15, y = 0.25, label = "Node 1") +
+  annotate("text", x = 0.75, y = 0.8, label = "Node 2") +
+  annotate("text", x = 0.15, y = 0.8, label = "Node 3") +
+  annotate("text", x = 0.75, y = 0.25, label = "Node 4")
+```
+
+---------------------------------------------------------
+Node    Predicted Class   Proportion Corretly Classified
+----    ---------------   -------------------------------
+1         No               7/12
+
+2         Yes              3/5
+
+3         No               3/4
+
+4         No               7/9
+---------------------------------------------------------
+
+The Confusion matrix is:
+
+
+Predicted    Yes              No 
+----------  --------------   -------------
+Yes         3                2
+No          8                17
+
+
+Overall accuracy: (3+17)/30 = `r round((3+17)/30,2)`. 
+
+
+
+
+<a href=""> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 
