@@ -9,20 +9,24 @@ output:
    theme: flatly
 ---
 
-(Information updated: February 19)
+## Solutions to Term Tests
+
+[STA130-L0101, Monday 10:00 - 12:00 Test Solutions](NCbirths_test_solutions_versiongiven.pdf)
+
+[STA130-L0201, Monday 14:00 - 16:00 Test Solutions](diamonds_test-solutions.pdf)
 
 ## Test date and time
 
 - The test is on Friday, March 2 during your usual tutorial time (but in a different room).  
 - You will have 90 minutes to write the test.
 
-## Test location
+## Test location 
 
 <span style="color:red">**NOTE: test room has changed for students in TUT0101I and TUT0101L.**</span>
 
 Note that the test will be written in a different room than usual.  The room you will write in depends on your tutorial.  [See this link for the list of rooms.](TestRooms.pdf)
 
-## Test format
+## Test format 
 
 The test includes a combination of different types of questions including:
 
@@ -30,7 +34,7 @@ The test includes a combination of different types of questions including:
 - fill in the blanks
 - short answer (often requiring you to explain an answer and requiring complete sentences)
 
-## What material is covered?
+## What material is covered? 
 
 - The term test covers all material up to the end of tutorial on Friday, February 16 (week 6).  This includes material covered in lectures, the weekly practice problems, and work done in your tutorials.
 - A few clarifications on content on the test: 
@@ -39,28 +43,27 @@ The test includes a combination of different types of questions including:
 - You will not be required to write `R` code.  However you may be required to read and interpret `R` code, make small modifications to code, and know the purpose of functions that we've used.
 - The content of the course has changed significantly from last year (and the year before), so past tests are unlikely to be of value to you.  
 
-## Additional practice problems
+## Additional practice problems 
 
 - Test your knowledge using the online [midterm review quiz](http://52.235.36.76:3838/STA130MidtermReview/).  Note that the quiz doesn't cover all of the content that you are responsible for and mostly tests your knowledge, and not your ability to apply or explain your knowledge, which you will also be required to do on the test.
 - The lecture time on Monday February 26 will be a review session.
 
-## What to bring
+## What to bring 
 
 - Your student card
 - Writing implements 
 - An aid sheet that you prepare yourself.  Your aid sheet must be one 8 1/2 by 11 inch piece of paper, one-sided, and handwritten.  You will be required to hand in your aid sheet with your test, so if you want to keep it, make a copy in advance.
 - Don't bring a calculator
 
-## In the test room
+## In the test room 
 
 - Put your student card on your desk.
 - All coats and jackets should be placed on the back of your chair. All notes and books, pencil cases, turned off cell phones, laptops and other unauthorized aids as well as purses should be stored inside your knapsack or large bag, which should then be closed securely and placed under your chair. You are **not** allowed to have a pencil case on your desk. All watches and timepieces on desks will be checked. You are not allowed to touch your coat or knapsack or bag or their contents until the end of the exam, when instructed by the invigilators. 
 - Please note that it is an academic offense to have a cell phone on your person (for example, in your pocket) during an exam, even if it is turned off.
 
-## Need extra help?
+## Need extra help? 
 
 A scheulde of office hours during Reading Week and the week of the test is [here](sta130_OHs_ReadingWeekTest.pdf).
-
 
 
 
