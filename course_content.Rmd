@@ -251,13 +251,28 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 
 [Example solutions to practice problems](week8/Week8PracticeProblems-solutions1.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
+# Week 9
 
+## March 12 Class
+
+### Slides and References
+
+[Class slides](week9/sta130_lecture9.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Class slides](week9/sta130_lecture9.html) <i class="fa fa-html5" aria-hidden="true"></i> 
+
+[R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week9/sta130_lecture9.Rmd) <i class="fa fa-github" aria-hidden="true"></i></a>
+
+<i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: page 189, page 465 - 468, page 470.
+
+## March 16 Tutorial
+
+[Practice Problems](week9/Week9PracticeProblems-student.html)
 
 ---
 <br>
 <html>
 <span style="opacity: 0.5;">
-Week 9 - March 12 <br>
 Week 10 - March 19 <br>
 Week 11 - March 26 <br>
 Week 12 - April 2 STA130 Poster Fair 

@@ -1,0 +1,121 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 9 Practice Problems
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(tidyverse)
+```
+
+# Instructions
+
+## What should I bring to tutorial on March 16?
+
+Your answer to questions 1c, 2e, and 3d
+
+## First steps to answering these questions.
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r,eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week9/Week9PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week9PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week8PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week 9 Practice Problems Solutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+a. Student's must bring answers to questions that were assigned to bring to tutorial.  Answers do not have to be perfect in order to receive full credit, but a serious attempt at the problem is required for full credit.  Your must work be your own.
+
+
+
+# Practice Problems
+
+## Question 1
+
+In this question you will derive the least squares estimators of the intercept $\beta_0$ and slope $\beta_1$ in the simple linear regression model.  
+
+(a) Write down the simple linear regression model.  Explain each term in the model.
+
+(b) Calculate $\frac{\partial L}{\partial \beta_0}$ and $\frac{\partial L}{\partial \beta_1}$, where $L(\beta_0,\beta_1)$ is the sum of squared errors.
+
+(c) Use your calculations in (b) to show that
+
+$$
+\begin{aligned}
+\hat{\beta_0} &= \bar{y} - \hat{\beta_1} \bar{x}, \\
+\hat{\beta_1} &= \frac{(\sum_{i=1}^n y_ix_i) - n \bar{x}\bar{y}}{(\sum_{i=1}^n x_i^2) - n\bar{x}^2}.
+\end{aligned}
+$$
+
+## Question 2
+
+The internet movie database, http://imdb.com/, is a website devoted to collecting movie data supplied by studios and fans. It claims to be the biggest movie database on the web and is run by amazon. More about information imdb.com can be found online, http://imdb.com/help/show_leaf?about, including information about the data collection process, http://imdb.com/help/show_leaf?infosource.  The is packaged in the R library `ggplot2movies` in the data frame `movies`.  The help documentation for this data (`?ggplot2movies::movies`) describes each of the variables.
+
+In this question you will use linear regression to build a model that predicts IMDB user ratings based on covariates in the `movies` data.  More information about IMDB user ratings is available [here](https://help.imdb.com/article/imdb/track-movies-tv/faq-for-imdb-ratings/G67Y87TFYYP6TWAV?ref_=helpsect_pro_2_4#).
+
+```{r}
+library(ggplot2movies)
+library(tidyverse)
+glimpse(movies)
+```
+
+
+(a)  Create at least one appropriate graphical summary of the distribution of user ratings.  Briefly explain why you chose this summary and the shape of the distribution. How many user ratings are in the data set?  Calculate the mean and median ratings.  
+
+(b) Repeat part (a), but use the variable `budget`. Create a scatterplot of `budget` and `rating`  of release.  What is the relationship between budget and `rating`?  
+
+(c)  Use R to fit a linear regression model of `rating` on `budget`.  Interpret the regression coefficients and the coefficient of determination.
+
+(d) Add the estimated linear regression line that you calculated in (c) to the scatterplot you generated in (b).  Does the linear regression line capture the relationship between `rating` and `budget`?
+
+(e)  Does a simple linear regression model seem appropriate to predict IMDB ratings using a film's budget?  Explain.
+
+
+## Question 3
+
+The Housing data for 506 census tracts of Boston from the 1970 census. The dataframe `BostonHousing2` contains the original corrected data by Harrison and Rubinfeld (1979).
+
+In this question you will build a linear regression model to predict the median value of owner occupied homes in USD 1000's `medv`.
+
+```{r}
+library(mlbench)
+data("BostonHousing2")
+glimpse(BostonHousing2)
+```
+
+(a) Create a scatterplot of median value of homes `medv` and percentage of lower status of the population that lives in the census tract `lstat`.  Describe the relationship.
+
+(b) Write out the mathematical description of a simple linear regression model of `medv` on `lstat`.  Describe each of the variables in the model.
+
+(c) Use 80% of the data to select a training set, and leave 20% of the data for testing.  Fit a linear regression model of `medv` on `lstat` on the training set.  
+
+(i) Calculate RMSE on the training and test data using the linear regression model you fit on the training set.  Is there any evidence of overfitting?  
+
+(ii) Calculate the coefficient of determination. 
+
+
+(d) Use the training and test sets to build a multiple regression model to predict `medev` where the following covariates (inputs) or used in addition to `lstat`: `crim`, `zn`, `rm`, `nox`, `age`, `tax`, `ptratio`.  Does this model provide more accurate predictions compared to the model that you fit in part (c)?  Explain.
+
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week9/Week9PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 

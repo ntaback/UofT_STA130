@@ -1,0 +1,548 @@
+---
+title: "Class 9 - Linear Regression"
+output: 
+   ioslides_presentation:
+     smaller: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(ISLR)
+library(ElemStatLearn)
+library(tidyverse)
+library(broom)
+Advertising <- read_csv("Advertising.csv") %>% select(2:5)
+```
+
+## This Class 
+
+- Relationships between two variables
+- Linear Relationships: The equation of a straight line
+- Relationships between two variables
+- Linear regression models 
+- Estimating the coefficients: Least Squares
+- Interpreting the slope with a continuous explanatory variable
+- Prediction/Supervised learning using a linear regression model
+- R^2^ - Coefficient of Determination
+- Introduction to Multiple Regression
+
+# Relationships between two variables
+
+## Advertising Example
+
+- Suppose that we are statistical consultants hired by a client to provide advice on how to improve sales of a particular product. 
+
+- The `Advertising` data set consists of the sales of that product in 200 different markets, along with advertising budgets for the product in each of those markets for three different media: TV, radio, and newspaper. 
+
+```{r, echo=TRUE}
+glimpse(Advertising)
+```
+
+## Advertising Example 
+
+- It is not possible for our client to directly increase sales of the product, but they can control the advertising expenditure in each of the three media. 
+
+- Therefore, if we determine that there is an association between advertising and sales, then we can instruct our client to adjust advertising budgets, thereby indirectly increasing sales.
+
+
+
+## Increasing sales through advertising
+
+What is the relationship between `sales` and `TV` budget?
+
+```{r, echo=TRUE}
+Advertising %>% ggplot(aes(x = TV, y = sales)) + geom_point() + theme_minimal()
+```
+
+## Increasing sales through advertising
+
+- In general, as the budget for `TV` increases `sales` increases.
+- Although, sometimes increasing the `TV` budget didn't increase `sales`.
+- The relationship between these two variables is approximately linear.
+
+## Linear Relationships
+
+A perfect linear relationship between an independent variable $x$ and dependent variable $y$ has the mathematical form:
+
+$$y = \beta_0+\beta_1x.$$
+
+iop$\beta_0$ is called the $y$-intercept and $\beta_1$ is called the slope.
+
+# Linear Relationships: The equation of a straight line
+
+## Linear Relationships: The equation of a straight line
+
+If the relationship between $y$ and $x$ is perfectly linear then the scatter plot could look like:
+
+```{r}
+data_frame(x = seq(0,30, by = 2), y = seq(0, 2000, length.out = length(x))) %>%
+  ggplot(aes(x,y)) + 
+  geom_point(cex = 5, colour = "navyblue", alpha = 0.7) + 
+  theme_minimal()
+```
+
+## Linear Relationships: The equation of a straight line
+
+What is the equation of straight line that fits these points?
+
+```{r, fig.height=2}
+data_frame(x = seq(0,30, by = 2), y =seq(0, 2000, length.out = length(x))) %>%
+  ggplot(aes(x,y)) + 
+  geom_point(cex = 5, colour = "navyblue", alpha = 0.7) + 
+  theme_minimal()
+```
+
+First four observations:
+```{r}
+head(data_frame(x = seq(0,30, by = 2), y =seq(0, 2000, length.out = length(x))), n = 4)
+```
+
+## Fitting a straight line to data
+
+Use analytic geometry to find the equation of the straight line: pick two any points $(x^{(1)},y^{(1)})$ and $(x^{(2)},y^{(2)})$ on the line.
+
+The slope is:
+
+$$m = \frac{y^{(1)} - y^{(2)}}{x^{(1)} - x^{(2)}}.$$
+
+So the equation of the line with slope $m$ passing through $(x^{(1)},y^{(1)})$ is
+
+$$y - y^{(1)} = m(x - x^{(1)}) \Rightarrow y =mx +b,$$ 
+
+where $b=y^{(1)}-mx^{(1)}.$
+
+
+## Linear Relationships: The equation of a straight line
+
+What is the equation of the 'best' straight line that fits these points?
+```{r, fig.height=3}
+data_frame(x = seq(-4,10, by = 2), y = x^2) %>%
+  ggplot(aes(x,y)) + 
+  geom_point(cex = 5, colour = "navyblue", alpha = 0.7) + 
+  theme_minimal()
+```
+
+```{r}
+head(data_frame(x = seq(-4, 10, by = 2), y = x^2), n = 4)
+```
+
+# Relationships between two variables
+
+## Relationships between two variables
+
+- Sometimes the relationship between two variables in non-linear.  
+- If the realtionship is non-linear then fitting a straight line to the data is not useful in describing the relationship. 
+
+## Example of Non-linear relationships
+
+- Let $y$ be life expectancy of a component, and $x$ the age of the component.
+- There is a relationship between $y$ and $x$, but it is not linear.
+
+```{r, cache=TRUE}
+set.seed(1)
+life_exp <- sort(rexp(n = 100, rate = 1/15), decreasing = T)
+age <- seq(0, 100, length.out = length(life_exp))
+```
+
+
+```{r, fig.height=1.2, echo=TRUE}
+p <- data_frame(x = age, y = life_exp) %>% 
+  ggplot(aes(x = x, y = y)) + geom_point() + theme_minimal() 
+p
+p + geom_smooth(method = "lm", se = F)
+```
+
+
+## Tidy the Advertising Data
+
+- Each market is an observation, but each column is the amount spent on TV, radio, newspaper advertising.
+
+```{r}
+head(Advertising, n=3)
+```
+
+- The data are not tidy since each column corresponds to the values of advertising budget for different media.
+
+## Tidy the Advertising Data
+
+- Tidy the data by creating a column for advertising budeget and another column for type of advertising.
+- We can use the `gather` function in the `tidyr` library (part of the `tidyverse` library) to tidy the data.
+
+```{r, echo=TRUE, cache=TRUE}
+Advertising_long <- Advertising %>% 
+  select(TV, radio, newspaper, sales) %>% 
+  gather(key = adtype, value = amount, TV, radio, newspaper)
+head(Advertising_long)
+```
+
+
+## Advertising Data
+
+```{r echo=TRUE, fig.height=3}
+Advertising_long %>% 
+  ggplot(aes(amount, sales)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_grid(. ~ adtype)
+```
+
+- The advertising budgets (`newspaper`, `radio`, `TV`) are the input/independent/covariates and the dependent variable is sales. 
+
+
+# Linear Regression Models 
+
+## Simple Linear Regression
+
+The simple linear regression model can describe the relationship between sales and amont spent on radio advertising through the model
+
+$$y_i =\beta_0 + \beta_1 x_i + \epsilon_i,$$
+where $i=1,\ldots,n$ and $n$ is the number of observations.  
+
+```{r, echo=TRUE, fig.height=2}
+Advertising_long %>% 
+  filter(adtype == "radio") %>%
+  ggplot(aes(amount, sales)) + 
+  geom_point()
+```
+
+## Simple Linear Regression
+
+The equation:
+
+$$y_i =\beta_0 + \beta_1 x_i + \epsilon_i$$
+is called a __regression model__ and since we have only one independent variable it is called a _simple regression model_.
+
+- $y_i$ is called the dependent or target variable.
+- $\beta_0$ is the intercept parameter.
+- $x_i$ is the independent variable, covariate, feature, or input.
+- $\beta_1$ is called the slope parameter.
+- $\epsilon_i$ is called the error parameter.
+
+## Multiple Linear Regression
+
+In general, models of the form
+
+$$y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_k x_{ik} + \epsilon_{i},$$ where $i=1,\ldots,n$, with $k>1$ independent variables are called _multiple regression models_.
+
+- The $\beta_j$'s are called parameters and the $\epsilon_i$'s errors.
+- The values of of neither $\beta_j$'s nor $\epsilon_i$'s can ever be known, but they can be estimated.
+- The "linear" in Linear Regression means that the equation is linear in the parameters $\beta_j$.  
+- This is a linear regression model: $y_i = \beta_0 + \beta_1 \sqrt{x_{i1}} + \beta_2 x_{i2}^2 + \epsilon_{i}$
+- This is not a linear regression model (i.e., a nonlinear regression model): $y_i = \beta_0 + \sin(\beta_1) x_{i1} + \beta_2 x_{i2} + \epsilon_{i}$ 
+
+# Least Squares
+
+## Fitting a straight line to Sales and Radio Advertising
+
+```{r, fig.height=2}
+Advertising_long %>% 
+  filter(adtype == "radio") %>%
+  ggplot(aes(amount, sales)) + 
+  geom_point() 
+head(Advertising_long %>% 
+  filter(adtype == "radio")) %>%
+  select(sales,amount)
+```
+
+
+
+## Fitting a straight line to Sales and Radio Advertising
+
+```{r, echo=TRUE, fig.height=2}
+head(Advertising_long %>% 
+  filter(adtype == "radio")) %>%
+  select(sales,amount)
+```
+
+$m = \frac{22.1-10.4}{37.8-39.8}=$ `r (22.1-10.4)/(37.8-39.8)`, $b = 22.1-\frac{22.1-10.4}{37.8-39.8}\times37.8=$ `r 22.1 - (22.1-10.4)/(37.8-39.8)*37.8`. So, the equation of the straight line is:
+
+$$y=243.23-5.85x.$$
+
+## Fitting a straight line to Sales and Radio Advertising
+
+The equation $y=243.23-5.85x$ is shown on the scatter plot.
+
+```{r}
+Advertising_long %>% 
+  filter(adtype == "radio") %>%
+  ggplot(aes(amount, sales)) + 
+  geom_point() +
+  geom_abline(intercept = 243.23, slope = -5.85) 
+```
+
+## Fitting a straight line to Sales and Radio Advertising
+
+- For a fixed value of `amount` spent on radio ads the corresponding `sales` has variation.  It's neither strictly increasing nor decreasing. 
+
+- But, the overall pattern displayed in the scatterplot shows that _on average_ `sales` increase as `amount` spent on radio ads increases. 
+
+## Least Squares
+
+The Least Squares approach is to find the y-intercept $\beta_0$ and slope $\beta_1$ of the straight line that is closest to as many of the points as possible. 
+
+```{r}
+fit <- lm(sales ~ radio, data = Advertising)
+radio_dat <- Advertising_long %>% filter(adtype == "radio")
+radio_dat$predicted <- predict(fit)
+radio_dat$residuals <- residuals(fit)
+
+radio_dat %>%
+  ggplot(aes(amount, sales)) + 
+    geom_segment(aes(xend = amount, yend = predicted), colour = "red") +
+  geom_point(colour = "black") +
+  #geom_point(aes(y = predicted), shape = 2) +
+  geom_smooth(method = "lm", se = F) +
+  theme_minimal()
+```
+
+## Estimating the coefficients: Least Squares
+
+To find the values of $\beta_0$ and slope $\beta_1$ that fit the data best we can minimize the sum of squared errors $\sum_{i=1}^n \epsilon_i^2$:
+
+$$\sum_{i=1}^n \epsilon_i^2 = \sum_{i=1}^n \left(y_i -\beta_0 - \beta_1 x_i\right)^2$$
+
+So, we want to minimize a function of $\beta_0, \beta_1$
+
+$$L(\beta_0,\beta_1) = \sum_{i=1}^n \left(y_i -\beta_0 - \beta_1 x_i\right)^2,$$
+
+where $x_i$'s are numbers and therfore constants.
+
+## Estimating the coefficients: Least Squares
+
+- The derivative of $L(\beta_0,\beta_1)$ with respect to $\beta_0$ treats $\beta_1$ as a constant.  This is also called the partial derivative and is denoted as $\frac{\partial L}{\partial \beta_0}.$  
+
+- To find the values of $\beta_0$ and $\beta_1$ that minimize $L(\beta_0,\beta_1)$ we set the partial derivatives to zero and solve:
+
+$$
+\begin{aligned}
+\frac{\partial L}{\partial \beta_0} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_i) = 0, \\
+\frac{\partial L}{\partial \beta_0} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_i)x_{i} =0.
+\end{aligned}
+$$
+
+The values of $\beta_0$ and $\beta_1$ that are solutions to above equations are denoted $\hat \beta_0$ and $\hat \beta_1$ respectively. 
+
+## Estimating the coefficients: Least Squares
+
+It can be shown that 
+
+$$
+\begin{aligned}
+\hat{\beta_0} &= \bar{y} - \hat{\beta_1} \bar{x} \\
+\hat{\beta_1} &= \frac{(\sum_{i=1}^n y_ix_i) - n \bar{x}\bar{y}}{(\sum_{i=1}^n x_i^2) - n\bar{x}^2},
+\end{aligned}
+$$
+
+where, $\bar{y} = \sum_{i=1}^n{y_i}/n$, and $\bar{x} = \sum_{i=1}^n{x_i}/n.$
+
+$\hat \beta_0$ and $\hat \beta_1$ are called the least squares estimators of $\beta_0$ and $\beta_1$.
+
+## Estimating the Coefficients Using R - Formula syntax in R
+
+The R syntax for defining relationships between inputs such as amount spent on `newspaper` advertising and outputs such as `sales` is:
+
+```{r, eval=FALSE,echo=TRUE}
+sales ~ newspaper
+```
+
+The tilde `~` is used to define the  what the output variable (or outcome, on the left-hand side) is and what the input variables (or predictors, on the right-hand side) are.
+
+A formula that has three inputs can be written as
+
+```{r, eval=FALSE,echo=TRUE}
+sales ~ newspaper + TV + radio
+```
+
+
+## Estimating the Coefficients Using `lm()`
+
+
+```{r, echo=TRUE, cache=TRUE}
+mod_paper <- lm(sales ~ newspaper, data = Advertising)
+mod_paper_summary <- summary(mod_paper)
+mod_paper_summary$coefficients
+```
+
+- `(Intercept)` is the estimate of $\hat \beta_0$.
+- `newspaper` is the estimate of $\hat \beta_1$.
+
+ 
+## Estimating the Coefficients Using R 
+
+<div class="columns-2">
+
+```{r,echo=TRUE, fig.height=3, fig.width=3.5}
+Advertising_long %>% 
+  filter(adtype == "radio") %>%
+  ggplot(aes(amount, sales)) + 
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) + 
+  theme_minimal()
+```
+
+- The blue line is the estimated regression line with intercept `r round(mod_paper_summary$coefficients[1], 2)` and slope `r round(mod_paper_summary$coefficients[2], 2)`. 
+- `geom_smooth(method = "lm", se = FALSE)` adds the linear regression to the scatterplot without a confidence interval for the linear regression line (this is set via `se = FALSE`).
+
+</div>
+
+
+## Interpreting the Slope and Intercept with a Continuous Explanatory Variable
+
+The estimated linear regression of `sales` on `newspaper` is:
+
+$$y_i = 12.35 + 0.05x_i,$$
+where $y_i$ is sales in the $i^{th}$ market and $x_i$ is the dollar amount spent on newspaper advertising in the $i^{th}$ market.  
+
+- The __slope__ $\hat \beta_1$ is the amount of change in $y$ for a unit change in $x$. 
+- Sales increase by 0.05 for each dollar spent on advertising.
+- The __intercept__ $\hat \beta_0$ is the average of $y$ when $x_i=0$.
+- The average sales is 12.35 when the amount spent on advertising is zero. 
+
+## Prediction using a Linear Regression Model
+
+After a linear regression model is estimated from data it can be used to calculate predicted values using the regression equation
+
+$$\hat y_{i} = \hat \beta_0 + \hat \beta_1 x_{i}.$$
+
+$\hat y_{i}$ is the predicted value of the $i^{th}$ response $y_i$.
+
+The $i^{th}$ residual is $$e_i = y_i - \hat y_i.$$
+
+## Prediction using a Linear Regression Model
+
+The amount spent on newspaper advertising in the first market is:
+
+```{r, echo=TRUE}
+Advertising %>% filter(row_number() == 1)
+```
+
+- The predicted sales using the regression model is: $12.35 + 0.05\times 69.2 =$ `r round(12.35141 + 0.05469*69.2,2)`. 
+- The observed sales for region is `r Advertising[1,4]`.
+- The __error__ or __residual__ is $y_1-\hat {y_1}=$ `r Advertising[1,4] - round(12.35141 + 0.05469*69.2,2)`.
+
+## Prediction using a Linear Regression Model
+
+The predicted and residual values from a regression model can be obtained using the `predict()` and `residual()` functions.
+
+```{r, echo=TRUE}
+mod_paper <- lm(sales ~ newspaper, data = Advertising)
+sales_pred <- predict(mod_paper)
+head(sales_pred)
+sales_resid <- residuals(mod_paper)
+head(sales_resid)
+```
+
+## Measure of Fit for Simple Regression
+
+- The regression model is a good fit when the residuals are small.
+- Thus, we can measure the quality of fit by the sum of squares of the residuals $\sum_{i=1}^n (y_{i}- \hat y_{i})^2$.  
+- This quantity depends on the units in which $y_i$'s are measured.  A measure of fit that does not depend on the units is:
+
+$$R^2 = 1- \frac{\sum_{i=1}^n e_i^2}{\sum_{i=1}^n (y_i-\bar y)^2}.$$
+
+- $R^2$ is often called the coeffcient of determination.
+- $0 \le R^2 \le 1,$ where 1 indicates a perfect match between the observed and predicted values and 0 indicates an poor match.
+
+
+## Measure of Fit for Simple Regression
+
+The `summary()` method calculates $R^2$ 
+
+```{r, echo=TRUE}
+mod_paper <- lm(sales ~ newspaper, data = Advertising)
+mod_paper_summ <- summary(mod_paper)
+mod_paper_summ$r.squared
+```
+
+- $R^2=$ `r mod_paper_summ$r.squared`.  This indicates a poor fit.
+
+## Using Linear Regression as a Machine Learning/Supervised Learning Tool
+
+The `diamonds` data set contains the prices and other attributes of almost 54,000 diamonds. The variables are as follows:
+
+
+```{r}
+library(tidyverse)
+library(modelr)
+glimpse(diamonds)
+```
+
+Question: Predict the price of diamonds based on carot size.  
+
+## Predicting the Price of Diamonds
+
+Let's select training and test sets.
+
+```{r,echo=TRUE}
+set.seed(2)
+diamonds_train <- diamonds %>% 
+  mutate(id = row_number()) %>% 
+  sample_frac(size = 0.2)
+
+diamonds_test <- diamonds %>% 
+  mutate(id = row_number()) %>% 
+  # return all rows from diamonds where there are not 
+  # matching values in diamonds_train, keeping just 
+  # columns from diamonds.
+  anti_join(diamonds_train, by = 'id') 
+```
+
+
+## Predicting the Price of Diamonds
+
+- Now fit a regression model on `diamonds_train`. 
+
+```{r,echo=TRUE, cache=TRUE}
+mod_train <- lm(price ~ carat, data = diamonds_train)
+mod_train_summ <- summary(mod_train)
+mod_train_summ$r.squared
+```
+
+- Evaluate the prediction error using root mean square error using the training model on `diamonds_test`.
+
+$$\text {RMSE}=\sqrt{\frac{1}{n}\sum_{i=1}^n (y_i - \hat y_i)^2}$$
+
+- RMSE can be used to compare different sizes of data sets on an eual footing and the square root ensures that RMSE is on the same scale as $y$.
+
+## Predicting the Price of Diamonds using Simple Linear Regression
+
+- Calculate RMSE using test and training data.
+```{r, echo=TRUE, cach=TRUE}
+y_test <- diamonds_test$price
+yhat_test <- predict(mod_train, newdata = diamonds_test)
+n_test <- length(diamonds_test$price)
+
+# test RMSE
+rmse <- sqrt(sum((y_test - yhat_test)^2) / n_test)
+rmse
+
+y_train <- diamonds_train$price
+yhat_train <- predict(mod_train, newdata = diamonds_train)
+n_train <- length(diamonds_train$price)
+
+# train RMSE
+sqrt(sum((y_train - yhat_train)^2) / n_train)
+```
+
+## Predicting the Price of Diamonds using Multiple Linear Regression {.smaller}
+
+We will add other variables to the regression model to investigate if we can decrease the prediction error.
+
+```{r,echo=TRUE}
+mrmod_train <- lm(price ~ carat + cut + color + clarity, data = diamonds_train)
+mrmod_train_summ <- summary(mrmod_train)
+mrmod_train_summ$r.squared
+
+y_test <- diamonds_test$price
+yhat_test <- predict(mrmod_train, newdata = diamonds_test)
+n_test <- length(diamonds_test$price)
+mr_rmse <- sqrt(sum((y_test - yhat_test)^2) / n_test)
+mr_rmse
+```
+
+- The simple linear regression model had $R^2=$ `r mod_train_summ$r.squared` and RMSE = `r rmse`.
+
+
+
+
+
