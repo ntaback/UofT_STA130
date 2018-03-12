@@ -477,7 +477,7 @@ Let's select training and test sets.
 set.seed(2)
 diamonds_train <- diamonds %>% 
   mutate(id = row_number()) %>% 
-  sample_frac(size = 0.2)
+  sample_frac(size = 0.8)
 
 diamonds_test <- diamonds %>% 
   mutate(id = row_number()) %>% 
