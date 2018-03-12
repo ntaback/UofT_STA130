@@ -262,12 +262,12 @@ $$y=243.23-5.85x.$$
 
 The equation $y=243.23-5.85x$ is shown on the scatter plot.
 
-```{r}
+```{r, fig.height=3}
 Advertising_long %>% 
   filter(adtype == "radio") %>%
   ggplot(aes(amount, sales)) + 
   geom_point() +
-  geom_abline(intercept = 243.23, slope = -5.85) 
+  geom_abline(intercept = 243.23, slope = -5.85) + theme_minimal()
 ```
 
 ## Fitting a straight line to Sales and Radio Advertising
