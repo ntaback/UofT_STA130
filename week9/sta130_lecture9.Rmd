@@ -50,7 +50,7 @@ glimpse(Advertising)
 
 What is the relationship between `sales` and `TV` budget?
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, fig.height=3}
 Advertising %>% ggplot(aes(x = TV, y = sales)) + geom_point() + theme_minimal()
 ```
 
@@ -74,7 +74,7 @@ iop$\beta_0$ is called the $y$-intercept and $\beta_1$ is called the slope.
 
 If the relationship between $y$ and $x$ is perfectly linear then the scatter plot could look like:
 
-```{r}
+```{r, fig.height=3}
 data_frame(x = seq(0,30, by = 2), y = seq(0, 2000, length.out = length(x))) %>%
   ggplot(aes(x,y)) + 
   geom_point(cex = 5, colour = "navyblue", alpha = 0.7) + 
@@ -88,8 +88,7 @@ What is the equation of straight line that fits these points?
 ```{r, fig.height=2}
 data_frame(x = seq(0,30, by = 2), y =seq(0, 2000, length.out = length(x))) %>%
   ggplot(aes(x,y)) + 
-  geom_point(cex = 5, colour = "navyblue", alpha = 0.7) + 
-  theme_minimal()
+  geom_point(cex = 5, colour = "navyblue", alpha = 0.7) 
 ```
 
 First four observations:
