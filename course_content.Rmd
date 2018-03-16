@@ -270,6 +270,11 @@ Randomization and Simulation - Sections 2.1, 2.2, 2.3 (excluding 2.3.4)](https:/
 
 <i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: page 189, page 465 - 468, page 470.
 
+Geotab Data Scientist Brenda Nguyen's [presentation](https://www.youtube.com/embed/zWKm22p201U) on Hazardous Driving Data
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zWKm22p201U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
 ## March 16 Tutorial
 
 [Practice Problems](week9/Week9PracticeProblems-student.html)

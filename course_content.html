@@ -23,8 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -541,6 +543,9 @@ div.tocify {
 <p><a href="week9/sta130_lecture9_2.pdf">Annotated slides - 14:00 class</a> <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
 <p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week9/sta130_lecture9.Rmd">R Markdown source of slides</a> <i class="fa fa-github" aria-hidden="true"></i></a></p>
 <p><i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: page 189, page 465 - 468, page 470.</p>
+<p>Geotab Data Scientist Brenda Nguyen’s <a href="https://www.youtube.com/embed/zWKm22p201U">presentation</a> on Hazardous Driving Data</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zWKm22p201U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
 </div>
 </div>
 <div id="march-16-tutorial" class="section level2">
