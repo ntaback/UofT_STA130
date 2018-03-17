@@ -1,0 +1,92 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 10 Practice Problems
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(tidyverse)
+```
+
+# Instructions
+
+## What should I bring to tutorial on March 23?
+
+Bring your answer to question 2 parts b and c.
+
+
+## First steps to answering these questions.
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r, eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week10/Week10PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week10PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week10PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week 10 Practice Problems Solutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition, this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+
+# Practice Problems
+
+## Question 1
+
+[Adapted from Exercise 7.7 in the textbook]  
+From the text: "The Whickham data set ... includes data on age, smoking, and mortality from a one-in-six survey of the electoral roll in Whickham ... in the United Kingdom.  The survey was conducted in 1972-1974 to study heart disease and thyroid disease.  A follow-up on those in the survey was conducted twenty years later.  Load the `mosaicData` package and look at the help file for `Whickham` to see the definition of the variables."  Note that the data frame includes the data for women only, and we will consider as our population the women in Whickham during the period of the study.  The data collected in 1972-74 are referred to as the "baseline" values.
+
+(a) What percentage of the women in the study were smokers at baseline?
+Is this percentage an estimate of a joint, marginal, or conditional probability?
+(b) What percentage of the women in the study had died by the follow-up?
+Is this percentage an estimate of a joint, marginal, or conditional probability?
+(c) What percentage of smokers had died by the follow-up and what percentage of non-smokers had died at the follow-up?  Are these percentages estimates of joint, marginal, or conditional probabilities?
+How would you describe the effect of smoking on survival status?
+(d) Collapse the values of `age` into a new categorical variable with 3 age categories: women between the age of 18 and 44, women who are older than 44 and younger than 65, and women who are 65 and over.  Note that this is the age at the time of the first survey.  Examine the percentage of smokers and non-smokers who died at follow-up in each age category.  
+(e) Construct a plot that shows the relationship between survival status and smoking.
+(f) Construct a plot that shows the relationship between survival status and smoking for each age group.
+(g) Explain why age is a confounding variable.
+(h) How do we know these data are from an observational data and not from an experiment?
+
+## Question 2
+
+**Bring your output for parts b and c of this question to tutorial on Friday, March 23 (either a hardcopy or on your laptop). **
+
+In this question we will again consider the Mario Kart eBay data from lecture.
+
+(a)  Sellers on eBay have the option to include a stock photo as the illustration of the product for sale.  Does this choice affect the selling price?  Carry out a regression analysis to:
+    i. Estimate the mean selling price (`totalPr`) for sellers who do and do not use stock photos.  
+    ii. Carry out an hypothesis test to investigate whether the mean selling price is the same for sellers who do and do not use stock photos?  What do you conclude? How could you apply a method from earlier in the term to carry out this hypothesis test?
+
+(b)  Sellers are rated by buyers on eBay, captured in the variable `sellerRate`.
+To simplify our analysis, we will categorize sellers by whether their rating is low, medium or high.  Create a new variable called `seller_rating` that is "low" if `sellerRate` is less than or equal to 100, "medium" if it is greater than 100 but less than or equal to 5000, and "high" if it is greater than 5000.  Carry out a regression analysis to predict `totalPr` using the new variable `seller_rating`.
+
+    i. How many indicator variables are in the model?
+    ii. Which seller rating group is `R` treating as the baseline category?
+    iii.  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with low ratings?  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with medium ratings?  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with high ratings?
+
+(c) Now fit an appropriate regression line to examine whether `seller_rating` has an effect on the relationship between `totalPr` and `duration`. 
+
+    i. Is there evidence of a difference between sellers with low and high ratings in the relationship between `totalPr` and `duration`?   
+    ii. Is there evidence of a difference between sellers with medium and high ratings in the relationship between `totalPr` and `duration`?  
+    iii. Is there evidence of a difference between sellers with low and medium ratings in the relationship between `totalPr` and `duration`?
+    iv. Which one of these requires additional information to answer?
+    
+
+## Question 3
+
+[Adapted from [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)]    
+For each of the following situations, state a possible confounding variable:
+
+(a)  Data are measured on countries.  There is a positive relationship between the percentage of internet users and life expectancy.
+(b)  Do sleep disorders lead to bullying in school children?  An article in the *New York Times* called *The School Bully is Sleepy* states the following:  
+"The University of Michigan study collected survey data from parents on each child's sleep habits and asked both parents and teachers to assess behavioral concerns.  About a third of the students studied were identified by parents or teachers as having problems with disruptive behavior or bullying.  The researchers found that children who had behavioral issues and those who were identified as bullies were twice as likely to have shown symptoms of sleep disorders."
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week10/Week10PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 

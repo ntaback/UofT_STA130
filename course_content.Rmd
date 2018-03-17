@@ -279,11 +279,30 @@ Geotab Data Scientist Brenda Nguyen's [presentation](https://www.youtube.com/emb
 
 [Practice Problems](week9/Week9PracticeProblems-student.html)
 
+
+# Week 10
+
+## March 19 Class
+
+### Slides and References
+
+[Class slides](week10/Week10_Regression2.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Class slides](week10/Week10_Regression2.html) <i class="fa fa-html5" aria-hidden="true"></i> 
+
+[R Markdown source of slides](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week10/Week10_Regression2.Rmd) <i class="fa fa-github" aria-hidden="true"></i></a>
+
+<i class="fa fa-book" aria-hidden="true"></i>Section 7.6 of *Modern Data Science with R*  
+Section 1.4.1 of [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)
+
+## March 23 Tutorial
+
+[Practice Problems](week10/Week10PracticeProblems-student.html)
+
 ---
 <br>
 <html>
 <span style="opacity: 0.5;">
-Week 10 - March 19 <br>
 Week 11 - March 26 <br>
 Week 12 - April 2 STA130 Poster Fair 
 </html>
