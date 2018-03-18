@@ -1,0 +1,301 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 9 Practice Problems - Solutions
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(tidyverse)
+```
+
+# Instructions
+
+## What should I bring to tutorial on March 16?
+
+Your answer to questions 1c, 2f, and 3d
+
+## First steps to answering these questions.
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r,eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week8/Week8PracticeProblems-student1.Rmd"
+download.file(url = file_url , destfile = "Week8PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week8PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week 8 Practice Problems Solutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+a. Student's must bring answers to questions that were assigned to bring to tutorial.  Answers do not have to be perfect in order to receive full credit, but a serious attempt at the problem is required for full credit.  Your must work be your own.
+
+
+
+# Practice Problems
+
+## Question 1
+
+In this question you will derive the least squares estimators of the intercept $\beta_0$ and slope $\beta_1$ in the simple linear regression model.  
+
+(a) Write down the simple linear regression model.  Explain each term in the model.
+
+A simple linear regression model is:
+
+$$y_i = \beta_0 + \beta_1 x_i + \epsilon_i,$$
+
+$i=1,\ldots,n$ where $n$ is the number of observations.
+
+$y_i$ is the $i^{th}$ movie's average IMDB rating.
+$\beta_0$ is the intercept term in the model.
+$\beta_1$ is the slope term in the model.
+$x_i$ is the $i^{th}$ movie's budget.
+$\epsilon_i$ is the $i^{th}$ error term.
+
+(b) Calculate $\frac{\partial L}{\partial \beta_0}$ and $\frac{\partial L}{\partial \beta_1}$, where $L(\beta_0,\beta_1)$ is the sum of squared errors.
+
+$$L(\beta_0,\beta_1) = \sum_{i=1}^n \left(y_i -\beta_0 - \beta_1 x_i\right)^2.$$  So,
+
+$$
+\begin{aligned}
+\frac{\partial L}{\partial \beta_0} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_i) = 0, \\
+\frac{\partial L}{\partial \beta_0} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_i)x_{i} =0.
+\end{aligned}
+$$
+
+
+(c) Use your calculations in (b) to show that
+
+$$
+\begin{aligned}
+\hat{\beta_0} &= \bar{y} - \hat{\beta_1} \bar{x} \\
+\hat{\beta_1} &= \frac{(\sum_{i=1}^n y_ix_i) - n \bar{x}\bar{y}}{(\sum_{i=1}^n x_i^2) - n\bar{x}^2},
+\end{aligned}
+$$
+
+In the equations $\frac{\partial L}{\partial \beta_0}=0, \frac{\partial L}{\partial \beta_1}=0$ replace $\beta_0,\beta_1$ by $\hat \beta_0,\hat \beta_1$. This symbollically distinguishes that we are solving for the values of $\beta_0,\beta_1$ that are solutions to the equations.  We will make use the of the fact that 
+$\sum_{i=1}^n x_i/n = \bar x \Rightarrow \sum_{i=1}^n x_i = n\bar x.$
+
+$$\begin{aligned}
+\frac{\partial L}{\partial \beta_0}=0 & \Rightarrow \sum_{i=1}^n y_i -n\hat \beta_0 - \sum_{i=1}^n \hat \beta_1 x_i = 0 \\
+                                      & \Rightarrow \sum_{i=1}^n y_i  - \sum_{i=1}^n \hat \beta_1 x_i = n\hat \beta_0 \\
+                                       & \Rightarrow n \bar y  - \hat \beta_1 n \bar x = -n\hat \beta_0 \\
+                                      & \Rightarrow \bar y - \hat \beta_1 \bar x = \hat \beta_0.
+\end{aligned}$$
+
+$$\begin{aligned}
+\frac{\partial L}{\partial \beta_1}=0 & \Rightarrow \sum_{i=1}^n y_i x_i - \hat \beta_0 \sum_{i=1}^n x_i - \hat \beta_1 \sum_{i=1}^nx_i^2 =0 \\
+& \Rightarrow \sum_{i=1}^n y_i x_i -(\bar y - \hat \beta_1 \bar x) \sum_{i=1}^n x_i - \hat \beta_1 \sum_{i=1}^nx_i^2 =0 \\
+& \Rightarrow \sum_{i=1}^n y_i x_i -\bar y \sum_{i=1}^n x_i + \hat \beta_1 \bar x \sum_{i=1}^n x_i  - \hat \beta_1 \sum_{i=1}^nx_i^2 =0 \\
+& \Rightarrow \sum_{i=1}^n y_i x_i -n\bar y \bar x + \hat \beta_1  n {\bar x}^2  - \hat \beta_1 \sum_{i=1}^nx_i^2 =0, \mbox{  } \text{since }\sum_{i=1}^n x_i = n\bar x \\
+& \Rightarrow \sum_{i=1}^n y_i x_i -n\bar y \bar x + \hat \beta_1  (n {\bar x}^2  - \sum_{i=1}^nx_i^2) =0 \\
+& \Rightarrow \sum_{i=1}^n y_i x_i -n\bar y \bar x = \hat \beta_1  ( \sum_{i=1}^nx_i^2 - n {\bar x}^2  ) \\
+& \Rightarrow \frac{\sum_{i=1}^n y_i x_i -n\bar y \bar x}{( \sum_{i=1}^nx_i^2 - n {\bar x}^2  )} = \hat \beta_1.
+\end{aligned}$$
+
+
+
+
+## Question 2
+
+The internet movie database, http://imdb.com/, is a website devoted to collecting movie data supplied by studios and fans. It claims to be the biggest movie database on the web and is run by amazon. More about information imdb.com can be found online, http://imdb.com/help/show_leaf?about, including information about the data collection process, http://imdb.com/help/show_leaf?infosource.  The is packaged in the R library `ggplot2movies` in the data frame `movies`.  The help documentation for this data (`?ggplot2movies::movies`) describes each of the variables.
+
+In this question you will use linear regression to build a model that predicts IMDB user ratings based on covariates in the `movies` data.  More information about IMDB user ratings is available [here](https://help.imdb.com/article/imdb/track-movies-tv/faq-for-imdb-ratings/G67Y87TFYYP6TWAV?ref_=helpsect_pro_2_4#).
+
+```{r}
+library(ggplot2movies)
+library(tidyverse)
+glimpse(movies)
+
+movies %>% ggplot(aes(rating)) + geom_histogram(colour = "grey") + theme_minimal()
+movies %>% ggplot(aes(budget)) + geom_histogram(colour = "grey") + theme_minimal()
+movies %>% filter(!is.na(budget))
+
+mod1 <- lm(rating ~ budget + votes + length + year + Action + Animation + Comedy + Drama + Documentary + Romance + Short, data = movies)
+summary(mod1)
+```
+
+
+(a)  Create at least one appropriate graphical summary of the distribution of user ratings.  Briefly explain why you chose this summary and the shape of the distribution. How many user ratings are in the data set?  Calculate the mean and median ratings.  
+
+A histogram or boxplot is appropriate since `rating` is a continuous variable.
+
+```{r}
+library(ggplot2movies)
+library(tidyverse)
+movies %>% ggplot(aes(rating)) + geom_histogram(colour = "grey") + theme_minimal()
+movies %>% ggplot(aes(x = "", y = rating)) + geom_boxplot()
+movies %>% summarize(n = n(), mean_rating = mean(rating), median_rating = median(rating))
+```
+
+(b) Repeat part (a), but use the variable `budget`. Create a scatterplot of `budget` and `rating`  of release.  What is the relationship between budget and `rating`?  
+
+The relationship is non-linear.  The scatterplot shows a lot of variation in ratings for large and small budgets.
+
+```{r}
+library(ggplot2movies)
+library(tidyverse)
+movies %>% ggplot(aes(budget)) + geom_histogram(colour = "grey") + theme_minimal()
+movies %>% ggplot(aes(x = "", y = budget)) + geom_boxplot()
+movies %>% filter(!is.na(budget)) %>% summarize(n = n(), mean_rating = mean(budget), median_budget = median(budget))
+movies %>% ggplot(aes(budget, rating)) + geom_point() + theme_minimal()
+```
+
+
+
+(c)  Use R to fit a linear regression model of `rating` on `budget`.  Interpret the regression coefficients and the coefficient of determination.
+
+```{r}
+library(ggplot2movies)
+library(tidyverse)
+
+mod1 <- lm(rating ~ budget, data = movies)
+mod1_summ <- summary(mod1)
+mod1_summ$coefficients
+mod1_summ$r.squared
+```
+
+The estimate of the intercept of $\hat \beta_0 =$ `r round(mod1_summ$coefficients[1,1],2)`.  This means that when the budget is 0 the average user rating is `r round(mod1_summ$coefficients[1,1],2)`.  The intercept in this case is not very informative since the interpretation does not make sense.
+
+The estimate of the slope is $\hat \beta_1=$ `r round(mod1_summ$coefficients[2,1],2)`.  This means that for a one dollar increase in budget the average user rating changes by zero.  This is not surprising since the scatterplot in part (b) doesn't show a linear relationship between `rating` and `budget`.
+
+The coefficient of determination, $R^2=$ `r round(mod1_summ$r.squared)`.  This indicates a very poor match between the observed ratings and ratings predicted using the linear regression model.
+
+(d) Add the estimated linear regression line that you calculated in (c) to the scatterplot you generated in (b).  Does the linear regression line capture the relationship between `rating` and `budget`?
+
+```{r}
+movies %>% ggplot(aes(budget, rating)) + geom_point() + geom_smooth(method = "lm", se = F) + theme_minimal()
+```
+
+The line is horizontal and doesn't capture the relationship.
+
+
+(e)  Does a simple linear regression model seem appropriate to predict IMDB ratings using a film's budget?  Explain.
+
+A linear regression model is inappropriate to predict IMDB ratings using a film's budget.  The scatterplot does not show a linear relationship between the two variables, and the estimated regression coefficients and coefficient of determination reflect the lack of linearity.    
+
+
+## Question 3
+
+The Housing data for 506 census tracts of Boston from the 1970 census. The dataframe `BostonHousing2` contains the original corrected data by Harrison and Rubinfeld (1979).
+
+In this question you will build a linear regression model to predict the median value of owner occupied homes in USD 1000's `medv`.
+
+```{r}
+library(mlbench)
+data("BostonHousing2")
+glimpse(BostonHousing2)
+```
+
+(a) Create a scatterplot of median value of homes `medv` and percentage of lower status of the population that lives in the census tract `lstat`.  Describe the relationship.
+
+The relationship is negative-linear.  As the percentage of lower status increases the median value decreases.
+
+```{r}
+library(mlbench)
+data("BostonHousing2")
+glimpse(BostonHousing2)
+BostonHousing2 %>% ggplot(aes(lstat, medv)) + geom_point()
+```
+
+(b) Write out the mathematical description of a simple linear regression model of `medv` on `lstat`.  Describe each of the variables in the model.
+
+$y_i$ is the $i^{th}$ census track's median home value.
+$\beta_0$ is the intercept term in the model.
+$\beta_1$ is the slope term in the model.
+$x_i$ is the $i^{th}$ census track's percentage of lower status of the population.
+$\epsilon_i$ is the $i^{th}$ error term.
+
+(c) Use 80% of the data to select a training set, and leave 20% of the data for testing.  Fit a linear regression model of `medv` on `lstat` on the training set.  
+
+(i) Calculate RMSE on the training and test data using the linear regression model you fit on the training set.  Is there any evidence of overfitting?  
+
+(ii) Calculate the coefficient of determination. 
+
+```{r, cache=TRUE}
+library(mlbench)
+data("BostonHousing2")
+set.seed(10)
+n <- nrow(BostonHousing2) 
+test_idx <- sample.int(n, size = round(0.2 * n)) 
+BH_train <- BostonHousing2[-test_idx, ] 
+n_train <- nrow(BH_train)
+n_train
+BH_test <- BostonHousing2[test_idx,]
+n_test <- nrow(BH_test)
+n_test
+
+train_mod <- lm(medv ~ lstat, data = BH_train)
+summ_train_mod <- summary(train_mod)
+sr_rsq <- summ_train_mod$r.squared
+sr_rsq
+
+yhat_test <- predict(train_mod, newdata = BH_test)
+y_test <- BH_test$medv
+
+sqrt(sum((y_test - yhat_test)^2) / n_test)
+
+yhat_train <- predict(train_mod, newdata = BH_train)
+y_train <- BH_train$medv
+
+sr_rmse <- sqrt(sum((y_train - yhat_train)^2) / n_train)
+sr_rmse
+```
+
+There is no evidence of overfitting since the RMSE on the training and test sets are very close.  These values will depend on which observations were included in the training and test sets.  So if `set.seed()` were set to a different value then RMSE from the test and training sets would be different, although on average would probably be similar.
+
+$R^2=$ `r summ_train_mod$r.squared`.  This shows a modest amount of agreement between the observed and predicted values.  
+
+(d) Use the training and test sets to build a multiple regression model to predict `medev` where the following covariates (inputs) or used in addition to `lstat`: `crim`, `zn`, `rm`, `nox`, `age`, `tax`, `ptratio`.  Does this model provide more accurate predictions compared to the model that you fit in part (c)?  Explain.
+
+```{r}
+library(mlbench)
+data("BostonHousing2")
+set.seed(10)
+n <- nrow(BostonHousing2) 
+test_idx <- sample.int(n, size = round(0.2 * n)) 
+BH_train <- BostonHousing2[-test_idx, ] 
+n_train <- nrow(BH_train)
+n_train
+BH_test <- BostonHousing2[test_idx,]
+n_test <- nrow(BH_test)
+n_test
+
+train_mod <- lm(medv ~ lstat + crim + zn + rm + nox + age + tax + ptratio, data = BH_train)
+summ_train_mod <- summary(train_mod)
+mr_rsq <- summ_train_mod$r.squared
+
+
+yhat_test <- predict(train_mod, newdata = BH_test)
+y_test <- BH_test$medv
+
+
+sqrt(sum((y_test - yhat_test)^2) / n_test)
+
+yhat_train <- predict(train_mod, newdata = BH_train)
+y_train <- BH_train$medv
+
+mr_rmse <- sqrt(sum((y_train - yhat_train)^2) / n_train)
+mr_rmse
+```
+
+The RMSE has decreased from `r sr_rmse` to `r mr_rmse` and $R^2$ has increased from `r sr_rsq` to `r mr_rsq`.  Therefore the multiple linear regression model has better prediction accuracy compared to the simple linear regression model. 
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week9/Week9PracticeProblems-solutions.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 

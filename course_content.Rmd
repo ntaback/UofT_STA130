@@ -279,6 +279,8 @@ Geotab Data Scientist Brenda Nguyen's [presentation](https://www.youtube.com/emb
 
 [Practice Problems](week9/Week9PracticeProblems-student.html)
 
+[Example solutions to practice problems](week9/Week9PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
+
 
 # Week 10
 
