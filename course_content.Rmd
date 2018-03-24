@@ -305,6 +305,8 @@ Section 1.4.1 of [*Introductory Statistics with Randomization and Simulation* fr
 
 [Practice Problems](week10/Week10PracticeProblems-student.html)
 
+[Example solutions to practice problems](week10/Week10PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
+
 ---
 <br>
 <html>

@@ -1,0 +1,194 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 10 Practice Problems Solutions
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(tidyverse)
+```
+
+
+## Question 1
+
+[Adapted from Exercise 7.7 in the textbook]  
+From the text: "The Whickham data set ... includes data on age, smoking, and mortality from a one-in-six survey of the electoral roll in Whickham ... in the United Kingdom.  The survey was conducted in 1972-1974 to study heart disease and thyroid disease.  A follow-up on those in the survey was conducted twenty years later.  Load the `mosaicData` package and look at the help file for `Whickham` to see the definition of the variables."  Note that the data frame includes the data for women only, and we will consider as our population the women in Whickham during the period of the study.  The data collected in 1972-74 are referred to as the "baseline" values.
+
+```{r}
+library(mosaicData)
+```
+
+(a) What percentage of the women in the study were smokers at baseline?
+Is this percentage an estimate of a joint, marginal, or conditional probability?
+
+```{r}
+Whickham %>% count(smoker) %>%
+  mutate(smoker_perc = n / sum(n))
+```
+
+44.2% of the women in the study were smokers at baseline.  This is an estimate of the marginal probability of being a smoker in this population as it is not related to any other variable.
+
+(b) What percentage of the women in the study had died by the follow-up?
+Is this percentage an estimate of a joint, marginal, or conditional probability?
+
+```{r}
+Whickham %>% count(outcome) %>%
+  mutate(outcome_perc = n / sum(n))
+```
+
+28.1% of the women in the study died by the time of the follow-up.  This is an estimate of the marginal probability of dying in this population as it is not related to any other variable.
+
+(c) What percentage of smokers had died by the follow-up and what percentage of non-smokers had died at the follow-up?  Are these percentages estimates of joint, marginal, or conditional probabilities?
+How would you describe the effect of smoking on survival status?
+
+```{r}
+Whickham %>% 
+  count(smoker, outcome) %>%
+  group_by(smoker) %>%
+  mutate(outcome_perc = n / sum(n)) %>%
+  filter(outcome=="Dead")
+```
+
+31.4% of smokers had died by the follow-up and 23.9% of the non-smokers had died by the follow-up.  These are estimates of the conditional probability of dying, given whether the women was a smoker or non-smoker at baseline.  It appears that smoking and survival status are not independent.  In fact, despite that this seems opposite to what you would expect would be the case, smokers seem to be more likely to have survived the 20 years to follow-up.
+
+(d) Collapse the values of `age` into a new categorical variable with 3 age categories: women between the age of 18 and 44, women who are older than 44 and younger than 65, and women who are 65 and over.  Note that this is the age at the time of the first survey.  Examine the percentage of smokers and non-smokers who died at follow-up in each age category.  
+
+```{r}
+Whickham <- Whickham %>% 
+  mutate(cat_age = ifelse(age <= 44, "18-44", ifelse(age <= 64, "45-64", "65+")))
+Whickham %>% 
+  count(cat_age, smoker, outcome) %>%
+  group_by(cat_age, smoker) %>%
+  mutate(outcome_perc = n / sum(n)) %>%
+  filter(outcome=="Dead")
+```
+
+Of the women who were 18-44 years old, 3.5% of the non-smokers had died by follow-up and 5.3% of the smokers had died by follow-up.
+Of the women who were 45-64 years old, 26.5% of the non-smokers had died by follow-up and 32.4% of the smokers had died by follow-up.
+Of the women who were at least 65 years old, 85.5% of the non-smokers had died by follow-up and 88.0% of the smokers had died by follow-up.
+Note that, in each age category, a higher percentage of smokers than non-smokers died.
+
+(e) Construct a plot that shows the relationship between survival status and smoking.
+
+```{r}
+ggplot(Whickham, aes(x=smoker, fill=outcome)) + 
+  geom_bar(position = "fill") + labs(y="Proportion") + theme_bw()
+```
+
+(f) Construct a plot that shows the relationship between survival status and smoking for each age group.
+
+```{r}
+ggplot(Whickham, aes(x=smoker, fill=outcome)) + geom_bar(position = "fill") + 
+  labs(y="Proportion") + facet_grid(. ~ cat_age) + theme_bw()
+```
+
+
+(g) Explain why age is a confounding variable.
+
+Looking at the relationship of smoking and survival status, a higher percentage of non-smokers were dead at follow-up.  But within each age category, this is reversed; a higher percentage of smokers were dead at follow-up.  (Note: To understand why this happens, look at the percentages of smokers within each age category.)
+
+(h) How do we know these data are from an observational data and not from an experiment?
+
+There was no intervention imposed on the people by the researchers.  
+
+## Question 2
+
+**Bring your output for parts b and c of this question to tutorial on Friday, March 23 (either a hardcopy or on your laptop). **
+
+In this question we will again consider the Mario Kart eBay data from lecture.
+
+```{r, message=FALSE}
+library(openintro)
+```
+
+(a)  Sellers on eBay have the option to include a stock photo as the illustration of the product for sale.  Does this choice affect the selling price?  Carry out a regression analysis to:
+    i. Estimate the mean selling price (`totalPr`) for sellers who do and do not use stock photos.  
+    
+```{r}
+marioKart2 <- marioKart %>% filter(totalPr < 100)
+summary(lm(totalPr ~ stockPhoto, data=marioKart2))$coefficients
+```
+
+For sellers who use stock photos: $$\widehat{totalPr} = 44.33 + 4.17$$
+For sellers who do not use stock photos: $$\widehat{totalPr} = 44.33$$
+
+ii. Carry out an hypothesis test to investigate whether the mean selling price is the same for sellers who do and do not use stock photos?  What do you conclude? How could you apply a method from earlier in the term to carry out this hypothesis test?
+    
+The difference between the mean selling price for sellers who do and do not use stock photos is $\beta_1$.  We observed a difference in mean selling price of \$4.17.  The test with null hypothesis that $\beta_1 = 0$ has P-value of 0.017.  Thus we have moderate evidence against the hypothesis that $\beta_1 = 0$ and we conclude that the mean selling price is not the same for sellers who do and do not use stock photos.
+
+(b)  Sellers are rated by buyers on eBay, captured in the variable `sellerRate`.
+To simplify our analysis, we will categorize sellers by whether their rating is low, medium or high.  Create a new variable called `seller_rating` that is "low" if `sellerRate` is less than or equal to 100, "medium" if it is greater than 100 but less than or equal to 5000, and "high" if it is greater than 5000.  Carry out a regression analysis to predict `totalPr` using the new variable `seller_rating`.
+
+```{r}
+marioKart2 <- marioKart2 %>% 
+  mutate(seller_rating = ifelse(sellerRate <= 100, "low", ifelse(sellerRate <= 5000, "medium", "high")))
+summary(lm(totalPr ~ seller_rating, data=marioKart2))$coefficients
+```
+
+i. How many indicator variables are in the model?
+    
+There are 2: `seller_ratinglow` that is 1 if `seller_rating` is low and 0 otherwise, and `seller_ratingmedium` that is 1 if `seller_rating` is medium and 0 otherwise.
+
+ii. Which seller rating group is `R` treating as the baseline category?
+    
+`R` is treating the high category of `seller_rating` as the baseline category.
+
+iii.  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with low ratings?  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with medium ratings?  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with high ratings?
+    
+For sellers with low ratings: $$\widehat{totalPr} = 46.46 - 1.23$$
+For sellers with medium ratings: $$\widehat{totalPr} = 46.46 + 2.13$$
+For sellers with high ratings: $$\widehat{totalPr} = 46.46$$
+This seems somewhat counter intuitive as sellers with medium ratings have a higher mean selling price than sellers with high ratings.
+
+(c) Now fit an appropriate regression line to examine whether `seller_rating` has an effect on the relationship between `totalPr` and `duration`.
+
+The regression line is $$totalPr = \beta_0 + \beta_1 \, seller\_rating\_is\_low + \beta_2 \, seller\_rating\_is\_medium + \beta_3 \, duration \\
++ \beta_4 \, seller\_rating\_is\_low \times duration + \beta_5 \, seller\_rating\_is\_medium \times duration + \epsilon$$
+
+```{r}
+ggplot(marioKart2, aes(x=duration, y=totalPr, color=seller_rating)) + 
+  geom_point() + geom_smooth(method="lm", fill=NA) + theme_bw()
+summary(lm(totalPr ~ seller_rating*duration, data=marioKart2))$coefficients
+```
+
+i. Is there evidence of a difference between sellers with low and high ratings in the relationship between `totalPr` and `duration`?
+    
+From the plot, we see that there does not appear to be a relationship between `totalPr` and `duration` for sellers with low ratings, and there appears to be a negative relationship for sellers with high ratings.  To test whether the observed difference between these slopes is due to chance, we consider the test with null hypothesis $H_0: \beta_4 = 0$.  The P-value for this test is 0.024, so we have moderate evidence of a difference in slopes between raters with low and high ratings.
+    
+ii. Is there evidence of a difference between sellers with medium and high ratings in the relationship between `totalPr` and `duration`?  
+    
+From the plot, we see that there appears to be a negative relationship between `totalPr` and `duration` for sellers with both medium and high ratings, with a more negative slope for sellers with high ratings.  To test whether the observed difference between these slopes is due to chance, we consider the test with null hypothesis $H_0: \beta_5 = 0$.  The P-value for this test is 0.23, so we have no evidence of a difference in slopes between raters with medium and high ratings.  
+
+We can also consider whether sellers with medium and high ratings have the same intercept by considering the test with null hypothesis $H_0: \beta_2 = 0$.  The P-value of this test is 0.91.  So we have no evidence of a difference in the intercepts.
+
+Thus, we have no evidence of a difference between sellers with medium and high ratings in the relationship between `totalPr` and `duration`
+
+iii. Is there evidence of a difference between sellers with low and medium ratings in the relationship between `totalPr` and `duration`?
+    
+In order to test whether we have evidence of a difference in slopes between sellers with low and medium ratings, we need to carry out a test with null hypothesis $H_0: \beta_4 = \beta_5$.  Similarly, in order to test whether we have evidence of a difference in intercepts between sellers with low and medium ratings, we need to carry out a test with null hypothesis $H_0: \beta_1 = \beta_2$.  The `R` output for this regression does not give us the P-values for these tests.
+
+iv. Which one of these requires additional information to answer?
+    
+As noted in iii., we don't have output for tests to consider whether the relationship is the same between two groups when neither of the groups is the baseline category.  It is possible to force `R` to treat another variable as the baseline category and then re-run the regression to get the reults of tests needed for the comparisons in iii.
+
+
+## Question 3
+
+[Adapted from [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)]    
+For each of the following situations, state a possible confounding variable:
+
+(a)  Data are measured on countries.  There is a positive relationship between the percentage of internet users and life expectancy.
+
+The wealth of a country (for example, its GDP) is a possible confounding variable.  The positive relationship between the percentage of internet users and life expectancy is not because using the internet leads to longer lives, but because wealthy countries tend to have both better health and more internet users.
+
+(b)  Do sleep disorders lead to bullying in school children?  An article in the *New York Times* called *The School Bully is Sleepy* states the following:  
+"The University of Michigan study collected survey data from parents on each child's sleep habits and asked both parents and teachers to assess behavioral concerns.  About a third of the students studied were identified by parents or teachers as having problems with disruptive behavior or bullying.  The researchers found that children who had behavioral issues and those who were identified as bullies were twice as likely to have shown symptoms of sleep disorders."
+
+Children who bully and / or have behavioral issues may also have a hormonal imbalance or a negative situation in their lives that also affects their ability to sleep well.
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week10/Week10PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 
