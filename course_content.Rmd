@@ -307,11 +307,24 @@ Section 1.4.1 of [*Introductory Statistics with Randomization and Simulation* fr
 
 [Example solutions to practice problems](week10/Week10PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
 
+# Week 11
+
+## March 26 Class
+
+[Class slides](week11/sta130_lecture11.html) <i class="fa fa-html5" aria-hidden="true"></i> 
+
+<i class="fa fa-book" aria-hidden="true"></i> Modern Data Science with R: Chapter 6.
+
+### Slides and References
+
+## April 30 - No Tutorial ( University Closed on Good Friday)
+
+[Practice Problems](week11/Week11PracticeProblems-student.html)
+
 ---
 <br>
 <html>
 <span style="opacity: 0.5;">
-Week 11 - March 26 <br>
 Week 12 - April 2 STA130 Poster Fair 
 </html>
 
