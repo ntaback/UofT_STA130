@@ -14,7 +14,6 @@ library(tidyverse)
 
 <img src="survey.png" height="400" width="700">
 
-
 ## Today's Class
 
 Identification of ethical considerations involving research where data is collected:
