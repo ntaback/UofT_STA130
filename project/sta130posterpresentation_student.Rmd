@@ -128,7 +128,7 @@ Your group will explore the hazardous driving data set.  We have proposed questi
 
 The [hazardous driving data set](hazardousdriving.csv) is described [here](https://data.geotab.com/urban-infrastructure/hazardous-driving).  The "Datasheet" link provides an explanation of each of the variables in the data.
 
-### Frequently Asked Questions the Data
+## Frequently Asked Questions about the Data
 
 __Question:__ Can the severity score be derived from other variables in the data set?
 
