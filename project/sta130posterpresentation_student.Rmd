@@ -128,6 +128,20 @@ Your group will explore the hazardous driving data set.  We have proposed questi
 
 The [hazardous driving data set](hazardousdriving.csv) is described [here](https://data.geotab.com/urban-infrastructure/hazardous-driving).  The "Datasheet" link provides an explanation of each of the variables in the data.
 
+### Frequently Asked Questions the Data
+
+__Question:__ Can the severity score be derived from other variables in the data set?
+
+__Answer:__  No.  The severity score cannot be derived from other variables in the data set.
+
+__Question:__ Is it correct to say that there is no data on the number of people involved in an incident?  So, for example, we can’t assume anything about the number of people involved in a multi-passenger vehicle incident or any other incident.
+
+__Answer:__ Yes.
+
+__Question:__ What is the definition of multi-passenger vehicle?
+
+__Answer:__  MPV or multi-purpose vehicles is a classification specified by the car manufacturer. SUV and vans are also included this classification.
+
 # Final Project Questions
 
 There is conflicting evidence about which province in Canada has the most dangerous driving conditions. A recent [study](https://atlantic.ctvnews.ca/halifax-most-dangerous-canadian-city-to-drive-in-study-1.2729103) claimed that Halifax is the most dangerous Canadian city to drive. Does this mean that Nova Scotia has the most dangerous driving in Canada?  According to a [report](https://www.allstate.ca/webpages/docs/custcare/allstate-2017-data-tables-national-final.pdf) by the Allstate Insurance Company New Brunswick had the highest collision claims.  [dangerousroads.org](http://www.dangerousroads.org/north-america/canada/546-the-top-12-most-dangerous-highways-in-canada.html) claims some of the most dangerous highways in Canada are in Manitoba and Nova Scotia. 
