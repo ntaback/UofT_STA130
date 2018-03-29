@@ -311,6 +311,10 @@ Section 1.4.1 of [*Introductory Statistics with Randomization and Simulation* fr
 
 ## March 26 Class
 
+[Annotated slides - 10:00 class](week11/sta130_lecture11_beam_10.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+[Annotated slides - 14:00 class](week11/sta130_lecture11_beam_2.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
 [Class slides](week11/sta130_lecture11_beam.pdf) <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
 [Class slides](week11/sta130_lecture11.html) <i class="fa fa-html5" aria-hidden="true"></i> 
@@ -323,12 +327,13 @@ Section 1.4.1 of [*Introductory Statistics with Randomization and Simulation* fr
 
 [Practice Problems](week11/Week11PracticeProblems-student.html)
 
----
-<br>
-<html>
-<span style="opacity: 0.5;">
-Week 12 - April 2 STA130 Poster Fair 
-</html>
+[Example solutions to practice problems](week11/Week11PracticeProblems-solutions.html) <i class="fa fa-html5" aria-hidden="true"></i>
+
+# Week 12
+
+## April 2 STA130 Poster Fair 
+
+[Project Information](project_info.html)
 
 # Tutorial Content
 
