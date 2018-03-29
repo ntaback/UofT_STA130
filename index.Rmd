@@ -7,6 +7,18 @@ output:
      in_header: header.html
 ---
 
+
+## Annoucment - Course Survey Due on April 6, 11:59PM 
+
+<font color="red" size="5">
+As stated on the course syllabus, 2% of the evaluation for this course is allotted for completion of an end of course survey.  The purpose of this survey is to help us understand how some of the aspects of STA130 contribute to your learning.  
+
+The survey is now available on the course [Blackboard page](https://portal.utoronto.ca) under “Course Materials”.  To earn your 2%, fully complete the survey by 11:59pm on Friday, April 6. 
+
+Your feedback is greatly appreciated.  Your instructors will not look at your particular answers to survey questions until after the final grades for the course have been submitted. </font>
+
+--------
+
 ##Instructors
 
 [Professor Alison Gibbs](http://utstat.toronto.edu/~alisong/) and [Professor Nathan Taback](http://utstat.toronto.edu/~nathan/)
