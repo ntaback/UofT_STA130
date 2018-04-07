@@ -2,32 +2,35 @@ name: sta130website
 output_dir: '.'
 navbar:
   title: STA130 Winter 2018
-  right:
-  - title: Course Documents
-  - text: Home
-    icon: fa-home
-    href: index.html
-  - text: Syllabus
-    icon: fa-info
-    href: STA130syllabus2018S.html
-  - text: Final Project
-    icon: fa-users
-    href: project_info.html
-  - text: R Resources
-    icon: fa-book
-    href: R_resources.html
-  - text: Course Content
-    icon: fa-slideshare
-    href: course_content.html
-  - text: Data Science
-    icon: fa fa-search-plus
-    href: Datasci.html
-  - text: Test Information
-    icon: fa-info
-    href: term_test_2018.html
-  - text: Final Exam
-    icon: fa-info
-    href: finalexam.html
+  left:
+  - text: Course Information
+    menu:
+      - text: Syllabus
+        icon: fas fa-info
+        href: STA130syllabus2018S.html
+      - text: Final Project
+        icon: fa-users
+        href: project_info.html
+      - text: Course Content
+        icon: fa-slideshare
+        href: course_content.html
+  - text: Test and Exam
+    menu:
+      - text: Test Information
+        icon: fa-info
+        href: term_test_2018.html
+      - text: Final Exam
+        icon: fa-info
+        href: finalexam.html
+  - text: Resources
+    menu: 
+      - text: R Resources
+        icon: fas fa-code
+        href: R_resources.html
+      - text: Data Science
+        icon: fas fa-flask
+        href: Datasci.html
+  
 output:
   html_document:
     lib_dir: site_libs
