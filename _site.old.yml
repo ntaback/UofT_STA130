@@ -13,6 +13,9 @@ navbar:
   - text: Final Project
     icon: fa-users
     href: project_info.html
+  - text: Test Information
+    icon: fa-info
+    href: term_test_2018.html
   - text: R Resources
     icon: fa-book
     href: R_resources.html
@@ -22,12 +25,6 @@ navbar:
   - text: Data Science 
     icon: fa fa-search-plus
     href: Datasci.html
-  - text: Test Information 
-    icon: fa-info
-    href: term_test_2018.html
-  - text: Final Exam
-    icon: fa-info
-    href: finalexam.html
   
 output:
   html_document:

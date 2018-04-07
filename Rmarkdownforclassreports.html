@@ -331,6 +331,13 @@ div.tocify {
     Test Information
   </a>
 </li>
+<li>
+  <a href="finalexam.html">
+    <span class="fa fa-info"></span>
+     
+    Final Exam
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -606,8 +613,9 @@ SAT_2010 %&gt;% ggplot(aes(write,..density..)) + geom_histogram() + geom_density
 ## (Intercept) 600.018506474 3.780370e+01 15.871950 9.930929e-21
 ## salary       -0.001445845 6.841402e-04 -2.113376 3.979291e-02</code></pre>
 <p>with</p>
-<pre class="r"><code>library(knitr) # Only need this the first time!
-kable(coefficients(summary(lm(write ~ salary, data = SAT_2010))))</code></pre>
+<pre class="r"><code>library(knitr) # Only need this the first time!</code></pre>
+<pre><code>## Warning: package &#39;knitr&#39; was built under R version 3.4.3</code></pre>
+<pre class="r"><code>kable(coefficients(summary(lm(write ~ salary, data = SAT_2010))))</code></pre>
 <table>
 <thead>
 <tr class="header">

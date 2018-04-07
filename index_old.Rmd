@@ -11,29 +11,21 @@ output:
 <br/>
 <br/>
 <br/>
-<style>
-div.second {
-    opacity: 0.2;
-    filter: alpha(opacity=30); /* For IE8 and earlier */
-}
-</style>
 
-## Current Annoucments 
+## Annoucments 
 
 ### Final Exam Information
 
-- Detailed information about the final exam is available [here](finalexam.html).  
-- See below for office hours before the exam.
+Detailed information about the final exam is available [here](finalexam.html).  
 
-<div class="second">
 ### Course Survey Due on April 6, 11:59PM 
 
-As stated on the course syllabus, 2% of the evaluation for this course is allotted for completion of an end of course survey.  The purpose of this survey is to help us understand how some of the aspects of STA130 contribute to your learning. 
+As stated on the course syllabus, 2% of the evaluation for this course is allotted for completion of an end of course survey.  The purpose of this survey is to help us understand how some of the aspects of STA130 contribute to your learning.  
+
 The survey is now available on the course [Blackboard page](https://portal.utoronto.ca) under “Course Materials”.  To earn your 2%, fully complete the survey by 11:59pm on Friday, April 6. 
 
 Your feedback is greatly appreciated.  Your instructors will not look at your particular answers to survey questions until after the final grades for the course have been submitted. 
 
-</div>
 
 ##Instructors
 
@@ -45,39 +37,20 @@ Important information about the course can found in the [syllabus](STA130syllabu
 
 ## Office Hours
 
-There will be office hours before the final exam.  The schedule is below.
+|                       | Day/Time                         | Location                                          |
+|-----------------------|----------------------------------|---------------------------------------------------|
+| Professor Office Hours^\*^ | Monday: 12-1 and 4-5            | Professor Gibbs: SS6009 Professor Taback: SS6027c |
+| TA Office Hours       | Wednesday: 2-5PM Thursday:11-2PM |     SS623B                                              |
+|                       | Wednesday: 12-2PM                | RW109 (Computer Lab)
+|                       | Thursday: 2-3PM^\*\*^                  | RW107 (Computer Lab)
 
-All office hours will be in SS623B.
+\* The first part will be walking office hours since the office hours are directly after class. Professors may not get back to their office for the start of the hour, you are welcome to walk back from class with the professor and discuss course material.
 
-| Date   | Day       | Hours   | TA               |
-|--------|-----------|---------|------------------|
-| 09-Apr | Monday    | 11-2pm  | Sheng            |
-|        |           | 1pm-3pm | Yao              |
-| 10-Apr | Tuesday   | 10-12pm | Yao              |
-|        |           | 12-2pm  | Yao              |
-| 11-Apr | Wednesday | 10-12pm | Saneea           |
-|        |           | 12-2pm  | Saneea           |
-|        |           | 2-4pm   | Lee              |
-|        |           | 2-5pm   | Zahra            |
-| 12-Apr | Thursday  | 10-12pm | Mathieu, Mingyan |
-|        |           | 12-2pm  | Lee, Andy        |
-|        |           | 2-4pm   | Lee, Andy        |
-|        |           | 4-5pm   | Yang             |
-| 13-Apr | Friday    | 10-11am | Bo               |
-|        |           | 11-12pm | Bo, Mingyan      |
-|        |           | 12-1pm  | Bo, Mingyan      |
-|        |           | 1-2pm   | Yasha, Andy      |
-|        |           | 2-3pm   | Yasha, Andy      |
-|        |           | 3-4pm   | Yasha, Andy      |
-|        |           | 4-5pm   | Yang             |
-| 16-Apr | Monday    |         |                  |
-|        |           | 11-12pm | Yue(Carrie), Bo  |
-|        |           | 12-1pm  | Yue(Carrie), Bo  |
-|        |           | 1-2pm   | Yue(Carrie), Bo  |
-|        |           | 2-3pm   | Jiayue, Yunjing  |
-|        |           | 3-4pm   | Jiayue, Yunjing  |
-|        |           | 4-5pm   | Yunjing          |
+\*\* The computer lab is reserved from 1-2PM for STA130 in case students wish to access the computers in the lab prior to the office hours starting at 2PM.
 
+**Reading Week:** Regular office hours are not held during Reading Week.  A schedule of Reading Week office hours is [here](sta130_OHs_ReadingWeekTest.pdf).
+
+**Office hours before the test:** We have scheduled many additional office hours during the week of February 26 to March 1 for help before the test.  See the schedule [here](sta130_OHs_ReadingWeekTest.pdf).
 
 ## Computing
 
