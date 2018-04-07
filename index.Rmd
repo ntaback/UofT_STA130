@@ -11,29 +11,23 @@ output:
 <br/>
 <br/>
 <br/>
-<style>
-div.second {
-    opacity: 0.2;
-    filter: alpha(opacity=30); /* For IE8 and earlier */
-}
-</style>
 
 ## Current Annoucments 
 
-### Final Exam Information
-
-- Detailed information about the final exam is available [here](finalexam.html).  
-- See below for office hours before the exam.
-
-<div class="second">
+<div style = "opacity: 0.2">
 ### Course Survey Due on April 6, 11:59PM 
 
 As stated on the course syllabus, 2% of the evaluation for this course is allotted for completion of an end of course survey.  The purpose of this survey is to help us understand how some of the aspects of STA130 contribute to your learning. 
 The survey is now available on the course [Blackboard page](https://portal.utoronto.ca) under “Course Materials”.  To earn your 2%, fully complete the survey by 11:59pm on Friday, April 6. 
 
 Your feedback is greatly appreciated.  Your instructors will not look at your particular answers to survey questions until after the final grades for the course have been submitted. 
-
 </div>
+
+### Final Exam Information
+
+- Detailed information about the final exam is available on the [information page for the final exam](finalexam.html).  
+- See below for office hours before the exam.
+
 
 ##Instructors
 

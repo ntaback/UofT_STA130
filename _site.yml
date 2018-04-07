@@ -19,16 +19,15 @@ navbar:
   - text: Course Content
     icon: fa-slideshare
     href: course_content.html
-  - text: Data Science 
+  - text: Data Science
     icon: fa fa-search-plus
     href: Datasci.html
-  - text: Test Information 
+  - text: Test Information
     icon: fa-info
     href: term_test_2018.html
   - text: Final Exam
     icon: fa-info
     href: finalexam.html
-  
 output:
   html_document:
     lib_dir: site_libs
