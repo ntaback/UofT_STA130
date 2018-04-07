@@ -65,7 +65,8 @@ All office hours will be in SS623B.
 | 09-Apr | Monday    | 11-2pm  | Sheng            |
 |        |           | 1pm-3pm | Yao              |
 | 10-Apr | Tuesday   | 10-12pm | Yao              |
-|        |           | 12-2pm  | Yao              |
+|        |           | 12-2pm  | Yao, Shuting     |
+|        |           | 2-4pm   | Shuting          |
 | 11-Apr | Wednesday | 10-12pm | Saneea           |
 |        |           | 12-2pm  | Saneea           |
 |        |           | 2-4pm   | Lee              |
