@@ -46,6 +46,14 @@ There are 23 multiple choice questions, and one writing question.
 
 The value of each question is given on the [April 2018 exam cover page](exam_coverpage.pdf).
 
+## Am I allowed to bring in an aid sheet?
+
+Yes.  You are allowed to bring an 8.5x11 inch, 2-sided, hand-written aid sheet (see [April 2018 exam cover page](exam_coverpage.pdf)). 
+
+## Am I allowed to bring in a calculator?
+
+Yes. You are allowed to bring in a calculator (see [April 2018 exam cover page](exam_coverpage.pdf)).
+
 ## Should I study previous STA130 final exams?
 
 No.  The course content has substantially changed from previous years.
