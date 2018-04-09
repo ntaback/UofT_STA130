@@ -36,7 +36,7 @@ Important information about the course can found in the [syllabus](STA130syllabu
 
 ## Office Hours
 
-The office hour schedule before the final exam is [here](finalexamoh.html).
+The office hours schedule before the final exam is [here](finalexamoh.html).
 
 
 ## Computing
