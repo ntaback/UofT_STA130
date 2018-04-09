@@ -1,0 +1,35 @@
+---
+title: "STA130 Office Hours before Final Exam"
+output: html_document
+---
+
+**All office hours will be in SS623B.**
+
+| Extra Final OH | Date      | Hours   | TA                  |
+|----------------|-----------|---------|---------------------|
+| 09-Apr         | Monday    | 11-2pm  | Sheng               |
+|                |           | 1pm-3pm | Yao                 |
+| 10-Apr         | Tuesday   | 10-12pm | Yao                 |
+|                |           | 12-2pm  | Yao, Shuting        |
+|                |           | 2-4pm   | Shuting             |
+| 11-Apr         | Wednesday | 10-12pm | Saneea              |
+|                |           | 12-2pm  | Saneea              |
+|                |           | 2-4pm   | Lee                 |
+|                |           | 2-5pm   | Zahra               |
+| 12-Apr         | Thursday  | 10-12pm | Mathieu, Mingyan    |
+|                |           | 12-2pm  | Andy, Lee           |
+|                |           | 2-4pm   | Andy,Yang, Lee      |
+|                |           | 4-5pm   | Yang                |
+| 13-Apr         | Friday    | 10-11am | Bo                  |
+|                |           | 11-12pm | Bo, Mingyan         |
+|                |           | 12-1pm  | Bo, Mingyan         |
+|                |           | 1-2pm   | Yasha, Andy, Bo     |
+|                |           | 2-3pm   | Yasha, Andy         |
+|                |           | 3-4pm   | Yasha, Andy, Bo     |
+|                |           | 4-5pm   | Bo                  |
+| 16-Apr         | Monday    | 11-12pm | Yue(Carrie)         |
+|                |           | 12-1pm  | Yue(Carrie), Jiayue |
+|                |           | 1-2pm   | Yue(Carrie), Jiayue |
+|                |           | 2-3pm   | Jiayue, Yunjing     |
+|                |           | 3-4pm   | Jiayue, Yunjing     |
+|                |           | 4-5pm   | Yunjing, Jiayue     |

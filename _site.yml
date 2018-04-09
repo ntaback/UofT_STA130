@@ -22,6 +22,9 @@ navbar:
       - text: Final Exam
         icon: fa-info
         href: finalexam.html
+      - text: Office Hours before Exam
+        icon: fa-info
+        href: finalexamoh.html
   - text: Resources
     menu: 
       - text: R Resources
