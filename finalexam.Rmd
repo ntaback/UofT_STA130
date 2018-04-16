@@ -36,7 +36,7 @@ The exam will cover all the material *before* and *after* the midterm test.  So,
 
 - [mideterm test review](http://52.235.36.76:3838/STA130MidtermReview/), and 
 
-- final exam [sample questions](exam_review_student.pdf) with [solutions](exam_review.pdf) .  
+- final exam [sample questions](exam_review_student.pdf) with [solutions](exam_review.pdf). **NB: Typo in Q1 Statement II corrected April 16.**  
 
 ## How many questions?
 
