@@ -22,7 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 <html>
 <head>
 <style type="text/css">
@@ -160,6 +162,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -243,71 +248,11 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">STA130 Winter 2018</a>
+      <a class="navbar-brand" href="index.html">STA130 Fall 2018</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Course Information
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="STA130syllabus2018S.html">
-        <span class="fas fa fas fa-info"></span>
-         
-        Syllabus
-      </a>
-    </li>
-    <li>
-      <a href="project_info.html">
-        <span class="fa fa-users"></span>
-         
-        Final Project
-      </a>
-    </li>
-    <li>
-      <a href="course_content.html">
-        <span class="fa fa-slideshare"></span>
-         
-        Course Content
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Test and Exam
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="term_test_2018.html">
-        <span class="fa fa-info"></span>
-         
-        Test Information
-      </a>
-    </li>
-    <li>
-      <a href="finalexam.html">
-        <span class="fa fa-info"></span>
-         
-        Final Exam
-      </a>
-    </li>
-    <li>
-      <a href="finalexamoh.html">
-        <span class="fa fa-info"></span>
-         
-        Office Hours before Exam
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Resources
      
@@ -330,6 +275,37 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Material from Previous Terms
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Winter 2018</li>
+    <li>
+      <a href="STA130syllabus2018S.html">
+        <span class="fas fa fas fa-info"></span>
+         
+        Syllabus
+      </a>
+    </li>
+    <li>
+      <a href="course_content.html">
+        <span class="fa fa-slideshare"></span>
+         
+        Course Content
+      </a>
+    </li>
+    <li>
+      <a href="project_info.html">
+        <span class="fa fa-users"></span>
+         
+        Final Project
+      </a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -346,34 +322,13 @@ $(document).ready(function () {
 </div>
 
 
-<p><br/></p>
-<div id="current-annoucments" class="section level2">
-<h2>Current Annoucments</h2>
-<div style="opacity: 0.2">
-<h3 id="course-survey-due-on-april-6-1159pm">Course Survey Due on April 6, 11:59PM</h3>
-<p>As stated on the course syllabus, 2% of the evaluation for this course is allotted for completion of an end of course survey. The purpose of this survey is to help us understand how some of the aspects of STA130 contribute to your learning. The survey is now available on the course <a href="https://portal.utoronto.ca">Blackboard page</a> under “Course Materials”. To earn your 2%, fully complete the survey by 11:59pm on Friday, April 6.</p>
-<p>Your feedback is greatly appreciated. Your instructors will not look at your particular answers to survey questions until after the final grades for the course have been submitted.</p>
-</div>
-<div id="final-exam-information" class="section level3">
-<h3>Final Exam Information</h3>
-<ul>
-<li>Detailed information about the final exam is available on the <a href="finalexam.html">information page for the final exam</a>.<br />
-</li>
-<li>See below for office hours before the exam.</li>
-</ul>
-</div>
-</div>
 <div id="instructors" class="section level2">
 <h2>Instructors</h2>
-<p><a href="http://utstat.toronto.edu/~alisong/">Professor Alison Gibbs</a> and <a href="http://utstat.toronto.edu/~nathan/">Professor Nathan Taback</a></p>
+<p><a href="http://utstat.toronto.edu/~nathan/">Professor Nathan Taback</a> and Professor Nathalie Moon.</p>
 </div>
 <div id="syllabus" class="section level2">
 <h2>Syllabus</h2>
-<p>Important information about the course can found in the <a href="STA130syllabus2018S.html">syllabus</a>.</p>
-</div>
-<div id="office-hours" class="section level2">
-<h2>Office Hours</h2>
-<p>The office hours schedule before the final exam is <a href="finalexamoh.html">here</a>.</p>
+<p>Important information about the course can found in the syllabus. Fall 2018 syllabus will be posted soon.</p>
 </div>
 <div id="computing" class="section level2">
 <h2>Computing</h2>
@@ -386,10 +341,10 @@ $(document).ready(function () {
 <li>A list of more resources is available on the course website <a href="R_resources.html">here</a>.</li>
 </ul>
 </div>
-<div id="rstudio-sever-or-rstudio-desktop" class="section level3">
-<h3>RStudio Sever or RStudio Desktop</h3>
+<div id="rstudio-cloud-or-rstudio-desktop" class="section level3">
+<h3>RStudio Cloud or RStudio Desktop</h3>
 <ol style="list-style-type: decimal">
-<li><p>Students in the course will be able to do all computing in a server edition of RStudio. RStudio Server for STA130 students can be accessed by going to <a href="https://rstudio.chass.utoronto.ca/" class="uri">https://rstudio.chass.utoronto.ca/</a></p></li>
+<li><p>Students in the course will be able to do all computing on R Studio Cloud <a href="https://rstudio.cloud" class="uri">https://rstudio.cloud</a></p></li>
 <li><p>Another alternative is to install RStudio on your own computer. You will need to download <a href="http://cran.utstat.utoronto.ca">R</a> then <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a>.</p></li>
 </ol>
 <p>R Markdown source for this website <a href="https://github.com/ntaback/UofT_STA130"> <i class="fa fa-github fa-2x" aria-hidden="true"></i> </a></p>

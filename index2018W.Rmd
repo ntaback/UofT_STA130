@@ -1,0 +1,63 @@
+---
+title: ""
+output: 
+  html_document:
+   theme: flatly
+   includes:
+     in_header: header.html
+---
+
+<br/>
+
+## Current Annoucments 
+
+<div style = "opacity: 0.2">
+### Course Survey Due on April 6, 11:59PM 
+
+As stated on the course syllabus, 2% of the evaluation for this course is allotted for completion of an end of course survey.  The purpose of this survey is to help us understand how some of the aspects of STA130 contribute to your learning. 
+The survey is now available on the course [Blackboard page](https://portal.utoronto.ca) under “Course Materials”.  To earn your 2%, fully complete the survey by 11:59pm on Friday, April 6. 
+
+Your feedback is greatly appreciated.  Your instructors will not look at your particular answers to survey questions until after the final grades for the course have been submitted. 
+</div>
+
+### Final Exam Information
+
+- Detailed information about the final exam is available on the [information page for the final exam](finalexam.html).  
+- See below for office hours before the exam.
+
+
+##Instructors
+
+[Professor Alison Gibbs](http://utstat.toronto.edu/~alisong/) and [Professor Nathan Taback](http://utstat.toronto.edu/~nathan/)
+
+## Syllabus
+
+Important information about the course can found in the [syllabus](STA130syllabus2018S.html). 
+
+## Office Hours
+
+The office hours schedule before the final exam is [here](finalexamoh.html).
+
+
+## Computing
+
+The course will use [R](https://www.r-project.org) for computing. R is freely available [here](http://cran.utstat.utoronto.ca). We recommend using [R Studio](https://www.rstudio.com) which can be [downloaded](http://cran.utstat.utoronto.ca) for free.  We will use [R Markdown](http://rmarkdown.rstudio.com) as an authoring framework for creating reproducible data science documents.
+
+### Getting Started with R
+
+- If you have never programmed before then [Hands-On Programming with R, by Garrett Grolemund](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf) is a great place to start.
+- [R for Data Science, by Hadley Wickham and Garrett Grolemund](http://r4ds.had.co.nz) is a wonderful resource. 
+- A list of more resources is available on the course website [here](R_resources.html).
+
+### RStudio Sever or RStudio Desktop
+
+1. Students in the course will be able to do all computing in a server edition of RStudio.  RStudio Server for STA130 students can be accessed by going to <https://rstudio.chass.utoronto.ca/>
+
+2. Another alternative is to install RStudio on your own computer.  You will need to download [R](http://cran.utstat.utoronto.ca) then [RStudio](https://www.rstudio.com/products/rstudio/download/#download). 
+
+
+
+
+R Markdown source for this website <a href="https://github.com/ntaback/UofT_STA130">
+<i class="fa fa-github fa-2x" aria-hidden="true"></i>
+</a>

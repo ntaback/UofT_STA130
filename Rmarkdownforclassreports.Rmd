@@ -169,7 +169,7 @@ output:
 ```
 
 * To create PDF, a program called `LaTeX` (see below) has to be installed
-on your computer.  `LaTeX` is installed on <http://rstudio.chass.utoronto.ca/>
+on your computer.  `LaTeX` is already installed on RStudio Cloud.
 * Other output formats may be available.  See `help(render)` in the `rmarkdown`
 package.
 * There are many, many other formatting options which can be given in the
@@ -559,7 +559,7 @@ combined them with `LaTeX`.)
 
 ### Installing `LaTeX`
 
-If you are producing a PDF report on https://rstudio.chass.utoronto.ca/ then you can skip this section.
+If you are producing a PDF report on RStudio Cloud then you can skip this section.
 
 If you render your R Markdown document to HTML, you do not need to install
 `LaTeX` on your computer.  This is because the HTML includes instructions to

@@ -25,7 +25,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -93,6 +95,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -272,71 +277,11 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">STA130 Winter 2018</a>
+      <a class="navbar-brand" href="index.html">STA130 Fall 2018</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Course Information
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="STA130syllabus2018S.html">
-        <span class="fas fa fas fa-info"></span>
-         
-        Syllabus
-      </a>
-    </li>
-    <li>
-      <a href="project_info.html">
-        <span class="fa fa-users"></span>
-         
-        Final Project
-      </a>
-    </li>
-    <li>
-      <a href="course_content.html">
-        <span class="fa fa-slideshare"></span>
-         
-        Course Content
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Test and Exam
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="term_test_2018.html">
-        <span class="fa fa-info"></span>
-         
-        Test Information
-      </a>
-    </li>
-    <li>
-      <a href="finalexam.html">
-        <span class="fa fa-info"></span>
-         
-        Final Exam
-      </a>
-    </li>
-    <li>
-      <a href="finalexamoh.html">
-        <span class="fa fa-info"></span>
-         
-        Office Hours before Exam
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Resources
      
@@ -355,6 +300,37 @@ div.tocify {
         <span class="fas fa fas fa-flask"></span>
          
         Data Science
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Material from Previous Terms
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Winter 2018</li>
+    <li>
+      <a href="STA130syllabus2018S.html">
+        <span class="fas fa fas fa-info"></span>
+         
+        Syllabus
+      </a>
+    </li>
+    <li>
+      <a href="course_content.html">
+        <span class="fa fa-slideshare"></span>
+         
+        Course Content
+      </a>
+    </li>
+    <li>
+      <a href="project_info.html">
+        <span class="fa fa-users"></span>
+         
+        Final Project
       </a>
     </li>
   </ul>
@@ -485,7 +461,7 @@ output:
     toc: true
 ---</code></pre>
 <ul>
-<li>To create PDF, a program called <code>LaTeX</code> (see below) has to be installed on your computer. <code>LaTeX</code> is installed on <a href="http://rstudio.chass.utoronto.ca/" class="uri">http://rstudio.chass.utoronto.ca/</a></li>
+<li>To create PDF, a program called <code>LaTeX</code> (see below) has to be installed on your computer. <code>LaTeX</code> is already installed on RStudio Cloud.</li>
 <li>Other output formats may be available. See <code>help(render)</code> in the <code>rmarkdown</code> package.</li>
 <li>There are many, many other formatting options which can be given in the header; see the main R Markdown help files online.</li>
 </ul>
@@ -821,7 +797,7 @@ n^2 -1 &amp; = &amp; n^2\\
 </div>
 <div id="installing-latex" class="section level3">
 <h3>Installing <code>LaTeX</code></h3>
-<p>If you are producing a PDF report on <a href="https://rstudio.chass.utoronto.ca/" class="uri">https://rstudio.chass.utoronto.ca/</a> then you can skip this section.</p>
+<p>If you are producing a PDF report on RStudio Cloud then you can skip this section.</p>
 <p>If you render your R Markdown document to HTML, you do not need to install <code>LaTeX</code> on your computer. This is because the HTML includes instructions to browsers, which say (as it were) “Send the funny-looking bits with all the slashes to <a href="http://www.mathjax.org">mathjax.org</a>, and it will send you back pretty pictures of equations”. The website actually runs the <code>LaTeX</code>.</p>
 <p>If you want to produce PDF on your own computer then you need to install <code>LaTeX</code>. How you actually do this depends on the precise kind of computer. For Macs, I recommend using the <code>MacTeX</code> package, available from <a href="https://tug.org/mactex/mactex-download.html" class="uri">https://tug.org/mactex/mactex-download.html</a>. For other systems, follow the links from <a href="http://www.tug.org/begin.html" class="uri">http://www.tug.org/begin.html</a>.</p>
 </div>

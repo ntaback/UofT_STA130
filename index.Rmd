@@ -7,36 +7,14 @@ output:
      in_header: header.html
 ---
 
-<br/>
-
-## Current Annoucments 
-
-<div style = "opacity: 0.2">
-### Course Survey Due on April 6, 11:59PM 
-
-As stated on the course syllabus, 2% of the evaluation for this course is allotted for completion of an end of course survey.  The purpose of this survey is to help us understand how some of the aspects of STA130 contribute to your learning. 
-The survey is now available on the course [Blackboard page](https://portal.utoronto.ca) under “Course Materials”.  To earn your 2%, fully complete the survey by 11:59pm on Friday, April 6. 
-
-Your feedback is greatly appreciated.  Your instructors will not look at your particular answers to survey questions until after the final grades for the course have been submitted. 
-</div>
-
-### Final Exam Information
-
-- Detailed information about the final exam is available on the [information page for the final exam](finalexam.html).  
-- See below for office hours before the exam.
-
 
 ##Instructors
 
-[Professor Alison Gibbs](http://utstat.toronto.edu/~alisong/) and [Professor Nathan Taback](http://utstat.toronto.edu/~nathan/)
+[Professor Nathan Taback](http://utstat.toronto.edu/~nathan/) and Professor Nathalie Moon.
 
 ## Syllabus
 
-Important information about the course can found in the [syllabus](STA130syllabus2018S.html). 
-
-## Office Hours
-
-The office hours schedule before the final exam is [here](finalexamoh.html).
+Important information about the course can found in the syllabus. Fall 2018 syllabus will be posted soon.
 
 
 ## Computing
@@ -49,9 +27,9 @@ The course will use [R](https://www.r-project.org) for computing. R is freely av
 - [R for Data Science, by Hadley Wickham and Garrett Grolemund](http://r4ds.had.co.nz) is a wonderful resource. 
 - A list of more resources is available on the course website [here](R_resources.html).
 
-### RStudio Sever or RStudio Desktop
+### RStudio Cloud or RStudio Desktop
 
-1. Students in the course will be able to do all computing in a server edition of RStudio.  RStudio Server for STA130 students can be accessed by going to <https://rstudio.chass.utoronto.ca/>
+1. Students in the course will be able to do all computing on R Studio Cloud <https://rstudio.cloud>
 
 2. Another alternative is to install RStudio on your own computer.  You will need to download [R](http://cran.utstat.utoronto.ca) then [RStudio](https://www.rstudio.com/products/rstudio/download/#download). 
 

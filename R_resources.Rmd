@@ -1,6 +1,6 @@
 ---
 title: "R Resources for STA130H1S"
-date: 'Winter 2018'
+date:
 output: 
   html_document:
     theme: flatly
@@ -8,13 +8,17 @@ output:
 
 There are lots of free resources available for learning R.  This page contains some excellent resources, but we certainly can't list all the excellent resources available.
 
-# Running R
+# Running R 
 
-[R](https://www.r-project.org) is a free software environment for statistical computing and graphics.  R can be freely downloaded at [CRAN](https://cran.r-project.org).
+<a href= "https://www.r-project.org"><i class="fab fa-r-project fa-1x"></i></a> is a software environment for statistical computing and graphics that can be freely downloaded at [CRAN](https://cran.r-project.org).
 
-[RStudio](https://www.rstudio.com) is a popular integrated development environment for R.  A desktop version is available to [download](https://www.rstudio.com/products/rstudio/#Desktop) on to your personal computer for free. 
+[RStudio](https://www.rstudio.com) is a popular integrated development environment for <i class="fab fa-r-project fa-1x"></i> that we will be using throughout the course.
 
-We have setup a version of RStudio that STA130 students can access from any web browser at http://rstudio.chass.utoronto.ca/. This can be used for all computing in the course.  Only STA130H1S students will have access. This has all R libraries installed that you will require to complete course assignments.  **Note that RStudio does not currently work properly on [mobile devices](https://support.rstudio.com/hc/en-us/articles/217801028-Can-I-run-RStudio-IDE-Shiny-Server-on-a-mobile-device-).**
+There are two ways that students can run R using RStudio:
+
+1. Create an account on [RStudio Cloud](https://rstudio.cloud).
+
+2. Install RStudio on your computer.  A desktop version is available to [download](https://www.rstudio.com/products/rstudio/#Desktop) on to your personal computer for free. 
 
 
 # Getting Started with R
