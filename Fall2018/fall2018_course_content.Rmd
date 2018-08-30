@@ -10,7 +10,9 @@ output:
    css: ../custom.css
 ---
 
+
 This page contains course material such as class slides, practice problems, and tutorial assignments.
+
 
 # Week 0
 
@@ -28,11 +30,13 @@ The first classes are on September 10.  Before you come to class do the followin
 
 3. Get introduced to R.  Two ways to get you started are:
 
-(i) Complete [Datacamp's](https://www.datacamp.com) free online [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
+(i) Sign up for [R Studio Cloud](https://rstudio.cloud)
 
-(ii)  Read chapters 1, 2, and 3 of [Hands-On Programming with R, by Garrett Grolemund](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf).  
+(ii) Complete the tutorial on [R programming basics](https://rstudio.cloud/learn/primers/1.2).  If you would like a deeper introductory R programming tutorial then complete [Datacamp's](https://www.datacamp.com) free online [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
 
-You can do both (i) and (ii), but a lot of the same content is covered. If you decide to only complete the readings then make sure to type the commands into the console window in RStudio.    
+(iii)  Read chapters 1, 2, and 3 of [Hands-On Programming with R, by Garrett Grolemund](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf).  
+
+You can do both (ii) and (iii), but a lot of the same content is covered. If you decide to only complete the readings then make sure to type the commands into the console window in RStudio.    
 
 # Week 1
 
