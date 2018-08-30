@@ -14,7 +14,7 @@ output:
 
 ## Syllabus
 
-Important information about the course can found in the syllabus. Fall 2018 syllabus will be posted soon.
+Important information about the course can found on the [Fall 2018 syllabus](Fall2018/STA130syllabus2018S-Fall2018.html).
 
 
 ## Computing
