@@ -22,9 +22,9 @@ The first classes are on September 10.  Before you come to class do the followin
 
 0. Read through the course syllabus.
 
-1. Read the [R resources section](R_resources.html) of the course webpage.
+1. Read the [R resources section](../R_resources.html) of the course webpage.
 
-2. Sign up for the [Piazza discussion forum](piazza.com/utoronto.ca/fall2018/sta130h1).
+2. Sign up for the [Piazza discussion forum](https://piazza.com/utoronto.ca/fall2018/sta130h1).
 
 3. Get introduced to R.  Two ways to get you started are:
 
