@@ -16,6 +16,10 @@ output:
 
 Important information about the course can found on the [Fall 2018 syllabus](Fall2018/STA130syllabus2018S-Fall2018.html).
 
+## Course Calendar
+
+Important course dates can be found in the [course calender](Fall2018/STA130-Fall2018-Calendar.html).
+
 
 ## Computing
 
