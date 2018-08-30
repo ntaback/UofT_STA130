@@ -1,0 +1,145 @@
+---
+title: "STA130 Course Content"
+date: 'Fall 2018'
+output: 
+  html_document:
+   toc: true
+   toc_depth: 2
+   toc_float: true 
+   theme: flatly
+   css: ../custom.css
+---
+
+This page contains course material such as class slides, practice problems, and tutorial assignments.
+
+# Week 0
+
+## September 7 Tutorial
+
+There are no tutorials on September 7.  Instead of attending tutorial we suggest that you spend some time getting acquainted with the basics of [R](https://www.r-project.org).  We will be using R throughout the course.
+
+The first classes are on September 10.  Before you come to class do the following:
+
+0. Read through the course syllabus.
+
+1. Read the [R resources section](R_resources.html) of the course webpage.
+
+2. Sign up for the [Piazza discussion forum](piazza.com/utoronto.ca/fall2018/sta130h1).
+
+3. Get introduced to R.  Two ways to get you started are:
+
+(i) Complete [Datacamp's](https://www.datacamp.com) free online [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
+
+(ii)  Read chapters 1, 2, and 3 of [Hands-On Programming with R, by Garrett Grolemund](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf).  
+
+You can do both (i) and (ii), but a lot of the same content is covered. If you decide to only complete the readings then make sure to type the commands into the console window in RStudio.    
+
+# Week 1
+
+## September 10 Class
+
+### Slides and References
+
+## September 14 Tutorial
+
+<div class=second>
+# Week 2
+
+## September 17 Class
+
+### Slides and References
+
+## September 21 Tutorial
+
+# Week 3
+
+## September 24 Class
+
+### Slides and References
+
+## September 28 Tutorial
+
+# Week 4
+
+## October 1 Class
+
+### Slides and References
+
+## October 5 Tutorial
+
+# Week 5
+
+## October 8 Class
+
+### Slides and References
+
+## October 12 Tutorial
+
+# Week 6
+
+## October 15 - No Class due to Thanksgiving
+
+### Slides and References
+
+## October 19 Tutorial
+
+# Week 7
+
+## October 22 Class
+
+### Slides and References
+
+## October 26 Tutorial
+
+Midterm test during tutorial
+
+# Week 8
+
+## October 29 Class
+
+### Slides and References
+
+## October 29 Tutorial
+
+
+# Fall Reading Week 
+
+- No classes or tutorials
+
+
+# Week 9
+
+## November 12 Class
+
+### Slides and References
+
+## November 16 Tutorial
+
+
+# Week 10
+
+## November 19 Class
+
+### Slides and References
+
+## November 23 Tutorial
+
+# Week 11
+
+## November 26 Class
+
+### Slides and References
+
+## November 30 Tutorial
+
+
+# Week 12
+
+## December 3 Class
+
+### Slides and References
+
+## STA130 Poster Fair - Thursday, December 6
+
+</div>
+

@@ -3,6 +3,19 @@ output_dir: '.'
 navbar:
   title: STA130 Fall 2018
   left:
+  - text: Fall 2018
+    menu:
+    - text: Syllabus
+      icon: fas fa-info
+      href: Fall2018/STA130syllabus2018S-Fall2018.html
+    - text: Course Calendar
+      icon: far fa-calendar-alt
+      href: Fall2018/STA130-Fall2018-Calendar.html
+    - text: Course Content
+      icon: fa-slideshare
+      href: Fall2018/fall2018_course_content.html
+    - text: Final Project
+      icon: fa-users
   - text: Resources
     menu:
     - text: R Resources
@@ -13,7 +26,7 @@ navbar:
       href: Datasci.html
   - text: Material from Previous Terms
     menu:
-    - text: Winter 2018
+    - text: Winter 2018 (last term)
     - text: Syllabus
       icon: fas fa-info
       href: STA130syllabus2018S.html
@@ -28,4 +41,3 @@ output:
   html_document:
     lib_dir: site_libs
     self_contained: no
-

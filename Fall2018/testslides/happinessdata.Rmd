@@ -1,0 +1,51 @@
+---
+title: "happiness data"
+author: "Nathan Taback"
+date: '2018-08-17'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+```
+
+
+
+```{r, echo=F, message=F, warning=F}
+# load and process data
+happinessurl <- "http://worldhappiness.report/wp-content/uploads/sites/2/2017/03/online-data-chapter-2-whr-2017.xlsx"
+
+destfile <- "happiness.xlsx"
+
+download.file(happinessurl, destfile)
+
+happinessdata <- read_xlsx(destfile)
+
+names(happinessdata) <- c("c1","country","year","life_ladder","logGDP","social_support","life_exp","freedom","generosity","corruption","positive_affect","negative_affect","confidence_govt","democratic","delivery","sd_ladder","sd_meanladder","GINI","GINIavg","GINIincome","trusted","trusted1","trusted2","trusted3","trusted4","trusted5","trusted6")
+
+
+happinessdata <- happinessdata %>% select(country,year,life_ladder,logGDP,social_support,life_exp,freedom,generosity,corruption)
+
+# add continents
+
+continenturl <- "https://raw.githubusercontent.com/pdelboca/udacity-data-analysis-with-r/master/data/Countries-Continents.csv"
+
+continentdata <- read_csv(continenturl) 
+
+continentdata <- continentdata %>% 
+  rename(continent=Continent, country=Country) %>% # new_name = old_name
+  select(continent,country) # keep continent and country 
+
+
+happinessdata <- left_join(happinessdata,continentdata) #join the two data sets
+
+# clean up missing continents
+# happinessdata[is.na(happinessdata$continent),1]
+
+happinessdata <- happinessdata %>% 
+  mutate(continent=ifelse(country %in% c("Burkina Faso","Congo (Brazzaville)","Congo (Kinshasa)","Somaliland region"),"Africa",ifelse(country %in% c("Hong Kong S.A.R., China","Kosovo","Myanmar","Palestinian Territories","Russia","South Korea","Taiwan Province of China"),"Asia",ifelse(country=="North Cyprus","Europe",continent))))
+
+write_csv(happinessdata, "happinessdata_2017.csv")
+```

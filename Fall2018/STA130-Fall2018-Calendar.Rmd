@@ -1,0 +1,12 @@
+---
+title: "STA130 Course Calendar"
+date: 'Fall 2018'
+output: 
+  html_document:
+   theme: flatly
+   css: ../custom.css
+---
+
+The course calendar below can be viewed in a [web browser](https://calendar.google.com/calendar/embed?src=gsonu5disik2aju2r8u2uvc3h0%40group.calendar.google.com&ctz=America%2FToronto) or in [iCal format](https://calendar.google.com/calendar/ical/gsonu5disik2aju2r8u2uvc3h0%40group.calendar.google.com/public/basic.ics).
+
+<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%2333ccff&amp;src=gsonu5disik2aju2r8u2uvc3h0%40group.calendar.google.com&amp;color=%2323164E&amp;ctz=America%2FToronto" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>

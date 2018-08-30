@@ -1,0 +1,121 @@
+---
+title: "STA130H1 -- Fall 2018"
+subtitle: Week 1 Practice Problems
+author: N. Moon and N. Taback
+output:
+  html_document: default
+---
+
+# Instructions
+
+## What should I bring to tutorial on January 12?
+
+- R output (e.g., plots) for Question 2.  You can either bring a hardcopy or bring your laptop with the output.
+
+## First steps to answering these questions.
+
+- Login to RStudio <https://rstudio.chass.utoronto.ca/> 
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r,eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week1/Week1PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week1PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week1PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week 1 Practice Problems Solutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+- If you are NOT working on <https://rstudio.chass.utoronto.ca/> then you will need to install several libraries such as `tidyverse`, `mdsr` and `mosaic` to complete the questions.
+
+
+# Practice Problems
+
+## Question 1
+
+The `marriage` data is in the `mosaic` package, which you must first load with the command `library(mosaic)`.  You can read more about the data and the variables here:  [https://rdrr.io/cran/mosaicData/man/Marriage.html](https://rdrr.io/cran/mosaicData/man/Marriage.html).
+  
+
+a. Construct at least two plots that each show the distribution of one categorical variable.
+  
+b. Construct at least two plots that each show the distribution of one quantitative variable.
+  
+c. Construct a plot that shows the relationship between two variables.  What can you say about the relationship?
+  
+
+## Question 2
+
+The `Gestation` data set is also part of the `mosaic` package.   
+
+
+(a) Create a histogram and boxplot of the length of gestation.  What is the shape of the distribution? Explain.
+
+(b) Do highly college educated mother's have different gestation times compared to mother's that did not graduate high school?  Construct a data vizualization to investigate the answer to this question.  Explain why you chose this vizualization.
+
+(c) Does smoking lead to shorter gestation times? Construct a data vizualization to investigate the answer to this question.  Explain why you chose this vizualization.
+
+(d) Approximately twenty-five percent of mother's that never smoked had a gestation time less than ______? Explain how you derived your estimate.  
+
+
+```{r, warning=FALSE, message=FALSE}
+library(mosaic)
+library(tidyverse)
+glimpse(Gestation)
+
+ggplot(data = Gestation) + 
+  aes(x = gestation) + 
+  geom_histogram(colour = "black", fill = "grey")
+
+ggplot(data = Gestation) + 
+  aes(x = gestation) + 
+  geom_histogram(colour = "black", fill = "grey")
+
+ggplot(data = Gestation) + 
+  aes(y = gestation, x = "") + 
+  geom_boxplot()
+
+
+ggplot(data = Gestation) + 
+  aes(x = as.factor(time)) + 
+  geom_bar()
+
+ggplot(data = Gestation) + 
+  aes(y = gestation, x = as.factor(ed)) + 
+  geom_boxplot()
+
+ggplot(data = Gestation) + 
+  aes(y = gestation, x = as.factor(number)) + 
+  geom_boxplot()
+
+```
+
+
+## Question 3
+    
+For this exercise, you will load data from an external source.  You can read about the data here: [http://sta220.utstat.utoronto.ca/data/the-skeleton-data/](http://sta220.utstat.utoronto.ca/data/the-skeleton-data/).  
+
+The data are in a plain text file with spaces between columns here: [http://stats.onlinelearning.utoronto.ca/wp-content/uploaded/Data/SkeletonDatacomplete.txt](http://stats.onlinelearning.utoronto.ca/wp-content/uploaded/Data/SkeletonDatacomplete.txt).  The following code will load the data into a tibble (the tidyverse version of a data frame).
+
+a. Read the data into `R` using the following code.  
+
+
+```{r,eval=FALSE}
+library(tidyverse)
+data_url <- "http://stats.onlinelearning.utoronto.ca/wp-content/uploaded/Data/SkeletonDatacomplete.txt"
+skeleton_data <- read_table(data_url)
+```
+
+Inspect the data to make sure it is read in completely.  You can compare by going directly to the `data_url`.  
+
+
+b. Construct at least four interesting graphs with the data, including: a graph of one categorical variable, a graph of one quantitative variable, a graph with at least two variables, a graph with at least three variables.  
+
+c. Describe what you learned about the data from your graphs.
+
+
+R Markdown source <a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Week1PracticeProblems-student.Rmd">
+<i class="fa fa-github fa-2x" aria-hidden="true"></i>
+</a>
