@@ -20,7 +20,6 @@ Important information about the course can found on the [Fall 2018 syllabus](Fal
 
 Important course dates can be found in the [course calender](Fall2018/STA130-Fall2018-Calendar.html).
 
-
 ## Computing
 
 The course will use [R](https://www.r-project.org) for computing. R is freely available [here](http://cran.utstat.utoronto.ca). We recommend using [R Studio](https://www.rstudio.com) which can be [downloaded](http://cran.utstat.utoronto.ca) for free.  We will use [R Markdown](http://rmarkdown.rstudio.com) as an authoring framework for creating reproducible data science documents.
