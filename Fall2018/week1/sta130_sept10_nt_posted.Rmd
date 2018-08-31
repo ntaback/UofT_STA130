@@ -206,63 +206,6 @@ Rest of plane    | 1.8
 
 Poll everywhere
 
----
-
-##  Missing bullet holes problem
-
-Wald said that the armour doesn’t go where the bullet holes are.  It goes where the bullet holes aren’t: on the engines.
-
----
-
-##  Missing bullet holes problem
-
-
-- Wald’s insight was to ask: where are the missing holes?
-
---
-- The missing bullet holes were on the missing planes.
-
---
-- The reason planes were coming back with fewer hits to the engine is that planes that got hit in the engine weren’t coming back.
-
----
-
-##  Missing bullet holes problem
-
-What did Wald see that the officers who had more knowledge and understanding of aerial combat, couldn’t?
-
---
-
-- A Statistician is always asking what assumptions are you making?  Are they justified?
-
---
-
-- The officers were making the assumption that the planes that came back were a random sample of all the planes.  
-
---
-
-- Once you recognize that you have been making this hypothesis, it takes a moment to realize that it’s wrong.
-
---
-
-- In statistical lingo, the rate of survival and location of bullet holes are correlated.
-
----
-
-## Survivorship Bias
-
-- The underlying statistical phenomena is often called survivorship bias.
-
---
-
-- Thinking statistically let’s you see the common skeleton shared by problems that look very different on the surface.
-
---
-- Thus you have meaningful experience even in areas where you appear to have none.
-
----
-
-
 
 ## Who am I?
 
