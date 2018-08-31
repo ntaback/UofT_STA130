@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # September 14 Tutorial
 
-## Answer the questions using RStudio Cloud  
+## Answer the questions using RStudio Cloud (recommended)
 
 1. Go to R Studio Cloud [workspace for this assignment](https://rstudio.cloud/spaces/3186/project/60903), or directly copy this link <https://rstudio.cloud/spaces/3186/project/60903> in your browser.
 
@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
 
 
-## Answer these questions using RStudio installed on your own computer
+## Answer the questions using RStudio installed on your own computer
 
 Download this R markdown file directly into RStudio by typing the following code into the RStudio console window.   
 
