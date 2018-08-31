@@ -1,0 +1,171 @@
+---
+title: "STA130H1F -- Fall 2018"
+subtitle: Week 1 Practice Problems
+author: N. Taback and N. Moon
+output:
+  html_document: default
+---
+
+# Instructions
+
+## What should I bring to tutorial on September 14?
+
+- R output (e.g., plots and explanations) for Question 2 only.  You can either bring a hardcopy or bring your laptop with the output.
+
+# Practice Problems
+
+## Question 1
+
+The `Marriage` data is in the `mosaic` package, which you must first load with the command `library(mosaic)`.  You can read more about the data and the variables here:  [https://rdrr.io/cran/mosaicData/man/Marriage.html](https://rdrr.io/cran/mosaicData/man/Marriage.html).  You can also use the help command `?Marriage` for a description of the data.
+  
+a. Choose two categorical variables and plot thier distributions.  Interpret the plots.
+
+```{r, warning=FALSE, message=FALSE}
+# Construct your plots in this code chunk
+library(mosaic)
+library(tidyverse)
+
+
+```
+
+**Answer the question in this space.**
+  
+b. Choose a quantitative variables and plot it's distributions.  Interpret the plot.
+
+```{r, warning=FALSE, message=FALSE}
+# Construct your plots in this code chunk
+library(mosaic)
+library(tidyverse)
+
+
+```
+  
+**Answer the question in this space.**
+  
+c. Construct a plot that shows the relationship between two variables.  What can you say about the relationship?
+
+```{r, warning=FALSE, message=FALSE}
+# Construct your plots in this code chunk
+library(mosaic)
+library(tidyverse)
+
+
+```  
+
+**Answer the question in this space.**
+
+## Question 2
+
+The `Gestation` data set is also part of the `mosaic` package.  Use the help command `?Gestation` for a description of the data.
+
+
+(a) Create three histograms of the length of gestation using the number of bins defined as 2, 25, and 50.  What is the relationship between the number of bins and the width of the bins?  Which number of bins do you think is most appropriate to display this distribution?  What is the shape of the distribution? Explain.
+
+
+```{r}
+# Construct your plots in this code chunk
+library(tidyverse)
+library(mosaic)
+
+
+```
+
+**Answer the question in this space.**
+
+
+(b) Do high school graduates and college graduates have different gestation distributions?  Construct a data vizualization to investigate the answer to this question.  Explain why you chose this vizualization.
+
+
+```{r}
+# Construct your plots in this code chunk
+library(tidyverse)
+library(mosaic)
+
+
+```
+
+
+**Answer the question in this space.**
+
+(c) Create a vizualization to explore the relationship between a babies birth weight and gestation length.  Explain why you chose this vizualization.  What can you learn from your vizualization?
+
+```{r, message=FALSE, warning=FALSE}
+# Construct your plots in this code chunk
+library(tidyverse)
+library(mosaic)
+
+
+```
+
+**Answer the question in this space.**
+
+(d) Modify the vizualization that you created in part (c) to evaluate if the relationship between a babies weight and gestation time is the same for mother's  that never smoked compared to meother's that smoke
+now. Explain how you modified your vizualization.
+
+
+```{r, message=FALSE, warning=FALSE}
+# Construct your plots in this code chunk
+library(tidyverse)
+library(mosaic)
+
+
+```
+
+**Answer the question in this space.**
+
+## Question 3
+    
+For this exercise, you will load data from an external source.  You can read about the data here: [http://sta220.utstat.utoronto.ca/data/the-skeleton-data/](http://sta220.utstat.utoronto.ca/data/the-skeleton-data/).  
+
+The data are in a plain text file with spaces between columns here: [http://stats.onlinelearning.utoronto.ca/wp-content/uploaded/Data/SkeletonDatacomplete.txt](http://stats.onlinelearning.utoronto.ca/wp-content/uploaded/Data/SkeletonDatacomplete.txt).  The following code will load the data into a tibble (the tidyverse version of a data frame).
+
+a. Read the data into `R` using the following code.  
+
+
+```{r,eval=FALSE}
+library(tidyverse)
+data_url <- "http://stats.onlinelearning.utoronto.ca/wp-content/uploaded/Data/SkeletonDatacomplete.txt"
+skeleton_data <- read_table(data_url)
+```
+
+Inspect the data to make sure it is read in completely.  You can compare by going directly to the `data_url`.  
+
+b. Construct at least four interesting graphs with the data, including: a graph of one categorical variable, a graph of one quantitative variable, a graph with at least two variables, a graph with at least three variables.  
+
+Example graph of one categorical variable:
+
+```{r, warning=FALSE, message=FALSE}
+# Construct your plots in this code chunk
+library(tidyverse)
+
+```
+
+
+Example graphs of one quantitative variable:
+
+```{r, warning=FALSE, message=FALSE}
+# Construct your plots in this code chunk
+library(tidyverse)
+
+```
+
+Example graphs with two variables:
+
+```{r, warning=FALSE, message=FALSE}
+# Construct your plots in this code chunk
+library(tidyverse)
+
+```
+
+Example graphs with three variables:
+
+```{r, warning=FALSE, message=FALSE}
+# Construct your plots in this code chunk
+library(tidyverse)
+
+```
+
+
+c. Describe what you learned about the data from your graphs.
+
+**Answer the question in this space.**

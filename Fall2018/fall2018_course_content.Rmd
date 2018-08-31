@@ -46,6 +46,11 @@ You can do both (ii) and (iii), but a lot of the same content is covered. If you
 
 ## September 14 Tutorial
 
+Read [this](week1/tutorial/howtoanswertutq_sept14.html) before answering practice problems using RStudio.   
+
+[Practice problems](week1/tutorial/Week1PracticeProblems-Fall2018-student.html)
+
+
 <div class=second>
 # Week 2
 
