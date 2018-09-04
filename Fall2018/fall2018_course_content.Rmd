@@ -42,6 +42,13 @@ You can do both (ii) and (iii), but a lot of the same content is covered. If you
 
 ## September 10 Class
 
+### Topics
+
+- Course overview.
+- Introduction to data vizualization using the `ggplot2` library in R.
+- Histrograms, bar graphs, scatter plots, faceting.
+- Distribution of quantitative and numerical variables.
+
 ### Slides and References
 
 Prof. Taback's class slides - M10 (L0101): [html](week1/sta130_sept10_nt_posted.html);  [pdf](week1/sta130_sept10_nt_posted.pdf).
