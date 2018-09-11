@@ -56,7 +56,8 @@ You can do both (ii) and (iii), but a lot of the same content is covered. If you
 
 Prof. Taback's class slides - Mon 10:00 (L0101): [html](week1/sta130_sept10_nt.html), [pdf](week1/sta130_sept10_nt.pdf).
 
-Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](week1/week1_nm_posted.pdf"), [pdf - anotated]( week1/week1_nm_in-class_annotated.pdf)
+Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](week1/week1_nm_posted.pdf), 
+[pdf - anotated](week1/Week1_nm_in-class_annotated.pdf)
 
 
 ### References
