@@ -73,6 +73,9 @@ Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](week1/week1_nm_posted.pdf),
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week1/tutorial/Week1PracticeProblems-Fall2018-student.html)
 
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems - Sample Solutions](week1/tutorial/solutions/Week1PracticeProblems-Fall2018-solutions.html)
+
+
 <div class=second>
 # Week 2
 

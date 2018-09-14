@@ -31,7 +31,7 @@ a, a > code {
   font-size: 90%;
 }
 .remark-code, .remark-inline-code { 
-  font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; 
+  font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; font-size: 50%;
 }
 .remark-code-line-highlighted     { background-color: #ffff88; }
 
