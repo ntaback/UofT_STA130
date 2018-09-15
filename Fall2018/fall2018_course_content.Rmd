@@ -81,7 +81,32 @@ Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](week1/week1_nm_posted.pdf),
 
 ## September 17 Class
 
-### Slides and References
+### Topics
+
+- Introduction to programming with R
+    + RStudio user interface
+    + R Objects
+    + R Functions
+    + R Scripts
+    + R Packages
+    + R Lists
+    + R Notation
+    + R Missing Data
+
+- Numerical descriptions of the distribution of quantitative variable
+
+### Slides
+
+Prof. Taback's class slides - Mon 10:00 (L0101): [html](week2/sta130_sept17_nt.html), [pdf](week2/sta130_sept17_nt.pdf).
+
+Prof. Moon's class slides - Mon 14:00 (L0201): Copy and Paste this link into your browser: https://www.dropbox.com/s/9zt6s6wtqda85fd/week2slides_nm.pdf?dl=0
+
+
+### References
+
+1. [Hands on Programming With R. G. Grolemund - Chapters 1-5](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf)
+
+2. [Introductory Statistics with Randomization and Simulation. Diez, D.M., Barr, C.D., and Çetinkaya-Runde, M. . Section 1.6](https://www.openintro.org/download.php?file=isrs1_tablet&referrer=/stat/textbook.php)
 
 ## September 21 Tutorial
 
