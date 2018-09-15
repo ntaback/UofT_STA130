@@ -76,7 +76,7 @@ Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](week1/week1_nm_posted.pdf),
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems - Sample Solutions](week1/tutorial/solutions/Week1PracticeProblems-Fall2018-solutions.html)
 
 
-<div class=second>
+
 # Week 2
 
 ## September 17 Class
@@ -84,6 +84,13 @@ Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](week1/week1_nm_posted.pdf),
 ### Slides and References
 
 ## September 21 Tutorial
+
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week2/tutorial/howtoanswertutq_sept21.html) before answering practice problems using RStudio.
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week2/tutorial/Week2PracticeProblems-Fall2018_student.html)
+
+
+<div class=second>
 
 # Week 3
 

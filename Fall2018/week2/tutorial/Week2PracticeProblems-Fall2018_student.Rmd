@@ -1,0 +1,154 @@
+---
+title: "STA130H1F -- Fall 2018"
+subtitle: Week 2 Practice Problems
+author: N. Taback and N. Moon
+output:
+  html_document: default
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on September 21?
+
+- R output (e.g., plots and explanations) for Question 1 and 2 only.  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+# Practice Problems
+
+## Question 1
+
+(a)  Most students in undergrad at UofT are either in their first, second, third or fourth year of study.  Create an object in R called `year` that represents year of study at university.  
+
+**Insert your answer here **
+
+(b)  Use the `sample()` function to simulate selecting 100 students and recording their year of study. 
+
+**Insert your answer here**
+
+(c) How many students in your sample are in each year?
+
+**Insert your answer here**
+
+(d) What is the average and standard deviation of the number of years students have been studying in your sample?
+
+**Insert your answer here**
+
+(e) Write a function that returns the average number of years for given sample size.
+
+
+**Insert your answer here**
+
+(f)  The `replicate()` function in R can evaluate an expression a fixed number of times. For example, the following code will: 
+
+1. draw a random sample of 8 with replacement from the numbers 1 to 10, 
+2. calculate the average of the sample, and 
+3. repeat this process 5 times. 
+
+```{r}
+replicate(n = 5,  mean(sample(1:10, size = 8, replace = TRUE)))
+```
+
+Use the `replicate()` and the function you wrote in part (e) to simulate sampling 500 students per year for 50 years.  Plot the distribution of the average years of study for each year.  What is the mean and standard deviation of the this distribution? What is the shape of the distribution?  Explain.
+
+**Insert your answer here**
+
+# Question 2
+
+The `Galton` data set in the `mosaic` library contains data from Francis Galton in the 1880s.  
+
+```{r}
+library(mosaic)
+library(tidyverse)
+glimpse(Galton)
+```
+
+(a) Using the `Galton` data use R to calculate the average and variance of child's height in families 1, 2, and 32.  Which family has the largest variance?  Explain the meaning of variance in this context.  
+
+**Insert your answer here**
+
+(b)  Do tall Fathers have tall kids?  Do tall Mothers have tall kids?  Vizualize the relationships between the average height of kids in a family and their Fathers' and Mothers' heights.  Explain your answer.  
+
+One way to calculate the mean height of kids in each family is to use `group_by()` in combination with `summarise()` function in the `dplyr` library. We haven't covered `group_by()` in class yet, but an example on how to do this is given below.  Note that both `group_by()` and `summarise()` return a data frame.
+
+Here is an example.  Consider a simple data frame `marks` of the final marks for two (fictitious) students that each took five courses during their first year at UofT.  The example below uses `group_by()` then `summarise()` to calculate the average mark for each student.
+
+```{r}
+library(tidyverse)
+
+marks <- data_frame(student = c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2), 
+                    courses = c("STA130", "MAT137", "ECO100", "CSC148", "PHL100",
+                                "STA130", "MAT137", "ECO100", "CSC148", "PHL100"),
+                    grade = c(82, 83, 77, 84, 79, 83, 74, 85, 77, 72))
+
+marks_grouped <- group_by(marks, student)
+
+ave_grades <- summarise(marks_grouped, ave = mean(grade))
+ave_grades
+
+# verify calculations
+mean(c(82, 83, 77, 84, 79)) 
+mean(c(83, 74, 85, 77, 72)) 
+```
+
+**Insert your answer here**
+
+# Question 3
+An [article](https://fivethirtyeight.com/features/weather-forecast-news-app-habits/) from [FiveThirtyEight](https://fivethirtyeight.com) explored where people check the weather.  Use the `weather_check` data set in the `fivethirtyeight` library to answer the following question. 
+
+(a)  Where do people go to check the weather?  Do people use internet sources (Phone apps, websites, etc.) versus non-internet sources more often.  HINT:  use the `count()` function in the `dplyr` library.
+
+```{r}
+library(fivethirtyeight)
+glimpse(weather_check)
+```
+
+**Insert your answer here**
+
+(b)  Do people ages 18-29 watch the Weather Channel at the same rate as people 45-59?  Explain.
+
+
+**Insert your answer here**
+
+# Question 4
+
+The R function `sample(x, size, replace = TRUE)` applied to the vector `c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)` (this also can be written in R as `0:9`) can take a random sample of size `size` from the numbers 0 - 9.  If the sampling is truly random then we would expect that each digit, 0 - 9, to have an equal chance of being sampled.  
+
+(a)  Create a data frame that has a random sample of 100 numbers from 0 - 9.  Compute the proportion of times that each number occurs (i.e., the proportion of the 100 numbers that are 0, the proportion of the 100 numbers that are 1, etc.).  Below is some code to get you started.
+
+```{r, eval=FALSE}
+dat <- sample(0:9, size = FILL IN CODE, replace = TRUE)
+samp <- data_frame(dat)
+ssamp_dat <- count(FILL IN CODE)
+mutate(FILL IN CODE)
+```
+
+**Insert your answer here**
+
+(b) Do the same as in part (a) except take a random sample of 1000 from 0 - 9.
+
+**Insert your answer here**
+
+(c) Do the same as in part (a) except take a random sample of 10000 from 0 - 9.
+
+**Insert your answer here**
+
+(d) If the sampling is truly random then what proportion of the sample do you expect will contain each number 0 - 9?  Compare your expectation with the distribution of the numbers 0 - 9 that you found in parts (a) - (c).  Which part is closest to what you expected?    
+
+**Insert your answer here**

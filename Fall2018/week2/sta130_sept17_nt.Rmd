@@ -1,0 +1,737 @@
+---
+title: "STA130H1F"
+subtitle: "Class #2"
+author: "Prof. Nathan Taback"
+date: "2018-17-09"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+# R options
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  warm = 1
+  )
+# Set dpi and height for images
+library(knitr)
+opts_chunk$set(fig.height = 2.65, dpi = 300, warning=FALSE, message=FALSE) 
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+# For nonsese...
+library(emo)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(tidyverse)
+```
+
+
+# Welcome back to STA130  `r emo::ji("happy")`
+## Today's class
+
+- Introduction to programming with R
+
+--
+
+- Numerical descriptions of the distribution of quantitative variable
+
+---
+
+#Tutorial grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion       | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+---
+
+# Programming with R
+
+- RStudio user interface
+- R Objects
+- R Functions
+- R Scripts
+- R Packages
+- R Lists
+- R Notation
+- R Missing Data
+
+---
+
+
+## RStudio User Interface
+
+
+<img src="rstudioscreenshot.png" style="width:6in;height:3in;">
+
+---
+
+## R Objects
+
+- R lets you save data by storing it inside an R object. 
+- What’s an object? Just a name that you can use to call up stored data. 
+
+```{r}
+x <- 1
+x
+```
+
+---
+
+## Environment Pane in RStudio
+
+- When you create an object, the object will appear in the environment pane of RStudio.
+
+<img src="renvpane.png" style="width:6in;height:3in;">
+---
+
+## Functions
+
+- R comes with many functions that you can use to do sophisticated tasks like random sampling. 
+
+--
+
+- For example, you can round a number with the round function `round()`, or calculate its absolute value with `abs()`. 
+
+--
+
+-  Write the name of the function and then the data you want the function to operate on in parentheses:
+
+```{r}
+round(-2.718282, 2)
+abs(-5)
+abs(round(-2.718282, 2))
+```
+
+---
+
+## Function Constructor
+
+-  Every function in R has three basic parts: a name, a body of code, and a set of arguments. 
+
+--
+
+- To make your own function, you need to replicate these parts and store them in an R object, which you can do with the function `function()`. 
+
+--
+
+- To do this, call `function()` and follow it with a pair of braces, `{}` 
+
+```{r, eval=FALSE}
+my_function <- function() {
+  add code here
+}
+```
+
+
+---
+## Function Constructor
+
+Simulate rolling a pair of dice and adding the result with the code:
+
+```{r}
+die <- 1:6
+dice <- sample(die, size = 2, replace = TRUE) 
+sum(dice)
+```
+
+---
+## Function Constructor
+
+- We can create our own function with 
+
+```{r, cache=TRUE}
+roll <- function() {
+  die <- 1:6
+  dice <- sample(die, size = 2, replace = TRUE)
+  sum(dice)
+}
+```
+
+Call the function `roll()`
+
+```{r}
+roll() 
+```
+
+NB: result will differ with every call
+---
+
+## Function Arguments
+
+Instead of rolling one die consider rolling four or ten dice then adding the results of all the rolls together. 
+
+```{r,cache=TRUE}
+roll2 <- function(numrolls) {
+  die <- 1:6
+  dice <- sample(die, size = numrolls, replace = TRUE) 
+  sum(dice) 
+}
+```
+
+`numrolls` is called an _argument_ of the function `roll2()`.
+
+Let's simulate rolling ten dice and adding the results together.
+
+```{r}
+roll2(10)
+```
+
+---
+
+## Scripts
+
+- If we want to edit the function `roll2()` then we will want to save it in a script.
+
+- To do this in RStudio File > New File > R script in the menu bar.
+
+<img src="rscript.png" style="width:6in;height:3in;">
+
+---
+
+## Packages
+
+- You’re not the only person writing your own functions with R. 
+
+--
+
+- Many professors, programmers, and statisticians use R to design tools that can help people analyze data. 
+
+--
+
+- They then make these tools free for anyone to use. 
+
+--
+
+- To use these tools, you just have to download them. They come as preassembled collections of functions and objects called packages. 
+
+--
+
+- We have already used two packages `ggplot2` and `dplyr`.
+
+---
+
+## Packages
+
+To install the package `tidyverse` in RStudio go to the Packages tab in RStudio and click Install.
+
+<img src="packages.png" style="width:6in;height:3in;">
+
+To load a package type 
+```{r,eval=FALSE}
+library(tidyverse)
+```
+
+---
+
+## RStudio IDE
+
+- IDE: Integrated Development Environment.
+- The RStudio IDE has many features that we will not use in the course.
+
+<img src="rstudioide.png" style="width:6in;height:2in;">
+
+- The __console__ is where you can type an R command at the prompt and the result is returned.
+- Write code in an R script, R Markdown document, or R Notebook.  
+- Run a script or R chunks from an R Markdown or R Notebook by pushing the run button in the chunk.
+
+---
+
+## R Objects 
+
+- R stores data in objects such as vectors, arrays, and matricies.
+- In most applications we will ususally load data from an external file.  
+
+---
+
+## R Objects - Atomic Vectors
+
+You can make an atomic vector by grouping some values of data together with `c()`:
+
+```{r}
+die <- c(1,2,3,4,5,6) 
+die
+is.vector(die)
+length(die)
+```
+
+---
+
+## R Objects - Atomic Vectors
+
+You can also make an atomic vector with just one value. R saves single values as an atomic vector of length 1:
+
+```{r}
+two <- 2 
+two
+```
+
+---
+
+## R Objects - Atomic Vectors: Integer and Character
+
+- Each atomic vector can only store one type of data. You can save different types of data in R by using different types of atomic vectors. 
+
+--
+
+- R recognizes six basic types of atomic vectors: doubles, integers, characters, logicals, complex, and raw.
+
+--
+
+- We will not be using complex or raw types in STA130.
+
+--
+
+- Integer vectors included a capital L with input, and character vectors have input surounded by quotation marks.
+
+---
+
+## R Objects - Atomic Vectors: Integer and Character
+
+```{r, error=TRUE}
+mynums <- c(2L,3L)
+courses <- "STA130"
+courses <- c("STA130", "MAT137")
+sum(mynums)
+sum(courses)
+sum(courses == "STA130")
+```
+
+---
+
+## R Objects - Double Vectors
+
+- A double vector stores real numbers.  Doubles are often called numerics.
+
+```{r}
+die <- c(1,2,3,4,5,6)
+typeof(die)
+```
+
+---
+
+## R Objects - Logical Vectors
+
+- Logical vectors store TRUEs and FALSEs, R’s form of Boolean data. Logicals are very helpful for doing things like comparisons:
+
+```{r}
+3 > 4
+```
+
+- TRUE or FALSE in capital letters (without quotation marks) will be treated as logical data. R also assumes that T and F are shorthand for TRUE and FALSE.
+
+```{r}
+logic <- c(TRUE, FALSE, TRUE) 
+logic
+```
+
+---
+
+## R Objects - Atomic Vectors: `dim()`
+
+You can transform an atomic vector into an n-dimensional array by giving it a dimensions attribute with `dim()`. 
+
+```{r}
+die <- c(1,2,3,4,5,6)
+dim(die) <- c(2,3) # a 2x3 matrix
+die 
+```
+
+```{r}
+die <- c(1,2,3,4,5,6)
+dim(die) <- c(3,2) # a 3x2 matrix
+die 
+```
+
+.small[R always fills up each matrix by columns, instead of by rows unless you use `matrix()` or `array()`.]
+
+---
+
+## Factors
+
+- Factors are R’s way of storing categorical information, like ethnicity or eye color. 
+- A factor as something like sex since it can only have certain values.  
+- Factors very useful for recording the treatment levels of a categorical variable.
+
+```{r}
+sex <- factor(c("male", "female", "female", "male"))
+typeof(sex)
+unclass(sex) # shows how R is storing the factor vector 
+```
+
+---
+
+## Coercion
+
+.pull-left[R always follows the same rules when it coerces data types. Once you are familiar with these rules, you can use R’s coercion behavior to do surprisingly useful things.
+
+<img src="coercion.png" style="width:6in;height:2in;">]
+
+.pull-right[For example `sum(c(TRUE, FALSE))` will become `sum(c(1, 0))`.
+
+```{r}
+sum(c(TRUE, FALSE))
+```
+]
+---
+
+## Lists
+
+.pull-left[ - Lists are like atomic vectors because they group data into a one-dimensional set. 
+- Lists do not group together individual values. 
+- Lists group together R objects, such as atomic vectors and other lists.
+- For example, you can make a list that contains a numeric vector of length 10 in its first element, a character vector of length 1 in its second element, and a new list of length 2 in its third element.] 
+
+.pull-right[
+```{r}
+list(1:10, 
+     "Prof. Taback", 
+     list(TRUE, FALSE))
+```
+]
+---
+
+## Data Frames
+
+- Data frames are the two-dimensional version of a list. 
+- They are the most useful storage structure for data analysis
+- A data frame is R’s equivalent to the Excel spreadsheet because it stores data in a similar format.
+
+---
+
+## Data Frames
+
+- Data frames group vectors together into a two-dimensional table. 
+- Each vector becomes a column in the table. 
+- As a result, each column of a data frame can contain a different type of data; but within a column, every cell must be the same type of data.
+
+<img src="dataframe.png" style="width:6in;height:3in;">
+
+---
+
+## Data Frames
+
+```{r,cache=TRUE}
+student_num <- c(1, 2, 3, 4)
+name <- c("Nadia", "Shiyi", "Yizhe", "Wei")
+mydat <- data.frame(obsnum = student_num, student_name = name)
+mydat
+```
+
+
+.midi[
+- Creating a data frame by hand takes a lot of typing, but you can do it with the `data.frame()` function. 
+
+- Give `data.frame()` any number of vectors, each separated with a comma. 
+
+- Each vector should be set equal to a name that describes the vector. 
+
+- `data.frame()` will turn each vector into a column of the new data frame.
+]
+---
+
+## Data Frames
+
+You can view a data frame in RStudio by clicking on the data frame name in the Environment tab
+
+<img src="dataframeview.png" style="width:6in;height:3in;">
+
+---
+
+## R Notation - [ , ]
+
+To extract a value or set of values from a data frame, write the data frame’s name followed by a pair of square brackets with a comma `[ , ]`.
+
+```{r, eval=FALSE}
+mydat[ , ]
+```
+
+---
+
+## R Notation - [ , ]
+
+```{r}
+mydat
+mydat[1,2] # the value in row 1 and column 2
+mydat[c(1,2),2] # all values in rows 1 and 2 in second column
+```
+
+---
+
+## R Notation - $
+
+The `$` tells R to return all of the values in a column as a vector. 
+
+```{r}
+mydat$student_name
+vec <- mydat$student_name # assign it to vec
+attributes(vec) # info associated with object vec
+vec[2] # get second element of vector
+```
+
+---
+
+## R Notation - combine [,] and $
+
+.pull-left[
+```{r}
+mydat
+```
+]
+
+.pull-right[.small[
+```{r}
+mydat[mydat$obsnum == 1,] 
+mydat[mydat$obsnum == 1 | 
+        mydat$obsnum == 4,] 
+mydat[mydat$obsnum != 1,] 
+```
+]]
+---
+
+## Missing Data - `NA`
+
+- Missing information problems happen frequently in data science. 
+- For example a value is mising because the measurement was lost, corrupted, or never recorded. 
+- The `NA` character is a special symbol in R. It stands for “not available” and can be used as a placeholder for missing information.
+
+```{r, error=TRUE}
+1 + NA
+```
+
+---
+
+## Missing Data - `na.rm()`
+
+- Suppose you collected the ages of five students, but you forgot to record the fifth students age.
+
+```{r, error=TRUE}
+age <- c(19, 20, 17, 20, NA)
+mean(age) # mean will be NA
+```
+
+```{r}
+age <- c(19, 20, 17, 20, NA)
+mean(age, na.rm = TRUE) # R will ignore missing values
+```
+
+---
+
+## Identify and Set Missing Data - `is.na()`
+
+```{r}
+age <- c(19, 20, 17, 20, NA)
+is.na(age) # check which elements of age are missing
+age[1] <- NA # set the first element of age to NA
+age
+```
+
+---
+
+## Summary of R Data Structures
+
+<img src="rdatstruct.png" style="width:6in;height:3in;">
+
+---
+
+## Tidyverse
+
+<img src="tidyverse.png" style="width:6in;height:3in;">
+
+[https://www.tidyverse.org](https://www.tidyverse.org)
+
+```{r,eval=TRUE, cache=TRUE, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+# Uncomment next line if the rvest package is not installed
+# install.packages("rvest") 
+library(rvest)
+library(tidyverse)
+
+url <- "https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-1-ending-january-6-2018.html"
+ 
+# download and read table into flu_dat 
+flu_dat <- url %>% 
+  read_html() %>% 
+  html_nodes(xpath = '/html/body/main/div[1]/div[2]/details[1]/table') %>% 
+  html_table()
+
+# clean up the file
+fludat <- flu_dat[[1]]
+dat <- as.data.frame(sapply(select(fludat,2:23), as.numeric))
+fludat <- cbind(`Reporting Laboratory` = fludat[,1],dat)
+
+fludat_prov <- fludat %>% 
+  filter(row_number() < 42 & row_number() %in% c(1, 2, 3, 4, 12, 29, 30, 33, 34, 36, 37,38, 39)) %>%
+  select(prov = `Reporting Laboratory`, testpop_size = `Flu Tested`, fluA = `Total Flu A Positive`) 
+
+write_csv(fludat_prov,"fludat_prov.csv")
+
+fludat_prov$prov <- recode(fludat_prov$prov, "Province of Québec" = "Quebec", "Province of Ontario" = "Ontario", "Province of Saskatchewan" = "Saskatchewan", "Province of Alberta" = "Alberta")
+
+
+popurl <- "https://en.wikipedia.org/wiki/List_of_Canadian_provinces_and_territories_by_population_growth_rate"
+
+popdat <- popurl %>% 
+  read_html() %>%
+  html_nodes(xpath = '//*[@id="mw-content-text"]/div/table')  %>%
+  html_table()
+
+popdat <- popdat[[1]]
+
+popdat <- popdat %>% 
+  select(prov = `Province/Territory`, prov_pop_size = `2016 Census`) %>%
+  filter(row_number() < 14)
+
+# remove comma and coerce to numeric
+popdat$prov_pop_size <- as.numeric(gsub(",([[:digit:]])", "\\1", popdat$prov_pop_size)) 
+
+popdat$prov[popdat$prov=="Newfoundland and Labrador"] <- "Newfoundland"
+
+popdat$region <- c("Territories",NA,"West","Territories","West","West","East", NA,"Atlantic","Atlantic","Territories","Atlantic","Atlantic")
+
+write_csv(popdat,"popdat.csv")
+
+```
+
+---
+
+## Canadian Flu Rates with `dplyr`
+
+The provincial rates for the week ending January 6, 2018 are in the file fludat_prov.csv and the the size of the population in each province is in the file popdat.csv.  The code below reads the files into R data frames.
+
+```{r, cache=TRUE}
+library(tidyverse)
+fludat_prov <- read_csv("fludat_prov.csv")
+popdat <- read_csv("popdat.csv") 
+```
+
+---
+
+## Canadian Flu Rates with `dplyr`
+
+```{r}
+head(fludat_prov, n = 5) 
+head(popdat, n = 5)
+```
+
+---
+## Canadian Flu Rates with `dplyr` 
+
+How many Provinces/Territories are in the fludat_prov data frame? Use `summarise()` function in `dplyr`.
+
+```{r}
+# n() counts the number of rows in the data frame
+summarise(fludat_prov, numprov = n()) 
+```
+
+---
+
+## Canadian Flu Rates with `dplyr` 
+
+Do any variables in fludat or popdat have missing values?
+
+```{r}
+filter(fludat_prov, 
+       is.na(prov) == TRUE | 
+         is.na(testpop_size) == TRUE | 
+         is.na(fluA) == TRUE) 
+
+filter(popdat, 
+       is.na(prov) == TRUE | 
+         is.na(prov_pop_size) == TRUE | 
+         is.na(region) == TRUE) 
+```
+
+---
+
+## Canadian Flu Rates with `dplyr` 
+
+Recode specific values using R data frame notation [,] and $.
+
+```{r}
+ #recode region value for Alberta
+popdat$region[popdat$prov == "Alberta"] <- "West"
+ #recode region value for Quebec
+popdat$region[popdat$prov == "Quebec"] <- "East"
+popdat$region 
+```
+
+---
+
+## Canadian Flu - Calculate Rate using `mutate()`
+
+Transform existing variables to create a new variable using `mutate()`.  The proportion of people testing positive in a province is $\text{Number with positive flu test}/\text{Number of people tested}.$   
+
+```{r}
+fludat_prov1 <- mutate(fludat_prov, flu_prop = fluA/testpop_size)
+head(fludat_prov1)
+```
+
+---
+
+## Canadian Flu - Plot distribution of flu rate using `ggplot()`
+
+```{r}
+ggplot(data = fludat_prov1) + 
+  aes(x = flu_prop) + 
+  geom_histogram(bins = 25, colour = "black", fill = "grey")
+```
+
+---
+
+## Numerical Summaries of the Distribution of a Quantitative Variable - Mean
+
+The **mean** is a common way to measure the **center** of a distribution of data.
+
+If $x_1, x_2, \ldots, x_n$ represent the $n$ observed values then the mean is
+
+$$\bar{x} = \frac{x_1+x_2+\cdots+x_n}{n} = \frac{\sum_{i=1}^n x_i}{n}.$$
+---
+
+## Numerical Summaries of the Distribution of a Quantitative Variable - Variance
+
+The **variance** is a common way to measure the **spread** of a distribution of data.
+
+If $x_1, x_2, \ldots, x_n$ represent the $n$ observed values, and $\bar x$ the mean then the variance is
+
+$$s^2 = \frac{(x_1-\bar x)^2+(x_2-\bar x)^2+\cdots+(x_n-\bar x)^2}{n-1} = 
+\frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}.$$
+The **standard deviation** is defined as the $s = \sqrt{s^2}$
+
+The variance is roughly the average squared distance from the mean. The standard deviation is the square root of the variance and describes how close the data are to the mean.
+
+---
+## Canadian Flu - Numerical Summary of flu rate distribution
+
+```{r}
+summarise(fludat_prov1, 
+          n = n(), 
+          ave_flu = mean(flu_prop), 
+          flu_sd = sd(flu_prop))
+```
+
+
+```{r, fig.height=2, echo=FALSE}
+ggplot(data = fludat_prov1) + 
+  aes(x = flu_prop) + 
+  geom_histogram(bins = 25, colour = "black", fill = "grey")
+```
+
