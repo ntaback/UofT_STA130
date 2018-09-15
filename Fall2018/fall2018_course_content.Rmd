@@ -99,7 +99,7 @@ Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](week1/week1_nm_posted.pdf),
 
 Prof. Taback's class slides - Mon 10:00 (L0101): [html](week2/sta130_sept17_nt.html), [pdf](week2/sta130_sept17_nt1.pdf).
 
-Prof. Moon's class slides - Mon 14:00 (L0201): Copy and Paste this link into your browser: https://www.dropbox.com/s/9zt6s6wtqda85fd/week2slides_nm.pdf?dl=0
+Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](https://www.dropbox.com/s/9zt6s6wtqda85fd/week2slides_nm.pdf?dl=0)
 
 
 ### References
