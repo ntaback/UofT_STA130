@@ -166,7 +166,7 @@ sum(dice)
 ```
 
 ```
-## [1] 2
+## [1] 7
 ```
 
 ---
@@ -963,18 +963,40 @@ head(fludat_prov1)
 ## 6 Province of Ontario          2320   344    0.148
 ```
 
+
 ---
 
-## Canadian Flu - Plot distribution of flu rate using `ggplot()`
+## New York City Flights 
+
+- The R package `nyc13flights` contains contains information about all flights that departed from NYC (e.g. EWR, JFK and LGA) in 2013.
+
+- The `flights` data set contains data on flights including the amount of time spent in the air.
+
+
+---
 
 
 ```r
-ggplot(data = fludat_prov1) + 
-  aes(x = flu_prop) + 
-  geom_histogram(bins = 25, colour = "black", fill = "grey")
+library(nycflights13)
+summarise(flights, 
+          n = n(), 
+          time_ave = mean(air_time, na.rm = TRUE), 
+          time_sd = sd(air_time, na.rm = TRUE),
+          time_med = median(air_time, na.rm = TRUE),
+          time_25p = quantile(air_time, 0.25, na.rm = TRUE), 
+          time_75p = quantile(air_time, 0.75, na.rm = TRUE),
+          time_iqr = IQR(air_time, na.rm = TRUE))
 ```
 
-![](sta130_sept17_nt_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+```
+## # A tibble: 1 x 7
+##        n time_ave time_sd time_med time_25p time_75p time_iqr
+##    &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 336776     151.    93.7      129       82      192      110
+```
+
+
+![](sta130_sept17_nt_files/figure-html/unnamed-chunk-39-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -999,26 +1021,23 @@ The **standard deviation** is defined as the `\(s = \sqrt{s^2}\)`
 
 The variance is roughly the average squared distance from the mean. The standard deviation is the square root of the variance and describes how close the data are to the mean.
 
+
 ---
-## Canadian Flu - Numerical Summary of flu rate distribution
+## Numerical Summaries of the Distribution of a Quantitative Variable - Quantiles
 
+- The `\(p^{th}\)` quantile of a distribution is defined to be the value of the distribution `\(x_p\)` such that `\(p \times 100\%\)` of the data are less than or equal to `\(x_p\)`.
 
-```r
-summarise(fludat_prov1, 
-          n = n(), 
-          ave_flu = mean(flu_prop), 
-          flu_sd = sd(flu_prop))
-```
+--
 
-```
-## # A tibble: 1 x 3
-##       n ave_flu flu_sd
-##   &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-## 1    13   0.181 0.0781
-```
+- If `\(p=0.50\)` then `\(x_{0.5}\)` is the value such that 50% of the data are less than `\(x_{0.5}\)`. This is also called the **median** or **second quartile**.
 
+--
 
-![](sta130_sept17_nt_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
+- If `\(p=0.25\)` then `\(x_{0.25}\)` is the value such that 25% of the data are less than `\(x_{0.25}\)`. This is also called the `\(\bf 25^{th}\)` **percentile** or **first quartile**.
+
+--
+
+- If `\(p=0.25\)` then `\(x_{0.25}\)` is the value such that 25% of the data are less than `\(x_{0.25}\)`. This is also called the `\(\bf 75^{th}\)` **percentile** or **third quartile**.
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
