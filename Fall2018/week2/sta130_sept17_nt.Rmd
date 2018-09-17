@@ -198,6 +198,17 @@ roll2(10)
 
 ---
 
+```{r, eval=FALSE}
+roll3 <- function(numrolls){
+  die <- 1:6
+  dice <- sample(die, size = numrolls, replace = F) 
+  sum(dice) 
+  }
+```
+
+![](poll.png)
+---
+
 ## Scripts
 
 - If we want to edit the function `roll2()` then we will want to save it in a script.

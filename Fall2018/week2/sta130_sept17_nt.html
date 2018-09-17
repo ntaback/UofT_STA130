@@ -4,9 +4,7 @@
     <title>STA130H1F</title>
     <meta charset="utf-8">
     <meta name="author" content="Prof. Nathan Taback" />
-    <link href="libs/font-awesome/css/fa-svg-with-js.css" rel="stylesheet" />
-    <script src="libs/font-awesome/js/fontawesome-all.min.js"></script>
-    <script src="libs/font-awesome/js/fa-v4-shims.min.js"></script>
+    <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="slides.css" type="text/css" />
   </head>
   <body>
@@ -24,7 +22,7 @@ class: center, middle, inverse, title-slide
 
 
 
-# Welcome back to STA130  😃
+# Welcome back to STA130  😆
 ## Today's class
 
 - Introduction to programming with R
@@ -166,7 +164,7 @@ sum(dice)
 ```
 
 ```
-## [1] 7
+## [1] 10
 ```
 
 ---
@@ -223,6 +221,18 @@ roll2(10)
 ## [1] 38
 ```
 
+---
+
+
+```r
+roll3 &lt;- function(numrolls){
+  die &lt;- 1:6
+  dice &lt;- sample(die, size = numrolls, replace = F) 
+  sum(dice) 
+  }
+```
+
+![](poll.png)
 ---
 
 ## Scripts
@@ -996,7 +1006,7 @@ summarise(flights,
 ```
 
 
-![](sta130_sept17_nt_files/figure-html/unnamed-chunk-39-1.png)&lt;!-- --&gt;
+![](sta130_sept17_nt_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
 
 ---
 
