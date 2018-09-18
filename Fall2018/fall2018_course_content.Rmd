@@ -99,7 +99,8 @@ Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](week1/week1_nm_posted.pdf),
 
 Prof. Taback's class slides - Mon 10:00 (L0101): [html](week2/sta130_sept17_nt.html), [pdf](week2/sta130_sept17_nt2.pdf).
 
-Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](https://www.dropbox.com/s/9zt6s6wtqda85fd/week2slides_nm.pdf?dl=0)
+Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](https://www.dropbox.com/s/9zt6s6wtqda85fd/week2slides_nm.pdf?dl=0),
+[pdf - anotated](https://www.dropbox.com/s/8y6e7bzsu665muq/week2slides_nm_annotated.pdf?dl=0)
 
 Flu data used in class (csv format): [Provincial Flu data](week2/fludat_prov.csv), [Provincial Population Size](week2/popdat.csv).
 
