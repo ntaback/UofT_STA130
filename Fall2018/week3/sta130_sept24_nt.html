@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>STA130H1F</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Prof. Nathan Taback" />
+    <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STA130H1F
+## Class #3
+### Prof. Nathan Taback
+### 2018-24-09
+
+---
+
+
+
+
+
+
+# Welcome back to STA130  😄
+## Today's class
+
+- Statistical data
+
+--
+
+- Tidy data
+
+--
+
+- Data wrangling
+
+--
+
+- Boxplots
+
+---
+
+# Statistical data
+---
+
+## What is statistical data?
+
+- Statistical data is obtained by observing (random) variables.
+- A random variable can be given a precise mathematical definition that we will cover later in the course.
+- In this class we will discuss examples.
+
+---
+
+## Observing a few variables on STA130 students 
+
+- What is your height?
+- How many years have been at UofT?
+- What is your sex (male or female)?
+
+Collecting this data will generate three variables: `height`, `years`, and `eye_colour`.
+
+---
+
+## Enter variables on STA130 students
+
+.small[
+
+```r
+height &lt;- c()
+years &lt;- c()
+eye_colour &lt;- c()
+```
+]
+Put the variables into an R data frame.  
+
+NB:  `data_frame` is the `tidyverse` version of base R `data.frame`.
+
+
+```r
+sta130_dat &lt;- data_frame(height, years, eye_colour)
+```
+
+We could have entred this in a spreadsheet program like MS Excel, saved it as a CSV file, then imported the file into R.
+
+---
+
+## Tidy data
+
+There are three interrelated rules which make a dataset tidy:
+
+1. Each variable must have its own column.
+2. Each observation must have its own row.
+3. Each value must have its own cell.
+
+---
+## 
+
+.small[Suppose that a first year class of 250 students has the following distribution of eye colour.
+
+Colour |   N
+-------|------
+Blue   | 105
+Hazel  | 55
+Green  | 75
+Other  | 15
+]
+
+We can create a tidy data set with a categorical variable `eye_col`. 
+--
+
+.small[
+
+```r
+library(tidyverse)
+blue_eye &lt;- rep("Blue", 105)
+hazel_eye &lt;- rep("Hazel", 55)
+green_eye &lt;- rep("Green", 75)
+other_eye &lt;- rep("Other", 15)
+eye_col = c(blue_eye, hazel_eye, 
+            green_eye, other_eye)
+eye_data &lt;- data_frame(stnum = 1:250, eye_col)
+glimpse(eye_data)
+```
+
+```
+## Observations: 250
+## Variables: 2
+## $ stnum   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
+## $ eye_col &lt;chr&gt; "Blue", "Blue", "Blue", "Blue", "Blue", "Blue", "Blue"...
+```
+]
+
+---
+
+## Tidy data
+
+Which data set is tidy?
+
+
+```
+## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+```
+## # A tibble: 6 x 3
+##   country      year rate             
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583
+```
+
+---
+
+## Tidy data
+
+&gt; "For a given dataset, it is usually easy to figure out what are observations and what are variables, but it is surprisingly difficult to precisely define variables and observations in general." (Wickham, 2014)
+
+A general rule of thumb: 
+
+- It is easier to describe functional relationships between variables (e.g., z is a linear combination of x and y, density is the ratio of weight to volume) than between rows. 
+
+- It is easier to make comparisons between groups of observations (e.g., average of group a vs. average of group b) than between groups of columns.
+
+(Wickham, 2014)
+
+---
+# Data Wrangling
+
+---
+
+## Data wrangling
+
+- The `ggplot` library implements a __grammer of graphics__.
+- Similarily the `dplyr` library presents a grammer for data wrangling.
+
+---
+
+## The Economic Guide to Picking a Major 
+
+&lt;img src="collegemajors.png" style="width:6in;height:3in;"&gt;
+
+
+&gt; "...A college degree is no guarantee of economic success. But through their choice of major, they can take at least some steps toward boosting their odds."
+
+---
+
+## The Economic Guide to Picking a Major 
+
+- The data used in the article is from the American Community Survey 2010-2012 Public Use Microdata Series.
+- We can use the `fivethirtyeight` library in R.
+
+---
+
+## Data behind the article
+
+
+```r
+library(fivethirtyeight) # load the library
+glimpse(college_recent_grads)
+```
+
+```
+## Observations: 173
+## Variables: 21
+## $ rank                        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,...
+## $ major_code                  &lt;int&gt; 2419, 2416, 2415, 2417, 2405, 2418...
+## $ major                       &lt;chr&gt; "Petroleum Engineering", "Mining A...
+## $ major_category              &lt;chr&gt; "Engineering", "Engineering", "Eng...
+## $ total                       &lt;int&gt; 2339, 756, 856, 1258, 32260, 2573,...
+## $ sample_size                 &lt;int&gt; 36, 7, 3, 16, 289, 17, 51, 10, 102...
+## $ men                         &lt;int&gt; 2057, 679, 725, 1123, 21239, 2200,...
+## $ women                       &lt;int&gt; 282, 77, 131, 135, 11021, 373, 166...
+## $ sharewomen                  &lt;dbl&gt; 0.1205643, 0.1018519, 0.1530374, 0...
+## $ employed                    &lt;int&gt; 1976, 640, 648, 758, 25694, 1857, ...
+## $ employed_fulltime           &lt;int&gt; 1849, 556, 558, 1069, 23170, 2038,...
+## $ employed_parttime           &lt;int&gt; 270, 170, 133, 150, 5180, 264, 296...
+## $ employed_fulltime_yearround &lt;int&gt; 1207, 388, 340, 692, 16697, 1449, ...
+## $ unemployed                  &lt;int&gt; 37, 85, 16, 40, 1672, 400, 308, 33...
+## $ unemployment_rate           &lt;dbl&gt; 0.018380527, 0.117241379, 0.024096...
+## $ p25th                       &lt;dbl&gt; 95000, 55000, 50000, 43000, 50000,...
+## $ median                      &lt;dbl&gt; 110000, 75000, 73000, 70000, 65000...
+## $ p75th                       &lt;dbl&gt; 125000, 90000, 105000, 80000, 7500...
+## $ college_jobs                &lt;int&gt; 1534, 350, 456, 529, 18314, 1142, ...
+## $ non_college_jobs            &lt;int&gt; 364, 257, 176, 102, 4440, 657, 314...
+## $ low_wage_jobs               &lt;int&gt; 193, 50, 0, 0, 972, 244, 259, 220,...
+```
+
+---
+
+## Select variables/columns using `select()` 
+
+To retrieve a data frame with only major, number of male and female graduates we use the `select()` function in the `dplyr` library.
+
+
+```r
+select(college_recent_grads,major, men,women)
+```
+
+```
+## # A tibble: 173 x 3
+##    major                                       men women
+##    &lt;chr&gt;                                     &lt;int&gt; &lt;int&gt;
+##  1 Petroleum Engineering                      2057   282
+##  2 Mining And Mineral Engineering              679    77
+##  3 Metallurgical Engineering                   725   131
+##  4 Naval Architecture And Marine Engineering  1123   135
+##  5 Chemical Engineering                      21239 11021
+##  6 Nuclear Engineering                        2200   373
+##  7 Actuarial Science                          2110  1667
+##  8 Astronomy And Astrophysics                  832   960
+##  9 Mechanical Engineering                    80320 10907
+## 10 Electrical Engineering                    65511 16016
+## # ... with 163 more rows
+```
+
+---
+
+## Select observations/rows using `filter()`
+
+.small[If we want to retrieve only those observations (rows) that pertain to engineering majors then we need to specify that the value of the `major` variable is Electrical Engineering.]
+
+
+```r
+# == is a test for equality and is different than =.
+EE &lt;- filter(college_recent_grads, 
+             major == "Electrical Engineering")
+glimpse(EE)
+```
+
+```
+## Observations: 1
+## Variables: 21
+## $ rank                        &lt;int&gt; 10
+## $ major_code                  &lt;int&gt; 2408
+## $ major                       &lt;chr&gt; "Electrical Engineering"
+## $ major_category              &lt;chr&gt; "Engineering"
+## $ total                       &lt;int&gt; 81527
+## $ sample_size                 &lt;int&gt; 631
+## $ men                         &lt;int&gt; 65511
+## $ women                       &lt;int&gt; 16016
+## $ sharewomen                  &lt;dbl&gt; 0.1964503
+## $ employed                    &lt;int&gt; 61928
+## $ employed_fulltime           &lt;int&gt; 55450
+## $ employed_parttime           &lt;int&gt; 12695
+## $ employed_fulltime_yearround &lt;int&gt; 41413
+## $ unemployed                  &lt;int&gt; 3895
+## $ unemployment_rate           &lt;dbl&gt; 0.05917385
+## $ p25th                       &lt;dbl&gt; 45000
+## $ median                      &lt;dbl&gt; 60000
+## $ p75th                       &lt;dbl&gt; 72000
+## $ college_jobs                &lt;int&gt; 45829
+## $ non_college_jobs            &lt;int&gt; 10874
+## $ low_wage_jobs               &lt;int&gt; 3170
+```
+
+---
+
+## Combine `select()` and `filter()`
+
+- We can drill down to get certain pieces of information using `filter()` and `select()` together.
+
+- The `median` variable is median salary. 
+
+
+```r
+select(filter(college_recent_grads, median &lt;= 25000 ), 
+       major, men, women)
+```
+
+&lt;img src="poll1.png" style="width:8in;height:3in;"&gt;
+
+---
+## The pipe operator `%&gt;%`
+
+In the code:
+
+
+```r
+select(filter(college_recent_grads, median &gt;= 60000), 
+       major,men,women)
+```
+
+filter is nested inside select.
+
+The pipe operator allows is an alternative to nesting and yields easier to read code. 
+
+The same expression can be written with the pipe operator
+
+
+```r
+college_recent_grads %&gt;% 
+  filter(median &gt;= 60000) %&gt;% 
+  select(major, men, women)
+```
+
+---
+
+## Create new variables from existing variables using `mutate()`
+
+What percentage of graduates from each major where the median earnings is at least $60,000 are men ?
+
+
+```r
+college_recent_grads %&gt;% 
+  filter(median &gt;= 60000) %&gt;% 
+  select(major, men, women) %&gt;% 
+  mutate(total = men + women, 
+         pct_male = round((men / total)*100, 2))
+```
+
+Compare to nested code:
+
+
+
+```r
+  mutate(select(filter(college_recent_grads,median &gt;= 60000), 
+                major, men, women), 
+         total = men + women, 
+         pct_male = round((men / total)*100, 2))
+```
+
+---
+
+## Create new variables from existing variables using `mutate()`
+
+
+```r
+knitr::kable(college_recent_grads %&gt;% 
+  filter(median &gt;= 60000) %&gt;% 
+  select(major, men, women) %&gt;% 
+  mutate(total = men + women, 
+         pct_male = round((men / total)*100, 2)), 
+  format = "html")
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; major &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; men &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; women &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; total &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; pct_male &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Petroleum Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2057 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 282 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2339 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 87.94 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mining And Mineral Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 679 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 756 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89.81 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Metallurgical Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 725 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 131 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 856 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 84.70 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Naval Architecture And Marine Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1123 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 135 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1258 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89.27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Chemical Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21239 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11021 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32260 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65.84 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Nuclear Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 373 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2573 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 85.50 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Actuarial Science &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2110 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1667 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3777 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 55.86 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Astronomy And Astrophysics &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 832 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 960 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1792 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 46.43 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mechanical Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80320 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10907 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 91227 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 88.04 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Electrical Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65511 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16016 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 81527 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80.35 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Computer Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33258 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8284 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 41542 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 80.06 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Aerospace Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12953 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2105 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15058 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 86.02 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Biomedical Engineering &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8407 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6548 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14955 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 56.22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Materials Science &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2949 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1330 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4279 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 68.92 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## Create new variables from existing variables using `mutate()` and `ifelse()`
+
+- Suppose that we would like to create a categorical variable to identify majors with between 45% and 55% women (ie., approximately equal numbers of males and females).
+
+--
+
+- We can use `ifelse()` in a `mutate()` statement.
+
+The format of an `ifelse()` statement in R is:
+
+`ifelse(test, yes, no)`
+
+--
+
+Example:
+
+
+```r
+people &lt;- c("Jamie", "Lei", "Francois", "Fanny")
+ifelse(people == "Lei" | people == "Fanny", "Female", "Male")
+```
+
+```
+## [1] "Male"   "Female" "Male"   "Female"
+```
+
+---
+
+
+```r
+college_recent_grads %&gt;% 
+  select(major, men, women) %&gt;% 
+  mutate(total = men + women, 
+         pct_female = round((women / total)*100, 2), 
+         sex.equal = ifelse(pct_female &gt;= 45 &amp; pct_female &lt;= 55, 
+                            "Yes","No")) %&gt;%
+  select(major,sex.equal)
+```
+
+```
+## # A tibble: 173 x 2
+##    major                                     sex.equal
+##    &lt;chr&gt;                                     &lt;chr&gt;    
+##  1 Petroleum Engineering                     No       
+##  2 Mining And Mineral Engineering            No       
+##  3 Metallurgical Engineering                 No       
+##  4 Naval Architecture And Marine Engineering No       
+##  5 Chemical Engineering                      No       
+##  6 Nuclear Engineering                       No       
+##  7 Actuarial Science                         No       
+##  8 Astronomy And Astrophysics                Yes      
+##  9 Mechanical Engineering                    No       
+## 10 Electrical Engineering                    No       
+## # ... with 163 more rows
+```
+
+
+
+---
+
+## Rename variables using `rename()`
+
+- It's considered bad practice in R to use periods in variable names.
+- We can use `rename()` to change the name of `sex.equal` to `sex_equal`.
+
+
+```r
+my_college_dat &lt;- college_recent_grads %&gt;% 
+  select(major, men, women, median) %&gt;% 
+  mutate(total = men + women, 
+         pct_female = round((women / total)*100, 2), 
+         sex.equal = ifelse(pct_female &gt;= 45 &amp; 
+                              pct_female &lt;= 55, "Yes","No")) %&gt;%
+  select(major,sex.equal, median)
+
+my_college_dat &lt;- my_college_dat %&gt;% 
+  rename(sex_equal = sex.equal, salary_median = median)
+glimpse(my_college_dat)
+```
+
+```
+## Observations: 173
+## Variables: 3
+## $ major         &lt;chr&gt; "Petroleum Engineering", "Mining And Mineral Eng...
+## $ sex_equal     &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "Yes",...
+## $ salary_median &lt;dbl&gt; 110000, 75000, 73000, 70000, 65000, 65000, 62000...
+```
+
+---
+## Sort a data frame using `arrange()`
+
+
+```r
+my_college_dat %&gt;% 
+  select(major, salary_median) %&gt;% 
+  arrange(desc(salary_median))
+```
+
+```
+## # A tibble: 173 x 2
+##    major                                     salary_median
+##    &lt;chr&gt;                                             &lt;dbl&gt;
+##  1 Petroleum Engineering                            110000
+##  2 Mining And Mineral Engineering                    75000
+##  3 Metallurgical Engineering                         73000
+##  4 Naval Architecture And Marine Engineering         70000
+##  5 Chemical Engineering                              65000
+##  6 Nuclear Engineering                               65000
+##  7 Actuarial Science                                 62000
+##  8 Astronomy And Astrophysics                        62000
+##  9 Mechanical Engineering                            60000
+## 10 Electrical Engineering                            60000
+## # ... with 163 more rows
+```
+
+---
+
+## Summarize a data frame using `summarize()`
+
+The average number of female grads and the total number of majors in the data set.
+
+
+```r
+college_recent_grads %&gt;% 
+  select(major, men, women) %&gt;% 
+  summarise(femgrad_mean = mean(women, na.rm = T), N = n())
+```
+
+```
+## # A tibble: 1 x 2
+##   femgrad_mean     N
+##          &lt;dbl&gt; &lt;int&gt;
+## 1       22647.   173
+```
+
+
+---
+
+## Summarize groups in a data frame using `summarize()` and `group_by()`
+
+The median salary in majors with 45%-55% female students. 
+
+
+```r
+my_college_dat %&gt;% 
+  group_by(sex_equal) %&gt;%
+  summarise(median(salary_median))
+```
+
+```
+## # A tibble: 3 x 2
+##   sex_equal `median(salary_median)`
+##   &lt;chr&gt;                       &lt;dbl&gt;
+## 1 No                          36000
+## 2 Yes                         37400
+## 3 &lt;NA&gt;                        53000
+```
+
+---
+
+## Boxplots to compare distribution of salary in males versus females 
+
+
+
+```r
+my_college_dat %&gt;% filter(is.na(sex_equal) == FALSE) %&gt;%
+  ggplot(aes(x = sex_equal, y = salary_median)) + geom_boxplot()
+```
+
+![](sta130_sept24_nt_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+---
+
+## Anatomy of a Boxplot
+
+A boxplot summarizes the distribution of a quantitative variable using five statistics while plotting unusual observations (*outliers*).
+
+--
+
+The five statistics are: 
+
+- `\(Q_1 = 25^{th}\)` percentile (first quartile)
+- Median = `\(50^{th}\)` percentile 
+- `\(Q_3 = 75^{th}\)` percentile (third quartile)
+- lower whisker = `\(Q_1 - 1.5 \times IQR\)`
+- upper whisker = `\(Q_3 + 1.5 \times IQR\)`
+
+NB: `\(IQR=Q_3-Q_1\)` is called the inter-quartile range.   
+---
+
+## Anatomy of a Boxplot
+
+An **outlier** in is defined as any value of the quantitative variable that is either:
+
+less than `\(Q_1 - 1.5 \times IQR\)` or greater than `\(Q_3 + 1.5 \times IQR\)`.
+
+--
+
+The whiskers of the boxplot capture data outside the box, but not more than `\(1.5 \times IQR\)`.
+
+---
+
+
+
+.pull-left[
+
+
+```r
+x
+```
+
+```
+##  [1] 0.14 0.15 0.15 0.44 0.54 0.76 0.96 1.18 1.23 2.89
+```
+
+```r
+quantile(x, 0.25) 
+```
+
+```
+##    25% 
+## 0.2225
+```
+
+```r
+quantile(x, 0.50)
+```
+
+```
+##  50% 
+## 0.65
+```
+
+```r
+quantile(x, 0.75)
+```
+
+```
+##   75% 
+## 1.125
+```
+
+```r
+quantile(x, 0.75) - quantile(x, 0.25)
+```
+
+```
+##    75% 
+## 0.9025
+```
+]
+.pull-right[
+
+```r
+data_frame(x) %&gt;% 
+  ggplot(aes(x = "", y = x)) + 
+  geom_boxplot()
+```
+
+![](sta130_sept24_nt_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+
+]
+---
+
+# Combining Multiple Tables
+---
+
+## Sentiment of Trump's Tweets
+
+- Donald Trump likes to tweet a lot.  
+- Some tweets have an angry sentiment or contain insults, and some are not.  
+- Trump supposedly used to send tweets from a [Samsung Galaxy](https://www.theatlantic.com/politics/archive/2017/03/a-bot-that-detects-when-donald-trump-is-tweeting/521127/) when he is [insulting people, places, and things](https://www.nytimes.com/interactive/2016/01/28/upshot/donald-trump-twitter-insults.html?mcubz=0&amp;_r=0), from other devices such as an iPhone when he is not.
+- Trump's last tweet from Android were March 25, 2017
+
+&lt;img src="trump.png" style="width:4in;height:4in;"&gt;
+
+---
+
+## Trump's Tweets
+
+A data frame with Trump's Tweets.
+
+
+```r
+trumptweets &lt;- read_csv("trumptweets.csv") #import from csv file
+glimpse(trumptweets)
+```
+
+```
+## Observations: 53,333
+## Variables: 4
+## $ source     &lt;chr&gt; "Android", "Android", "Android", "Android", "Androi...
+## $ created_at &lt;dttm&gt; 2013-02-06 01:53:40, 2013-02-06 01:53:40, 2013-02-...
+## $ id_str     &lt;dbl&gt; 2.989727e+17, 2.989727e+17, 2.989727e+17, 2.989727e...
+## $ word       &lt;chr&gt; "@sherrieshepherd", "nice", "comments", "view", "te...
+```
+
+---
+
+## Trump's tweets
+
+
+```r
+trumptweets %&gt;% 
+  count(word) %&gt;% 
+  mutate(word = reorder(word,n)) %&gt;% 
+  top_n(20) %&gt;% 
+  ggplot(aes(word, n)) + geom_col() + coord_flip()  +
+  labs(x = "Word",y = "Number of times word occurres in a Tweet")
+```
+
+![](sta130_sept24_nt_files/figure-html/r-1.png)&lt;!-- --&gt;
+
+---
+
+## Sentiment Lexicon
+
+- Several lexicons (dictionaries) have been developed that categorize words according to sentiment (feeling or emotion).
+- The `tidytext` library contains several lexicons.
+
+
+```r
+library(tidytext)
+sentiments
+```
+
+```
+## # A tibble: 27,314 x 4
+##    word        sentiment lexicon score
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;int&gt;
+##  1 abacus      trust     nrc        NA
+##  2 abandon     fear      nrc        NA
+##  3 abandon     negative  nrc        NA
+##  4 abandon     sadness   nrc        NA
+##  5 abandoned   anger     nrc        NA
+##  6 abandoned   fear      nrc        NA
+##  7 abandoned   negative  nrc        NA
+##  8 abandoned   sadness   nrc        NA
+##  9 abandonment anger     nrc        NA
+## 10 abandonment fear      nrc        NA
+## # ... with 27,304 more rows
+```
+---
+
+## NRC Lexicon
+
+- The nrc lexicon categorizes words in a binary fashion (“yes”/“no”) into categories of positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust.   
+- The `getsentiments()` function provides a way to get specific sentiment lexicons without the columns that are not used in that lexicon.
+
+---
+
+## NRC Lexicon
+
+
+```r
+get_sentiments("nrc")
+```
+
+```
+## # A tibble: 13,901 x 2
+##    word        sentiment
+##    &lt;chr&gt;       &lt;chr&gt;    
+##  1 abacus      trust    
+##  2 abandon     fear     
+##  3 abandon     negative 
+##  4 abandon     sadness  
+##  5 abandoned   anger    
+##  6 abandoned   fear     
+##  7 abandoned   negative 
+##  8 abandoned   sadness  
+##  9 abandonment anger    
+## 10 abandonment fear     
+## # ... with 13,891 more rows
+```
+
+---
+
+## Sentiment of Words used in Tweets
+
+- To examine the sentiment of the words Trump used in tweets we need to join the data frame containing the NRC lexicon and the data frame of Trump's words used in tweets.
+
+- `inner_join(x,y)`: return all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.
+
+
+
+```r
+trumptweets %&gt;% inner_join(get_sentiments("nrc"))
+```
+
+```
+## # A tibble: 33,043 x 5
+##    source  created_at           id_str word      sentiment
+##    &lt;chr&gt;   &lt;dttm&gt;                &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    
+##  1 Android 2013-02-06 01:53:40 2.99e17 terrific  sadness  
+##  2 Android 2013-02-18 23:36:36 3.04e17 sky       positive 
+##  3 Android 2013-02-18 23:36:36 3.04e17 rocket    anger    
+##  4 Android 2013-02-18 23:36:36 3.04e17 payback   anger    
+##  5 Android 2013-02-18 23:36:36 3.04e17 payback   negative 
+##  6 Android 2013-02-19 00:25:48 3.04e17 surprised surprise 
+##  7 Android 2013-02-19 12:36:19 3.04e17 buss      joy      
+##  8 Android 2013-02-19 12:36:19 3.04e17 buss      positive 
+##  9 Android 2013-02-19 12:36:19 3.04e17 friend    joy      
+## 10 Android 2013-02-19 12:36:19 3.04e17 friend    positive 
+## # ... with 33,033 more rows
+```
+
+---
+
+## Sentiment of Words used in Tweets
+
+
+```r
+trumptweets %&gt;% 
+  inner_join(get_sentiments("nrc")) %&gt;% 
+  group_by(sentiment,source) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  mutate(pct = round(n/sum(n)*100,2)) %&gt;%
+  arrange(desc(pct))
+```
+
+```
+## # A tibble: 20 x 4
+## # Groups:   sentiment [10]
+##    sentiment    source      n   pct
+##    &lt;chr&gt;        &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;
+##  1 disgust      Android  1537  80.7
+##  2 negative     Android  4040  78.7
+##  3 sadness      Android  2117  78.3
+##  4 anger        Android  2228  78.3
+##  5 fear         Android  2057  77.8
+##  6 surprise     Android  1297  72.7
+##  7 joy          Android  1777  71.6
+##  8 anticipation Android  2240  71.2
+##  9 positive     Android  4328  69.7
+## 10 trust        Android  2924  69.7
+## 11 trust        iPhone   1271  30.3
+## 12 positive     iPhone   1880  30.3
+## 13 anticipation iPhone    904  28.8
+## 14 joy          iPhone    703  28.4
+## 15 surprise     iPhone    487  27.3
+## 16 fear         iPhone    587  22.2
+## 17 anger        iPhone    617  21.7
+## 18 sadness      iPhone    586  21.7
+## 19 negative     iPhone   1095  21.3
+## 20 disgust      iPhone    368  19.3
+```
+
+---
+
+## Sentiment of Words used in Tweets
+
+
+```r
+trumptweets %&gt;% 
+  inner_join(get_sentiments("nrc")) %&gt;% 
+  group_by(sentiment,source) %&gt;%
+  count(sentiment) %&gt;%
+  ungroup() %&gt;%
+  mutate(sentiment = reorder(sentiment,n)) %&gt;%
+  group_by(sentiment, source) %&gt;%
+  ggplot(aes(sentiment,n)) + 
+  geom_col(aes(fill = source), position = "dodge") + 
+  coord_flip() +
+  labs(y = "Number of words in Tweets",x = "NRC Sentiment")
+```
+
+![](sta130_sept24_nt_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+---
+
+
+## Join two tables together
+
+- In the `dplyr` library there are several other ways to join tables: `left_join()`, `right_join()`, `full_join()`, `semi_join()`, `anti_join()` .
+
+- See `dplyr` [documentation](http://dplyr.tidyverse.org/reference/join.html).
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

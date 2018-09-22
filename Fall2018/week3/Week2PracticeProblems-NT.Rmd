@@ -1,0 +1,457 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 2 Practice Problems
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Instructions
+
+## What should I bring to tutorial on January 19?
+
+Your answers to 1. (a) and 2. (b)
+
+## First steps to answering these questions.
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r,eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week2PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week2PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week 2 Practice Problems Solutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+
+# Practice Problems
+
+## Question 1
+
+Exercise 4.2 - 4.6 in the textbook uses data that come with `R`.  The data set is in the `nycflights13` package, which you must first load with the command `library(nycflights13)`.
+
+**Bring your output for this question to tutorial on Friday January 19 (either a hardcopy or on your laptop). **
+
+(a) Answer the questions in Exercises 4.4, 4.5, and 4.6.    
+
+```{r,eval=FALSE}
+library(tidyverse)
+library(nycflights13)
+glimpse(flights) # if you run this command you can see the variables in the data
+glimpse(planes)
+glimpse(weather)
+```
+
+
+## Question 4.4
+
+Explore the `flights` table.
+
+```{r,cache=TRUE}
+library(tidyverse)
+library(nycflights13)
+
+# The number of distinct planes in the flights data frame
+flights %>% summarize(num_planes = n_distinct(tailnum))
+
+# The number of planes with non-missing plane tail number
+flights %>% summarize(sum(is.na(tailnum) == FALSE))
+
+# select only planes with tailnum info.
+
+flight_tailnum <- flights %>% filter(is.na(tailnum) == FALSE) %>% select(tailnum)
+```
+
+
+Now explore the `planes` table.
+
+
+```{r, cache=TRUE}
+library(tidyverse)
+library(nycflights13)
+
+# The number of distinct planes in the flights data frame
+planes %>% summarize(num_planes = n_distinct(tailnum))
+
+# The number of planes with non-missing plane year
+
+planes %>% summarize(sum(is.na(year) == FALSE))
+
+planes %>% summarize(sum(is.na(year) == TRUE))
+
+plane_year <- planes %>% rename(plane_year = year) %>% 
+  filter(is.na(plane_year) == FALSE) %>% 
+  select(tailnum, plane_year)
+```
+
+Join the tables and compute the required values.
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+
+# Calculate the oldest plane
+oldest_plane <- flight_tailnum %>% inner_join(plane_year) %>% summarise(min_year = min(plane_year))
+
+# Calculate the number of planes that flew from NYC that are in planes table
+planes_nyc <- flights %>% inner_join(planes, by = "tailnum") %>% summarize(n=n_distinct(tailnum))
+```
+
+
+The year of the oldest plane is `r oldest_plane`.  The number of planes that flew from NYC included in the `planes` table is `r planes_nyc`.
+
+## Question 4.5
+
+This code calculates the number of planes with missing date of manufacture. `is.na(year)` is `TRUE` if `year` is `NA` (i.e., missing), and `FALSE` if year has a non-missing value.  `sum(is.na(year) == TRUE)` returns the number of missing planes. 
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+
+# how many planes have a missing date of manufacture?
+
+miss_plane <- planes %>% summarize(sum(is.na(year) == TRUE))
+```
+
+The number of missing planes is `r miss_plane`.
+
+
+Use the `top_n(5)` function to return the first 5 values of the count `n` of manufacturer. 
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+
+# five most common manufacturers
+manu5 <- planes %>% 
+  count(manufacturer) %>% 
+  arrange(desc(n)) %>%
+  top_n(5)
+
+# can also use sort = TRUE option in count 
+# for same result
+manu5 <- planes %>% 
+  count(manufacturer, sort = TRUE) %>% 
+  top_n(5)
+
+```
+
+First, the data is cleaned to make the plot easier to interpret.  Manufacturers that have produced less than 5 planes are categorized as `Other`.  Two of the manufacturers, Airbus and McDonell Douglas, have several labels for the same company. These are recoded to reflect that it's the same manufacturer.    
+
+A plot the number time (`year`) versus number of planes manufactured shows the distribution of number of planes manufactured over time.
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+# distribution of manufacturer over time
+
+# A manufacturer is coded as "Other" if they manufacture 
+# less than 5 planes in a year. This means that a manufacturer
+# could be have several classifications
+
+planes1 <- planes %>% 
+  count(manufacturer,year) %>% 
+  mutate(manufacturer_cat = ifelse(n >= 5, manufacturer, "Other")) %>%
+  filter(is.na(year) == FALSE)
+
+planes1$manufacturer_cat <- recode(planes1$manufacturer_cat, "AIRBUS INDUSTRIE" = "AIRBUS", 
+       "MCDONNELL DOUGLAS AIRCRAFT CO" = "MCDONNELL DOUGLAS",
+       "MCDONNELL DOUGLAS CORPORATION" = "MCDONNELL DOUGLAS",
+       "CANADAIR LTD" = "CANADAIR LTD")
+
+# this plot shows the distribution over time, but it's hard to read
+planes1 %>% ggplot(aes(x = year, y = n)) + geom_col(aes(fill = manufacturer_cat), position = "dodge")
+
+# this spaghetti plot shows the distribution for each manufacturer over time
+planes1 %>% ggplot(aes(x = year, y = n, group = manufacturer_cat)) + geom_point(aes(colour = manufacturer_cat), position = "dodge") + geom_line(aes(colour = manufacturer_cat))
+
+# An alternative way to classify
+
+library(nycflights13)
+# distribution of manufacturer over time
+
+# Recode first if we want to look at production over entire study period.
+# This ensures that a manufacturer only has one classification over the study
+# period
+
+planes$manufacturer <- recode(planes$manufacturer, "AIRBUS INDUSTRIE" = "AIRBUS", 
+       "MCDONNELL DOUGLAS AIRCRAFT CO" = "MCDONNELL DOUGLAS",
+       "MCDONNELL DOUGLAS CORPORATION" = "MCDONNELL DOUGLAS",
+       "CANADAIR LTD" = "CANADAIR LTD")
+
+# A manufacturer is coded as "Other" if they manufacture 
+# less than 5 planes
+
+planes1 <- planes %>% 
+  count(manufacturer,year) %>% 
+  mutate(manufacturer_cat = ifelse(n >= 5, manufacturer, "Other")) %>%
+  filter(is.na(year) == FALSE)
+
+
+# this plot shows the distribution over time, but it's hard to read
+planes1 %>% ggplot(aes(x = year, y = n)) + geom_col(aes(fill = manufacturer_cat), position = "dodge")
+
+# this spaghetti plot shows the distribution for each manufacturer over time
+planes1 %>% ggplot(aes(x = year, y = n, group = manufacturer_cat)) + geom_point(aes(colour = manufacturer_cat), position = "dodge") + geom_line(aes(colour = manufacturer_cat))
+```
+
+The plot shows that Boeing has dominated the market since the 1980s.
+
+## Question 4.6
+
+The data set `weather` was filtered to select July, 2013 then the resulting data frame is plotted.  
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+
+weather %>% filter(year == 2013 & month ==7) %>% ggplot(aes(temp, ..density..)) + geom_histogram(binwidth = 2, colour = "black", fill = "grey") + theme_minimal() + geom_density(colour = "red")
+
+weather %>% filter(year == 2013 & month ==7) %>% ggplot(aes(x ="",temp)) + geom_boxplot() + labs(x = "") + theme_minimal()
+```
+
+The histogram shows that the distribution of temperture is skewed to the right.  The boxplot indicates that thier are three outliers.
+
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+
+weather %>% ggplot(aes(x = "",wind_speed)) + geom_boxplot() + labs(x = "")
+```
+
+
+The relationships between `dewp` and `humid`, and `visib` and `precip` are shown in the scatterplots below.  
+
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+
+weather %>% ggplot(aes(x = dewp , y = humid)) + geom_point() + theme_minimal()
+
+weather %>% ggplot(aes(x = precip, y = visib)) + geom_point() + theme_minimal()
+
+weather %>% 
+  group_by(precip) %>% 
+  ggplot(aes(x = precip, y = visib)) + geom_boxplot(aes(group = cut_width(precip, 0.05))) +
+  theme_minimal()
+
+weather %>% 
+  group_by(precip) %>%
+  summarise(median_visib = median(visib)) %>%
+  ggplot(aes(x = precip, y = median_visib)) + geom_point() + geom_line() + theme_minimal()
+
+
+```
+
+- The scatterplot of `humid` and `dewp` does not show an obvious linear or non-linear pattern.  In other words it doesn't appear that there is a quantitative relationship.
+
+- The plots of `visib` and `precip` show that as `precip` increases `visib` decreases. 
+
+
+## Question 2
+
+> The Respiratory Virus Detection Surveillance System collects data from select laboratories across Canada on the number of tests performed and the number of tests positive for influenza and other respiratory viruses. Data are reported on a weekly basis year-round to the Centre for Immunization and Respiratory Infectious Diseases (CIRID), Public Health Agency of Canada. These data are also summarized in the weekly FluWatch report. [Visit the website](https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada.html).
+
+(a)  The data for the report, Week 1 ending January 6, 2018 is [here](https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-1-ending-january-6-2018.html) - click on Table 1.  Explain why this data set is not tidy?
+
+**Bring your output for this question to tutorial on Friday January 19 (either a hardcopy or on your laptop). **
+
+(b) For this exercise you will need to install the library `rvest`.  This code will "scrape" the table from the website and load it into an R data frame. Run the following code to download Table 1 directly into the a data frame called `fludat`.    
+
+NB:  You will not be responsible for understanding how this code and how the `rvest` library works (i.e., there will not be a test question on this topic). But, if you are interested in scraping data from the web [see](https://blog.rstudio.com/2014/11/24/rvest-easy-web-scraping-with-r/).
+
+
+```{r,eval=TRUE, cache=TRUE}
+# Uncomment next line if the rvest package is not installed
+# install.packages("rvest") 
+library(rvest)
+library(tidyverse)
+url <- "https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-1-ending-january-6-2018.html"
+ 
+# download and read table into flu_dat 
+flu_dat <- url %>% 
+  read_html() %>% 
+  html_nodes(xpath = '/html/body/main/div[1]/div[2]/details[1]/table') %>% 
+  html_table()
+
+# clean up the file
+fludat <- flu_dat[[1]]
+dat <- as.data.frame(sapply(select(fludat,2:23), as.numeric))
+fludat <- cbind(`Reporting Laboratory` = fludat[,1],dat)
+```
+
+Answer the following questions:
+
+(i) Create a tidy version of `fludat`.  Explain how you made the data tidy.
+
+A tidy versiuon of ` fludat` could mean either observations are: individual reporting labs; provinces and territories (Newfoundland, Nova Scotia, etc.); regions (Atlantic, Quebec, etc.); or country (Canada). For this example solution I'll pick province to be the observations.  So, I'll tidy up the data so that every row corresponds to a province.
+
+```{r, cache=TRUE}
+
+# using the match operator %in%
+fludat_prov <- fludat %>% filter(row_number() < 42 & row_number() %in% c(1, 2, 3, 4, 12, 29, 30, 33, 34, 36, 37,38, 39))
+
+# using the or operator | 
+#fludat_prov <- fludat %>% filter(row_number() < 42 & (row_number() == 1 | #row_number() == 2 | #row_number() == 3 | row_number() ==  4 | row_number() == 12 | #row_number() ==  #29|row_number() ==  30 | row_number() ==  33 | row_number() ==  34 #| row_number() ==  36 | #row_number() ==  37| row_number() == 38 | row_number() == #39))
+
+
+glimpse(fludat_prov)
+```
+
+I removed row 42 since it had some text by specifying `row_number() < 42`.  I had to inspect the data frame `fludat` to find out it was row 42. Similarlily, I inspected the table to find out which rows correponded to provinces or territories. Then I used the `%in%` operator which 
+checks if the row number is in the list that I specified.  
+Now, each row corresponds to a province or territory. So, the data is in tidy format.
+
+
+(ii) Which provinces and territories have the highest positive rates for Flu A and Flu B.
+
+```{r, cache=TRUE}
+fludat_prov %>% 
+  mutate(rate_A = round((`Total Flu A Positive` / `Flu Tested`), 2), 
+         rate_B = round((`Total Flu B Positive` / `Flu Tested`), 2)) %>% 
+           arrange(desc(rate_A)) %>% 
+           select(`Reporting Laboratory`, rate_A)
+
+fludat_prov %>% 
+  mutate(rate_A = round((`Total Flu A Positive` / `Flu Tested`), 2), 
+         rate_B = round((`Total Flu B Positive` / `Flu Tested`), 2)) %>% 
+           arrange(desc(rate_A)) %>% 
+           select(`Reporting Laboratory`, rate_B)
+```
+
+The highest rates for Flu A and Flu B are in Alberta. 
+
+
+(iii) The odds of testing positive for, say, Flu A in a province or territory is:
+
+$$\frac{\hat p_{\text province}}{(1-\hat p_{\text province})},$$
+where $\hat p_{\text province}$ is the proportion that tested positive for Flu A.  The odds ratio of testing positive for, say Flu A, in Newfoundland versus Ontario is:
+
+$$\frac{\hat p_{\text Newfoundland}/(1-\hat p_{\text Newfoundland})}{\hat p_{\text Ontario}/(1-\hat p_{\text Ontario})} $$
+
+- Calculate the odds ratio for testing positive for Flu A in each province versus Ontario. Interpret odds ratio larger than one, less than one, and equal to one.
+
+- Use the `ggplot` library to plot the odds ratios.  Explain why you selected this type of plot.
+
+- Try the same plot except take the logarithm of the odds ratio. This is called the log odds.  Interpret the log odds.
+
+__Comments:__
+
+* An odds ratio __greater__ than 1 means that a province has a greater odds of Flu A compared to Ontario.  
+
+* An odds ratio __less__ than 1 means that a province has a smaller odds of Flu A compared to Ontario.  
+
+* An odds ratio __equal__ to 1 means that a province has the same odds of Flu A as Ontario.  
+
+* A bar chart is appropriate since we are plotting a categorical varaible and continuous variable.
+
+* The log odds is:
+
+$$\ln\left(\frac{\hat p_{\text Province}/(1-\hat p_{\text Province})}{\hat p_{\text Ontario}/(1-\hat p_{\text Ontario})}\right) = \ln \left(\hat p_{\text Province}/(1-\hat p_{\text Province}) \right) - \ln \left( \hat p_{\text Ontario}/(1-\hat p_{\text Ontario})\right).$$
+
+The difference in the log of the odds between a province and Ontario.   If 
+
+$$\ln \left(\hat p_{\text Province}/(1-\hat p_{\text Province}) \right) - \ln \left( \hat p_{\text Ontario}/(1-\hat p_{\text Ontario})\right) >0,$$
+
+then the odds of Flu A is greater in the provinces versus Ontario.  
+
+If 
+
+$$\ln \left(\hat p_{\text Province}/(1-\hat p_{\text Province}) \right) - \ln \left( \hat p_{\text Ontario}/(1-\hat p_{\text Ontario})\right) < 0,$$
+
+then the odds of Flu A is less than in the provinces versus Ontario. 
+
+If 
+
+$$\ln \left(\hat p_{\text Province}/(1-\hat p_{\text Province}) \right) - \ln \left( \hat p_{\text Ontario}/(1-\hat p_{\text Ontario})\right) =0$$
+
+then the odds of Flu A is the same as  Ontario. 
+
+The plot of the log odds is easier to interpret.  It clearly shows which provinces has greater odds of Flu A compared to Ontario. 
+
+```{r}
+ont_odds <- fludat %>% 
+  filter(`Reporting Laboratory` == "Province of Ontario") %>%
+  mutate(rate = (`Total Flu A Positive` / `Flu Tested`), oddsR = (rate / (1 - rate))) %>%
+  select(oddsR)
+
+fludat_prov %>% 
+  mutate(rate = (`Total Flu A Positive` / `Flu Tested`), 
+         odds = (rate / (1 - rate)), oddsR = (odds / ont_odds$oddsR)) %>%
+  select(`Reporting Laboratory`, oddsR) %>% 
+  arrange(desc(oddsR))
+
+fludat_prov %>% 
+  mutate(rate = (`Total Flu A Positive` / `Flu Tested`), 
+         odds = (rate / (1 - rate)), oddsR = (odds / ont_odds$oddsR)) %>%
+  mutate(province = reorder(`Reporting Laboratory`, -oddsR)) %>%
+  ggplot(aes(x = province, y = oddsR)) + geom_col(colour = "black", fill = "grey") + theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + geom_hline(yintercept = 1, colour = "red")
+
+fludat_prov %>% 
+  mutate(rate = (`Total Flu A Positive` / `Flu Tested`), 
+         odds = (rate / (1 - rate)), log_oddsR = log(odds / ont_odds$oddsR)) %>%
+  mutate(province = reorder(`Reporting Laboratory`, -log_oddsR)) %>%
+  ggplot(aes(x = province, y = log_oddsR)) + geom_col(colour = "black", fill = "grey") + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Question 3
+
+(a) In this exercise you will create several histograms of math scores in `SAT_2010` data in the `mdsr` library (see page 39, 41 of MDSR) where you specify different lengths of histogram bins using `ggplot()`.
+
+- Create a histogram without specifying the `binwidth` argument.  What do you notice?
+- Create histograms where `binwidth` has the values 10, 15, and 20. 
+
+Which histogram is the most accurate representation of the distribution of math scores?
+
+```{r}
+library(mdsr)
+library(tidyverse)
+
+SAT_2010 %>% ggplot(aes(math)) + geom_histogram()
+
+SAT_2010 %>% ggplot(aes(math)) + geom_histogram(binwidth = 10)
+
+SAT_2010 %>% ggplot(aes(math)) + geom_histogram(binwidth = 15)
+
+SAT_2010 %>% ggplot(aes(math)) + geom_histogram(binwidth = 20)
+
+SAT_2010 %>% ggplot(aes(x = "", y = math)) + geom_boxplot()
+```
+
+The default histogram uses `bins = 30`. This is too many bins for this data since it produces big gaps (i.e., bins with no values).  Choosing a bin width of 15 produces a better represention of the distribution since it shows possible outliers without too many gaps in the middle of the distribution.  The boxplot indicates that there is one outlier.
+
+
+(b)  In this exercise you will recreate the histograms from (b), but will add several arguments to `geom_histogram()`: `aes(y=..density..)`; `alpha`; `fill`; and `colour` (a list of colours is [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) and see [here for alpha, fill, and colour](http://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html))) .  The density argument changes the $y$-axis to relative frequency, and `aes(y=..count..)` specifies that frequency should be used on the $y$-axis.  Here is starter code:
+
+```{r,warning=FALSE,message=FALSE,eval=TRUE}
+library(mdsr)
+library(tidyverse)
+
+SAT_2010 %>% ggplot(aes(x = math)) + geom_histogram(aes(y = ..density..),binwidth = 10,fill = "darkgrey",colour = "black",alpha = .1) 
+
+SAT_2010 %>% ggplot(aes(x = math)) + geom_histogram(aes(y = ..density..),binwidth = 20,fill = "darkgrey",colour = "black",alpha = 0.8) + labs(title = "Density Histogram")
+
+SAT_2010 %>% ggplot(aes(x = math)) + geom_histogram(aes(y = 0.2*..density..),binwidth = 20,fill = "darkgrey",colour = "black",alpha = 0.8) + labs(title = "Relative Frequency Histogram", y = "Relative frequency")
+
+SAT_2010 %>% ggplot(aes(x = math)) + geom_histogram(binwidth = 20,fill = "darkgrey",colour = "black",alpha = 0.8) + labs(title = "Count Histogram")
+```
+
+Try different values of `alpha` and colours to create a histogram that's easy to interpret.  Also, try the histogram with frequency and relative frequency on the $y$-axis.  Which is easier to interpret?  
+
+The $y$-axis value should be chosen depending on the application. In this case count and relative frequency have clear meanings: count is the number of students with a score that falls in the bin, and relative frequency multiplied by 100 is the percentage of students with a math score that falls in the bin.
+
+
+<a href=""> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 

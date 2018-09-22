@@ -1,0 +1,586 @@
+---
+title: "STA130H1F"
+subtitle: "Class #3"
+author: "Prof. Nathan Taback"
+date: "2018-24-09"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+# R options
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  warm = 1
+  )
+# Set dpi and height for images
+library(knitr)
+opts_chunk$set(fig.height = 2.65, dpi =300, warning=FALSE, message=FALSE) 
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+# For nonsese...
+library(emo)
+library(tidyverse)
+library(gridExtra)
+library(mdsr)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+happinessdata2016 <- read_csv("happiness2016.csv")
+
+```
+
+
+
+# Welcome back to STA130  `r emo::ji("happy")`
+## Today's class
+
+- Statistical data
+
+--
+
+- Tidy data
+
+--
+
+- Data wrangling
+
+--
+
+- Boxplots
+
+---
+
+# Statistical data
+---
+
+## What is statistical data?
+
+- Statistical data is obtained by observing (random) variables.
+- A random variable can be given a precise mathematical definition that we will cover later in the course.
+- In this class we will discuss examples.
+
+---
+
+## Observing a few variables on STA130 students 
+
+- What is your height?
+- How many years have been at UofT?
+- What is your sex (male or female)?
+
+Collecting this data will generate three variables: `height`, `years`, and `eye_colour`.
+
+---
+
+## Enter variables on STA130 students
+
+.small[
+```{r,echo=TRUE}
+height <- c()
+years <- c()
+eye_colour <- c()
+```
+]
+Put the variables into an R data frame.  
+
+NB:  `data_frame` is the `tidyverse` version of base R `data.frame`.
+
+```{r,eval=FALSE,echo=TRUE}
+sta130_dat <- data_frame(height, years, eye_colour)
+```
+
+We could have entred this in a spreadsheet program like MS Excel, saved it as a CSV file, then imported the file into R.
+
+---
+
+## Tidy data
+
+There are three interrelated rules which make a dataset tidy:
+
+1. Each variable must have its own column.
+2. Each observation must have its own row.
+3. Each value must have its own cell.
+
+---
+## 
+
+.small[Suppose that a first year class of 250 students has the following distribution of eye colour.
+
+Colour |   N
+-------|------
+Blue   | 105
+Hazel  | 55
+Green  | 75
+Other  | 15
+]
+
+We can create a tidy data set with a categorical variable `eye_col`. 
+--
+
+.small[
+```{r}
+library(tidyverse)
+blue_eye <- rep("Blue", 105)
+hazel_eye <- rep("Hazel", 55)
+green_eye <- rep("Green", 75)
+other_eye <- rep("Other", 15)
+eye_col = c(blue_eye, hazel_eye, 
+            green_eye, other_eye)
+eye_data <- data_frame(stnum = 1:250, eye_col)
+glimpse(eye_data)
+```
+]
+
+---
+
+## Tidy data
+
+Which data set is tidy?
+
+```{r,warning=FALSE,message=FALSE,echo=FALSE}
+library(tidyverse)
+table1
+table3
+```
+
+---
+
+## Tidy data
+
+> "For a given dataset, it is usually easy to figure out what are observations and what are variables, but it is surprisingly difficult to precisely define variables and observations in general." (Wickham, 2014)
+
+A general rule of thumb: 
+
+- It is easier to describe functional relationships between variables (e.g., z is a linear combination of x and y, density is the ratio of weight to volume) than between rows. 
+
+- It is easier to make comparisons between groups of observations (e.g., average of group a vs. average of group b) than between groups of columns.
+
+(Wickham, 2014)
+
+---
+# Data Wrangling
+
+---
+
+## Data wrangling
+
+- The `ggplot` library implements a __grammer of graphics__.
+- Similarily the `dplyr` library presents a grammer for data wrangling.
+
+---
+
+## The Economic Guide to Picking a Major 
+
+<img src="collegemajors.png" style="width:6in;height:3in;">
+
+
+> "...A college degree is no guarantee of economic success. But through their choice of major, they can take at least some steps toward boosting their odds."
+
+---
+
+## The Economic Guide to Picking a Major 
+
+- The data used in the article is from the American Community Survey 2010-2012 Public Use Microdata Series.
+- We can use the `fivethirtyeight` library in R.
+
+---
+
+## Data behind the article
+
+```{r,echo=TRUE}
+library(fivethirtyeight) # load the library
+glimpse(college_recent_grads)
+```
+
+---
+
+## Select variables/columns using `select()` 
+
+To retrieve a data frame with only major, number of male and female graduates we use the `select()` function in the `dplyr` library.
+
+```{r,echo=TRUE}
+select(college_recent_grads,major, men,women)
+```
+
+---
+
+## Select observations/rows using `filter()`
+
+.small[If we want to retrieve only those observations (rows) that pertain to engineering majors then we need to specify that the value of the `major` variable is Electrical Engineering.]
+
+```{r,echo=TRUE}
+# == is a test for equality and is different than =.
+EE <- filter(college_recent_grads, 
+             major == "Electrical Engineering")
+glimpse(EE)
+```
+
+---
+
+## Combine `select()` and `filter()`
+
+- We can drill down to get certain pieces of information using `filter()` and `select()` together.
+
+- The `median` variable is median salary. 
+
+```{r,echo=TRUE, eval=FALSE}
+select(filter(college_recent_grads, median <= 25000 ), 
+       major, men, women)
+```
+
+<img src="poll1.png" style="width:8in;height:3in;">
+
+---
+## The pipe operator `%>%`
+
+In the code:
+
+```{r,eval=FALSE,echo=TRUE}
+select(filter(college_recent_grads, median >= 60000), 
+       major,men,women)
+```
+
+filter is nested inside select.
+
+The pipe operator allows is an alternative to nesting and yields easier to read code. 
+
+The same expression can be written with the pipe operator
+
+```{r,eval=FALSE,echo=TRUE}
+college_recent_grads %>% 
+  filter(median >= 60000) %>% 
+  select(major, men, women)
+```
+
+---
+
+## Create new variables from existing variables using `mutate()`
+
+What percentage of graduates from each major where the median earnings is at least $60,000 are men ?
+
+```{r,echo=TRUE,eval=FALSE}
+college_recent_grads %>% 
+  filter(median >= 60000) %>% 
+  select(major, men, women) %>% 
+  mutate(total = men + women, 
+         pct_male = round((men / total)*100, 2))
+```
+
+Compare to nested code:
+
+
+```{r,echo=TRUE,eval=FALSE}
+  mutate(select(filter(college_recent_grads,median >= 60000), 
+                major, men, women), 
+         total = men + women, 
+         pct_male = round((men / total)*100, 2))
+```
+
+---
+
+## Create new variables from existing variables using `mutate()`
+
+```{r}
+knitr::kable(college_recent_grads %>% 
+  filter(median >= 60000) %>% 
+  select(major, men, women) %>% 
+  mutate(total = men + women, 
+         pct_male = round((men / total)*100, 2)), 
+  format = "html")
+```
+
+---
+
+## Create new variables from existing variables using `mutate()` and `ifelse()`
+
+- Suppose that we would like to create a categorical variable to identify majors with between 45% and 55% women (ie., approximately equal numbers of males and females).
+
+--
+
+- We can use `ifelse()` in a `mutate()` statement.
+
+The format of an `ifelse()` statement in R is:
+
+`ifelse(test, yes, no)`
+
+--
+
+Example:
+
+```{r}
+people <- c("Jamie", "Lei", "Francois", "Fanny")
+ifelse(people == "Lei" | people == "Fanny", "Female", "Male")
+```
+
+---
+
+```{r,echo=TRUE, size="tiny"}
+college_recent_grads %>% 
+  select(major, men, women) %>% 
+  mutate(total = men + women, 
+         pct_female = round((women / total)*100, 2), 
+         sex.equal = ifelse(pct_female >= 45 & pct_female <= 55, 
+                            "Yes","No")) %>%
+  select(major,sex.equal)
+```
+
+
+
+---
+
+## Rename variables using `rename()`
+
+- It's considered bad practice in R to use periods in variable names.
+- We can use `rename()` to change the name of `sex.equal` to `sex_equal`.
+
+```{r,echo=TRUE,cache=TRUE}
+my_college_dat <- college_recent_grads %>% 
+  select(major, men, women, median) %>% 
+  mutate(total = men + women, 
+         pct_female = round((women / total)*100, 2), 
+         sex.equal = ifelse(pct_female >= 45 & 
+                              pct_female <= 55, "Yes","No")) %>%
+  select(major,sex.equal, median)
+
+my_college_dat <- my_college_dat %>% 
+  rename(sex_equal = sex.equal, salary_median = median)
+glimpse(my_college_dat)
+```
+
+---
+## Sort a data frame using `arrange()`
+
+```{r,echo=TRUE}
+my_college_dat %>% 
+  select(major, salary_median) %>% 
+  arrange(desc(salary_median))
+```
+
+---
+
+## Summarize a data frame using `summarize()`
+
+The average number of female grads and the total number of majors in the data set.
+
+```{r,echo=TRUE}
+college_recent_grads %>% 
+  select(major, men, women) %>% 
+  summarise(femgrad_mean = mean(women, na.rm = T), N = n())
+```
+
+
+---
+
+## Summarize groups in a data frame using `summarize()` and `group_by()`
+
+The median salary in majors with 45%-55% female students. 
+
+```{r,echo=TRUE}
+my_college_dat %>% 
+  group_by(sex_equal) %>%
+  summarise(median(salary_median))
+```
+
+---
+
+## Boxplots to compare distribution of salary in males versus females 
+
+
+```{r}
+my_college_dat %>% filter(is.na(sex_equal) == FALSE) %>%
+  ggplot(aes(x = sex_equal, y = salary_median)) + geom_boxplot()
+```
+
+---
+
+## Anatomy of a Boxplot
+
+A boxplot summarizes the distribution of a quantitative variable using five statistics while plotting unusual observations (*outliers*).
+
+--
+
+The five statistics are: 
+
+- $Q_1 = 25^{th}$ percentile (first quartile)
+- Median = $50^{th}$ percentile 
+- $Q_3 = 75^{th}$ percentile (third quartile)
+- lower whisker = $Q_1 - 1.5 \times IQR$
+- upper whisker = $Q_3 + 1.5 \times IQR$
+
+NB: $IQR=Q_3-Q_1$ is called the inter-quartile range.   
+---
+
+## Anatomy of a Boxplot
+
+An **outlier** in is defined as any value of the quantitative variable that is either:
+
+less than $Q_1 - 1.5 \times IQR$ or greater than $Q_3 + 1.5 \times IQR$.
+
+--
+
+The whiskers of the boxplot capture data outside the box, but not more than $1.5 \times IQR$.
+
+---
+
+```{r, echo=FALSE}
+set.seed(1)
+x <- sort(round(rexp(10),2))
+```
+
+.pull-left[
+
+```{r}
+x
+quantile(x, 0.25) 
+quantile(x, 0.50)
+quantile(x, 0.75)
+quantile(x, 0.75) - quantile(x, 0.25)
+```
+]
+.pull-right[
+```{r}
+data_frame(x) %>% 
+  ggplot(aes(x = "", y = x)) + 
+  geom_boxplot()
+```
+
+]
+---
+
+# Combining Multiple Tables
+---
+
+## Sentiment of Trump's Tweets
+
+- Donald Trump likes to tweet a lot.  
+- Some tweets have an angry sentiment or contain insults, and some are not.  
+- Trump supposedly used to send tweets from a [Samsung Galaxy](https://www.theatlantic.com/politics/archive/2017/03/a-bot-that-detects-when-donald-trump-is-tweeting/521127/) when he is [insulting people, places, and things](https://www.nytimes.com/interactive/2016/01/28/upshot/donald-trump-twitter-insults.html?mcubz=0&_r=0), from other devices such as an iPhone when he is not.
+- Trump's last tweet from Android were March 25, 2017
+
+<img src="trump.png" style="width:4in;height:4in;">
+
+---
+
+## Trump's Tweets
+
+A data frame with Trump's Tweets.
+
+```{r,message=FALSE,warning=FALSE,echo=TRUE}
+trumptweets <- read_csv("trumptweets.csv") #import from csv file
+glimpse(trumptweets)
+```
+
+---
+
+## Trump's tweets
+
+```{r,echo=TRUE,warning=FALSE,message=FALSE, fig.height=3, message=FALSE, warning=FALSE, r,echo=TRUE}
+trumptweets %>% 
+  count(word) %>% 
+  mutate(word = reorder(word,n)) %>% 
+  top_n(20) %>% 
+  ggplot(aes(word, n)) + geom_col() + coord_flip()  +
+  labs(x = "Word",y = "Number of times word occurres in a Tweet")
+```
+
+---
+
+## Sentiment Lexicon
+
+- Several lexicons (dictionaries) have been developed that categorize words according to sentiment (feeling or emotion).
+- The `tidytext` library contains several lexicons.
+
+```{r,echo=TRUE,warning=FALSE}
+library(tidytext)
+sentiments
+```
+---
+
+## NRC Lexicon
+
+- The nrc lexicon categorizes words in a binary fashion (“yes”/“no”) into categories of positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust.   
+- The `getsentiments()` function provides a way to get specific sentiment lexicons without the columns that are not used in that lexicon.
+
+---
+
+## NRC Lexicon
+
+```{r,echo=TRUE}
+get_sentiments("nrc")
+```
+
+---
+
+## Sentiment of Words used in Tweets
+
+- To examine the sentiment of the words Trump used in tweets we need to join the data frame containing the NRC lexicon and the data frame of Trump's words used in tweets.
+
+- `inner_join(x,y)`: return all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.
+
+
+```{r, echo=TRUE,warning=FALSE,message=FALSE}
+trumptweets %>% inner_join(get_sentiments("nrc"))
+```
+
+---
+
+## Sentiment of Words used in Tweets
+
+```{r,echo=TRUE,message=FALSE}
+trumptweets %>% 
+  inner_join(get_sentiments("nrc")) %>% 
+  group_by(sentiment,source) %>% 
+  summarise(n = n()) %>% 
+  mutate(pct = round(n/sum(n)*100,2)) %>%
+  arrange(desc(pct))
+```
+
+---
+
+## Sentiment of Words used in Tweets
+
+```{r, echo=TRUE,eval=TRUE,message=FALSE, echo=TRUE}
+trumptweets %>% 
+  inner_join(get_sentiments("nrc")) %>% 
+  group_by(sentiment,source) %>%
+  count(sentiment) %>%
+  ungroup() %>%
+  mutate(sentiment = reorder(sentiment,n)) %>%
+  group_by(sentiment, source) %>%
+  ggplot(aes(sentiment,n)) + 
+  geom_col(aes(fill = source), position = "dodge") + 
+  coord_flip() +
+  labs(y = "Number of words in Tweets",x = "NRC Sentiment")
+```
+---
+
+
+## Join two tables together
+
+- In the `dplyr` library there are several other ways to join tables: `left_join()`, `right_join()`, `full_join()`, `semi_join()`, `anti_join()` .
+
+- See `dplyr` [documentation](http://dplyr.tidyverse.org/reference/join.html).
+
+
+
+```{r,eval=FALSE, echo=FALSE}
+library(rvest)
+url <- "https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-1-ending-january-6-2018.html"
+ 
+flu_dat <- url %>% read_html() %>% html_nodes(xpath = '/html/body/main/div[1]/div[2]/details[1]/table') %>% html_table()
+fludat <- flu_dat[[1]] #%>% filter(row_number() < 42)
+
+```
+

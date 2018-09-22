@@ -117,15 +117,49 @@ Flu data used in class (csv format): [Provincial Flu data](week2/fludat_prov.csv
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week2/tutorial/Week2PracticeProblems-Fall2018_student.html)
 
 
-<div class=second>
-
 # Week 3
 
 ## September 24 Class
 
-### Slides and References
+### Topics
+
+- Statistical data
+- Tidy data
+- Data wrangling
+- Boxplots
+
+
+### Slides 
+
+Prof. Taback's class slides - Mon 10:00 (L0101): [html](week3/sta130_sept24_nt.html), [pdf](week3/sta130_sept24_nt.pdf).
+
+Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](https://www.dropbox.com/s/ghmu18htdkzxc5c/week3slides_nm.pdf?dl=0)
+
+### References
+
+1. Grolemund, G. and Wickham, H. R for Data Science. [Chapter 5](http://r4ds.had.co.nz/transform.html).
+
+2. [Introductory Statistics with Randomization and Simulation. Diez, D.M., Barr, C.D., and Çetinkaya-Runde, M. . Section 1.7](https://www.openintro.org/download.php?file=isrs1_tablet&referrer=/stat/textbook.php)
+
+3. (**Optional paid course**) Data Camp Online Course. [Data Manipulation in R with dplyr](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial)
+
+#### Articles of Interest
+
+[For Big-Data Scientists, ‘Janitor Work’ Is Key Hurdle to Insights - NYT](https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html) <i class="fa fa-external-link" aria-hidden="true"></i>
+
+[The Economic Guide To Picking A College Major - FiveThirtyEight](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/) <i class="fa fa-external-link" aria-hidden="true"></i>
+
+[dplyr cheat sheet #1](data-transformation.pdf), [dplyr cheat sheet #2](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
 ## September 28 Tutorial
+
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week3) before answering practice problems using RStudio.
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week2/tutorial/Week2PracticeProblems-Fall2018_student.html)
+
+
+
+<div class=second>
 
 # Week 4
 

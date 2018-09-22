@@ -1,0 +1,232 @@
+---
+title: "STA130H1 -- Winter 2018"
+subtitle: Week 2 Practice Problems
+author: A. Gibbs and N. Taback
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+# Instructions
+
+## What should I bring to tutorial on January 19?
+
+Your answers to 1. (a).
+
+## First steps to answering these questions.
+
+- Download this R Notebook directly into RStudio by typing the following code into the RStudio console window.   
+
+```{r,eval=FALSE}
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"
+download.file(url = file_url , destfile = "Week2PracticeProblems-student.Rmd")
+```
+
+Look for the file "Week2PracticeProblems-student.Rmd" under the Files tab then click on it to open.
+
+- Change the subtitle to "Week 2 Practice Problems Solutions" and change the author to your name and student number.
+
+- Type your answers below each question.  Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) can be inserted directly into the notebook by choosing Insert R from the Insert menu (see Using [R Markdown for Class Assignments](https://ntaback.github.io/UofT_STA130/Rmarkdownforclassreports.html)). In addition this R Markdown [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), and [reference](http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) are great resources as you get started with R Markdown. 
+
+
+# Practice Problems
+
+## Question 1
+
+Exercise 4.4 - 4.6 in the textbook use data that come with `R`.  The dataset is in the `nycflights13` package, which you must first load with the command `library(nycflights13)`.
+
+**Bring your output for this question to tutorial on Friday January 19 (either a hardcopy or on your laptop). **
+
+(a) Answer the questions in Exercises 4.4, 4.5, and 4.6.    
+
+```{r,eval=FALSE}
+library(tidyverse)
+library(nycflights13)
+glimpse(flights) # if you run this command you can see the variables in the data
+glimpse(planes)
+glimpse(weather)
+```
+
+The data frames in the `nycflights13` are described in the help documentation for the package.  This can be accessed from the help tab or, for example, by running `help(topic = "flights", package = "nycflights13")` to access the documentation for the `flights` data frame.
+
+Below is some code to help you get started. Wherever you see `FILL IN CODE HERE` is a prompt for you to figure out what code should inserted at this point.  In other words, `FILL IN CODE HERE` is not valid R code. 
+
+## Question 4.4
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(nycflights13)
+
+
+# Explore flights data frame
+
+# The number of distinct planes in the flights data frame
+flights %>% summarize(num_planes = n_distinct(tailnum))
+
+# The number of planes with non-missing plane tail number in the flights data frame
+flights %>% summarize(sum(is.na(tailnum) == FALSE))
+
+# Create a data frame called flight_tailnum that contains 
+# only planes with tailnum info. in the flights data frame
+
+flight_tailnum <- flights %>% filter(is.na(tailnum) == FALSE) %>% select(tailnum)
+
+# Explore planes data frame
+
+# The number of distinct planes in the planes data frame
+planes %>% summarize(num_planes = n_distinct(tailnum))
+
+# The number of planes with non-missing plane year 
+# manufacture date in planes data frame
+
+planes %>% summarize(sum(is.na(year) == FALSE))
+
+# The number of planes with missing plane year 
+# manufacture date in planes data frame
+
+planes %>% summarize(sum(is.na(year) == TRUE))
+
+# Create a data frame where year in planes data frame is renamed to
+# plane_year then choose rows where plane year is not missing
+
+plane_year <- planes %>% rename(plane_year = year) %>% 
+  FILL IN CODE HERE %>% FILL IN CODE HERE 
+  
+
+# Join flight_tailnum and plane_year and calculate oldest plane
+FILL IN CODE HERE %>% inner_join(FILL IN CODE HERE) %>% summarise(FILL IN CODE HERE)
+
+# Calculate the number of planes that flew from NYC that are in planes table
+FILL IN CODE HERE %>% inner_join(FILL IN CODE HERE, by = "tailnum") %>% summarize(num_plane=n_distinct(tailnum))
+```
+
+
+## Question 4.5
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(nycflights13)
+
+# how many planes have a missing date of manufacture?
+
+planes %>% mutate(missing_year = is.na(year) == FILL IN CODE HERE) %>% count(FILL IN CODE HERE)
+
+# five most common manufacturers
+planes %>% 
+  count(FILL IN CODE HERE) %>% 
+  arrange(desc(n)) %>%
+  top_n(5)
+
+# distribution of manufacturer over time
+# combine smaller manufacturers into 'other' category
+planes1 <- planes %>% 
+  count(manufacturer,year) %>% 
+  mutate(manufacturer_cat = ifelse(n >= 5, manufacturer, "Other")) %>%
+  filter(is.na(year) == FALSE)
+
+# use recode function in dplyr to recode some manufacturer names
+
+planes1$manufacturer_cat <- recode(planes1$manufacturer_cat, "AIRBUS INDUSTRIE" = "AIRBUS", FILL IN CODE HERE)
+
+# plot distribution of manufacturer over time
+planes1 %>% ggplot(aes(x = FILL IN CODE HERE, y = FILL IN CODE HERE)) + geom_col(aes(fill = FILL IN CODE HERE))
+```
+
+## Question 4.6
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(nycflights13)
+
+# Distribution of temperature in July 2013
+weather %>% filter(FILL IN CODE HERE) %>% ggplot(aes(FILL IN CODE HERE)) + FILL IN CODE HERE
+
+# Outliers in wind speed
+weather %>% ggplot(aes(FILL IN CODE HERE)) + geom_boxplot() + labs(x = "")
+
+# Relationship between dewpoint and humidity
+
+weather %>% ggplot(aes(FILL IN CODE HERE)) + FILL IN CODE HERE 
+
+# Relationship between visibility and precipitation
+ 
+weather %>% ggplot(aes(FILL IN CODE HERE)) + FILL IN CODE HERE
+
+```
+
+## Question 2
+
+> The Respiratory Virus Detection Surveillance System collects data from select laboratories across Canada on the number of tests performed and the number of tests positive for influenza and other respiratory viruses. Data are reported on a weekly basis year-round to the Centre for Immunization and Respiratory Infectious Diseases (CIRID), Public Health Agency of Canada. These data are also summarized in the weekly FluWatch report. [Visit the website](https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada.html).
+
+(a)  The data for the report, Week 1 ending January 6, 2018 is [here](https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-1-ending-january-6-2018.html) - click on Table 1.  Explain why this data set is not tidy?
+
+**Bring your output for this question to tutorial on Friday January 19 (either a hardcopy or on your laptop). **
+
+(b) For this exercise you will need to install the library `rvest`.  This code will "scrape" the table from the website and load it into an R data frame. Run the following code to download Table 1 directly into the a data frame called `fludat`.    
+
+NB:  You will not be responsible for understanding how this code and how the `rvest` library works (i.e., there will not be a test question on this topic). But, if you are intrested in scraping data from the web [see](https://blog.rstudio.com/2014/11/24/rvest-easy-web-scraping-with-r/).
+
+
+```{r,eval=FALSE}
+# Uncomment next line if the rvest package is not installed
+# install.packages("rvest") 
+library(rvest)
+library(tidyverse)
+
+url <- "https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-1-ending-january-6-2018.html"
+ 
+# download and read table into flu_dat 
+flu_dat <- url %>% 
+  read_html() %>% 
+  html_nodes(xpath = '/html/body/main/div[1]/div[2]/details[1]/table') %>% 
+  html_table()
+
+# clean up the file
+fludat <- flu_dat[[1]]
+dat <- as.data.frame(sapply(select(fludat,2:23), as.numeric))
+fludat <- cbind(`Reporting Laboratory`=fludat[,1],dat)
+```
+
+Answer the following questions:
+
+(i) Create a tidy version of `fludat`.  Explain how you made the data tidy.
+
+(ii) Which provinces and territories have the highest positive rates for Flu A and Flu B.
+
+(iii) The odds of testing positive for, say, Flu A in a province or territory is:
+
+$$\frac{\hat p_{\text province}}{(1-\hat p_{\text province})},$$
+where $\hat p_{\text province}$ is the proportion that tested positive for Flu A.  The odds ratio of testing positive for, say Flu A, in Newfoundland versus Ontario is:
+
+$$\frac{\hat p_{\text Newfoundland}/(1-\hat p_{\text Newfoundland})}{\hat p_{\text Ontario}/(1-\hat p_{\text Ontario})} $$
+
+- Calculate the odds ratio for testing positive for Flu A in each province versus Ontario. Interpret odds ratio larger than one, less than one, and equal to one.
+- Use the `ggplot` library to plot the odds ratios.  Explain why you selected this type of plot.
+- Try the same plot except take the logarithm of the odds ratio. This is called the log odds.  Interpret the log odds.
+
+
+## Question 3
+
+(a) In this exercise you will create several histograms of math scores in `SAT_2010` data in the `mdsr` library (see page 39, 41 of MDSR) where you specify different lengths of histogram bins using `ggplot()`.
+
+- Create a histogram without specifying the `binwidth` argument.  What do you notice?
+- Create histograms where `binwidth` has the values 10, 15, and 20. 
+
+Which histogram is the most accurate representation of the distribution of math scores?
+
+
+(b)  In this exercise you will recreate the histograms from (b), but will add several arguments to `geom_histogram()`: `aes(y=..density..)`; `alpha`; `fill`; and `colour` (a list of colours is [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) and see [here for alpha, fill, and colour](http://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html))) .  The density argument changes the $y$-axis to relative frequency, and `aes(y=..count..)` specifies that frequency should be used on the $y$-axis.  Here is starter code:
+
+```{r,warning=FALSE,message=FALSE,eval=FALSE}
+library(mdsr)
+library(tidyverse)
+SAT_2010 %>% ggplot(aes(x=math)) + geom_histogram(aes(y=..density..),binwidth = 10,fill="darkgrey",colour="black",alpha=.1) 
+```
+
+Try different values of `alpha` and colours to create a histogram that's easy to interpret.  Also, try the histogram with frequency and relative frequency on the $y$-axis.  Which is easier to interpret?  
+
+
+<a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/week2/Week2PracticeProblems-student.Rmd"> R Markdown source <i class="fa fa-github" aria-hidden="true"></i></a> 
