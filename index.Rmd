@@ -6,9 +6,14 @@ output:
    includes:
      in_header: header.html
 ---
+```{r, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
 
 
-##  <i class="fas fa-hands-helping"></i> TA Office Hours
+
+
+## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> TA Office Hours
 
 TA office hours will be held in SS623B (Sidney Smith lower level).  
 
@@ -19,23 +24,23 @@ Weekly office hours will be held on:
 - Thursday: 11:00 - 13:00
 
 
-## <i class="fas fa-chalkboard-teacher"></i> Instructors
+## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Instructors
 
 [Professor Nathan Taback](http://utstat.toronto.edu/~nathan/) and Professor Nathalie Moon.
 
-## <i class="fas fa-paperclip"></i> Syllabus
+## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Syllabus
 
 Important information about the course can found on the [Fall 2018 syllabus](Fall2018/STA130syllabus2018S-Fall2018.html).
 
-## <i class="fas fa-calendar-alt"></i> Course Calendar
+## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Course Calendar
 
 Important course dates can be found in the [course calender](Fall2018/STA130-Fall2018-Calendar.html).
 
-## <i class="fas fa-laptop"></i> Computing
+## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Computing
 
 The course will use [R](https://www.r-project.org) for computing. R is freely available [here](http://cran.utstat.utoronto.ca). We recommend using [R Studio](https://www.rstudio.com) which can be [downloaded](http://cran.utstat.utoronto.ca) for free.  We will use [R Markdown](http://rmarkdown.rstudio.com) as an authoring framework for creating reproducible data science documents.
 
-### <i class="fab fa-r-project"></i> Getting Started with R
+### <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Getting Started with R
 
 - If you have never programmed before then [Hands-On Programming with R, by Garrett Grolemund](https://d1b10bmlvqabco.cloudfront.net/attach/ighbo26t3ua52t/igp9099yy4v10/igz7vp4w5su9/OReilly_HandsOn_Programming_with_R_2014.pdf) is a great place to start.
 - [R for Data Science, by Hadley Wickham and Garrett Grolemund](http://r4ds.had.co.nz) is a wonderful resource. 
