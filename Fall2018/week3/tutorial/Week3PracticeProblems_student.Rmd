@@ -21,7 +21,7 @@ opts_chunk$set(warning = FALSE, message = FALSE)
 
 ## What should I bring to tutorial on September 28?
 
-- R output (e.g., plots and explanations) for Question 1(b), 1(e), 2(b), 3(b)  You can either bring a hardcopy or bring your laptop with the output.
+- R output (e.g., plots and explanations) for Question 1(b), 1(d), 2(b), 3(b)  You can either bring a hardcopy or bring your laptop with the output.
 
 # Tutorial Grading
 
@@ -48,13 +48,9 @@ Use the `nycflights13` package to answer the following questions.
 
 (b) Use the flights data frame to answer the following questions: What month had the highest proportion of cancelled flights?
 
-(c)  Do airlines fly older planes (specified by the `tailnum` variable) to Chicago or Miami?  What is the average, standard deviation, and median age of planes that fly to Miami?
+(c) How many planes that flew from NYC have a missing date of manufacturer?  
 
-
-(d) How many planes that flew from NYC have a missing date of manufacturer?  
-
-
-(e) Create a vizualization of the distribution of engine types that flew from NYC? Make sure to order the engine categories. Which engine type is most frequent in flights from NYC?
+(d) Create a vizualization of the distribution of engine types that flew from NYC? Make sure to order the engine categories. Which engine type is most frequent in flights from NYC?
 
 
 

@@ -132,7 +132,15 @@ Flu data used in class (csv format): [Provincial Flu data](week2/fludat_prov.csv
 
 ### Slides 
 
-Prof. Taback's class slides - Mon 10:00 (L0101): [html](week3/sta130_sept24_nt.html), [pdf](week3/sta130_sept24_nt.pdf).
+Prof. Taback's class slides - Mon 10:00 (L0101): 
+
+<span class="glyphicon glyphicon-scissors" aria-hidden="true"></span> The slides on joining (merging) data frames and the Trump tweets example have been removed.  You are not responsible for these topics or undertsanding this example this week.  This topic will be covered on Oct.1
+
+- [html](week3/sta130_sept24_nt_revised.html)
+
+- [pdf](week3/sta130_sept24_nt_revised.pdf) 
+
+- [pdf -annotated](week3/sta130_sept24_nt_annotated.pdf)
 
 Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](https://www.dropbox.com/s/ghmu18htdkzxc5c/week3slides_nm.pdf?dl=0)
 
@@ -156,7 +164,9 @@ Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](https://www.dropbox.com/s/g
 
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week3/tutorial/howtoanswertutq_sept28.html) before answering practice problems using RStudio.
 
-<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week3/tutorial/Week3PracticeProblems_student.html)
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week3/tutorial/Week3PracticeProblems_student.html) 
+
+<span class="glyphicon glyphicon-scissors" aria-hidden="true"></span> (**NB: One question has been removed from the original post on Sept 23**)
 
 
 
