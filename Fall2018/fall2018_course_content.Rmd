@@ -116,6 +116,7 @@ Flu data used in class (csv format): [Provincial Flu data](week2/fludat_prov.csv
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week2/tutorial/Week2PracticeProblems-Fall2018_student.html)
 
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems - Sample Solutions](week2/tutorial/solutions/Week2PracticeProblems-Fall2018_soltns.html)
 
 # Week 3
 
