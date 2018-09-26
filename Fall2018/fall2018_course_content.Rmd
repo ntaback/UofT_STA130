@@ -142,7 +142,11 @@ Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [pdf -annotated](week3/sta130_sept24_nt_annotated.pdf)
 
-Prof. Moon's class slides - Mon 14:00 (L0201): [pdf](https://www.dropbox.com/s/ghmu18htdkzxc5c/week3slides_nm.pdf?dl=0)
+Prof. Moon's class slides - Mon 14:00 (L0201): 
+
+- [pdf](https://www.dropbox.com/s/ghmu18htdkzxc5c/week3slides_nm.pdf?dl=0)
+
+- [pdf - annotated](week3/week3slides_nm_annotated.pdf)
 
 ### References
 
