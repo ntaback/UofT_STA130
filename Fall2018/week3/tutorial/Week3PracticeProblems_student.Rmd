@@ -118,4 +118,4 @@ The `CIACountries` data set is available in the `mdsr` library.  Countries can b
 (a) Use boxplots to compare the distribution of roadways in countries with a GDP of at least $50000 compared to less than $50000?  Interpret the boxplots. What conclusions can you draw from the comparison?
 
 
-(b)  Write a function to identify outliers using the $1.5 \times IQR$ rule.  Use the function to identify which countries are outliers among the countries with a GDP of at least $50000 and less than $50000.
+(b)  Write a function to identify outliers using the $1.5 \times IQR$ rule.  Use the function to identify which countries are outliers among the **group** of countries with a GDP of at least $50000$ and the **group** of countries with a GDP less than $50000.
