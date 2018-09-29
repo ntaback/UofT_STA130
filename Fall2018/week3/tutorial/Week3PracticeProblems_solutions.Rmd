@@ -1,0 +1,313 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 3 Practice Problems - Solutions
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(nycflights13)
+library(rvest)
+library(mdsr)
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on September 28?
+
+- R output (e.g., plots and explanations) for Question 1(b), 1(d), 2(b), 3(b)  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+**Bring your output for this question to tutorial on Friday September 28 (either a hardcopy or on your laptop). **
+
+# Practice Problems
+
+## Question 1
+
+Use the `nycflights13` package to answer the following questions.
+
+(a) Use the weather table to answer the following question: On how many days was there precipitation in the New York area in 2013?  (HINT: consider using the `distinct()` function in `dplyr` as in the example below).
+
+```{r}
+library(nycflights13)
+# example code to obtain the distinct number of days in the weather data
+weather %>% 
+  distinct(month, day) %>% 
+  summarise(n = n())
+```
+
+
+
+```{r}
+library(nycflights13)
+weather %>%
+  select(month, day, precip) %>%
+  filter(precip != 0) %>%
+  distinct(month, day) %>% 
+  summarise(n = n())
+```
+
+There was precipitation on 141 days in the NY area in 2013.
+
+
+(b) Use the flights data frame to answer the following questions: What month had the highest proportion of cancelled flights?
+
+```{r}
+library(nycflights13)
+flights2 <- flights %>%
+  group_by(month) %>%
+  summarize(cancelled =  sum(is.na(arr_delay)),
+            total = n(),
+            prop_cancelled = cancelled/total) %>%
+  arrange(desc(prop_cancelled)) 
+
+flights2
+
+flights2 %>% ggplot(aes(x = month, y = prop_cancelled)) + 
+  geom_point() +
+  labs(title = "Proportion of Cancelled Flights Each Month", 
+       y = "proportion cancelled")
+```
+
+February had the highest proportion of cancelled flights while October had the lowest. The data shows that February, December, and summer are the periods with the great- est number of cancellations, which may be because they are often also the stormiest and snowiest periods of the year, with severe weather likely to be causing cancellations.
+
+
+(c) How many planes that flew from NYC have a missing date of manufacturer?  
+
+```{r}
+planes %>% summarise(sum(is.na(year) == TRUE))
+```
+
+(d) Create a vizualization of the distribution of engine types that flew from NYC? Make sure to order the engine categories. Which engine type is most frequent in flights from NYC?
+
+```{r}
+planes %>% 
+  count(engine) %>%
+  mutate(engine = reorder(engine, -n)) %>%
+  ggplot(aes(engine, n)) + geom_col()
+```
+
+Turbo-fan is the most frequent engine type.
+
+
+
+## Question 2
+
+> The Respiratory Virus Detection Surveillance System collects data from select laboratories across Canada on the number of tests performed and the number of tests positive for influenza and other respiratory viruses. Data are reported on a weekly basis year-round to the Centre for Immunization and Respiratory Infectious Diseases (CIRID), Public Health Agency of Canada. These data are also summarized in the weekly FluWatch report. [Visit the website](https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada.html).
+
+(a)  The data for the report, Week 1 ending December 30, 2017 is [here](https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-52-ending-december-30-2017.html) - click on Table 1.  Explain why this data set is not tidy?
+
+
+(b) For this exercise you will need to install the library `rvest`.  This code will "scrape" the table from the website and load it into an R data frame. Run the following code to download Table 1 directly into the a data frame called `fludat`.    
+
+NB:  You will not be responsible for understanding how this code and how the `rvest` library works (i.e., there will not be a test question on this topic). But, if you are interested in scraping data from the web [see](https://blog.rstudio.com/2014/11/24/rvest-easy-web-scraping-with-r/).
+
+
+```{r,eval=TRUE, cache=TRUE}
+# Uncomment next line if the rvest package is not installed
+# install.packages("rvest") 
+library(rvest)
+library(tidyverse)
+
+url <- "https://www.canada.ca/en/public-health/services/surveillance/respiratory-virus-detections-canada/2017-2018/respiratory-virus-detections-isolations-week-52-ending-december-30-2017.html"
+
+# download and read table into flu_dat 
+flu_dat <- url %>% 
+  read_html() %>% 
+  html_nodes(xpath = '/html/body/main/div[1]/div[2]/details[1]/table') %>% 
+  html_table()
+
+# clean up the file
+fludat <- flu_dat[[1]]
+dat <- as.data.frame(sapply(select(fludat,2:23), as.numeric))
+fludat <- cbind(`Reporting Laboratory` = fludat[,1],dat)
+```
+
+Answer the following questions:
+
+(i) Create a tidy version of `fludat`.  Explain how you made the data tidy.
+
+A tidy versiuon of ` fludat` could mean either observations are: individual reporting labs; provinces and territories (Newfoundland, Nova Scotia, etc.); regions (Atlantic, Quebec, etc.); or country (Canada). For this example solution I'll pick province to be the observations.  So, I'll tidy up the data so that every row corresponds to a province.
+
+```{r, cache=TRUE}
+
+# using the match operator %in%
+fludat_prov <- fludat %>% filter(row_number() < 42 & row_number() %in% c(1, 2, 3, 4, 12, 29, 30, 33, 34, 36, 37,38, 39))
+
+# using the or operator | 
+#fludat_prov <- fludat %>% filter(row_number() < 42 & (row_number() == 1 | #row_number() == 2 | #row_number() == 3 | row_number() ==  4 | row_number() == 12 | #row_number() ==  #29|row_number() ==  30 | row_number() ==  33 | row_number() ==  34 #| row_number() ==  36 | #row_number() ==  37| row_number() == 38 | row_number() == #39))
+
+
+glimpse(fludat_prov)
+```
+
+I removed row 42 since it had some text by specifying `row_number() < 42`.  I had to inspect the data frame `fludat` to find out it was row 42. Similarlily, I inspected the table to find out which rows correponded to provinces or territories. Then I used the `%in%` operator which 
+checks if the row number is in the list that I specified.  
+Now, each row corresponds to a province or territory. So, the data is in tidy format.
+
+
+(ii) Which provinces and territories have the highest positive rates for Flu A and Flu B.
+
+```{r, cache=TRUE}
+fludat_prov %>% 
+  mutate(rate_A = round((`Total Flu A Positive` / `Flu Tested`), 2), 
+         rate_B = round((`Total Flu B Positive` / `Flu Tested`), 2)) %>% 
+           arrange(desc(rate_A)) %>% 
+           select(`Reporting Laboratory`, rate_A)
+
+fludat_prov %>% 
+  mutate(rate_A = round((`Total Flu A Positive` / `Flu Tested`), 2), 
+         rate_B = round((`Total Flu B Positive` / `Flu Tested`), 2)) %>% 
+           arrange(desc(rate_A)) %>% 
+           select(`Reporting Laboratory`, rate_B)
+```
+
+The highest rates for Flu A and Flu B is PEI.
+
+
+(iii) The odds of testing positive for, say, Flu A in a province or territory is:
+
+$$\frac{\hat p_{\text province}}{(1-\hat p_{\text province})},$$
+where $\hat p_{\text province}$ is the proportion that tested positive for Flu A.  The odds ratio of testing positive for, say Flu A, in Newfoundland versus Ontario is:
+
+$$\frac{\hat p_{\text Newfoundland}/(1-\hat p_{\text Newfoundland})}{\hat p_{\text Ontario}/(1-\hat p_{\text Ontario})} $$
+
+- Calculate the odds ratio for testing positive for Flu A in each province versus Ontario. Interpret odds ratio larger than one, less than one, and equal to one.
+
+- Use the `ggplot` library to plot the odds ratios.  Explain why you selected this type of plot.
+
+- Try the same plot except take the logarithm of the odds ratio. This is called the log odds.  Interpret the log odds.
+
+__Comments:__
+
+* An odds ratio __greater__ than 1 means that a province has a greater odds of Flu A compared to Ontario.  
+
+* An odds ratio __less__ than 1 means that a province has a smaller odds of Flu A compared to Ontario.  
+
+* An odds ratio __equal__ to 1 means that a province has the same odds of Flu A as Ontario.  
+
+* A bar chart is appropriate since we are plotting a categorical varaible and continuous variable.
+
+* The log odds is:
+
+$$\ln\left(\frac{\hat p_{\text Province}/(1-\hat p_{\text Province})}{\hat p_{\text Ontario}/(1-\hat p_{\text Ontario})}\right) = \ln \left(\hat p_{\text Province}/(1-\hat p_{\text Province}) \right) - \ln \left( \hat p_{\text Ontario}/(1-\hat p_{\text Ontario})\right).$$
+
+The difference in the log of the odds between a province and Ontario.   If 
+
+$$\ln \left(\hat p_{\text Province}/(1-\hat p_{\text Province}) \right) - \ln \left( \hat p_{\text Ontario}/(1-\hat p_{\text Ontario})\right) >0,$$
+
+then the odds of Flu A is greater in the provinces versus Ontario.  
+
+If 
+
+$$\ln \left(\hat p_{\text Province}/(1-\hat p_{\text Province}) \right) - \ln \left( \hat p_{\text Ontario}/(1-\hat p_{\text Ontario})\right) < 0,$$
+
+then the odds of Flu A is less than in the provinces versus Ontario. 
+
+If 
+
+$$\ln \left(\hat p_{\text Province}/(1-\hat p_{\text Province}) \right) - \ln \left( \hat p_{\text Ontario}/(1-\hat p_{\text Ontario})\right) =0$$
+
+then the odds of Flu A is the same as  Ontario. 
+
+The plot of the log odds is easier to interpret.  It clearly shows which provinces has greater odds of Flu A compared to Ontario. 
+
+```{r}
+ont_odds <- fludat %>% 
+  filter(`Reporting Laboratory` == "Province of Ontario") %>%
+  mutate(rate = (`Total Flu A Positive` / `Flu Tested`), oddsR = (rate / (1 - rate))) %>%
+  select(oddsR)
+
+fludat_prov %>% 
+  mutate(rate = (`Total Flu A Positive` / `Flu Tested`), 
+         odds = (rate / (1 - rate)), oddsR = (odds / ont_odds$oddsR)) %>%
+  select(`Reporting Laboratory`, oddsR) %>% 
+  arrange(desc(oddsR))
+
+fludat_prov %>% 
+  mutate(rate = (`Total Flu A Positive` / `Flu Tested`), 
+         odds = (rate / (1 - rate)), oddsR = (odds / ont_odds$oddsR)) %>%
+  mutate(province = reorder(`Reporting Laboratory`, -oddsR)) %>%
+  ggplot(aes(x = province, y = oddsR)) + geom_col(colour = "black", fill = "grey") + theme_minimal() + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + geom_hline(yintercept = 1, colour = "red")
+
+fludat_prov %>% 
+  mutate(rate = (`Total Flu A Positive` / `Flu Tested`), 
+         odds = (rate / (1 - rate)), log_oddsR = log(odds / ont_odds$oddsR)) %>%
+  mutate(province = reorder(`Reporting Laboratory`, -log_oddsR)) %>%
+  ggplot(aes(x = province, y = log_oddsR)) + 
+  geom_col(colour = "black", fill = "grey") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  theme_minimal() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Question 3
+
+The `CIACountries` data set is available in the `mdsr` library.  Countries can be categorized by gross domestic product (GDP) - "a monetary measure of the market value of all the final goods and services produced in a period of time, often yearly or quarterly" (see [Wikipedia article](https://en.wikipedia.org/wiki/Gross_domestic_product)).  The `gdp` variable contains data on GDP per person (or per capita).  
+
+(a) Use boxplots to compare the distribution of roadways in countries with a GDP of at least $50000 compared to less than $50000?  Interpret the boxplots. What conclusions can you draw from the comparison?
+
+```{r}
+library(mdsr)
+library(tidyverse)
+
+CIACountries %>% 
+  mutate(gdp_cat = ifelse(gdp >= 50000, "high","med-low")) %>%
+  filter(is.na(gdp_cat) == F) %>%
+  ggplot(aes(x = gdp_cat, y= roadways)) + geom_boxplot()
+```
+
+(b)  Write a function to identify outliers using the $1.5 \times IQR$ rule.  Use the function to identify which countries are outliers among the **group** of countries with a GDP of at least $50000$ and the **group** of countries with a GDP less than $50000.
+
+
+```{r}
+library(mdsr)
+library(tidyverse)
+
+is.outlier <- function(x){
+  ifelse(x <= quantile(x, 0.25, na.rm = T) - 1.5*IQR(x, na.rm = T) | 
+           x >= quantile(x, 0.75, na.rm = T) + 1.5*IQR(x, na.rm = T), 
+         "yes", "no")
+}
+
+outl_dat <- CIACountries %>% 
+  mutate(gdp_cat = ifelse(gdp >= 50000, "high","med-low")) %>%
+  group_by(gdp_cat) %>%
+  filter(is.na(gdp_cat) == F) %>%
+  mutate(outlier = is.outlier(roadways)) %>%
+  filter(outlier == "yes") %>%
+  select(country, gdp_cat, outlier) %>%
+  arrange(gdp_cat)
+```
+
+The coutries with GDP in the high category are:
+
+```{r}
+outl_dat %>% filter(gdp_cat == "high")
+```
+
+The coutries in the medium-low category are:
+
+```{r}
+outl_dat %>% filter(gdp_cat == "med-low")
+```
+
+

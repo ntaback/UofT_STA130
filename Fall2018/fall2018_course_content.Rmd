@@ -172,7 +172,7 @@ Prof. Moon's class slides - Mon 14:00 (L0201):
 
 <span class="glyphicon glyphicon-scissors" aria-hidden="true"></span> (**NB: One question has been removed from the original post on Sept 23**)
 
-
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems - Sample Solutions](week3/tutorial/Week3PracticeProblems_solutions.html)
 
 <div class=second>
 
