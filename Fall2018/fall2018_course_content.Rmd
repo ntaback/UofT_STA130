@@ -192,7 +192,9 @@ Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [html](week4/sta130_oct1_week4_ver1.html)
 
-- [pdf](week4/sta130_oct1_week4_ver1.pdf)
+- [pdf](week4/sta130_oct1_week4_ver1.pdf) 
+
+- [pdf -annotated](week4/sta130_oct1_week4_ver1_annotated.pdf)
 
 Prof. Moon's class slides - Mon 14:00 (L0201):
 
@@ -215,15 +217,13 @@ Sections 2.3.1, 2.3.2, 2.3.7 and 2.4 of [*Introductory Statistics with Randomiza
 
 # Week 5
 
-## October 8 Class
-
-### Slides and References
+## October 8 Class - No Class due to Thanksgiving
 
 ## October 12 Tutorial
 
 # Week 6
 
-## October 15 - No Class due to Thanksgiving
+## October 15 
 
 ### Slides and References
 
