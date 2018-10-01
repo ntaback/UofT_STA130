@@ -174,15 +174,44 @@ Prof. Moon's class slides - Mon 14:00 (L0201):
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems - Sample Solutions](week3/tutorial/Week3PracticeProblems_solutions.html)
 
-<div class=second>
-
 # Week 4
 
 ## October 1 Class
 
-### Slides and References
+### Topics
+
+- Introduction to statistical inference
+- `for` loops
+- Simulation
+- Inference for a single proportion
+- Hypothesis testing
+
+### Slides 
+
+Prof. Taback's class slides - Mon 10:00 (L0101): 
+
+- [html](week4/sta130_oct1_week4_ver1.html)
+
+- [pdf](week4/sta130_oct1_week4_ver1.pdf)
+
+Prof. Moon's class slides - Mon 14:00 (L0201):
+
+- [pdf](https://www.dropbox.com/s/dje949awvlvzd6g/week4slides_posted_nm.pdf?dl=0)
+
+### References
+
+Sections 2.3.1, 2.3.2, 2.3.7 and 2.4 of [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)  
 
 ## October 5 Tutorial
+
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week4/tutorial/howtoanswertutq_oct5.html) before answering practice problems using RStudio.
+
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week4/tutorial/Week4PracticeProblems_questions.html) 
+
+
+<div class=second>
+
 
 # Week 5
 
