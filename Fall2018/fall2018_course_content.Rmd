@@ -200,6 +200,9 @@ Prof. Moon's class slides - Mon 14:00 (L0201):
 
 - [pdf](https://www.dropbox.com/s/dje949awvlvzd6g/week4slides_posted_nm.pdf?dl=0)
 
+- [pdf - annotated](week4/week4slides_posted_nm_annotated.pdf)
+
+
 ### References
 
 Sections 2.3.1, 2.3.2, 2.3.7 and 2.4 of [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)  
