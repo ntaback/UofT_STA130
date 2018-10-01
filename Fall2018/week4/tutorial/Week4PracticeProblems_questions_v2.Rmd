@@ -17,7 +17,7 @@ opts_chunk$set(warning = FALSE, message = FALSE)
 
 # Instructions
 
-## What should I bring to tutorial on September 28?
+## What should I bring to tutorial on October 5?
 
 - R output (e.g., plots and explanations) for Question 1 (a)-(d), Question 2 (a) and (b).  You can either bring a hardcopy or bring your laptop with the output.
 
