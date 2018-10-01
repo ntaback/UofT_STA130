@@ -11,8 +11,11 @@ output:
 
 ## Solutions to Term Tests
 
+[STA130-L0101, Monday 10:00 - 12:00 Test](NCbirths_test.pdf)
 
 [STA130-L0101, Monday 10:00 - 12:00 Test Solutions](NCbirths_test_solutions_versiongiven.pdf)
+
+[STA130-L0201, Monday 14:00 - 16:00 Test](diamonds_test.pdf)
 
 [STA130-L0201, Monday 14:00 - 16:00 Test Solutions](diamonds_test-solutions.pdf)
 

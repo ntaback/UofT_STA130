@@ -36,6 +36,9 @@ navbar:
     - text: Final Project
       icon: fa-users
       href: project_info.html
+    - text: Term Test
+      icon: fa-users
+      href: term_test_2018.html
     
 output:
   html_document:
