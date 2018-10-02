@@ -212,7 +212,7 @@ Sections 2.3.1, 2.3.2, 2.3.7 and 2.4 of [*Introductory Statistics with Randomiza
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week4/tutorial/howtoanswertutq_oct5.html) before answering practice problems using RStudio.
 
 
-<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week4/tutorial/Week4PracticeProblems_questions_v2.html) 
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week4/tutorial/Week4PracticeProblems_questions_v3.html) 
 
 
 <div class=second>
