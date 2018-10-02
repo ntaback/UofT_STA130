@@ -708,7 +708,6 @@ Assuming the probability of head is 0.50, the probability of observing a proport
 
 - You could determine the P-value exactly using a *binomial* probability model.  
 - A binomial probability model is used to count the number of "successes" in $n$ independent trials, where each trial has two possible outcomes: "success" with probability $p$ or "failure" with probability $(1-p)$.  
-- The probability of $k$ successes in $n$ trials is
-$$ \left ( \begin{matrix}{n \\ k}\end{matrix} \right ) p^k (1-p)^{n-k}$$
+- The probability of $k$ successes in $n$ trials is $$\binom{n}{k} p^k(1-p)^{n-k}$$
 
 You'll study binomial probability models in second year statistics courses.

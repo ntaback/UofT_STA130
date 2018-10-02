@@ -173,12 +173,12 @@ data.frame(coin_flips) %&gt;% head() #result of first 6 flips
 
 ```
 ##   coin_flips
-## 1      tails
-## 2      heads
-## 3      heads
+## 1      heads
+## 2      tails
+## 3      tails
 ## 4      tails
 ## 5      heads
-## 6      heads
+## 6      tails
 ```
 
 ```r
@@ -188,7 +188,7 @@ table(coin_flips) #counts number of heads and tails
 ```
 ## coin_flips
 ## heads tails 
-##    60    64
+##    59    65
 ```
 
 
@@ -204,18 +204,18 @@ coin_flips == "heads"
 ```
 
 ```
-##   [1] FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
-##  [12]  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE
-##  [23]  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE
-##  [34] FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE
-##  [45] FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE
-##  [56] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE
-##  [67]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
-##  [78] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
-##  [89] FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE
-## [100] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
-## [111] FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
-## [122]  TRUE  TRUE FALSE
+##   [1]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE
+##  [12] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+##  [23]  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE
+##  [34]  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE
+##  [45] FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE
+##  [56]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
+##  [67] FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE
+##  [78] FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE
+##  [89]  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE
+## [100] FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [111]  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE
+## [122] FALSE  TRUE  TRUE
 ```
 
 ---
@@ -230,7 +230,7 @@ sum(coin_flips == "heads")
 ```
 
 ```
-## [1] 60
+## [1] 59
 ```
 
 Calculate the proportion of heads in the simulation.
@@ -242,7 +242,7 @@ p_heads
 ```
 
 ```
-## [1] 0.483871
+## [1] 0.4758065
 ```
 
 ---
@@ -770,8 +770,7 @@ Assuming the probability of head is 0.50, the probability of observing a proport
 
 - You could determine the P-value exactly using a *binomial* probability model.  
 - A binomial probability model is used to count the number of "successes" in `\(n\)` independent trials, where each trial has two possible outcomes: "success" with probability `\(p\)` or "failure" with probability `\((1-p)\)`.  
-- The probability of `\(k\)` successes in `\(n\)` trials is
-$$ \left ( \begin{matrix}{n \\ k}\end{matrix} \right ) p^k (1-p)^{n-k}$$
+- The probability of `\(k\)` successes in `\(n\)` trials is `$$\binom{n}{k} p^k(1-p)^{n-k}$$`
 
 You'll study binomial probability models in second year statistics courses.
     </textarea>
