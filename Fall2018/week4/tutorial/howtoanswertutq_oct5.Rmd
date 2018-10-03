@@ -43,7 +43,7 @@ Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks
 Download R Markdown questions file directly into RStudio by typing the following code into the RStudio console window.   
 
 ```{r,eval=FALSE}
-file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week4/tutorial/Week4PracticeProblems_questions.Rmd"
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week4/tutorial/Week4PracticeProblems_questions_v3.Rmd"
 download.file(url = file_url , destfile = "Week4PracticeProblems-student_temp.Rmd")
 ```
 
