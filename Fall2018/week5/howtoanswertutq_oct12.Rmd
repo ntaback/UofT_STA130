@@ -20,15 +20,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](rscloud1.png)
 
-3. Click on September28Tutorial.
+3. Click on October12Tutorial.
 
 4. When you access the project created by someone else, RStudio Cloud automatically creates a temporary copy of the original project for you. You can play with and make edits to it, but none of your changes will be reflected in the original. If you’d like to keep the changes you’ve made, just save a copy of the project for yourself by pressing the Save a Permanent Copy button.
 
 ![](forkProject.png)
 
-5. Look for the file "Week4PracticeProblems_questions.Rmd" under the Files tab then click on it to open.
+5. Look for the file "Week5PracticeProblems_questions.Rmd" under the Files tab then click on it to open.
 
-6. Change the subtitle to "Week 4 Practice Problems Solutions" and change the author to your name and student number.
+6. Change the subtitle to "Week5PracticeProblemsSolutions" and change the author to your name and student number.
 
 **NB: The screenshot below is for week1 problems, but it's the same idea.**
 
@@ -43,10 +43,10 @@ Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks
 Download R Markdown questions file directly into RStudio by typing the following code into the RStudio console window.   
 
 ```{r,eval=FALSE}
-file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week4/tutorial/Week4PracticeProblems_questions_v3.Rmd"
-download.file(url = file_url , destfile = "Week4PracticeProblems-student_temp.Rmd")
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week5/Week5PracticeProblems_questions.Rmd"
+download.file(url = file_url , destfile = "Week5PracticeProblems_student.Rmd")
 ```
 
 You will need to install several libraries such as `tidyverse`, and `mosaic` to complete the questions.
 
-Look for the file "Week3PracticeProblems_student.Rmd" under the Files tab then click on it to open.
+Look for the file "Week5PracticeProblems_student.Rmd" under the Files tab then click on it to open.

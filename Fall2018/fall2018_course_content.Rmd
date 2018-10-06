@@ -225,7 +225,7 @@ The tutorial will cover joining data frames.  A short lesson on joining data fra
 
 ## October 12 Tutorial
 
-<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this]() before answering practice problems using RStudio.
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week5/howtoanswertutq_oct12.html) before answering practice problems using RStudio.
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week5/Week5PracticeProblems_questions.html) 
 
