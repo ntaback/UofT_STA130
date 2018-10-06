@@ -1,0 +1,76 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 5 Practice Problems
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on October 12?
+
+- R output (e.g., plots and explanations) for Question 1 (a)-(e).  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+These problems are based on the lesson [Joining Data Frames](joiningdataframes.html).
+
+
+# Practice Problems
+
+The file `heroes_information_exer.csv` contains some information on superheroes and `super_hero_powers_exer.csv` conatins some information on powers of superheroes.
+
+The following questions are based on data in `heroes_information.csv` and `super_hero_powers.csv`.
+
+## Question 1
+
+(a)  Read both data sets `heroes_information.csv` and `super_hero_powers.csv` into R using `read_csv` from the `tidyverse` library.  
+
+
+If you are using rstudio.cloud then here is the R code.  
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+hero_info <- read_csv("heroes_information_exer.csv")
+hero_power <- read_csv("super_hero_powers_exer.csv")
+```
+
+If you are using RStudio on your own computer then use this R code.
+
+```{r}
+
+```
+
+
+
+How may variables and observations are in each data frame?
+
+(b)  Suggest a key to join the two data frames?
+
+(c) What proprotion of superheroes in `heroes_information` also have data in `super_hero_powers`?  
+
+(d)  What is the number of observations, average, median, standard deviation, and inter-quartile range of `weight` for superheroes for each category of marksmanship? (HINT: use the `group_by()` function then `summarise()`)
+
+(e) Are superheroes with marksmanship thinner compared to those without marksmanship?  Create a visualization to compare the distribution of weight between superheroes that have marksmanship and those that don't have marksmanship.  Which distribution has more variability?
+
+

@@ -214,15 +214,22 @@ Sections 2.3.1, 2.3.2, 2.3.7 and 2.4 of [*Introductory Statistics with Randomiza
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week4/tutorial/Week4PracticeProblems_questions_v3.html) 
 
-
-<div class=second>
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems - Sample Solutions](week4/tutorial/Week4PracticeProblems_solutions_v3.html)
 
 
 # Week 5
 
-## October 8 Class - No Class due to Thanksgiving
+## October 8 Class - No Class due to Thanksgiving, but there is a tutorial on Friday, October 12
+
+The tutorial will cover joining data frames.  A short lesson on joining data frames is given [here](week5/joiningdataframes.html).  It is strongly recommended that you study this before attempting the tutorial questions.
 
 ## October 12 Tutorial
+
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this]() before answering practice problems using RStudio.
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week5/Week5PracticeProblems_questions.html) 
+
+<div class=second>
 
 # Week 6
 

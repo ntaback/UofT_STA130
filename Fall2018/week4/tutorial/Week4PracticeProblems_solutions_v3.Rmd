@@ -1,0 +1,342 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 4 Practice Problems - Solutions
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on October 5?
+
+- R output (e.g., plots and explanations) for Question 1 (a)-(d), Question 2 (a) and (b).  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+
+# Practice Problems
+
+## Question 1
+
+One survey showed that among 785 randomly selected subjects who completed four years of college, 144 smoke and 641 do not (based on data from the American Medical Association). The rate of smoking in the general population is reported to be 27%. Researchers are interested in finding out if the rate of smoking is different for college graduates than for the general population.
+
+(a) What are appropriate null and alternative hypotheses to test the claim?
+
+$H_0: p = 0.27$
+
+$H_1: p \neq 0.27$
+
+where $p$ is the proportion of college graduates who are smokers.
+
+
+
+(b) Assume you conduct a hypothesis test using simulation and get the following empirical distribution for values of the test statistic $\hat{p}$, assuming the null hypothesis is true. For simplicity, this distribution only shows the results of 300 simulations. There are 300 dots on the plot, one for each simulation (note that in practice, 300 simulations is not sufficient).  What does each dot on the plot represent?
+
+```{r, warning=F, message=F, echo=FALSE}
+# create a vector of missing values to store results
+repetitions <- 300
+simulated_stats <- rep(NA, repetitions) # 100 missing values
+
+n_observations <- 144 + 641
+
+set.seed(101)
+for (i in 1:repetitions)
+{
+  new_sim <- sample(c("smoker", "nonsmoker"), size=n_observations, replace=TRUE, prob=c(0.27, 1-0.27))
+  sim_p <- sum(new_sim == "smoker") / n_observations
+  # add the new simulated value to the ith entry in the vector of results
+  simulated_stats[i] <- sim_p
+}
+
+# turn results into a data frame
+sim <- data_frame(p_right = simulated_stats)
+
+# plot
+ggplot(sim, aes(x=p_right)) + geom_dotplot(dotsize = 0.45) + labs(y="", x="Proportion correct under H_0") +
+  theme(axis.text.y = element_blank())
+```
+
+
+
+Each dot represents one simulation. For each simulation, $144 + 641 = 785$ values are randomly generated under the assumption that 27% of college graduates are smokers and 73% are nonsmokers, and a dot corresponds to the proportion of smokers in this simulation population of 785 people. 
+
+
+(c) Based on the plot above, what is your estimate of the P-value? How would you interpret this p-value?
+
+The test statistic is $144/785=0.18$ here. There are no dots in the plot that are lower than $0.18$ or larger than $0.27 + (0.27 - 0.183) = 0.36$ (0.36 is the same distance from 0.27 than 0.18 is). Thus, the estimate of the p-value is 0, which means that the value of our test statistic is very unusual, under the null hypothesis.
+
+(d) Which of the following is a valid conclusion for this hypothesis test?
+    (i) There is very strong evidence for the null hypothesis that the rate of smoking is lower for college graduates than in the general population.
+    (ii) There is insufficient evidence to reject the null hypothesis that the rate of smoking is lower for college graduates than in the general population.
+    (iii) There is very strong evidence against the null hypothesis that the rate of smoking is the same for college graduates and the general population.
+    (iv) There is very strong evidence for the null hypothesis that the rate of smoking is the same for college graduates and the general population.
+
+Only (iii) is a valid conclusion.
+Conclusions (i) and (ii) are incorrect because the null hypothesis is that there is no difference between the smoking rate among college graduates and the general population.
+Conclusion (iv) is wrong because a small p-value (<0.01) provides strong evidence **against** the null hypothesis, not **for** the null hypothesis.
+
+
+
+
+## Question 2
+
+In August 2017, researchers at Dalhousie university conducted a [poll](https://cdn.dal.ca/content/dam/dalhousie/pdf/management/News/Preliminary%20results%20cannibis-infused%20foods%20EN.pdf) to learn more about attitudes towards the legalization of marijuana across Canada. They found that 14.5% of respondants strongly disagreed with the legalization of recreational marijuana, based on a sample of 1,087 adults who had been living in Canada for at least 12 months.  
+
+Suppose a headline reads "One out of six Canadians strongly disagree with the legalization of recreational marijuana in Canada".  
+
+(a) State the null hypothesis and alternative hypothesis to test if the Dalhousie survey data contradicts the claim.
+
+$H_0: p = 1/6$
+
+$H_1: p \neq 1/6$
+
+where $p$ is the proportion of individuals who strongly disagree with the legalization of marijuana in Canada.
+
+
+
+(b) Simulate 10,000 datasets to determine whether the survey data contradicts the headline.  What do you conclude?
+
+```{r, warning=F, message=F, echo=FALSE}
+# create a vector of missing values to store results
+repetitions <- 10000
+simulated_stats <- rep(NA, repetitions) # 10,000 missing values
+
+n_observations <- 1087
+test_stat <- 0.145
+distance_from_null <- 1/6 - test_stat; # note that 1/6=0.166667
+other_extreme <- 1/6 + distance_from_null
+
+set.seed(101)
+for (i in 1:repetitions)
+{
+  new_sim <- sample(c("strongly_disagree", "dont_strongly_disagree"), size=n_observations, replace=TRUE, prob=c(1/6, 5/6))
+  sim_p <- sum(new_sim == "strongly_disagree") / n_observations
+  # add the new simulated value to the ith entry in the vector of results
+  simulated_stats[i] <- sim_p
+}
+
+
+# turn results into a data frame
+sim2 <- data_frame("p_strongly_disagree" = simulated_stats)
+
+# plot
+ggplot(sim2, aes(p_strongly_disagree)) + 
+geom_histogram(binwidth=0.01) +
+geom_vline(xintercept = test_stat, color="red") +
+  geom_vline(xintercept = other_extreme, color="blue") 
+
+# Calculate p-value
+num_extreme <- sim2 %>% 
+  filter(p_strongly_disagree < test_stat | p_strongly_disagree > other_extreme) %>%
+  nrow()
+
+pvalue <- num_extreme / nrow(sim2)
+pvalue
+  
+```
+
+The test statistic here is $\hat{p} = 0.145$. We simulated 10,000 samples of size 1087 under the assumption that 1/6 people strongly disagreed with marijuana legalization. For each of these simulated samples, we calculated the proportion of people who strongly disagreed with legalization. From these 10,000 simulations, we found that in 5.37% of simulations, the proportion of "strongly disagree" responses was either smaller than 0.145 or larger than (1/6 + (1/6 - 0.145))=0.188333. In other words, the proportion of observations in our simulation that are as extreme or more extreme than what we observed is 0.0537, and this is our estimate of the p-value.
+We conclude that we have weak evidence against the null hypothesis that 1/6 people strongly disagree with the legalization of marijuana. In other words, there is weak evidence that the data contradicts the headline.
+
+
+
+
+(c) Repeat the simulation from (b) with 100, 1000, 10000, and 50000 simulated datasets by writing a function with the number of repetitions as the argument which returns the estimated p-value.  For each number of repetitions, record the p-value and the time it takes to obtain the simulation results.  To calculate runtime, you can use the `Sys.time()` function to record the time before and after your simulation, and then calculate the difference. For example
+
+```{r, eval=FALSE}
+startTime <- Sys.time()
+
+YOUR CODE
+
+endTime <- Sys.time()
+
+endTime - startTime # This is the time it took to run your code
+
+```
+
+
+Which of the estimated pvalues do you think is the best estimate of the true p-value?  What happens to the runtime as the number of simulations increases? 
+
+
+
+```{r, eval=TRUE, echo=TRUE}
+
+calculate_pvalue_legalization <- function(repetitions){
+
+# create a vector of missing values to store results
+simulated_stats <- rep(NA, repetitions) # 10,000 missing values
+
+n_observations <- 1087
+test_stat <- 0.145
+distance_from_null <- 1/6 - test_stat; # note that 1/6=0.166667
+other_extreme <- 1/6 + distance_from_null
+
+for (i in 1:repetitions)
+{
+  new_sim <- sample(c("strongly_disagree", "dont_strongly_disagree"), size=n_observations, replace=TRUE, prob=c(1/6, 5/6))
+  sim_p <- sum(new_sim == "strongly_disagree") / n_observations
+  # add the new simulated value to the ith entry in the vector of results
+  simulated_stats[i] <- sim_p
+}
+
+
+# turn results into a data frame
+sim2 <- data_frame("p_strongly_disagree" = simulated_stats)
+
+# plot
+ggplot(sim2, aes(p_strongly_disagree)) + 
+geom_histogram(binwidth=0.01) +
+geom_vline(xintercept = test_stat, color="red") +
+  geom_vline(xintercept = other_extreme, color="blue") 
+
+# Calculate p-value
+num_extreme <- sim2 %>% 
+  filter(p_strongly_disagree < test_stat | p_strongly_disagree > other_extreme) %>%
+  nrow()
+
+pvalue <- num_extreme / nrow(sim2)
+
+return(pvalue)
+  
+}# end calculate_pvalue_legalization function
+```
+
+```{r}
+set.seed(123)
+
+startTime_100 <- Sys.time();
+pvalue_100 <- calculate_pvalue_legalization(repetitions = 100)
+endTime_100 <- Sys.time();
+runtime_100 <- endTime_100 - startTime_100;
+
+startTime_1000 <- Sys.time();
+pvalue_1000 <- calculate_pvalue_legalization(repetitions = 1000)
+endTime_1000 <- Sys.time();
+runtime_1000 <- endTime_1000 - startTime_1000;
+
+startTime_10000 <- Sys.time();
+pvalue_10000 <- calculate_pvalue_legalization(repetitions = 10000)
+endTime_10000 <- Sys.time();
+runtime_10000 <- endTime_10000 - startTime_10000;
+
+startTime_50000 <- Sys.time();
+pvalue_50000 <- calculate_pvalue_legalization(repetitions = 50000)
+endTime_50000 <- Sys.time();
+runtime_50000 <- endTime_50000 - startTime_50000;
+
+data.frame(repetitons=c(100,1000,10000,50000), 
+           pvalue=c(pvalue_100, pvalue_1000, pvalue_10000, pvalue_50000),
+           runtime=c(runtime_100, runtime_1000, runtime_10000, runtime_50000))
+```
+
+
+
+As the number of repetitions increases, we expect that the estimated pvalue should get closer to the true pvalue. However, as the number of repetitions increases, we see that the runtime increases as well. When doing simulations to test a hypothesis, we need to consider the tradeoff between accuracy and runtime. We want to pick enough repetitions to get reliable results (10,000 minimum, if this is feasible) without the runtime becoming unreasonably long. 
+
+In this case, I think that choosing 10,000 to 20,000 repetitions is sensible, as this would take approximately 1 second to run (note that runtimes will vary depending on your device and the other programs you have running).
+
+
+## Question 3
+In a Gallup poll of 1012 randomly selected adults, 9% said that cloning of humans should be allowed. We want to test the hypothesis that a proportion $c$ of adults believe cloning should be allowed.
+
+(a) What are the (general) null hypothesis and alternative hypothesis for this test?
+
+$H_0: p = c$
+
+$H_1: p \neq c$
+
+where $p$ is the proportion of adults who believe cloning should be allowed.
+
+(b) Write a function to test this hypothesis which takes the following arguments:
+    - `prop_cloning`: the proportion of adults  who believe cloning should be allowed (under the null hyppothesis)
+    - `repetitions`: the number of repetitions
+    
+    and returns the p-value.
+    
+```{r}
+calculate_pvalue_cloning <- function(prop_cloning, repetitions){
+ 
+  # create a vector of missing values to store results
+simulated_stats <- rep(NA, repetitions) 
+
+n_observations <- 1012
+test_stat <- 0.09
+
+
+for (i in 1:repetitions)
+{
+  new_sim <- sample(c("allowed", "not_allowed"), size=n_observations, replace=TRUE, prob=c(prop_cloning, 1-prop_cloning))
+  sim_p <- sum(new_sim == "allowed") / n_observations
+  # add the new simulated value to the ith entry in the vector of results
+  simulated_stats[i] <- sim_p
+}
+
+# turn results into a data frame
+sim3 <- data_frame("p_allowed" = simulated_stats)
+
+# Calculate p-value
+num_extreme <- sim3 %>% 
+  filter(  abs(p_allowed - prop_cloning) > abs(test_stat - prop_cloning)) %>%
+  nrow()
+
+pvalue <- num_extreme / nrow(sim3)
+
+return(pvalue)
+   
+}
+```
+    
+(c) For each of the statements below, use your function from (b) to determine which of the following headlines are contradicted by the Gallop poll. In each case, interpret the p-value and draw a conclusion.
+    (i)  "12% of people believe that cloning humans should be allowed"
+    
+```{r}
+set.seed(31)
+calculate_pvalue_cloning(prop_cloning = 0.12, repetitions = 10000);
+```
+The test statistic here is 0.09. We simulate 10,000 datasets under the null hypothesis that the proportion of people who believe cloning should be allowed is 0.12. The estimated p-value from these 10,000 repetitions is 0.0043, which means that the proportion of the observations in our simulations that are as extreme or more extreme than what we observed from the true sample is 0.0043. 
+
+We conclude that we have strong evidence against the null hypothesis that 12% of people believe that cloning humans should be allowed. In other words, we conclude that the percentage of people who believe cloning should be allowed is not equal to 12%, and we have strong evidence that the data contradicts the headline
+
+    
+    (ii)  "Poll reports that 90% of people believe cloning humans should not be allowed"
+    
+    
+```{r}
+set.seed(32)
+calculate_pvalue_cloning(prop_cloning = 0.10, repetitions = 10000);
+```
+The test statistic here is 0.09. We simulate 10,000 datasets under the null hypothesis that the proportion of people who believe cloning should not be allowed is 0.90 (or equivalently, that the proportion of people who believe cloning should be allowed is 0.10). The estimated p-value from these 10,000 repetitions is 0.2921, which means that the proportion of the observations in our simulation that are as extreme or more extreme than what we observed from the true sample is 0.2921. 
+
+We conclude that we have no evidence against the null hypothesis that 10% of people believe that cloning humans should be allowed (or equivalently, that 90% of people believe that cloning humans should NOT be allowed). In other words, the data does not contradict the headline in this case.
+
+
+
+
+
+

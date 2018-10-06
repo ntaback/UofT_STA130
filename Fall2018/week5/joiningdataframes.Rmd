@@ -1,0 +1,141 @@
+---
+title: "STA130 - Joining Data Frames"
+author: "Nathan Taback"
+date: '2018-10-05'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+## Joining Data Frames
+
+A data analysis often involves multiple data frames that must be combined to answer the question that you are interested in.
+
+The `dplyr` library contains functions for combining or joining two data frames.  This lesson will only cover mutating joins or joins that combine variables from two data frames. Filtering joins "match observations in the same way as mutating joins, but affect the observations, not the variables" (R for Data Science, [13.5](http://r4ds.had.co.nz/relational-data.html#filtering-joins)). 
+
+Consider two small data frames, `superheros` and `publishers` which were obtained from <https://www.superherodb.com>.  This example is based on the [STAT545 Cheatsheet by Jenny Bryan](http://stat545.com/bit001_dplyr-cheatsheet.html).
+
+```{r, echo = FALSE}
+heroes_information <- read_csv("heroes_information.csv")
+super_hero_powers <- read_csv("super_hero_powers.csv")
+
+set.seed(102)
+superheros <- heroes_information %>% 
+  select(name, Alignment, Gender, Publisher) %>%
+  sample_n(5)
+
+publisher <- data_frame(Publisher = c("Marvel Comics", "Image Comics", "HarperCollins", "DC Comics"), 
+                        yr_founded = c("1939", "1992", "1989", "1934"))
+```
+
+```{r}
+superheros
+publisher
+```
+
+
+
+## Keys
+
+> The variables used to connect each pair of tables are called keys.  A key is a variable (or set of variables) that uniquely identifies an observation. In simple cases, a single variable is sufficient to identify an observation. (Ref: R for Data Science [13.3](http://r4ds.had.co.nz/relational-data.html#keys))
+
+In this example each publisher is uniquely identified by the variable `Publisher`.
+
+## Mutating joins
+
+> A mutating join allows you to combine variables from two tables. It first matches observations by their keys, then copies across variables from one table to the other.
+
+### Inner joins
+
+> An inner join matches pairs of observations whenever their keys are equal 
+
+![](join-inner.png)
+
+
+(Ref: R for Data Science [13.4.2](http://r4ds.had.co.nz/relational-data.html#inner-join)).
+
+
+```{r}
+inner_join(x = superheros, y = publisher, by = "Publisher")
+```
+
+**Question:** What happened?
+
+We lose Jessica Sanders even though she appears in `x = superheros`, her publisher, NBC - Heroes, does not appear in `y = publisher`. 
+
+### Outer joins
+
+> An inner join keeps observations that appear in both tables. An outer join keeps observations that appear in at least one of the tables. There are three types of outer joins:
+
+> A left join keeps all observations in x.
+> A right join keeps all observations in y.
+> A full join keeps all observations in x and y.
+
+> These joins work by adding an additional “virtual” observation to each table. This observation has a key that always matches (if no other key matches), and a value filled with `NA`.
+
+![](join-outer.png)
+
+(Ref: R for Data Science [13.4.3](http://r4ds.had.co.nz/relational-data.html#outer-join)).
+
+### Left join
+
+> Return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
+
+
+```{r}
+left_join(x = superheros, y = publisher, by = "Publisher")
+```
+
+**Question:** What happened?
+
+Jessica Sanders publisher, NBC - Heroes, is not included in `y = publisher` so a virtual observation is created for `Publisher` and `yr_founded` is filled in with `NA`. 
+
+### Right join
+
+> Return all rows from y, and all columns from x and y. Rows in y with no match in x will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.
+
+```{r}
+right_join(x = superheros, y = publisher, by = "Publisher")
+```
+
+**Question:** What happened?
+
+There are no superheros in the `superheros` data published by Image Comics or HarperCollins, so values for `name`, `Alignment`, and `Gender` are filled in with `NA`.
+
+### Full join
+
+> Return all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.
+
+```{r}
+full_join(x = superheros, y = publisher, by = "Publisher")
+```
+
+**Question:** What happened?
+
+Jessica Sanders publisher, NBC- Heros, is not in `y = publisher` so an `NA` value was filled in for `yr_founded`.  Image Comics and HarperCollins did not publish any of the characters in `x = superheros` so `name`, `Alignment`, and `Gender`are filled in with `NA`.  
+
+
+## Using Joined Data Frames
+
+The data frames that are the result of a join are just like any other data frame. This means that after joining data frames to create a new data frame the resulting data frame can, for example, be summarised (e.g., count the number of superheroes from each publisher) 
+
+
+```{r}
+right_join(x = superheros, y = publisher, by = "Publisher") %>%
+  group_by(Publisher) %>%
+  summarise(n = n())
+```
+
+or visualized (e.g., visualize the distribution of gender).
+
+
+```{r}
+right_join(x = superheros, y = publisher, by = "Publisher") %>%
+  filter(Gender != "NA") %>%
+  ggplot(aes(x = Gender)) + geom_bar()
+```
+
+
