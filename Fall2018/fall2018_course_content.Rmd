@@ -231,12 +231,12 @@ The tutorial will cover joining data frames.  A short lesson on joining data fra
 
 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week5/howtoanswertutq_oct12.html) before answering practice problems using RStudio.
 
-<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span> [Practice problems](week5/Week5PracticeProblems_questions.html) 
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week5/Week5PracticeProblems_questions.html) 
 
 
 ### References
 
-1. Grolemund, G. and Wickham, H. R for Data Science. [Chapter 13.1 - 13.4](http://r4ds.had.co.nz/relational-data.html#filtering-joins).
+1. Grolemund, G. and Wickham, H. R for Data Science. [Chapter 13.1 - 13.4](http://r4ds.had.co.nz/relational-data.html).
 
 2. dplyr reference for [Join two tbls together](https://dplyr.tidyverse.org/reference/join.html)
 
