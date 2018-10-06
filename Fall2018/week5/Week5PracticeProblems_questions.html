@@ -183,7 +183,12 @@ $(document).ready(function () {
 <pre class="r"><code>library(tidyverse)
 hero_info &lt;- read_csv(&quot;heroes_information_exer.csv&quot;)
 hero_power &lt;- read_csv(&quot;super_hero_powers_exer.csv&quot;)</code></pre>
-<p>If you are using RStudio on your own computer then use this R code.</p>
+<p>If you are using RStudio on your own computer then use this R code (internet connection required).</p>
+<pre class="r"><code>heroinfo_url &lt;- &quot;https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week5/heroes_information_exer.csv&quot;
+heropower_url &lt;- &quot;https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week5/super_hero_powers_exer.csv&quot;
+
+hero_info &lt;- read_csv(heroinfo_url)
+hero_power &lt;- read_csv(heropower_url)</code></pre>
 <p>How may variables and observations are in each data frame?</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li><p>Suggest a key to join the two data frames?</p></li>

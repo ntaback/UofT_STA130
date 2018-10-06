@@ -55,12 +55,15 @@ hero_info <- read_csv("heroes_information_exer.csv")
 hero_power <- read_csv("super_hero_powers_exer.csv")
 ```
 
-If you are using RStudio on your own computer then use this R code.
+If you are using RStudio on your own computer then use this R code (internet connection required).
 
 ```{r}
+heroinfo_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week5/heroes_information_exer.csv"
+heropower_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week5/super_hero_powers_exer.csv"
 
+hero_info <- read_csv(heroinfo_url)
+hero_power <- read_csv(heropower_url)
 ```
-
 
 
 How may variables and observations are in each data frame?
