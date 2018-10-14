@@ -26,9 +26,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![](forkProject.png)
 
-5. Look for the file "Week5PracticeProblems_questions.Rmd" under the Files tab then click on it to open.
+5. Look for the file "Week6PracticeProblems_questions.Rmd" under the Files tab then click on it to open.
 
-6. Change the subtitle to "Week5PracticeProblemsSolutions" and change the author to your name and student number.
+6. Change the subtitle to "Week6PracticeProblemsSolutions" and change the author to your name and student number.
 
 **NB: The screenshot below is for week1 problems, but it's the same idea.**
 
@@ -43,10 +43,10 @@ Remember that [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks
 Download R Markdown questions file directly into RStudio by typing the following code into the RStudio console window.   
 
 ```{r,eval=FALSE}
-file_url <- ""
+file_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week6/Tutorial/Week6PracticeProblems_student.Rmd"
 download.file(url = file_url , destfile = "Week6PracticeProblems_student.Rmd")
 ```
 
 You will need to install several libraries such as `tidyverse`, and `mosaic` to complete the questions.
 
-Look for the file "Week5PracticeProblems_student.Rmd" under the Files tab then click on it to open.
+Look for the file "Week6PracticeProblems_student.Rmd" under the Files tab then click on it to open.
