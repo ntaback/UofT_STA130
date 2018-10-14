@@ -1,0 +1,133 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 6 Practice Problems 
+output: html_document
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on October 19?
+
+- R output (e.g., plots and explanations) for Questions 2, 3.  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion       | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+
+# Practice Problems
+
+## Question 1
+A researcher is interested in studying the association between birthweight and the mother's smoking status.  The `babies` data in the `openintro` package has information on 1,236 pregnancies in the San Francisco East Bay area from 1960 to 1967.  Use the `babies` data set to answer the following question. 
+
+```{r}
+library(openintro)
+glimpse(babies)
+```
+
+
+(a) Construct null and alternative hypotheses that correspond to a hypthesis test of birthweight is in mother's that smoked compared to non-smoking mothers. Explicitly define the statistical parameters being tested.
+
+(b) How many observations does the data set contain? How many mothers are smokers?  How many mothers are non-smokers?  Are there any missing values for the birthweight variable?  What will your sample size be for doing the hypothesis test in part (a)?
+
+(c) What is the test statistic for the hypothesis test from part (a)? 
+
+
+(d) Use simulation (with 1,000 repetitions) to calculate the P-value of the test in part (a). Write 2-4 sentences summarizing your conclusions.
+
+ 
+## Question 2
+Suppose you are interested in studying altruistic behaviours in men and women. A sample of 200 individuals were asked about what they would do if they received a $100 bill by mail, addressed to their neighbor, but wrongly delivered to them. Would they return it to their neighbor? Of the 69 males sampled, 56 said yes and of the 131 females sampled, 120 said yes.
+ 
+(a) Construct a tidy dataframe for the data described above.  Verify that the data frame you created in part correct, by calculating the following numbers and compare them to the numbers which appear in the paragraph above:
+  - Number of males who return the money
+  - Number of males who don't return the money
+  - Number of females who return the money
+  - Number of females who don't return the money
+
+Hints: 
+
+ - Before you start, think of which variables you want in your dataset and what your observations will be.
+ 
+ - The `rep()` function is useful, to avoid having to manually type long vectors. For example:
+```{r}
+# vector with 50 "yes" values followed by 150 "no" values
+myvec <-
+  c(rep("yes", times = 50), rep("no", 150))
+``` 
+
+
+(b) Write the null and alternative hypotheses to test if men and women return the money at different rates.  Explicitly define the statistical parameters being tested.
+
+
+(c)  Use simulation (with 1,000 repetitions) to calculate the P-value of the test in part (a). Write 2-4 sentences summarizing your conclusions.
+
+
+
+3. (Adapted from ISRS 4.22) The China Health and Nutrition Survey aims to examine the effects of the health, nutrition, and family planning policies and programs implemented by national and local governments. One of the variables collected on the survey is `child_care` the number of hours parents spend taking care of children in their household under age 6 (feeding, bathing, dressing, holding, or watching them). In our data for 2006, 664 females and 358 males were surveyed for this question. We will examine whether there is a difference in hours spent on child care between females and males.
+
+Simulation was used to test if the median of the number of hours spent on child care for Chinese women is the same as the median of the number of hours spent on child care for Chinese men.  A plot of the simulation is below, along with some other statistics.
+
+```{r, message=FALSE, warning=FALSE}
+library(openintro)
+glimpse(china)
+new_china <- china %>% filter(child_care != -99)
+glimpse(new_china)
+
+repetitions <- 1000  
+simulated_stats <- rep(NA, repetitions) 
+
+new_china <- new_china %>% mutate(sex = recode(gender, `1`="male", `2`="female"))
+
+new_china %>% group_by(sex) %>% summarize(medians = median(child_care))
+
+test_stat <- 
+  as.numeric(new_china %>% group_by(sex) %>% summarize(medians=median(child_care)) %>% 
+                summarise(test_stat = diff(medians)))
+test_stat
+
+for (i in 1:repetitions)
+{
+sim <-
+new_china %>% mutate(sex = sample(sex))  # shuffle sleep group labels
+sim_test_stat <-
+sim %>% group_by(sex) %>% summarise(medians = median(child_care)) %>% summarise(sim_test_stat = diff(medians))
+simulated_stats[i] <- as.numeric(sim_test_stat)
+}
+
+sim <- data_frame(median_diff = simulated_stats)
+
+sim %>% ggplot(aes(median_diff)) +
+  geom_histogram(colour = "black",
+  fill = "grey",
+  binwidth = 0.5)
+```
+
+(a)  What are the null and alternative hypotheses being tested?
+
+(b) What is the test statistic used in this hypothesis test and what is it's value for this data set?  Interpret the test statistic.
+
+(c) Estimate the P-value from the histogram.
+
+(d) Is there evidence that females spend a different amount of time on child care compared to males?
+
+(e) Change the code given at the beginning of the question to conduct a hypothesis test to investigate if the standard deviation of hours spent on child care is different for females and males.  What do you conclude?
+
+
