@@ -1,0 +1,117 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 5 Practice Problems - Solutions
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on October 12?
+
+- R output (e.g., plots and explanations) for Question 1 (a)-(e).  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+These problems are based on the lesson [Joining Data Frames](https://ntaback.github.io/UofT_STA130/Fall2018/week5/joiningdataframes.html).
+
+
+```{r, eval=FALSE, echo=FALSE}
+heroes_information <- read_csv("heroes_information.csv")
+super_hero_powers <- read_csv("super_hero_powers.csv")
+
+heroes_info1 <- heroes_information %>% 
+  select(name, Alignment, Weight, Publisher) %>% 
+  filter(Weight != -99) %>%
+  group_by(name) %>% 
+  mutate(Weight1 = mean(Weight)) %>% 
+  distinct(name, .keep_all = T) %>% #remove duplicates
+  select(name, Alignment, Weight1, Publisher) %>%
+  rename(Weight = Weight1)
+  
+
+super_hero_power1 <- super_hero_powers %>% rename(name = hero_names) %>% select(name, Agility, Flight, Marksmanship) 
+
+write_csv(heroes_info1, "heroes_information_exer.csv")
+write_csv(super_hero_power1, "super_hero_powers_exer.csv")
+```
+
+
+# Practice Problems
+
+The file `heroes_information_exer.csv` contains some information on superheroes and `super_hero_powers_exer.csv` conatins some information on powers of superheroes.
+
+The following questions are based on data in `heroes_information.csv` and `super_hero_powers.csv`.
+
+## Question 1
+
+(a)  Read both data sets `heroes_information.csv` and `super_hero_powers.csv` into R using `read_csv` from the `tidyverse` library.  Here is the R code.  How may variables and observations are in each data frame?
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+heroinfo_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week5/heroes_information_exer.csv"
+heropower_url <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/week5/super_hero_powers_exer.csv"
+
+hero_info <- read_csv(heroinfo_url)
+hero_power <- read_csv(heropower_url)
+glimpse(hero_info)
+glimpse(hero_power)
+```
+
+
+(b)  Suggest a key to join the two data frames?
+
+Use `name` as the key since it uniquely identifies observations.
+
+(c) What proprotion of superheroes in `heroes_information` also have data in `super_hero_powers`?  
+
+```{r}
+inner_join(hero_info, hero_power, by = "name") %>% head()
+inner_join(hero_info, hero_power, by = "name") %>% summarise(n = n())
+```
+
+The proportion is 460/487 = `r round(460/487, 2)`.
+
+(d)  What is the number of observations, average, median, standard deviation, and inter-quartile range of `weight` for superheroes for each category of marksmanship? (HINT: use the `group_by()` function then `summarise()`)
+
+```{r}
+left_join(hero_info, hero_power, by = "name") %>% 
+  group_by(Marksmanship) %>% 
+  summarise(n = n(), 
+            mean_wt = mean(Weight, na.rm = TRUE), 
+            sd_wt = sd(Weight, na.rm = TRUE),
+            median_wt = median(Weight), 
+            iqr_wt = IQR(Weight))
+```
+
+(e) Are superheroes with marksmanship thinner compared to those without marksmanship?  Create a visualization to compare the distribution of weight between superheroes that have marksmanship and those that don't have marksmanship.  Which distribution has more variability?
+
+```{r}
+left_join(hero_info, hero_power, by = "name") %>% 
+  filter(Marksmanship != "NA") %>%
+  ggplot(aes(x = Marksmanship, y = Weight)) + geom_boxplot()
+```
+
+Superheroes with marksmanship are thinner compared to those without marksmanship.  The variability in weight is greater in those without marksmanship compared to those without.
+
+

@@ -233,6 +233,9 @@ The tutorial will cover joining data frames.  A short lesson on joining data fra
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week5/Week5PracticeProblems_questions.html) 
 
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems - solutions](week5/solutions/Week5PracticeProblems_solutions.html) 
+
+
 
 ### References
 
@@ -240,15 +243,40 @@ The tutorial will cover joining data frames.  A short lesson on joining data fra
 
 2. dplyr reference for [Join two tbls together](https://dplyr.tidyverse.org/reference/join.html)
 
-<div class=second>
 
 # Week 6
 
-## October 15 
+## October 15 Class
 
-### Slides and References
+### Topics
+
+- Comapring two proportions
+- Comapring two means 
+- Type I and Type II Errors
+- Interpretation of P-values
+
+### Slides 
+
+Prof. Taback's class slides - Mon 10:00 (L0101): 
+
+- [html](week6/sta130_oct15_week6.html)
+
+- [pdf](week6/sta130_oct15_week6.pdf) 
+
+### References
+
+Recommended reading:  
+Sections 2.1, 2.2, 2.3 (excluding 2.3.4) of [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)  
+(a free open-source textbook)
 
 ## October 19 Tutorial
+
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week6/Tutorial/howtoanswertutq_oct19.html) before answering practice problems using RStudio.
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week6/Tutorial/Week6PracticeProblems_student.html) 
+
+
+<div class=second>
 
 # Week 7
 

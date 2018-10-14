@@ -1,0 +1,6 @@
+﻿Subject,Drug,Pain,R1,R2,R3,R4,R5
+1,T,No,T,T,A,A,A
+2,T,No,A,A,T,T,A
+3,A,Yes,T,A,T,A,T
+4,A,No,A,T,A,T,T
+${\hat p_{T}} - {\hat p_{A}}$,,0.5,-0.5,0.5,-0.5,0.5,-0.5
