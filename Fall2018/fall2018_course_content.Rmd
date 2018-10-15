@@ -263,6 +263,14 @@ Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [pdf](week6/sta130_oct15_week6.pdf) 
 
+- [pdf -annotated](week6/sta130_oct15_week6-annotated.pdf)
+
+Prof. Moon's class slides - Mon 14:00 (L0201)
+
+- [pdf](week6/slides_oct15_nm_posted.pdf)
+
+- [pdf -annotated](week6/slides_oct15_nm_annotated.pdf)
+
 ### References
 
 Recommended reading:  
