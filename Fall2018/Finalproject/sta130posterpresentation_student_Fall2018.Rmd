@@ -46,8 +46,8 @@ For more details on using R markdown see:
     - [Information specific to  sta130_project_template.Rmd `ioslides`](https://rmarkdown.rstudio.com/ioslides_presentation_format.html)
 - Your poster should include R output, but not R code.  See the [template](../../project/sta130_project_template.Rmd) for an example of how to write code chunks to do this.
 - Your poster must include the names of your team members, your tutorial section (e.g., TUT0101A), and your group number as assigned by your TA.
-- Your poster should include the following sections: Introduction, Statistical Methods, Results, Conclusion.  See the [template](../../sta130_project_template.Rmd) for optional sections.
-- See the [Self-Evaluation Checklist for STA130 Project](../../STA130_project_checklist.pdf) and the [template R markdown document](../../sta130_project_template.Rmd) for details on what to include.
+- Your poster should include the following sections: Introduction, Statistical Methods, Results, Conclusion.  See the [template](../../project/sta130_project_template.Rmd) for optional sections.
+- See the [Self-Evaluation Checklist for STA130 Project](../../project/STA130_project_checklist.pdf) and the [template R markdown document](../../project/sta130_project_template.Rmd) for details on what to include.
 
 A few guidelines for an effective poster display:
 
@@ -175,6 +175,7 @@ Coming soon ...
 
 Use the following data sets from the CIA World Factbook and the [democracy index](http://pages.eiu.com/rs/753-RIQ-438/images/Democracy_Index_2017.pdf?mkt_tok=eyJpIjoiWkRKbU1HWmxNVEUwTW1FdyIsInQiOiJPdlltVFV0blFRQzZNVERCZHhVeitZRElmUGplOHh3NWs1d2wzVzdRS1JvNU1kVmUxQVRESU9LbEVSOVwvR1F4aG1PV1NlS0ZZcng4NzBcLzVNZ09JOUxiZU5TTEVPekVHayttOTRqQkQ5TkNzWGN08RlowQTZ0UzlUK0pDdm9PVGlcLyJ9) developed by the [Economist Intelligence Unit](http://www.eiu.com/home.aspx) 
 
+### Using rstudio.cloud
 
 <https://en.wikipedia.org/wiki/Democracy_Index#Democracy_Index_by_country_(2017)>
 
@@ -182,12 +183,10 @@ Use the following data sets from the CIA World Factbook and the [democracy index
 democracyindex2017 <- read_csv("democracyindex2017.csv")
 ```
 
-
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2206rank.html>
 ```{r, message=FALSE, warning=FALSE}
 education_cia2017 <- read_csv("education_cia2017.csv")
 ```
-
 
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2004rank.html>
 ```{r, message=FALSE, warning=FALSE}
@@ -200,25 +199,49 @@ gdpppp_cia2017 <- read_csv("gdpppp_cia2017.csv")
 lifeexpect_cia2017 <- read_csv("lifeexpect_cia2017.csv")
 ```
 
+
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2225rank.html>
 ```{r, message=FALSE, warning=FALSE}
 healthexpend_cia2017 <- read_csv("healthexpend_cia2017.csv")
 ```
+
 
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2153rank.html>
 ```{r, message=FALSE, warning=FALSE}
 internetusers_cia2017 <- read_csv("internetusers_cia2017.csv")
 ```
 
+
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2150rank.html>
 ```{r, message=FALSE, warning=FALSE}
 telephonelines_cia2017 <- read_csv("telephonelines_cia2017.csv")
 ```
 
+
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2119rank.html>
 ```{r, message=FALSE, warning=FALSE}
 population_cia2017 <- read_csv("population_cia2017.csv")
 ```
+
+
+### Using RStudio on your own computer
+
+[Download democracyindex2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/democracyindex2017.csv)
+
+[Download education_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/education_cia2017.csv)
+
+[Download gdpppp_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/gdpppp_cia2017.csv)
+
+[Download lifeexpect_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/lifeexpect_cia2017.csv)
+
+[Download healthexpend_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/healthexpend_cia2017.csv)
+
+[Download internetusers_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/internetusers_cia2017.csv)
+
+[Download telephonelines_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/telephonelines_cia2017.csv)
+
+[Download population_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/population_cia2017.csv)
+
 
 ### Accessing Other Data from the World Factbook
 

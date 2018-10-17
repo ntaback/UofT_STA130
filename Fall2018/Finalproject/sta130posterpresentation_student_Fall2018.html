@@ -267,8 +267,8 @@ For more details on using R markdown see:
 </ul></li>
 <li>Your poster should include R output, but not R code. See the <a href="../../project/sta130_project_template.Rmd">template</a> for an example of how to write code chunks to do this.</li>
 <li>Your poster must include the names of your team members, your tutorial section (e.g., TUT0101A), and your group number as assigned by your TA.</li>
-<li>Your poster should include the following sections: Introduction, Statistical Methods, Results, Conclusion. See the <a href="../../sta130_project_template.Rmd">template</a> for optional sections.</li>
-<li>See the <a href="../../STA130_project_checklist.pdf">Self-Evaluation Checklist for STA130 Project</a> and the <a href="../../sta130_project_template.Rmd">template R markdown document</a> for details on what to include.</li>
+<li>Your poster should include the following sections: Introduction, Statistical Methods, Results, Conclusion. See the <a href="../../project/sta130_project_template.Rmd">template</a> for optional sections.</li>
+<li>See the <a href="../../project/STA130_project_checklist.pdf">Self-Evaluation Checklist for STA130 Project</a> and the <a href="../../project/sta130_project_template.Rmd">template R markdown document</a> for details on what to include.</li>
 </ul>
 <p>A few guidelines for an effective poster display:</p>
 <ul>
@@ -400,6 +400,8 @@ gg &lt;- gg + geom_map(
 <div id="data" class="section level2">
 <h2>Data</h2>
 <p>Use the following data sets from the CIA World Factbook and the <a href="http://pages.eiu.com/rs/753-RIQ-438/images/Democracy_Index_2017.pdf?mkt_tok=eyJpIjoiWkRKbU1HWmxNVEUwTW1FdyIsInQiOiJPdlltVFV0blFRQzZNVERCZHhVeitZRElmUGplOHh3NWs1d2wzVzdRS1JvNU1kVmUxQVRESU9LbEVSOVwvR1F4aG1PV1NlS0ZZcng4NzBcLzVNZ09JOUxiZU5TTEVPekVHayttOTRqQkQ5TkNzWGN08RlowQTZ0UzlUK0pDdm9PVGlcLyJ9">democracy index</a> developed by the <a href="http://www.eiu.com/home.aspx">Economist Intelligence Unit</a></p>
+<div id="using-rstudio.cloud" class="section level3">
+<h3>Using rstudio.cloud</h3>
 <p><a href="https://en.wikipedia.org/wiki/Democracy_Index#Democracy_Index_by_country_(2017)" class="uri">https://en.wikipedia.org/wiki/Democracy_Index#Democracy_Index_by_country_(2017)</a></p>
 <pre class="r"><code>democracyindex2017 &lt;- read_csv(&quot;democracyindex2017.csv&quot;)</code></pre>
 <p><a href="https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2206rank.html" class="uri">https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2206rank.html</a></p>
@@ -416,6 +418,18 @@ gg &lt;- gg + geom_map(
 <pre class="r"><code>telephonelines_cia2017 &lt;- read_csv(&quot;telephonelines_cia2017.csv&quot;)</code></pre>
 <p><a href="https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2119rank.html" class="uri">https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2119rank.html</a></p>
 <pre class="r"><code>population_cia2017 &lt;- read_csv(&quot;population_cia2017.csv&quot;)</code></pre>
+</div>
+<div id="using-rstudio-on-your-own-computer" class="section level3">
+<h3>Using RStudio on your own computer</h3>
+<p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/democracyindex2017.csv">Download democracyindex2017.csv</a></p>
+<p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/education_cia2017.csv">Download education_cia2017.csv</a></p>
+<p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/gdpppp_cia2017.csv">Download gdpppp_cia2017.csv</a></p>
+<p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/lifeexpect_cia2017.csv">Download lifeexpect_cia2017.csv</a></p>
+<p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/healthexpend_cia2017.csv">Download healthexpend_cia2017.csv</a></p>
+<p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/internetusers_cia2017.csv">Download internetusers_cia2017.csv</a></p>
+<p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/telephonelines_cia2017.csv">Download telephonelines_cia2017.csv</a></p>
+<p><a href="https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/population_cia2017.csv">Download population_cia2017.csv</a></p>
+</div>
 <div id="accessing-other-data-from-the-world-factbook" class="section level3">
 <h3>Accessing Other Data from the World Factbook</h3>
 <p>There are <a href="https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/rankorderguide.html">many other data sets</a> available from The World Factbook. An R function <code>get_CIAWFB_data</code> has been written to allow you to access these data sets easily.</p>
