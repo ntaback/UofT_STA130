@@ -1,0 +1,77 @@
+---
+title: "Final Project"
+author: "Nathan Taback"
+date: '2018-10-16'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(rvest)
+
+area_dat <- read_table("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/rawdata_2147.txt",col_names = F)
+
+internetusers <- read_table("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/rawdata_2153.txt", col_names = F)
+
+broadband <- read_table("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/rawdata_2153.txt", col_names = F)
+
+telephone <- read_table("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/rawdata_2151.txt", col_names = F)
+
+
+read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2147rank.html") %>% html_table()
+
+read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2147rank.html") %>% html_table()
+
+read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2119rank.html") %>% html_table()
+
+# Files for project
+
+democ <- read_html("https://en.wikipedia.org/wiki/Democracy_Index") %>% html_table()
+
+write_csv(democ[[3]], "/Users/nathantaback/Dropbox (Personal)/Docs/sta130/website5/Fall2018/Finalproject/democracyindex2017.csv") 
+
+education_cia2017 <- read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2206rank.html") %>% html_table()
+
+write_csv(education_cia2017[[1]], "/Users/nathantaback/Dropbox (Personal)/Docs/sta130/website5/Fall2018/Finalproject/education_cia2017.csv") 
+
+gdpppp_cia2017 <- read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2004rank.html") %>% html_table()
+
+write_csv(gdpppp_cia2017[[1]], "/Users/nathantaback/Dropbox (Personal)/Docs/sta130/website5/Fall2018/Finalproject/gdpppp_cia2017.csv") 
+
+lifeexpect_cia2017 <- read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2102rank.html") %>% html_table()
+
+write_csv(lifeexpect_cia2017[[1]], "/Users/nathantaback/Dropbox (Personal)/Docs/sta130/website5/Fall2018/Finalproject/lifeexpect_cia2017.csv") 
+
+healthexpend_cia2017 <- read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2225rank.html") %>% html_table()
+
+write_csv(healthexpend_cia2017[[1]], "/Users/nathantaback/Dropbox (Personal)/Docs/sta130/website5/Fall2018/Finalproject/healthexpend_cia2017.csv") 
+
+internetusers_cia2017 <- read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2153rank.html") %>% html_table()
+
+write_csv(internetusers_cia2017[[1]], "/Users/nathantaback/Dropbox (Personal)/Docs/sta130/website5/Fall2018/Finalproject/internetusers_cia2017.csv")
+
+telephonelines_cia2017 <- read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2150rank.html") %>% html_table()
+
+write_csv(telephonelines_cia2017[[1]], "/Users/nathantaback/Dropbox (Personal)/Docs/sta130/website5/Fall2018/Finalproject/telephonelines_cia2017.csv")
+
+population_cia2017 <- read_html("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2119rank.html") %>% html_table()
+
+write_csv(population_cia2017[[1]], "/Users/nathantaback/Dropbox (Personal)/Docs/sta130/website5/Fall2018/Finalproject/population_cia2017.csv")
+
+dat <- read_html("../../../../../../Downloads/factbook-2/rankorder/2119rank.html") %>% html_table()
+
+get_CIAWFB_data <- function(table_url){
+  library(rvest)
+  dat <- xml2::read_html(table_url) %>% rvest::html_table()
+  dat[[1]]
+}
+
+get_CIAWFB_data("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2147rank.html")
+
+sum(iu$`INTERNET USERS`)/1000000
+```
+
