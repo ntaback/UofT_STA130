@@ -90,7 +90,7 @@ Oral Presentation                   40%
 
 - Your TA will attempt to reproduce your poster using the R Markdown (.rmd) files you submit.  
 
-- If your TA cannot run the .rmd files you submit to reproduce your poster content then your group will receive 0; if the TA has to make minor changes to get it to run then your group will receive 1; and if it runs with no changes then your group will recieve 2. 
+- If your TA cannot run the .rmd files you submit to reproduce your poster content then your group will receive 0; if the TA has to make minor changes to get it to run then your group will receive 1; and if it runs with no changes then your group will receive 2. 
 
 - If the R Markdown and HTML files are submitted after the deadline every member of your group will lose 10% of your overall final project mark as long as they are submitted at most 24 hours after the deadline. The R Markdown and HTML files will not be accepted more than 24 hours after the deadline.
 
@@ -109,7 +109,7 @@ Oral Presentation                   40%
 
 You will carry out a data analysis on data from the country comparisons pages of [The World Factbook](https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/rankorderguide.html) using R to address the topic below.  
 
-We expect that your analysis will require data wrangling, exploratory data analysis (plots and summary statistics), tests, confidence intervals, classification trees, and regression models.  Your project does not need to include all of these statistical methods nor does it need to include all of the variables in the data set.  You might also choose not to include all observations, or to make new variables from the data that may be more suitable for answering your questions of interest.
+We expect that your analysis will require data wrangling, exploratory data analysis (plots and summary statistics), tests, confidence intervals, classification trees, and regression models.  Your project does not need to include all of these statistical methods nor does it need to include all of the variables in the data sets.  You might also choose not to include all observations, or to make new variables from the data that may be more suitable for answering your questions of interest.
 
 The goal is not to carry out an exhaustive analysis, nor to apply everything you have learned in the course.  The goal is to demonstrate that you have learned how to use R, that you can appropriately apply the methods we have covered in class to address a question, and that you can effectively interpret and present the results.
 
@@ -169,7 +169,7 @@ Coming soon ...
 
 # Final Project Questions
 
-"The Internet is the decisive technology of the Information Age, and with the explosion of wireless communication in the early twenty-first century, we can say that humankind is now almost entirely connected, albeit with great levels of inequality in bandwidth, efficiency, and price." according to an article in the [MIT Technology Review](https://www.technologyreview.com/s/530566/the-impact-of-the-internet-on-society-a-global-perspective/) by Manuel Castells. Most people think that internet use is a good thing for individuals and society (for example see [here](http://www.pewinternet.org/2018/04/30/declining-majority-of-online-adults-say-the-internet-has-been-good-for-society/) and [here](http://www.pewglobal.org/2018/10/09/internet-connectivity-seen-as-having-positive-impact-on-life-in-sub-saharan-africa/)). Yet there is a global [digital divide](https://en.wikipedia.org/wiki/Digital_divide) with regard to internet use.
+"The Internet is the decisive technology of the Information Age, and with the explosion of wireless communication in the early twenty-first century, we can say that humankind is now almost entirely connected, albeit with great levels of inequality in bandwidth, efficiency, and price." according to an article in the [MIT Technology Review](https://www.technologyreview.com/s/530566/the-impact-of-the-internet-on-society-a-global-perspective/) by Manuel Castells. Most people think that internet use is a good thing for individuals and society (for example see [here](http://www.pewinternet.org/2018/04/30/declining-majority-of-online-adults-say-the-internet-has-been-good-for-society/) and [here](http://www.pewglobal.org/2018/10/09/internet-connectivity-seen-as-having-positive-impact-on-life-in-sub-saharan-africa/)). Yet there is a global [digital divide](https://en.wikipedia.org/wiki/Digital_divide) with regard to internet use. Yet, another [article](https://www.technologyreview.com/the-download/608887/the-un-says-the-global-digital-divide-could-become-a-yawning-chasm/) states that "more than 52 percent of people on the planet still don't have Internet access. Men outnumber women as Web users in every region of the world. And there remain massive disparities in connection speeds in different countries. These are just some of the major findings outlined in a [new United Nations](https://www.itu.int/dms_pub/itu-s/opb/pol/S-POL-BROADBAND.18-2017-PDF-E.pdf) report about the state of the world's Internet connections."
 
 ## Data
 
@@ -181,66 +181,82 @@ Use the following data sets from the CIA World Factbook and the [democracy index
 
 ```{r, message=FALSE, warning=FALSE}
 democracyindex2017 <- read_csv("democracyindex2017.csv")
+democracyindex2017 %>% head()
 ```
 
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2206rank.html>
 ```{r, message=FALSE, warning=FALSE}
 education_cia2017 <- read_csv("education_cia2017.csv")
+education_cia2017 %>% head()
 ```
 
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2004rank.html>
 ```{r, message=FALSE, warning=FALSE}
 gdpppp_cia2017 <- read_csv("gdpppp_cia2017.csv")
+gdpppp_cia2017 %>% head()
 ```
 
 
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2102rank.html>
 ```{r, message=FALSE, warning=FALSE}
 lifeexpect_cia2017 <- read_csv("lifeexpect_cia2017.csv")
+lifeexpect_cia2017 %>% head()
 ```
 
 
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2225rank.html>
 ```{r, message=FALSE, warning=FALSE}
 healthexpend_cia2017 <- read_csv("healthexpend_cia2017.csv")
+healthexpend_cia2017 %>% head()
 ```
 
 
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2153rank.html>
 ```{r, message=FALSE, warning=FALSE}
 internetusers_cia2017 <- read_csv("internetusers_cia2017.csv")
+internetusers_cia2017 %>% head()
 ```
 
 
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2150rank.html>
 ```{r, message=FALSE, warning=FALSE}
 telephonelines_cia2017 <- read_csv("telephonelines_cia2017.csv")
+telephonelines_cia2017 %>% head()
 ```
 
 
 <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2119rank.html>
 ```{r, message=FALSE, warning=FALSE}
 population_cia2017 <- read_csv("population_cia2017.csv")
+population_cia2017 %>% head()
+```
+
+<https://meta.wikimedia.org/wiki/List_of_countries_by_regional_classification>
+```{r, message=FALSE, warning=FALSE}
+world_regions <- read_csv("world_regions.csv")
+world_regions %>% head()
 ```
 
 
 ### Using RStudio on your own computer
 
-[Download democracyindex2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/democracyindex2017.csv)
+Copy, paste, and run the code chunk below to download all of the data into RStudio on your own computer. 
 
-[Download education_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/education_cia2017.csv)
+```{r, eval= FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+path <- "https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/"
 
-[Download gdpppp_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/gdpppp_cia2017.csv)
+democracyindex2017 <- read_csv(paste0(path,"democracyindex2017.csv"))
+education_cia2017 <- read_csv(paste0(path,"education_cia2017.csv"))
+gdpppp_cia2017 <- read_csv(paste0(path,"gdpppp_cia2017.csv"))
+lifeexpect_cia2017 <- read_csv(paste0(path,"lifeexpect_cia2017.csv"))
+healthexpend_cia2017 <- read_csv(paste0(path,"healthexpend_cia2017.csv"))
+internetusers_cia2017 <- read_csv(paste0(path,"internetusers_cia2017.csv"))
+telephonelines_cia2017 <- read_csv(paste0(path,"telephonelines_cia2017.csv"))
+population_cia2017 <- read_csv(paste0(path,"population_cia2017.csv"))
+world_regions <- read_csv(paste0(path,"world_regions.csv"))
+```
 
-[Download lifeexpect_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/lifeexpect_cia2017.csv)
-
-[Download healthexpend_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/healthexpend_cia2017.csv)
-
-[Download internetusers_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/internetusers_cia2017.csv)
-
-[Download telephonelines_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/telephonelines_cia2017.csv)
-
-[Download population_cia2017.csv](https://raw.githubusercontent.com/ntaback/UofT_STA130/master/Fall2018/Finalproject/population_cia2017.csv)
 
 
 ### Accessing Other Data from the World Factbook
@@ -255,7 +271,7 @@ get_CIAWFB_data <- function(table_url){
 }
 ```
 
-Suppose your group is considering using the median age country comparison dataas supplemental data. The url for this table is <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2177rank.html>.  One way to easily import this data into R is by using `get_CIAWFB_data`.
+Suppose your group is considering using the median age country comparison data as supplemental data. The url for this table is <https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2177rank.html>.  One way to easily import this data into R is by using `get_CIAWFB_data`.
 
 ```{r, message=FALSE, warning=FALSE}
 medianage_cia2017 <- get_CIAWFB_data("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2177rank.html")
@@ -267,21 +283,13 @@ medianage_cia2017 %>% head()
 Another source of Global data that can be used to supplement the data you are given is from the [United Nations](http://data.un.org/Explorer.aspx?d=UNODC).  
 
 
-### Access via rstudio.cloud
-
-The data can be accessed directly in the STA130_Fall2018 workspace in rstudio.cloud.  
-
-### Access data directly
-
-Coming soon ...
 
 ## Questions
 
 1. Define how you will measure internet use in a country. Note that we expect that each group may have a different definition.  The analysis your group does will follow from how you choose to define internet use in a country.
 
-2. According to your definition of internet use what is the impact of democracy, education, economy, and health on internet use? Your group will need to define democracy, education, economy, and health.  Feel free to adjust for other variables using other data if your group thinks it's appropriate. 
+2. Do different regions of the world have different internet usage? 
 
-To answer questions 1 and 2, you must use the data sets in the section above, although you don't have to use all the data.  It is not necessary to use data from any other source.  However you are allowed to supplement the data provided with other data if you’d like. 
+3. According to your definition of internet use what is the impact of democracy, education, economy, and health on internet use? Your group will need to define democracy, education, economy, and health.  
 
-
-
+To answer questions 1 - 3, you must use the data sets in the section above, although you don't have to use all the data.  It is not necessary to use data from any other source.  However you are allowed to supplement the data provided with other data if you’d like. 

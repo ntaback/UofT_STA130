@@ -73,5 +73,9 @@ get_CIAWFB_data <- function(table_url){
 get_CIAWFB_data("https://www.cia.gov/library/publications/resources/the-world-factbook/rankorder/2147rank.html")
 
 sum(iu$`INTERNET USERS`)/1000000
+
+world_regions <- read_html("https://meta.wikimedia.org/wiki/List_of_countries_by_regional_classification") %>% html_table()
+
+write_csv(world_regions[[1]], "/Users/nathantaback/Dropbox (Personal)/Docs/sta130/website5/Fall2018/Finalproject/world_regions.csv")
 ```
 
