@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>STA130H1F</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Prof. Nathan Taback" />
+    <meta name="date" content="2018-10-11" />
+    <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STA130H1F
+## Class #7
+### Prof. Nathan Taback
+### 2018-10-11
+
+---
+
+
+
+
+
+---
+
+## Purpose of today's class
+
+- Review some material and ideas for the test. 
+- Not 100% comprehensive.  
+- What else should you study?  
+- All lecture slides, weekly practice problems. 
+
+
+---
+
+## Structure of test
+
+The test is a combination of:
+
+* multiple choice
+* fill in the blanks
+* short answer (explain why / apply)
+* answers that require you to write some sentences
+
+---
+
+# Lightning Round
+
+---
+
+## Lightning Round Question 1
+
+&lt;font size="4"&gt;
+
+A clinical oncologist is investigating the efficacy of a new treatment on reduction in tumour size. She randomly assigns patients to the new treatment or old treatment and compares the mean of the reduction in tumour size between the two groups. She carries out a statistical test and the P-value is 0.001. How many of the following are valid interpretations of the P-value?
+
+&lt;br&gt;
+&lt;br&gt;
+
+I. The probability of observing a difference between the treatment groups as large or larger than she observed if the new treatment has the same efficacy as the old treatment.  
+
+&lt;br&gt;
+
+II. The probability that the new treatment works the same as the old treatment.  
+&lt;br&gt;
+
+III. The probability that the new treatment, on average, reduces tumour size more than the old treatment.  
+&lt;br&gt;
+&lt;br&gt;
+A. None &lt;br&gt;  
+B. One  &lt;br&gt;
+C. Two  &lt;br&gt;
+D. Three &lt;br&gt;
+
+&lt;/font&gt;
+---
+
+## Lightning Round Question 2
+
+Fill in the respective blanks:  
+Suppose we wish to test the null hypothesis that a Yoga method does not have an effect on blood pressure versus the alternative that it does have an effect.  A _____________ error would be make by concluding that the Yoga method _____________ on  blood pressure if in fact the Yoga method  ____________ on blood pressure.
+
+A. Type 2; does not have an effect; does have an effect  
+B. Type 2; does not have an effect; does not have an effect  
+C. Type 2; does have an effect; does not have an effect  
+D. Type 1; does not have an effect; does have an effect  
+E. Type 1; does not have an effect; does not have an effect  
+
+---
+
+## Lightning Round Question 3
+
+In statistical inference, we want to make conclusions about what we think about the **theoretical world** or **population** based on what we've observed in the **real world** (data, typically observed on a random sample).   
+Do the following items exist in the theoretical world or the real world?
+
+* Statistic
+* Parameter
+* Null hypothesis (and alternative hypothesis)
+* Test statistic
+* Simulated values of the test statistic under the null hypothesis
+* P-value
+
+---
+
+## Lightning Round Question 4
+
+Consider the following R code.
+
+
+```r
+Tosses &lt;- c("H","H","T", "H")
+myfunction &lt;- function(x){
+  result &lt;- sample(x = x, replace = FALSE)
+  sum(result == "T")
+}
+myfunction(Tosses)
+```
+
+Which of the following is the value that `myfunction(Tosses)` will return:
+
+(I) 0
+
+(II) 1
+
+(III) 2
+
+(III) 3
+
+(IV) 4
+
+---
+
+# Case Study: American Community Survey 2012
+---
+
+## Case Study: American Community Survey 2012
+
+The American Community Survey is conducted by the US Census Bureau each year on a random sample of 3.5 million households. Findings from the survey influence the allocation of more than $400 billion in federal and state funds. The dataset `acs12` is a random sample from the people who completed the American Community Survey in 2012.
+
+---
+
+Here is a look at the data and some of the variables we will consider later:
+
+```r
+glimpse(acs12)
+```
+
+```
+## Observations: 2,000
+## Variables: 13
+## $ income       &lt;int&gt; 60000, 0, NA, 0, 0, 1700, NA, NA, NA, 45000, NA, ...
+## $ employment   &lt;fct&gt; not in labor force, not in labor force, NA, not i...
+## $ hrs_work     &lt;int&gt; 40, NA, NA, NA, NA, 40, NA, NA, NA, 84, NA, 23, N...
+## $ race         &lt;fct&gt; white, white, white, white, white, other, white, ...
+## $ age          &lt;int&gt; 68, 88, 12, 17, 77, 35, 11, 7, 6, 27, 8, 69, 69, ...
+## $ gender       &lt;fct&gt; female, male, female, male, female, female, male,...
+## $ citizen      &lt;fct&gt; yes, yes, yes, yes, yes, yes, yes, yes, yes, yes,...
+## $ time_to_work &lt;int&gt; NA, NA, NA, NA, NA, 15, NA, NA, NA, 40, NA, 5, NA...
+## $ lang         &lt;fct&gt; english, english, english, other, other, other, e...
+## $ married      &lt;fct&gt; no, no, no, no, no, yes, no, no, no, yes, no, no,...
+## $ edu          &lt;fct&gt; college, hs or lower, hs or lower, hs or lower, h...
+## $ disability   &lt;fct&gt; no, yes, no, no, yes, yes, no, yes, no, no, no, n...
+## $ birth_qrtr   &lt;fct&gt; jul thru sep, jan thru mar, oct thru dec, oct thr...
+```
+
+---
+
+
+```r
+table(acs12$employment)
+```
+
+```
+## 
+## not in labor force         unemployed           employed 
+##                656                106                843
+```
+
+```r
+table(acs12$edu)
+```
+
+```
+## 
+## hs or lower     college        grad 
+##        1439         359         144
+```
+---
+
+### Case study question 1
+
+Describe the data frames that are created by each of the following commands:
+
+
+```r
+labor_force &lt;- acs12 %&gt;% filter(!is.na(employment)) %&gt;% 
+  filter(employment == "employed" | employment == "unemployed")
+
+
+employed &lt;- labor_force %&gt;% filter(employment == "employed")
+
+
+employed &lt;- employed %&gt;% 
+  mutate(edu2 = recode(edu, "hs or lower" = "hs_or_lower", 
+                       "college" = "more_than_hs", 
+                       "grad" = "more_than_hs"))
+
+
+cat_vars &lt;- acs12 %&gt;% select(employment, race, gender, citizen, lang, married, edu, 
+                             disability, birth_qrtr)
+```
+
+
+---
+
+### Case study question 2
+
+We've used these plot geometries:   
+`geom_bar, geom_boxplot, geom_dotplot, geom_histogram, geom_line, geom_point, geom_vline`
+
+Recall this plot vocabulary:
+
+* Bar plots: modes, frequency
+* Histograms / boxplots: centre, spread, modes (unimodal, bimodal, multimodal, no mode), frequency, symmetric / left-skewed / right-skewed, outliers
+* Scatterplots: strong / weak / no relationship, linear (positive or negative) / nonlinear relationship, and outliers.
+
+---
+
+On the next several slides are a number of plots, each constructed from the dataset `employed`.  For each:
+
+* What type of plot is it?
+* What `ggplot` geometry is used?
+* What is the purpose of the plot?
+* Describe the distribution(s) of the variable(s).
+
+---
+
+## Plot 1
+
+![](sta130_week7_test_review_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+
+---
+
+## Plot 2
+
+![](sta130_week7_test_review_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+
+## Plot 3
+
+![](sta130_week7_test_review_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+What is the difference in these histograms?
+
+---
+
+### Case study question 3
+
+We have looked at simulations to estimate P-values in hypothesis tests.
+
+The hypothesis tests we have considered are:
+
+- single proportion
+- comparing two proportions
+- comparing two proportions
+
+
+The purpose of the simulation was to examine possible values of a statistic under an assumption (what is this assumption called?).  Two cases of this were considered: 
+
+- simulate outcomes for a proportion (how did we do this under our assumption?)
+- simulate the difference in a statistic between groups (how did we do this under our assumption?)
+   
+---
+
+Below is code for three simulations.  For each:
+
+* What is the purpose of the simulation?
+* State the hypothesis test being conducted? 
+* What are the null and alternative hypotheses?  
+* Estimate the P-value from the values plotted.   
+* What is your conclusion?
+
+---
+
+### Some statistics that might be useful
+
+
+```r
+labor_force  %&gt;% group_by(employment) %&gt;% summarise(n_group = n()) %&gt;% 
+  mutate(percent = n_group / sum(n_group))
+```
+
+```
+## # A tibble: 2 x 3
+##   employment n_group percent
+##   &lt;fct&gt;        &lt;int&gt;   &lt;dbl&gt;
+## 1 unemployed     106   0.112
+## 2 employed       843   0.888
+```
+
+
+
+
+```r
+employed %&gt;% group_by(edu2) %&gt;% summarise(median(income))
+```
+
+```
+## # A tibble: 2 x 2
+##   edu2         `median(income)`
+##   &lt;fct&gt;                   &lt;dbl&gt;
+## 1 hs_or_lower             23000
+## 2 more_than_hs            46000
+```
+
+
+---
+
+### Simulation 1 
+
+
+
+
+
+```r
+repetitions &lt;- 100
+x &lt;- rep(NA, repetitions) 
+
+n &lt;- as.numeric(labor_force %&gt;% summarize(n()))
+
+for (i in 1:repetitions) {
+  sim &lt;- sample(c("unemployed", "employed"), size = n, 
+                prob = c(0.089, 1 - 0.089), replace = TRUE)
+  
+  sim_stat &lt;- sum(sim == "unemployed") / n
+  
+  x[i] &lt;- as.numeric(sim_stat)
+}
+```
+
+---
+
+
+![](sta130_week7_test_review_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+  
+- What does the y-axis represent? 
+- What is `\(H_0, H_A\)`?
+- Estimate the P-value.
+- What do you conclude?
+---
+  
+### Simulation 2
+
+
+
+
+
+```r
+repetitions &lt;- 100  
+x &lt;- rep(NA, repetitions) 
+
+for (i in 1:repetitions)
+{
+  sim &lt;- employed %&gt;% mutate(edu2 = sample(edu2))  
+  sim_stat &lt;- sim %&gt;% group_by(edu2) %&gt;% 
+                    summarise(medians = median(income)) %&gt;% 
+                    summarise(diff(medians))
+  x[i] &lt;- as.numeric(sim_stat)
+}  
+```
+
+---
+
+![](sta130_week7_test_review_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+- What is `\(H_0, H_A\)`?
+- Estimate the P-value.
+- What do you conclude?
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

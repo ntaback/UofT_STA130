@@ -1,0 +1,76 @@
+---
+title: "STA130 Term Test Information"
+date: 'Fall 2018'
+output: 
+  html_document:
+   toc: true
+   toc_depth: 3
+   toc_float: true 
+   theme: flatly
+---
+
+## Test date and time
+
+- The test is on Friday, October 26 during your usual tutorial time (but in a different room).  
+- You will have 90 minutes to write the test.
+
+
+## Test location 
+
+Note that the test will be written in a different room than usual.  The room you will write in depends on your lecture section (L0101 - M @ 10:00 or L0201 - Mon @ 14:00).  
+
+### Monday 10:00 - L0101 Class (Prof. Taback)
+
+All students in section L0101 will write the midterm test in EX100.
+
+### Monday 14:00 - L0201 Class (Prof. Moon)
+
+Room   | Last Name begininng with
+-------|-------------------------
+HS 610 | A - Mahendra 
+PB B150| Mai - Z
+
+## Test format 
+
+The test includes a combination of different types of questions including:
+
+- multiple choice
+- fill in the blanks
+- short answer (often requiring you to explain an answer and requiring complete sentences)
+
+
+## What material is covered? 
+
+- The term test covers all material up to the end of tutorial on Friday, October 19 (week 6).  This includes material covered in lectures, the weekly practice problems, and work done in your tutorials.
+- A few clarifications on content on the test: 
+- You will **not** be required to write `R` code.  However you may be required to read and interpret `R` code, make small modifications to code, and know the purpose of functions that we've used.
+
+
+## Additional practice problems 
+
+
+- Test your knowledge using the online midterm review quiz in the [STA130_Fall2018 space on rstudio.cloud](https://rstudio.cloud/spaces/3186/join?access_code=b0A03f8ziEjE1fmGJ3CTYyhab1n%2FR5yB1EYBLczh) (after you open the project MidtermReview click on Run Document asnd the quiz will open in a separate window).  Note that the quiz doesn't cover all of the content that you are responsible for and mostly tests your knowledge, and not your ability to apply or explain your knowledge, which you will also be required to do on the test.
+- The lecture time on Monday, October 26 will be a review session.
+
+## What to bring 
+
+
+- Your student card
+- Writing implements 
+- An aid sheet that you prepare yourself.  Your aid sheet must be one 8 1/2 by 11 inch piece of paper, one-sided, and handwritten.  You will be required to hand in your aid sheet with your test, so if you want to keep it, make a copy in advance.
+- Don't bring a calculator
+
+
+## In the test room 
+
+- Put your student card on your desk.
+- All coats and jackets should be placed on the back of your chair. All notes and books, pencil cases, turned off cell phones, laptops and other unauthorized aids as well as purses should be stored inside your knapsack or large bag, which should then be closed securely and placed under your chair. You are **not** allowed to have a pencil case on your desk. All watches and timepieces on desks will be checked. You are not allowed to touch your coat or knapsack or bag or their contents until the end of the exam, when instructed by the invigilators. 
+- Please note that it is an academic offense to have a cell phone on your person (for example, in your pocket) during an exam, even if it is turned off.
+
+## Need extra help? 
+
+In addition to the [regular weekly office hours](../index.html) there will be extra office hours in SS623B for the midterm test on:
+
+- Wednesday, Oct 24, 17:00 - 19:00 
+
+- Thursday, Oct. 25, 13:00 - 16:00

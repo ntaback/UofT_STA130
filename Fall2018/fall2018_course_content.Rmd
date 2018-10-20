@@ -283,18 +283,34 @@ Sections 2.1, 2.2, 2.3 (excluding 2.3.4) of [*Introductory Statistics with Rando
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week6/Tutorial/Week6PracticeProblems_student.html) 
 
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems - solutions](week6/Tutorial/Week6PracticeProblems_solutions.html) 
 
-<div class=second>
 
 # Week 7
 
 ## October 22 Class
 
-### Slides and References
+### Topics
+
+- Review class
+
+### Slides
+
+Prof. Taback's class slides - Mon 10:00 (L0101):
+
+- [html](week7/sta130_week7_test_review.html)
+
+- [pdf - coming soon]
+
+Prof. Moon's class slides - Mon 14:00 (L0201):
+
+- [pdf](https://www.dropbox.com/s/wkbbwyi0viz9hnf/slides_oct22_review_nm.pdf?dl=0)
 
 ## October 26 Tutorial
 
 Midterm test during tutorial
+
+<div class=second>
 
 # Week 8
 

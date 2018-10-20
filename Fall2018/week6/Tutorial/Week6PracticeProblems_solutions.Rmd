@@ -1,0 +1,323 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 6 Practice Problems - Solutions
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on October 19?
+
+- R output (e.g., plots and explanations) for Questions 2, 3.  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+
+# Practice Problems
+
+## Question 1
+A researcher is interested in studying the association between birthweight and the mother's smoking status.  The `babies` data in the `openintro` package has information on 1,236 pregnancies in the San Francisco East Bay area from 1960 to 1967.  Use the `babies` data set to answer the following question. 
+
+```{r}
+library(openintro);
+glimpse(babies)
+```
+
+
+(a) Construct null and alternative hypotheses that correspond to a hypthesis test of birthweight is in mother's that smoked compared to non-smoking mothers. Explicitly define the statistical parameters being tested.
+
+$H_0: \mu_{nonSmoker} - \mu_{smoker}   =   0$
+
+$H_A: \mu_{nonSmoker} - \mu_{smoker}   \neq   0,$
+
+where $\mu_{nonSmoker}$ is the mean birthweight (in ounces) of babies born to non-smoking mothers and $\mu_{smoker}$ is the mean birthweight (in ounces) of babies born to smoking mothers.
+
+
+(b) How many observations does the data set contain? How many mothers are smokers?  How many mothers are non-smokers?  Are there any missing values for the birthweight variable?  What will your sample size be for doing the hypothesis test in part (a)?
+
+```{r}
+total_n_obs <- nrow(babies)
+n_smokers <- babies %>% filter(smoke == "smoker") %>% summarise(n())
+n_nonsmokers <- babies %>% filter(smoke == "nonSmoker") %>% summarise(n())
+n_missing_bwt <- babies %>% filter(is.na(smoke))
+babies_clean <- babies %>% filter(!is.na(smoke) & !is.na(bwt))
+n <- babies_clean %>% summarise(n()) 
+```
+In total, there are `r as.numeric(total_n_obs)` observations in the babies dataset. Among these, `r as.numeric(n_smokers)` of the pregnancies are for mothers who are smokers, and `r as.numeric(n_nonsmokers)` are for mothers who are non-smokers.  We can see that `r as.numeric(total_n_obs - n_smokers - n_nonsmokers)` observations have a missing value for the 'smoke' variable. However, none of the values of birthweight (bwt) are missing.  Thus, after removing observations with missing values for 'smoke', the sample size for this hypothesis test is `r as.numeric(n)`.
+
+
+(d) What is the test statistic for the hypothesis test from part (a)? 
+
+```{r}
+# calculate the test statistic
+mean_bwt_smokers <- babies_clean %>% 
+  filter(smoke==1) %>% 
+  summarize(mean(bwt))   
+mean_bwt_nonsmokers <- babies_clean %>% 
+  filter(smoke==0) %>%  
+  summarize(mean(bwt))   
+test_stat <- as.numeric(mean_bwt_nonsmokers - mean_bwt_smokers)
+test_stat
+```
+
+The test statistic is 8.94. In other words, in our sample the mean birthweight of babies of nonsmoking mothers is 8.94 ounces higher than the mean birthweight of babies of smoking mothers.  
+
+
+(e) Use simulation (with 1,000 repetitions) to calculate the P-value of the test in part (a). Write 2-4 sentences summarizing your conclusions.
+
+```{r, eval=TRUE}
+repetitions <- 1000  
+simulated_stats <- rep(NA, repetitions)
+
+set.seed(101)
+
+for(i in 1:repetitions){
+  sim <- babies_clean %>% mutate(smokingStatus = sample(smoke)) 
+  
+  sim_test_stat <- sim %>% 
+    group_by(smokingStatus) %>% 
+    summarise(means = mean(bwt)) %>% 
+    summarise(sim_test_stat = diff(means))
+  
+  simulated_stats[i] <- as.numeric(sim_test_stat)
+}
+
+sim <- data_frame(mean_diff = simulated_stats)
+
+sim %>% 
+  filter(mean_diff >= abs(test_stat) | mean_diff <= -abs(test_stat)) %>%
+  summarise(p_value = n() / repetitions)
+```
+
+We simulated 1,000 values of what the difference in mean birthweight would be for babies of smoking vs non-smoking mothers if we assumed there was no difference (that is, the birthweight values observed were as likely to come from a smoking or non-smoking mother).
+
+There were no simulated values with a difference as large or larger than the difference in mean birthweight that we observed, so our estimate of the p-value is 0. We conclude that we have very strong evidence that there is a difference in the mean birthweight of babies from smoking and non-smoking mothers.
+
+ 
+ 
+ 
+## Question 2
+Suppose you are interested in studying altruistic behaviours in men and women. A sample of 200 individuals were asked about what they would do if they received a $100 bill by mail, addressed to their neighbor, but wrongly delivered to them. Would they return it to their neighbor? Of the 69 males sampled, 56 said yes and of the 131 females sampled, 120 said yes.
+ 
+(a)
+
+(i) Construct a tidy dataframe for the data described above.
+
+Hints: 
+
+ - Before you start, think of which variables you want in your dataset and what your observations will be.
+ 
+ - The `rep()` function is useful, to avoid having to manually type long vectors. For example:
+```{r}
+# vector with 50 "yes" values followed by 150 "no" values
+myvec <-
+  c(rep("yes", times = 50), rep("no", 150))
+``` 
+
+```{r}
+money <-
+  data_frame(sex = c(rep("male", times = 69), rep("female", times = 131)),
+  returnMoney = c(
+  rep("yes", times = 56),
+  rep("no", times = 69 - 56),
+  rep("yes", times = 120),
+  rep("no", times = 131 - 120)
+  ))
+```
+
+(ii) To verify that the data frame you created in part (i) is correct, calculate the following numbers and compare them to the numbers which appear in the paragraph above:
+  - Number of males who return the money
+  - Number of males who don't return the money
+  - Number of females who return the money
+  - Number of females who don't return the money
+ 
+```{r}
+money %>% 
+  group_by(sex, returnMoney) %>% 
+  count()
+```
+ 
+(b) Write the null and alternative hypotheses to test if men and women return the money at different rates.  Explicitly define the statistical parameters being tested.
+
+$H_0: p_{female} - p_{male}   =   0$
+
+$H_A: p_{female} - p_{male}   \neq   0$
+
+where $p_{female}$ is proportion of females who return the money and $p_{male}$ is the proportion of males who return the money.  
+
+(c)  Use simulation (with 1,000 repetitions) to calculate the P-value of the test in part (a). Write 2-4 sentences summarizing your conclusions.
+
+```{r, eval=TRUE}
+
+# calculate the test statistic
+n_female <- money %>% filter(sex == "female") %>% summarize(n())
+n_male <- money %>% filter(sex == "male") %>% summarize(n())
+n_female_return <-
+money %>% filter(sex == "female" & returnMoney == "yes") %>% count()
+n_male_return <-
+money %>% filter(sex == "male" & returnMoney == "yes") %>% count()
+
+test_stat <- n_female_return / n_female   -   n_male_return / n_male
+test_stat
+
+repetitions <- 1000
+simulated_stats <- rep(NA, repetitions)
+set.seed(1)
+
+for (i in 1:repetitions) {
+sim <- money %>% mutate(sex = sample(sex)) # shuffle sex labels
+
+yes_male <-
+sim %>% filter(sex == "male" & returnMoney == "yes") %>% summarize(n())
+
+as.numeric(yes_male)
+
+yes_female <-
+sim %>% filter(sex == "female" & returnMoney == "yes") %>% summarize(n())
+as.numeric(yes_female)
+
+sim_test_stat <-
+yes_female / as.numeric(n_female) - yes_male / as.numeric(n_male)
+
+simulated_stats[i] <- as.numeric(sim_test_stat)
+}
+
+sim <- data_frame(p_diff = simulated_stats)
+sim %>% filter(p_diff >= abs(as.numeric(test_stat)) |
+p_diff <= -abs(as.numeric(test_stat))) %>%
+summarise(p_value = n() / repetitions)
+```
+
+Assuming there is no difference between men and women as to the rate of returning the money, the probability of seeing a difference in the proportions of women vs men who choose to return the money which is at least as extreme as what we observed is 0.033.  Thus, we have evidence that the proportion of people who choose to return the money differs between women and men.
+
+
+3. (Adapted from ISRS 4.22) The China Health and Nutrition Survey aims to examine the effects of the health, nutrition, and family planning policies and programs implemented by national and local governments. One of the variables collected on the survey is `child_care` the number of hours parents spend taking care of children in their household under age 6 (feeding, bathing, dressing, holding, or watching them). In our data for 2006, 664 females and 358 males were surveyed for this question. We will examine whether there is a difference in hours spent on child care between females and males.
+
+Simulation was used to test if the median of the number of hours spent on child care for Chinese women is the same as the median of the number of hours spent on child care for Chinese men.  A plot of the simulation is below, along with some other statistics.
+
+```{r, message=FALSE, warning=FALSE}
+library(openintro)
+glimpse(china)
+new_china <- china %>% filter(child_care != -99)
+glimpse(new_china)
+
+repetitions <- 1000  
+simulated_stats <- rep(NA, repetitions) 
+
+new_china <- new_china %>% mutate(sex = recode(gender, `1`="male", `2`="female"))
+
+new_china %>% group_by(sex) %>% summarize(medians = median(child_care))
+
+test_stat <- 
+  as.numeric(new_china %>% group_by(sex) %>% summarize(medians=median(child_care)) %>% 
+                summarise(test_stat = diff(medians)))
+test_stat
+
+for (i in 1:repetitions)
+{
+sim <-
+new_china %>% mutate(sex = sample(sex))  # shuffle sleep group labels
+sim_test_stat <-
+sim %>% group_by(sex) %>% summarise(medians = median(child_care)) %>% summarise(sim_test_stat = diff(medians))
+simulated_stats[i] <- as.numeric(sim_test_stat)
+}
+
+sim <- data_frame(median_diff = simulated_stats)
+
+sim %>% 
+  filter(median_diff >= abs(test_stat) | median_diff <= -1*abs(test_stat)) %>%
+  summarise(n() / repetitions)
+
+sim %>% ggplot(aes(median_diff)) +
+  geom_histogram(colour = "black",
+  fill = "grey",
+  binwidth = 0.5)
+```
+
+(a)  What are the null and alternative hypotheses being tested?
+
+$$H_0: \tilde \mu_{M}= \tilde \mu_{F} \mbox{ vs. } H_A: \tilde \mu_{M} \ne \tilde \mu_{F}.$$
+
+$\tilde \mu_{M}, \tilde \mu_{F}$ are the median number of child care hours for males and females respectively.
+
+(b) What is the test statistic used in this hypothesis test and what is it's value for this data set?  Interpret the test statistic.
+
+The test statistic used is the difference between the median number of child care hours for males minus the median number of child care hours for females.  The value of the test statistic for this data set is -11.  The median number of hours Females spent on child care compared to males is 11 hours. 
+
+(c) Estimate the P-value from the histogram.
+
+The observed median difference is -11.  The largest median difference is `r max(sim$median_diff)` and the smallest median difference is `r max(sim$median_diff)`. The P-value is the proportion of simulations with a test statistic greater than or equal to 11 or less than or equal to -11.  This proportion is 0/1000 = 0. 
+
+(d) Is there evidence that Females spend a different amount of time on child care compared to males?
+
+Yes. We simulated 1000 values of what the difference between females and males in the medians of number of hours spent on child care would be if we assumed that there was no difference, that is the values observed were just as likely to come from a female survey participant or a male survey participant. There were no simulated values with a difference as large or larger than the difference in medians that we observed in our data. Our estimate of the P-value is thus 0 (<1/1000
+). We conclude that we have very strong evidence that there is a difference in the median number of hours spent on child care between females and males.
+
+(e)  Change the code given at the beginning of the question to conduct a hypothesis test to investigate if the standard deviation of hours spent on child care is different for females and males.  What do you conclude?
+
+```{r, message=FALSE, warning=FALSE}
+library(openintro)
+glimpse(china)
+new_china <- china %>% filter(child_care != -99)
+glimpse(new_china)
+
+repetitions <- 1000  
+simulated_stats <- rep(NA, repetitions) 
+
+new_china <- new_china %>% mutate(sex = recode(gender, `1`="male", `2`="female"))
+
+new_china %>% group_by(sex) %>% summarize(sds = sd(child_care))
+
+test_stat <- 
+  as.numeric(new_china %>% group_by(sex) %>% summarize(sds=sd(child_care)) %>% 
+                summarise(test_stat = diff(sds)))
+test_stat
+
+for (i in 1:repetitions)
+{
+sim <-
+new_china %>% mutate(sex = sample(sex))  # shuffle sleep group labels
+sim_test_stat <-
+sim %>% group_by(sex) %>% summarise(sds = sd(child_care)) %>% summarise(sim_test_stat = diff(sds))
+simulated_stats[i] <- as.numeric(sim_test_stat)
+}
+
+sim <- data_frame(sd_diff = simulated_stats)
+
+sim %>% ggplot(aes(sd_diff)) +
+  geom_histogram(colour = "black",
+  fill = "grey",
+  binwidth = 0.5)
+
+sim %>% 
+   filter(sd_diff >= abs(test_stat) | sd_diff <= -1*abs(test_stat)) %>%
+   summarise(p_value = n() / repetitions)
+```
+
+In this case, $H_0:\sigma_M =\sigma_F$ and $H_A:\sigma_M \ne \sigma_F$, where $\sigma_M, \sigma_F$ are the standard deviations of the numbers of hours spent on child care for males and females respectively. 
+
+The standard deviation in the female group is 30.1 and 19.93 in the male group. There is more variability in the number of hours females spend on child care compared to males.  None of the simulated values of the test statistic were as extreme as the observed value of the test statistic  -10.17483, so the P-value of the test is 0. Therefore, there is strong evidence that the standard deviation of child care in females and males are different.
+
+
+

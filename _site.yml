@@ -14,6 +14,9 @@ navbar:
     - text: Course Content
       icon: fa-slideshare
       href: Fall2018/fall2018_course_content.html
+    - text: Midterm Test
+      href: Fall2018/term_test_Fall2018.html
+      icon: fa-slideshare
     - text: Final Project
       icon: fa-users
   - text: Resources

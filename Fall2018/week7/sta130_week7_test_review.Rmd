@@ -1,0 +1,372 @@
+---
+title: "STA130H1F"
+subtitle: "Class #7"
+author: "Prof. Nathan Taback"
+date: "2018-10-11"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+```{r setup, include=FALSE}
+# R options
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  warm = 1
+  )
+# Set dpi and height for images
+library(knitr)
+opts_chunk$set(fig.height = 2.65, dpi =300, warning=FALSE, message=FALSE) 
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+# For nonsese...
+library(mdsr)
+library(emo)
+library(tidyverse)
+library(kableExtra)
+library(gridExtra)
+library(openintro)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+```
+
+
+---
+
+## Purpose of today's class
+
+- Review some material and ideas for the test. 
+- Not 100% comprehensive.  
+- What else should you study?  
+- All lecture slides, weekly practice problems. 
+
+
+---
+
+## Structure of test
+
+The test is a combination of:
+
+* multiple choice
+* fill in the blanks
+* short answer (explain why / apply)
+* answers that require you to write some sentences
+
+---
+
+# Lightning Round
+
+---
+
+## Lightning Round Question 1
+
+<font size="4">
+
+A clinical oncologist is investigating the efficacy of a new treatment on reduction in tumour size. She randomly assigns patients to the new treatment or old treatment and compares the mean of the reduction in tumour size between the two groups. She carries out a statistical test and the P-value is 0.001. How many of the following are valid interpretations of the P-value?
+
+<br>
+<br>
+
+I. The probability of observing a difference between the treatment groups as large or larger than she observed if the new treatment has the same efficacy as the old treatment.  
+
+<br>
+
+II. The probability that the new treatment works the same as the old treatment.  
+<br>
+
+III. The probability that the new treatment, on average, reduces tumour size more than the old treatment.  
+<br>
+<br>
+A. None <br>  
+B. One  <br>
+C. Two  <br>
+D. Three <br>
+
+</font>
+---
+
+## Lightning Round Question 2
+
+Fill in the respective blanks:  
+Suppose we wish to test the null hypothesis that a Yoga method does not have an effect on blood pressure versus the alternative that it does have an effect.  A _____________ error would be make by concluding that the Yoga method _____________ on  blood pressure if in fact the Yoga method  ____________ on blood pressure.
+
+A. Type 2; does not have an effect; does have an effect  
+B. Type 2; does not have an effect; does not have an effect  
+C. Type 2; does have an effect; does not have an effect  
+D. Type 1; does not have an effect; does have an effect  
+E. Type 1; does not have an effect; does not have an effect  
+
+---
+
+## Lightning Round Question 3
+
+In statistical inference, we want to make conclusions about what we think about the **theoretical world** or **population** based on what we've observed in the **real world** (data, typically observed on a random sample).   
+Do the following items exist in the theoretical world or the real world?
+
+* Statistic
+* Parameter
+* Null hypothesis (and alternative hypothesis)
+* Test statistic
+* Simulated values of the test statistic under the null hypothesis
+* P-value
+
+---
+
+## Lightning Round Question 4
+
+Consider the following R code.
+
+```{r, eval=F}
+Tosses <- c("H","H","T", "H")
+myfunction <- function(x){
+  result <- sample(x = x, replace = FALSE)
+  sum(result == "T")
+}
+myfunction(Tosses)
+```
+
+Which of the following is the value that `myfunction(Tosses)` will return:
+
+(I) 0
+
+(II) 1
+
+(III) 2
+
+(III) 3
+
+(IV) 4
+
+---
+
+# Case Study: American Community Survey 2012
+---
+
+## Case Study: American Community Survey 2012
+
+The American Community Survey is conducted by the US Census Bureau each year on a random sample of 3.5 million households. Findings from the survey influence the allocation of more than $400 billion in federal and state funds. The dataset `acs12` is a random sample from the people who completed the American Community Survey in 2012.
+
+---
+
+Here is a look at the data and some of the variables we will consider later:
+```{r}
+glimpse(acs12)
+```
+
+---
+
+```{r}
+table(acs12$employment)
+table(acs12$edu)
+```
+---
+
+### Case study question 1
+
+Describe the data frames that are created by each of the following commands:
+
+```{r}
+labor_force <- acs12 %>% filter(!is.na(employment)) %>% 
+  filter(employment == "employed" | employment == "unemployed")
+
+
+employed <- labor_force %>% filter(employment == "employed")
+
+
+employed <- employed %>% 
+  mutate(edu2 = recode(edu, "hs or lower" = "hs_or_lower", 
+                       "college" = "more_than_hs", 
+                       "grad" = "more_than_hs"))
+
+
+cat_vars <- acs12 %>% select(employment, race, gender, citizen, lang, married, edu, 
+                             disability, birth_qrtr)
+```
+
+
+---
+
+### Case study question 2
+
+We've used these plot geometries:   
+`geom_bar, geom_boxplot, geom_dotplot, geom_histogram, geom_line, geom_point, geom_vline`
+
+Recall this plot vocabulary:
+
+* Bar plots: modes, frequency
+* Histograms / boxplots: centre, spread, modes (unimodal, bimodal, multimodal, no mode), frequency, symmetric / left-skewed / right-skewed, outliers
+* Scatterplots: strong / weak / no relationship, linear (positive or negative) / nonlinear relationship, and outliers.
+
+---
+
+On the next several slides are a number of plots, each constructed from the dataset `employed`.  For each:
+
+* What type of plot is it?
+* What `ggplot` geometry is used?
+* What is the purpose of the plot?
+* Describe the distribution(s) of the variable(s).
+
+---
+
+## Plot 1
+
+```{r, echo=F}
+ggplot(employed, aes(x=edu, y=income)) + geom_boxplot() + theme_minimal()
+```
+
+
+---
+
+## Plot 2
+
+```{r, echo=F}
+ggplot(employed, aes(x=edu)) + geom_bar() + theme_minimal()
+```
+
+---
+
+## Plot 3
+
+```{r, echo=F}
+p1 <- ggplot(employed, aes(x=income)) + geom_histogram(binwidth = 200000, colour = "black", fill = "grey") + theme_minimal()
+p2 <- ggplot(employed, aes(x=income)) + geom_histogram(binwidth = 2000, colour = "black", fill = "grey") + theme_minimal()
+grid.arrange(p1, p2, nrow=1)
+```
+
+What is the difference in these histograms?
+
+---
+
+### Case study question 3
+
+We have looked at simulations to estimate P-values in hypothesis tests.
+
+The hypothesis tests we have considered are:
+
+- single proportion
+- comparing two proportions
+- comparing two proportions
+
+
+The purpose of the simulation was to examine possible values of a statistic under an assumption (what is this assumption called?).  Two cases of this were considered: 
+
+- simulate outcomes for a proportion (how did we do this under our assumption?)
+- simulate the difference in a statistic between groups (how did we do this under our assumption?)
+   
+---
+
+Below is code for three simulations.  For each:
+
+* What is the purpose of the simulation?
+* State the hypothesis test being conducted? 
+* What are the null and alternative hypotheses?  
+* Estimate the P-value from the values plotted.   
+* What is your conclusion?
+
+---
+
+### Some statistics that might be useful
+
+```{r}
+labor_force  %>% group_by(employment) %>% summarise(n_group = n()) %>% 
+  mutate(percent = n_group / sum(n_group))
+```
+
+```{r, echo=F, eval=F}
+employed %>% summarise(mean(income))
+employed %>% group_by(edu) %>% summarise(median(income))
+```
+
+```{r}
+employed %>% group_by(edu2) %>% summarise(median(income))
+```
+
+
+---
+
+### Simulation 1 
+
+```{r, echo=F}
+set.seed(130) 
+# median unemployment rate in 2011 was 8.9%; is 2012 the same?
+```
+
+
+```{r}
+repetitions <- 100
+x <- rep(NA, repetitions) 
+
+n <- as.numeric(labor_force %>% summarize(n()))
+
+for (i in 1:repetitions) {
+  sim <- sample(c("unemployed", "employed"), size = n, 
+                prob = c(0.089, 1 - 0.089), replace = TRUE)
+  
+  sim_stat <- sum(sim == "unemployed") / n
+  
+  x[i] <- as.numeric(sim_stat)
+}
+```
+
+---
+
+
+```{r, echo=F, warning=F, messsage=F}
+x <- data_frame(x)
+x %>% ggplot(aes(x)) + geom_histogram(binwidth = 0.005, colour = "black", fill = "grey") +
+  scale_x_continuous(breaks = seq(0.06,0.12, by = 0.005))
+```
+  
+- What does the y-axis represent? 
+- What is $H_0, H_A$?
+- Estimate the P-value.
+- What do you conclude?
+---
+  
+### Simulation 2
+
+```{r, echo=F}
+set.seed(1) 
+# for those employed, does income vary by edu2 
+```
+
+
+```{r}
+repetitions <- 100  
+x <- rep(NA, repetitions) 
+
+for (i in 1:repetitions)
+{
+  sim <- employed %>% mutate(edu2 = sample(edu2))  
+  sim_stat <- sim %>% group_by(edu2) %>% 
+                    summarise(medians = median(income)) %>% 
+                    summarise(diff(medians))
+  x[i] <- as.numeric(sim_stat)
+}  
+```
+
+---
+
+```{r, echo=F, warning=F, message=F}
+x <- data_frame(x)
+x %>% ggplot(aes(x)) + geom_histogram(binwidth = 2000, colour = "black", fill = "grey") + scale_x_continuous(breaks = seq(-10000, 10000, by = 2000))
+```
+
+- What is $H_0, H_A$?
+- Estimate the P-value.
+- What do you conclude?
+
