@@ -147,3 +147,7 @@ thead, tfoot, tr:nth-child(even) { background: #eee }
   float: right;
   padding-left: 1%;
 }
+
+.underline{
+  text-decoration: underline;
+}

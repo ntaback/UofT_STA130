@@ -2,7 +2,7 @@
 title: "STA130H1F"
 subtitle: "Class #7"
 author: "Prof. Nathan Taback"
-date: "2018-10-11"
+date: "2018-10-21"
 output:
   xaringan::moon_reader:
     css: "slides.css"
@@ -101,15 +101,19 @@ D. Three <br>
 
 ## Lightning Round Question 2
 
-Fill in the respective blanks:  
-Suppose we wish to test the null hypothesis that a Yoga method does not have an effect on blood pressure versus the alternative that it does have an effect.  A _____________ error would be make by concluding that the Yoga method _____________ on  blood pressure if in fact the Yoga method  ____________ on blood pressure.
+Fill in the respective blanks: 
 
-A. Type 2; does not have an effect; does have an effect  
+Suppose we wish to test the null hypothesis that a Yoga method does not have an effect on blood pressure versus the alternative that it does have an effect.  A <font color="blue" .underline[XX]</font> error would be made by concluding that the Yoga method <font color="blue" .underline[XX]</font>  on  blood pressure if in fact the Yoga method <font color="blue" .underline[XX]</font> on blood pressure.
+
+A. Type 2; does have an effect; does have an effect
+
 B. Type 2; does not have an effect; does not have an effect  
-C. Type 2; does have an effect; does not have an effect  
-D. Type 1; does not have an effect; does have an effect  
-E. Type 1; does not have an effect; does not have an effect  
 
+C. Type 1; does have an effect; does not have an effect  
+
+D. Type 1; does not have an effect; does not have an effect  
+
+E. P-value error; does have an effect; does not have an effect  
 ---
 
 ## Lightning Round Question 3
@@ -117,10 +121,9 @@ E. Type 1; does not have an effect; does not have an effect
 In statistical inference, we want to make conclusions about what we think about the **theoretical world** or **population** based on what we've observed in the **real world** (data, typically observed on a random sample).   
 Do the following items exist in the theoretical world or the real world?
 
-* Statistic
+* Observed value of test statistic
 * Parameter
 * Null hypothesis (and alternative hypothesis)
-* Test statistic
 * Simulated values of the test statistic under the null hypothesis
 * P-value
 
@@ -193,8 +196,9 @@ employed <- employed %>%
                        "grad" = "more_than_hs"))
 
 
-cat_vars <- acs12 %>% select(employment, race, gender, citizen, lang, married, edu, 
-                             disability, birth_qrtr)
+cat_vars <- acs12 %>% 
+  select(employment, race, gender, citizen, lang, 
+         married, edu, disability, birth_qrtr)
 ```
 
 
@@ -228,6 +232,10 @@ On the next several slides are a number of plots, each constructed from the data
 ggplot(employed, aes(x=edu, y=income)) + geom_boxplot() + theme_minimal()
 ```
 
+* What type of plot is it?
+* What `ggplot` geometry is used?
+* What is the purpose of the plot?
+* Describe the distribution(s) of the variable(s).
 
 ---
 
@@ -237,6 +245,12 @@ ggplot(employed, aes(x=edu, y=income)) + geom_boxplot() + theme_minimal()
 ggplot(employed, aes(x=edu)) + geom_bar() + theme_minimal()
 ```
 
+* What type of plot is it?
+* What `ggplot` geometry is used?
+* What is the purpose of the plot?
+* Describe the distribution(s) of the variable(s).
+
+
 ---
 
 ## Plot 3
@@ -244,10 +258,14 @@ ggplot(employed, aes(x=edu)) + geom_bar() + theme_minimal()
 ```{r, echo=F}
 p1 <- ggplot(employed, aes(x=income)) + geom_histogram(binwidth = 200000, colour = "black", fill = "grey") + theme_minimal()
 p2 <- ggplot(employed, aes(x=income)) + geom_histogram(binwidth = 2000, colour = "black", fill = "grey") + theme_minimal()
-grid.arrange(p1, p2, nrow=1)
+grid.arrange(p1, p2, nrow = 1)
 ```
 
-What is the difference in these histograms?
+* What type of plot is it?
+* What `ggplot` geometry is used?
+* What is the purpose of the plot?
+* Describe the distribution(s) of the variable(s).
+* What is the difference in these histograms?
 
 ---
 
@@ -255,19 +273,25 @@ What is the difference in these histograms?
 
 We have looked at simulations to estimate P-values in hypothesis tests.
 
+--
+
 The hypothesis tests we have considered are:
 
 - single proportion
 - comparing two proportions
-- comparing two proportions
+- comparing two statistics for continuous variables (e.g., means, medians, sd)
 
+--
 
-The purpose of the simulation was to examine possible values of a statistic under an assumption (what is this assumption called?).  Two cases of this were considered: 
+The purpose of the simulation was to examine possible values of a statistic under an assumption.  Two cases of this were considered: 
 
-- simulate outcomes for a proportion (how did we do this under our assumption?)
-- simulate the difference in a statistic between groups (how did we do this under our assumption?)
+--
+
+- simulate outcomes for a proportion
+- simulate the difference in a statistic between groups
    
 ---
+### Case study question 3
 
 Below is code for three simulations.  For each:
 
@@ -282,17 +306,16 @@ Below is code for three simulations.  For each:
 ### Some statistics that might be useful
 
 ```{r}
-labor_force  %>% group_by(employment) %>% summarise(n_group = n()) %>% 
+labor_force %>% 
+  group_by(employment) %>% summarise(n_group = n()) %>% 
   mutate(percent = n_group / sum(n_group))
 ```
 
-```{r, echo=F, eval=F}
-employed %>% summarise(mean(income))
-employed %>% group_by(edu) %>% summarise(median(income))
-```
+---
 
 ```{r}
 employed %>% group_by(edu2) %>% summarise(median(income))
+employed %>% group_by(edu2) %>% summarise(mean(income))
 ```
 
 
@@ -322,6 +345,9 @@ for (i in 1:repetitions) {
 }
 ```
 
+* What is the purpose of the simulation?
+* State the hypothesis test being conducted? What is $H_0, H_A$?
+* What are the null and alternative hypotheses?  
 ---
 
 
@@ -332,9 +358,9 @@ x %>% ggplot(aes(x)) + geom_histogram(binwidth = 0.005, colour = "black", fill =
 ```
   
 - What does the y-axis represent? 
-- What is $H_0, H_A$?
 - Estimate the P-value.
 - What do you conclude?
+
 ---
   
 ### Simulation 2
@@ -346,6 +372,7 @@ set.seed(1)
 
 
 ```{r}
+set.seed(1)
 repetitions <- 100  
 x <- rep(NA, repetitions) 
 
@@ -359,6 +386,44 @@ for (i in 1:repetitions)
 }  
 ```
 
+* What is the purpose of the simulation?
+* State the hypothesis test being conducted? What is $H_0, H_A$?
+* What are the null and alternative hypotheses?  
+
+---
+
+```{r, echo=F, warning=F, message=F}
+x <- data_frame(x)
+x %>% ggplot(aes(x)) + geom_histogram(binwidth = 2000, colour = "black", fill = "grey") + scale_x_continuous(breaks = seq(-10000, 10000, by = 1000))
+```
+
+- Estimate the P-value.
+- What do you conclude?
+
+---
+
+  
+### Simulation 3
+
+```{r}
+set.seed(1)
+repetitions <- 100  
+x <- rep(NA, repetitions) 
+
+for (i in 1:repetitions)
+{
+  sim <- employed %>% mutate(edu2 = sample(edu2))  
+  sim_stat <- sim %>% group_by(edu2) %>% 
+                    summarise(mean = mean(income)) %>% 
+                    summarise(diff(mean))
+  x[i] <- as.numeric(sim_stat)
+}  
+```
+
+* What is the purpose of the simulation?
+* State the hypothesis test being conducted? What is $H_0, H_A$?
+* What are the null and alternative hypotheses?  
+
 ---
 
 ```{r, echo=F, warning=F, message=F}
@@ -366,7 +431,6 @@ x <- data_frame(x)
 x %>% ggplot(aes(x)) + geom_histogram(binwidth = 2000, colour = "black", fill = "grey") + scale_x_continuous(breaks = seq(-10000, 10000, by = 2000))
 ```
 
-- What is $H_0, H_A$?
 - Estimate the P-value.
 - What do you conclude?
 

@@ -300,7 +300,7 @@ Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [html](week7/sta130_week7_test_review.html)
 
-- [pdf - coming soon]
+- [pdf](week7/sta130_week7_test_review.pdf)
 
 Prof. Moon's class slides - Mon 14:00 (L0201):
 

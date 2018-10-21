@@ -4,8 +4,10 @@
     <title>STA130H1F</title>
     <meta charset="utf-8">
     <meta name="author" content="Prof. Nathan Taback" />
-    <meta name="date" content="2018-10-11" />
-    <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <meta name="date" content="2018-10-21" />
+    <link href="libs/font-awesome/css/fa-svg-with-js.css" rel="stylesheet" />
+    <script src="libs/font-awesome/js/fontawesome-all.min.js"></script>
+    <script src="libs/font-awesome/js/fa-v4-shims.min.js"></script>
     <link rel="stylesheet" href="slides.css" type="text/css" />
   </head>
   <body>
@@ -15,7 +17,7 @@ class: center, middle, inverse, title-slide
 # STA130H1F
 ## Class #7
 ### Prof. Nathan Taback
-### 2018-10-11
+### 2018-10-21
 
 ---
 
@@ -79,15 +81,19 @@ D. Three &lt;br&gt;
 
 ## Lightning Round Question 2
 
-Fill in the respective blanks:  
-Suppose we wish to test the null hypothesis that a Yoga method does not have an effect on blood pressure versus the alternative that it does have an effect.  A _____________ error would be make by concluding that the Yoga method _____________ on  blood pressure if in fact the Yoga method  ____________ on blood pressure.
+Fill in the respective blanks: 
 
-A. Type 2; does not have an effect; does have an effect  
+Suppose we wish to test the null hypothesis that a Yoga method does not have an effect on blood pressure versus the alternative that it does have an effect.  A &lt;font color="blue" .underline[XX]&lt;/font&gt; error would be made by concluding that the Yoga method &lt;font color="blue" .underline[XX]&lt;/font&gt;  on  blood pressure if in fact the Yoga method &lt;font color="blue" .underline[XX]&lt;/font&gt; on blood pressure.
+
+A. Type 2; does have an effect; does have an effect
+
 B. Type 2; does not have an effect; does not have an effect  
-C. Type 2; does have an effect; does not have an effect  
-D. Type 1; does not have an effect; does have an effect  
-E. Type 1; does not have an effect; does not have an effect  
 
+C. Type 1; does have an effect; does not have an effect  
+
+D. Type 1; does not have an effect; does not have an effect  
+
+E. P-value error; does have an effect; does not have an effect  
 ---
 
 ## Lightning Round Question 3
@@ -95,10 +101,9 @@ E. Type 1; does not have an effect; does not have an effect
 In statistical inference, we want to make conclusions about what we think about the **theoretical world** or **population** based on what we've observed in the **real world** (data, typically observed on a random sample).   
 Do the following items exist in the theoretical world or the real world?
 
-* Statistic
+* Observed value of test statistic
 * Parameter
 * Null hypothesis (and alternative hypothesis)
-* Test statistic
 * Simulated values of the test statistic under the null hypothesis
 * P-value
 
@@ -208,8 +213,9 @@ employed &lt;- employed %&gt;%
                        "grad" = "more_than_hs"))
 
 
-cat_vars &lt;- acs12 %&gt;% select(employment, race, gender, citizen, lang, married, edu, 
-                             disability, birth_qrtr)
+cat_vars &lt;- acs12 %&gt;% 
+  select(employment, race, gender, citizen, lang, 
+         married, edu, disability, birth_qrtr)
 ```
 
 
@@ -241,6 +247,10 @@ On the next several slides are a number of plots, each constructed from the data
 
 ![](sta130_week7_test_review_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
 
+* What type of plot is it?
+* What `ggplot` geometry is used?
+* What is the purpose of the plot?
+* Describe the distribution(s) of the variable(s).
 
 ---
 
@@ -248,13 +258,23 @@ On the next several slides are a number of plots, each constructed from the data
 
 ![](sta130_week7_test_review_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
+* What type of plot is it?
+* What `ggplot` geometry is used?
+* What is the purpose of the plot?
+* Describe the distribution(s) of the variable(s).
+
+
 ---
 
 ## Plot 3
 
 ![](sta130_week7_test_review_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
-What is the difference in these histograms?
+* What type of plot is it?
+* What `ggplot` geometry is used?
+* What is the purpose of the plot?
+* Describe the distribution(s) of the variable(s).
+* What is the difference in these histograms?
 
 ---
 
@@ -262,19 +282,25 @@ What is the difference in these histograms?
 
 We have looked at simulations to estimate P-values in hypothesis tests.
 
+--
+
 The hypothesis tests we have considered are:
 
 - single proportion
 - comparing two proportions
-- comparing two proportions
+- comparing two statistics for continuous variables (e.g., means, medians, sd)
 
+--
 
-The purpose of the simulation was to examine possible values of a statistic under an assumption (what is this assumption called?).  Two cases of this were considered: 
+The purpose of the simulation was to examine possible values of a statistic under an assumption.  Two cases of this were considered: 
 
-- simulate outcomes for a proportion (how did we do this under our assumption?)
-- simulate the difference in a statistic between groups (how did we do this under our assumption?)
+--
+
+- simulate outcomes for a proportion
+- simulate the difference in a statistic between groups
    
 ---
+### Case study question 3
 
 Below is code for three simulations.  For each:
 
@@ -290,7 +316,8 @@ Below is code for three simulations.  For each:
 
 
 ```r
-labor_force  %&gt;% group_by(employment) %&gt;% summarise(n_group = n()) %&gt;% 
+labor_force %&gt;% 
+  group_by(employment) %&gt;% summarise(n_group = n()) %&gt;% 
   mutate(percent = n_group / sum(n_group))
 ```
 
@@ -302,7 +329,7 @@ labor_force  %&gt;% group_by(employment) %&gt;% summarise(n_group = n()) %&gt;%
 ## 2 employed       843   0.888
 ```
 
-
+---
 
 
 ```r
@@ -315,6 +342,18 @@ employed %&gt;% group_by(edu2) %&gt;% summarise(median(income))
 ##   &lt;fct&gt;                   &lt;dbl&gt;
 ## 1 hs_or_lower             23000
 ## 2 more_than_hs            46000
+```
+
+```r
+employed %&gt;% group_by(edu2) %&gt;% summarise(mean(income))
+```
+
+```
+## # A tibble: 2 x 2
+##   edu2         `mean(income)`
+##   &lt;fct&gt;                 &lt;dbl&gt;
+## 1 hs_or_lower          29963.
+## 2 more_than_hs         65010.
 ```
 
 
@@ -342,15 +381,18 @@ for (i in 1:repetitions) {
 }
 ```
 
+* What is the purpose of the simulation?
+* State the hypothesis test being conducted? What is `\(H_0, H_A\)`?
+* What are the null and alternative hypotheses?  
 ---
 
 
-![](sta130_week7_test_review_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](sta130_week7_test_review_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
   
 - What does the y-axis represent? 
-- What is `\(H_0, H_A\)`?
 - Estimate the P-value.
 - What do you conclude?
+
 ---
   
 ### Simulation 2
@@ -360,6 +402,7 @@ for (i in 1:repetitions) {
 
 
 ```r
+set.seed(1)
 repetitions &lt;- 100  
 x &lt;- rep(NA, repetitions) 
 
@@ -373,11 +416,46 @@ for (i in 1:repetitions)
 }  
 ```
 
+* What is the purpose of the simulation?
+* State the hypothesis test being conducted? What is `\(H_0, H_A\)`?
+* What are the null and alternative hypotheses?  
+
 ---
 
-![](sta130_week7_test_review_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](sta130_week7_test_review_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
-- What is `\(H_0, H_A\)`?
+- Estimate the P-value.
+- What do you conclude?
+
+---
+
+  
+### Simulation 3
+
+
+```r
+set.seed(1)
+repetitions &lt;- 100  
+x &lt;- rep(NA, repetitions) 
+
+for (i in 1:repetitions)
+{
+  sim &lt;- employed %&gt;% mutate(edu2 = sample(edu2))  
+  sim_stat &lt;- sim %&gt;% group_by(edu2) %&gt;% 
+                    summarise(mean = mean(income)) %&gt;% 
+                    summarise(diff(mean))
+  x[i] &lt;- as.numeric(sim_stat)
+}  
+```
+
+* What is the purpose of the simulation?
+* State the hypothesis test being conducted? What is `\(H_0, H_A\)`?
+* What are the null and alternative hypotheses?  
+
+---
+
+![](sta130_week7_test_review_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
 - Estimate the P-value.
 - What do you conclude?
     </textarea>
