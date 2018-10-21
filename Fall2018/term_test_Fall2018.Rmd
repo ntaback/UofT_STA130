@@ -50,7 +50,7 @@ The test includes a combination of different types of questions including:
 
 
 - Test your knowledge using the online midterm review quiz in the [STA130_Fall2018 space on rstudio.cloud](https://rstudio.cloud/spaces/3186/join?access_code=b0A03f8ziEjE1fmGJ3CTYyhab1n%2FR5yB1EYBLczh) (after you open the project MidtermReview click on Run Document asnd the quiz will open in a separate window).  Note that the quiz doesn't cover all of the content that you are responsible for and mostly tests your knowledge, and not your ability to apply or explain your knowledge, which you will also be required to do on the test.
-- The lecture time on Monday, October 26 will be a review session.
+- The lecture time on Monday, October 22 will be a review session.
 
 ## What to bring 
 
