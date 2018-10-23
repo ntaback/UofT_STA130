@@ -302,9 +302,13 @@ Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [pdf](week7/sta130_week7_test_review.pdf)
 
+- [pdf -annotated](week7/sta130_week7_test_review-annotated.pdf)
+
 Prof. Moon's class slides - Mon 14:00 (L0201):
 
 - [pdf](https://www.dropbox.com/s/wkbbwyi0viz9hnf/slides_oct22_review_nm.pdf?dl=0)
+
+- [pdf -annotated](week7/slides_oct22_review_nm_annotated.pdf)
 
 ## October 26 Tutorial
 
