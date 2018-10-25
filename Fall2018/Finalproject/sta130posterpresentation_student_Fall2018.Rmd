@@ -84,7 +84,7 @@ Oral Presentation                   40%
 
 ## Poster Content and Reproducibility
 
-- The rubric for the poster evaluation is [here](../../STA130_project_poster_rubric.pdf).
+- The rubric for the poster evaluation is [here](../../project/STA130_project_poster_rubric.pdf).
 
 - Before the poster fair, you must send your TA  the html and R Markdown files of your poster.  These are due at 9:30 if you are in section LEC0101 and at 13:30 if you are in section LEC0201.    
 
@@ -96,7 +96,7 @@ Oral Presentation                   40%
 
 ## Oral Presentation
 
-- During the poster fair, you will be visited by members of the STA130H1 teaching team.  You will give them a 5 minute presentation about your work.  The rubric for the oral presentation is [here](../../STA130_project_oral_presentation_rubric.pdf).  
+- During the poster fair, you will be visited by members of the STA130H1 teaching team.  You will give them a 5 minute presentation about your work.  The rubric for the oral presentation is [here](../../project/STA130_project_oral_presentation_rubric.pdf).  
 
 - Every member of the team is expected to speak as part of the oral presentation.
 
