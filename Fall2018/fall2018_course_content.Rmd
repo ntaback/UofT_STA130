@@ -340,9 +340,9 @@ Prof. Moon's class slides - Mon 14:00 (L0201):
 
 ### References
 
-Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data science with R. CRC Press, 2017. Pages 149-155.  Available on Quercus for STA130-L0101 [here](https://q.utoronto.ca/courses/65730/pages/bootstrap-confidence-intervals-reference), for STA130-L0201( https://q.utoronto.ca/courses/65731/files/1684162?module_item_id=391633). (You can safely ignore any mention of standard error or standard deviation.)
+Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data science with R. CRC Press, 2017. Pages 149-155.  Available on Quercus for [STA130-L0101 here](https://q.utoronto.ca/courses/65730/pages/bootstrap-confidence-intervals-reference), and for [STA130-L0201 here](https://q.utoronto.ca/courses/65731/files/1684162?module_item_id=391633). (You can safely ignore any mention of standard error or standard deviation.)
 
-Computational and Inferential Thinking. [Chapter 13](https://www.inferentialthinking.com/chapters/13/Estimation). (NB: The code examples are in Python, and students are not responsbile for understanding the Python code. The discussion of the bootstrap and confidence intervals are appropriate for this course.)
+Computational and Inferential Thinking.  [Chapter 13](https://www.inferentialthinking.com/chapters/13/Estimation). (NB: The code examples are in Python, and students are not responsbile for understanding the Python code. The discussion of the bootstrap and confidence intervals are appropriate for this course.)
 
 ## October 29 Tutorial
 
