@@ -330,14 +330,17 @@ Midterm test during tutorial.  See [term test information](term_test_Fall2018.ht
 Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [html](week8/sta130_oct29_week8_lec07.html)
+- [pdf](https://www.dropbox.com/s/uioofdfq5ruaxtt/slides_oct29_10am.pdf?dl=0)
 
 Prof. Moon's class slides - Mon 14:00 (L0201):
 
 - [html](week8/sta130_oct29_week8_lec07.html)
+- [pdf](https://www.dropbox.com/s/ztpqoi19o3eafwa/slides_oct29_2pm.pdf?dl=0)
+
 
 ### References
 
-Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data science with R. CRC Press, 2017. Pages 149-155.  Available on Quercus for STA130L0101 [here](https://q.utoronto.ca/courses/65730/pages/bootstrap-confidence-intervals-reference), coming soon for STA130L0201. (You can safely ignore any mention of standard error or standard deviation.)
+Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data science with R. CRC Press, 2017. Pages 149-155.  Available on Quercus for STA130-L0101 [here](https://q.utoronto.ca/courses/65730/pages/bootstrap-confidence-intervals-reference), for STA130-L0201( https://q.utoronto.ca/courses/65731/files/1684162?module_item_id=391633). (You can safely ignore any mention of standard error or standard deviation.)
 
 Computational and Inferential Thinking. [Chapter 13](https://www.inferentialthinking.com/chapters/13/Estimation). (NB: The code examples are in Python, and students are not responsbile for understanding the Python code. The discussion of the bootstrap and confidence intervals are appropriate for this course.)
 
