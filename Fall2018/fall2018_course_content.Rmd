@@ -314,16 +314,36 @@ Prof. Moon's class slides - Mon 14:00 (L0201):
 
 Midterm test during tutorial.  See [term test information](term_test_Fall2018.html). 
 
-<div class=second>
+
 
 # Week 8
 
 ## October 29 Class
 
+### Topics
+
+- Population parameters and statistics
+- Sampling distribution
+- Bootstrap sampling distribution
+- Confidence intervals
+  
 ### Slides and References
+
+Prof. Taback's class slides - Mon 10:00 (L0101):
+
+- [html](week8/sta130_oct29_week8_lec07.html)
+
+Prof. Moon's class slides - Mon 14:00 (L0201):
+
+- [html](week8/sta130_oct29_week8_lec07.html)
 
 ## October 29 Tutorial
 
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week8/Tutorial/howtoanswertutq_nov2.html) before answering practice problems using RStudio.
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week8/Tutorial/practice_probs_nov2.html) 
+
+<div class=second>
 
 # Fall Reading Week 
 

@@ -18,6 +18,7 @@ navbar:
       href: Fall2018/term_test_Fall2018.html
       icon: fa-slideshare
     - text: Final Project
+      href: Fall2018/Finalproject/sta130posterpresentation_student_Fall2018.html
       icon: fa-users
   - text: Resources
     menu:
