@@ -69,8 +69,6 @@ In this question, we will look at the median duration of flights departing from 
 
 ## Question 2
 
-**Bring your output for this question to tutorial on Friday February 16 (either a hardcopy or on your laptop). **
-  
   In this question, we will look at the `Gestation` data in the `mosaicData` library.
 First load the library:
 ```{r}
