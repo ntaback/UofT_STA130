@@ -1,0 +1,234 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 8 Practice Problems - Solutions
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on November 2?
+
+- R output (e.g., plots and explanations) for Question 1.  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion^a^    | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+
+# Practice Problems
+
+## Question 1
+
+In this question, we will look at the median duration of flights departing from New York in 2013. We'll take as our population all flights departing from New York in 2013 in the `flights` data.
+
+(a) Plot a histogram of `air_time` for the whole population and describe it.
+
+```{r}
+library(nycflights13)
+flights <- flights %>% filter(!is.na(air_time))
+
+ggplot(flights, aes(x=air_time)) + geom_histogram() + xlim(0,700) +
+  labs(title="Population of all flights departing from New York")
+```
+
+The distribution of `air_time` is bimodal: it has a large peak around 120 minutes and a second peak around 320 minutes. Since the average flight time from New York to Los Angeles (LAX) is 328 minutes, it seems that the second mode represents flights to the West coast.  The distribution is slightly right skewed, mostly because of the second peak.  There are also a small number of very long flights departing New York, with durations of approximately 600 minutes - examining the data reveals that these are flights to Honolulu (HNL).
+
+
+(b) Plot the histograms of `air_time` for (i) a sample of size 25, (ii) a sample of size 100.  Compare these histograms and the histogram from part (a).
+```{r}
+set.seed(1)
+
+flights %>% sample_n(size=25) %>% ggplot(aes(x=air_time)) + geom_histogram() + xlim(0,700) +
+  labs(title="Sample of size 25 of all flights departing from New York")
+
+flights %>% sample_n(size=100) %>% ggplot(aes(x=air_time)) + geom_histogram() + xlim(0,700) +
+  labs(title="Sample of size 100 of all flights departing from New York")
+```
+
+The two modes observed in the histogram of `air_time` for the whole population in (a) are still apparent in the two histograms here.  However, flight durations which were relatively rare in the full population (e.g. ~600 minutes and ~250 minutes) may be absent entirely from samples of the data, particularly when the sample size is smaller. Depending on the samples you got, the distribution may look less smooth for the samples, as there are fewer observations. However, the distribution of the samples reflects the distribution of the population overall.
+
+
+(c) Do each of the following: 
+(i) Generate 500 samples of size 25 and plot a histogram of the median `air_time` in each of these samples.  
+
+```{r}
+sample_medians25 <- rep(NA, 500)  # where we'll store the means
+for (i in 1:500)
+{
+  sample25 <- flights %>% sample_n(size = 25)
+  sample_medians25[i] <- as.numeric(sample25 %>% summarize(median(air_time)))
+}
+sample_medians25 <- data_frame(median_air_time=sample_medians25)
+
+ggplot(sample_medians25, aes(x=median_air_time)) + geom_histogram(binwidth=4) + xlim(75,220)
+  labs(x="Medians from samples of size 25", 
+       title="Sample size 25")
+```
+
+(ii) Generate 500 samples of size 100 and plot a histogram of the median `air_time` in each of these samples.
+
+```{r}
+sample_medians100 <- rep(NA, 500)  # where we'll store the means
+for (i in 1:500)
+{
+  sample100 <- flights %>% sample_n(size = 100)
+  sample_medians100[i] <- as.numeric(sample100 %>% summarize(median(air_time)))
+}
+sample_medians100 <- data_frame(median_air_time=sample_medians100)
+
+ggplot(sample_medians100, aes(x=median_air_time)) + geom_histogram(binwidth=4) + xlim(75,220) + 
+  labs(x="Medians from samples of size 100", 
+       title="Sample size 100")
+```
+
+(iii) Do these histograms represent sampling distributions or bootstrap distributions?
+
+These are histograms of the sampling distribution of the median flight duration for samples of size 25 (in part (i)) and samples of size 100 (in part (ii)) respectively.
+
+
+(iv) Compare the histograms in (i) and (ii) to the histograms from (a) and (b)
+
+The sampling distribution of the median for samples of size 100 is symmetric with one mode around the population median of 129 minutes. When working with samples of size 25, the sampling distribution is not quite symmetrical (although this may vary depending on your random samples); however it is still centered around the population median.
+
+By looking at the x-axis, we can see that the range of the sampling distribution of the median is much smaller when working with samples of size 100 than when we are working with samples of size 25. This makes sense, as it is more difficult to get a good estimate of the median from a small sample.
+
+A general note: samples should look like the original data, but sampling distributions don’t have to.
+
+
+
+
+
+
+## Question 2
+
+**Bring your output for this question to tutorial on Friday February 16 (either a hardcopy or on your laptop). **
+  
+  In this question, we will look at the `Gestation` data in the `mosaicData` library.
+First load the library:
+```{r}
+library(mosaicData)
+```
+You can read about the data by looking at the help information for the data frame
+```{r, eval=F}
+help(Gestation)
+```
+In this question, you will find confidence intervals for parameters related to the distribution of the mother's age, which is the variable `age`.  First remove the two observations which have missing values for `age`.
+```{r}
+Gestation <- Gestation %>% filter(!is.na(age))
+```
+
+
+(a)  The plot below shows the bootstrap distribution for the mean of mother s age, for 100 bootstrap samples.  The red dot is the estimate of the mean for the first bootstrap sample, and the grey dots are the estimates of the mean for the other 99 bootstrap samples.
+
+```{r, message=F, warning=F, echo=F}
+
+set.seed(2)
+
+boot_means <- rep(NA, 100)  # where we'll store the bootstrap means
+
+sample_size <- as.numeric(Gestation %>% summarize(n()))
+
+for (i in 1:100)
+{
+  boot_samp <- Gestation %>% sample_n(size = sample_size, replace=TRUE)
+  boot_means[i] <- as.numeric(boot_samp %>% summarize(mean(age)))
+}
+
+boot_means1 <- data_frame(boot_means=boot_means[1])
+boot_means2to100 <- data_frame(boot_means=boot_means[2:100])
+
+
+ggplot(boot_means2to100, aes(x=boot_means)) + geom_dotplot(alpha=.5) + 
+  geom_dotplot(data=boot_means1, aes(x=boot_means), fill="red", alpha=.5) +
+  labs( title="Bootstrap distribution for mean of mother's age") +
+  scale_y_continuous(NULL, breaks = NULL) # get rid of strange label on y-axis for dotplot
+
+```
+
+
+(a) 
+    i. Explain how the value of the red dot is calculated.
+    
+    The red dot is the mean of mother's age for one bootstrap sample. The bootstrap sample is obtained by taking a random sample, with replacement, from the original data, with the same number of observations as the original data.
+    
+    ii. Using this plot, estimate as accurately as possible a 90% confidence interval for the mean of mother's age.
+    
+    The 90% confidence interval ranges from appoximately the 5th largest data point to the 95th largest data point. This interval will be from a value a little above 27.0 to a value a little above 27.5.
+    
+    
+(b)  Find a 99% bootstrap confidence interval for the median of mother's age.  Use 5000 bootstrap samples.
+
+```{r}
+boot_medians <- rep(NA, 5000)  # where we'll store the bootstrap means
+
+sample_size <- as.numeric(Gestation %>% summarize(n()))
+
+for (i in 1:5000)
+{
+  boot_samp <- Gestation %>% sample_n(size = sample_size, replace=TRUE)
+  boot_medians[i] <- as.numeric(boot_samp %>% summarize(median(age)))
+}
+
+quantile(boot_medians,c(.005,.995))
+```
+
+The 99% boostrap confidence interval for the median of mother’s age is (26, 27).
+
+
+## Question 3
+
+In lecture this week, we used Gunturkun's data to calculate confidence intervals for the proportion of couples who tilt their heads to the right when they kiss.  Our 95% confidence interval was  (0.56, 0.73).
+
+(a) If we want to be very certain that we capture the population parameter of interest, should we use a larger confidence level or a smaller confidence level?  Will this result in a wider confidence interval or a narrower confidence interval?
+
+A larger confidence level ensure that we would capture the population parameter in more samples. This would give a wider confidence interval, extending to more of the bootstrap sampling distribution.
+
+
+
+(b) Which of the following statements are true and which are false?
+    i. We are 95% confident that between 56% and 73% of kissing couples in this sample tilt their head to the right when they kiss.
+    
+    False. We know in this sample that 64.5% of kissing couples tilt their head to the right so we’re 100% confident.
+    
+    ii. We are 95% confident that between 56% and 73% of all kissing couples in the population tilt their head to the right when they kiss.
+    
+    True. (Someone reading this interpretation of a confidence interval would have to know what “95% confident: means!)
+    
+    iii. If we considered many random samples of 124 couples, and we calculated 95% confidence intervals for each sample, 95% of these confidence intervals will include the true proportion of kissing couples in the population who tilt their heads to the right when they kiss.
+    
+    True. This is an accurate description of a confidence interval.
+
+(c) In the week 4 lecture, we carried out an hypothesis test to determine whether couples are equally likely to tilt their heads to the right or to the left when they kiss.  We tested the hypotheses:
+$$H_0: p = 0.5$$ versus $$H_A: p \ne 0.5$$
+where $p$ is the proportion of couples who tilt their heads to the right when they kiss.  Using Gunturkun's data, our P-value was 0.003.  
+How do this hypothesis test and the confidence interval tell a similar story?
+
+From the hypothesis test, we have strong evidence that the proportion of couples who tilt their head to the right is not 0.5 because our P-value is small. Our 95% confidence interval for this proportion does not include 0.5, so 0.5 is not a plausible value from our data. So the hypothesis test and confidence interval both indicate that couples aren’t equally likely to tilt their heads to the left or right when they kiss.
+
+
+  

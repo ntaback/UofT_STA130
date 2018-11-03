@@ -350,6 +350,9 @@ Computational and Inferential Thinking.  [Chapter 13](https://www.inferentialthi
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week8/Tutorial/practice_probs_nov2.html) 
 
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems - solutions](week8/Tutorial/practice_probs_nov2_solutions.html) 
+
+
 <div class=second>
 
 # Fall Reading Week 

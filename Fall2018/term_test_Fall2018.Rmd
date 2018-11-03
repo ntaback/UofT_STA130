@@ -4,10 +4,17 @@ date: 'Fall 2018'
 output: 
   html_document:
    toc: true
-   toc_depth: 3
+   toc_depth: 2
    toc_float: true 
    theme: flatly
+   css: ../custom.css
 ---
+
+## Term Test Solutions
+
+[L0101 Test Solutions](sta130l0101_test_solutions.pdf) 
+
+<div class=second>
 
 ## Test date and time
 
@@ -74,3 +81,5 @@ In addition to the [regular weekly office hours](../index.html) there will be ex
 - Wednesday, Oct 24, 17:00 - 19:00 
 
 - Thursday, Oct. 25, 13:00 - 16:00
+
+</div>
