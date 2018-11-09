@@ -353,7 +353,6 @@ Computational and Inferential Thinking.  [Chapter 13](https://www.inferentialthi
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems - solutions](week8/Tutorial/practice_probs_nov2_solutions.html) 
 
 
-<div class=second>
 
 # Fall Reading Week 
 
@@ -364,10 +363,23 @@ Computational and Inferential Thinking.  [Chapter 13](https://www.inferentialthi
 
 ## November 12 Class
 
-### Slides and References
+Prof. Taback's class slides - Mon 10:00 (L0101):
+
+- [html](week9/sta130_class9_nt.html)
+
+Prof. Moon's class slides - Mon 14:00 (L0201):
+
+- [pdf](https://www.dropbox.com/s/q6xiaxemmuq8ayn/STA130H1F_slides_nm.pdf?dl=0)
+
+### References
+
+Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data science with R. CRC Press, 2017. Pages 173-180.  Available on Quercus for [STA130-L0101 here](https://q.utoronto.ca/courses/65730/pages/classification-tree-reference).
 
 ## November 16 Tutorial
 
+Comming soon.
+
+<div class=second>
 
 # Week 10
 
