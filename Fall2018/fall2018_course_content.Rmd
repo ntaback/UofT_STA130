@@ -377,7 +377,9 @@ Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data scien
 
 ## November 16 Tutorial
 
-Comming soon.
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week9/Tutorial/howtoanswertutq_nov16.html) before answering practice problems using RStudio.
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week9/Tutorial/Week9PracticeProblems_questions.html) 
 
 <div class=second>
 
