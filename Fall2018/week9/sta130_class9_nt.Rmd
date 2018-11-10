@@ -226,7 +226,7 @@ plot(as.party(tree), type = "simple", gp = gpar(cex = 0.8))
 - Each split depends on the value of only a single variable.
 - For each continuous variable $x_m$, a split is of the form: is $\{x_m \le c \}?$ or is $\{x_m > c \}?,\mbox{ }  c \in (-\infty,\infty).$
 - If $x_m$ is categorical, taking values, say, in $\{b_1, b_2, \ldots, b_L\}$ then splits 
-are of the form: is $\{x_m \in S?\}$ as $S$ ranges over all subsets of $\{b_1, b_2, \ldots, b_L\}$. 
+are of the form: is $\{x_m \in S\}?$ as $S$ ranges over all subsets of $\{b_1, b_2, \ldots, b_L\}$. 
 
 
 ---

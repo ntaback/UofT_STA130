@@ -367,6 +367,8 @@ Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [html](week9/sta130_class9_nt.html)
 
+- [pdf](week9/sta130_class9_nt.pdf)
+
 Prof. Moon's class slides - Mon 14:00 (L0201):
 
 - [pdf](https://www.dropbox.com/s/q6xiaxemmuq8ayn/STA130H1F_slides_nm.pdf?dl=0)
