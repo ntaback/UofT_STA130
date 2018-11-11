@@ -363,6 +363,19 @@ Computational and Inferential Thinking.  [Chapter 13](https://www.inferentialthi
 
 ## November 12 Class
 
+### Topics
+
+- Supervised versus Unsupervised Learning
+- Classification Trees
+- Interpreting a Classification Tree
+- Geometric Interpretation of a Classification Trees
+- Classification Tree Methodology
+- Training and Testing Classification Trees 
+- Accuracy of Classification Trees
+- ROC Curves
+
+### Slides
+
 Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [html](week9/sta130_class9_nt.html)
@@ -375,7 +388,7 @@ Prof. Moon's class slides - Mon 14:00 (L0201):
 
 ### References
 
-Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data science with R. CRC Press, 2017. Pages 173-180.  Available on Quercus for [STA130-L0101 here](https://q.utoronto.ca/courses/65730/pages/classification-tree-reference).
+Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data science with R. CRC Press, 2017. Pages 173-180, 189-192.  Available on Quercus for [STA130-L0101 here](https://q.utoronto.ca/courses/65730/pages/classification-tree-reference).
 
 ## November 16 Tutorial
 
