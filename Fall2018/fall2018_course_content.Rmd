@@ -400,6 +400,7 @@ Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data scien
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week9/Tutorial/Week9PracticeProblems_questions.html) 
 
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems - solutions](week9/Tutorial/Week9PracticeProblesm_solutions.html) 
 
 # Week 10
 

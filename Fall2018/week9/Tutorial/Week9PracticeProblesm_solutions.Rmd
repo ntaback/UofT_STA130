@@ -1,0 +1,300 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 9 Practice Problems - Solutions
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(rpart)
+library(partykit)
+library(nasaweather)
+library(NHANES)
+library(ROCR)
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on November 16?
+
+- R output (e.g., plots and explanations) for Question 2.  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion       | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+
+# Practice Problems
+
+## Question 1
+
+A classification tree was built to predict a dependent variable categorized as "Yes"/"No". 80% of the observations were used to train the classification tree and the remaining 20% were used to test the resulting model. The prediction accuracy was evaluated using the test set. The confusion matrix is below. 
+
+
+| Predicted | Yes | No |
+|-----------|-----|----|
+| Yes       | 100 | 30 |
+| No        | 10  | 37 |
+
+
+(a)  How many observations were used to train the model?  How many observations were used to test the model?
+
+We are given that `N_total * 0.2 = N_test`, where `N_test` is the number of observations in the test set, and `N_total` is the number of observations in the data set.
+
+```{r}
+N_test <- 100 + 10 + 30 + 37
+N_total <- N_test / 0.2
+N_total
+
+N_train <- N_total - N_test
+N_train
+```
+
+
+(b) What is the accuracy, false-positive rate, and false-negative rate? Assume that "Yes" is positive and "No" is negative.
+
+The overall accuracy is: (100 + 37)/177 = 0.7740113. 
+
+The false-negative rate is: 10/ (100 + 10) = 0.0909091. 
+
+The false-positive rate is: 30 /(30 + 37) = 0.4477612.
+
+
+(c)  Is it possible to use this table to draw an ROC curve? Explain.
+
+No. The curve would only have one point. In order to draw an ROC curve we would need confusion matricies at different cutpoints.
+
+
+
+## Question 2
+[Adapted from Modern Data Science with R] The `nasaweather` package contains data about tropical storms from 1995-2005. There are four types of storms: Extratropical, Hurricane, Tropical Depression, and Tropical Storm.  Consider the scatterplot between the windspeed and pressure of these storms shown below
+
+```{r, fig.cap="Figure 1: Plot of storm type as a function of wind speed and pressure"}
+library(mdsr)
+library(nasaweather)
+ggplot(data = nasaweather::storms, aes(x = pressure, y = wind, color = type)) +
+geom_point(alpha = 0.5)
+```
+
+ 
+
+
+(a) Divide the data into training (80%) and testing (20%) data sets. Build a classification tree using the training data to predict the type of storm as a function of wind speed (`wind`) and `pressure` and plot it.  Note: use `nasaweather::storms` to access the data set for this question (there is another data set called `storms` in the `dplyr` library).
+
+```{r}
+set.seed(1);
+n <- nrow(nasaweather::storms) # number of observations in storms data
+n
+# random sample of 20% of row indexes 
+test_idx <- sample.int(n, size = round(0.2 * n)) 
+# training data is all observations except from training row indexes
+train <- nasaweather::storms[-test_idx, ]
+nrow(train)
+# test data 
+test <- nasaweather::storms[test_idx, ]
+nrow(test)
+
+
+rtree_fit <- rpart(type ~ wind + pressure, train)
+plot(as.party(rtree_fit), type="simple", gp=gpar(cex=0.8))
+```
+
+(b) Visualize your classification tree in data space, by adding lines to the plot in Figure 1 and labelling each region with the type of storm that is predicted by the tree.  Hint: if you want to do this using `ggplot`, you can use the following functions
+```{r, eval=FALSE, echo=TRUE}
+ geom_vline(xintercept) # draws a vertical line
+ geom_hline(yintercept) # draws a horizontal line
+ geom_segment(x, y, xend, yend) # where (x,y) are the coordinates of one endpoint and (xend,yend) are the coordinates of the other endpoint
+ geom_text(x,y,label) # prints text at the specified (x,y) position
+```
+
+
+```{r}
+ggplot(data = train, aes(x = pressure, y = wind, color = type)) +
+geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 62.5, col="black", lwd=2) +
+  geom_hline(yintercept = 32.5, col="black", lwd=2) +
+  geom_segment(x=985.5, y=32.5, xend=985.5, yend=62.5,
+               col="black", lwd=2) +
+  geom_text(x=925, y=75, label="Hurricane", col="black") +
+  geom_text(x=925, y=20, label="Tropical Depression", col="black") +
+  geom_text(x=925, y=50, label="Extratropical", col="black") +
+  geom_text(x=1000, y=50, label="Tropical Storm", col="black")
+```
+
+
+(c) Summarize the classification tree from part (a) in a four to six sentence paragraph (in complete English sentences). The paragraph should address the following: how the splits on each variable were selected, and how a new observation would be predicted by this classification tree. Be sure to use the correct units when referring to values of wind speed and pressure.
+
+The classification tree evaluated the prediction error of all possible splits of the variables `wind` and `pressure` using the Gini splitting crietria. Storms with wind speed greater than 62.5 knots are classified as Hurricanes, while those with wind speed lower than 32.5 knots are classified as Tropical Depressions. For storms with wind speeds between 32.5 knots and 62.5 knots, those with pressure lower than 985.5 millibars are classified as Extratropical and those with pressure greater than 985.5 millibars as Tropical Storms.
+
+
+(d) Use the test set to calculate a matrix comparing the true and predicted storm types.  This will be similar to the confusion matrices covered in class, but with four rows and four columns, one for each type of storm.  Calculate the estimated accuracy for your classification tree.  What percentage of storms which are classified as hurricanes are actually hurricanes?  What percentage of storms which are classified as extratropical storms are actually extratropical storms?
+
+```{r}
+pred_tree <- predict(object=rtree_fit,newdata=test,type="class")
+m <- table(pred_tree, test$type)
+m
+```
+
+
+The accuracy of our classification tree is $(20 + 184 + 100 + 165) / 549 = 0.854$, (note that there are 549 observations in our `test` data set.) Our model predicts that 196 storms are hurricanes, but only 184 of these are actually hurricanes.  In other words, $184/196 * 100 = 93.9\%$ of storms categorized as hurricanes are actually hurricanes.  However, only $20/30 * 100 = 66.67\%$ of storms categorized as extratropical storms are actually extratropical storms.
+
+
+(e) Use the training dataset from (a) to create a classification tree to predict storm type, but use any of the following variables as predictors: year, month, hour, lat, long, pressure, wind, seasday.  Calculate the accuracy of your new classification tree using the testing dataset. Write 2-3 sentences commenting on any differences you observe in the variables used for splits in this tree compared to the tree you created in part (a).
+
+```{r}
+rtree_fit2 <- rpart(type ~ wind+pressure+seasday+lat+long+year+month+hour, nasaweather::storms)
+plot(as.party(rtree_fit2), type="simple", gp=gpar(cex=0.8))
+
+pred_tree2 <- predict(object=rtree_fit2,newdata=test,type="class")
+table(pred_tree2, test$type)
+sum(diag(table(pred_tree2, test$type)))/nrow(test)
+```
+The accuracy of this tree is $(60+184+93+161)/549 = 0.907$.  As in the tree from part (a), the wind speed variable (`wind`) is used to make the first two splits (at 62.5 knots and 32.5 knots respectively).  However, for the tree from (a), storms with wind speeds between 32.5 and 62.5 knots were divided into two terminal nodes based on the value of `pressure` while in this tree, splitting on the latitude and longitude variables leads to purer terminal nodes. In other words, geographical location is a better predictor of storm type than pressure. 
+
+
+
+
+## Question 3
+
+
+
+
+The `NHANES` data set contains several demographic, medical, and physical variables for a sample of 10,000 individuals.  One of the variables in this dataset is `Smoke100`, and you will build a classification tree to predict which individuals have smoked at least 100 cigarettes in their lifetime.
+
+(a) Begin by filtering out observations with a missing value for `Smoke100`.  What proportion of individuals have smoked at least 100 cigarettes in their lifetime?
+
+```{r}
+data <- NHANES %>% filter(!is.na(Smoke100))
+sum(data$Smoke100=="Yes") / nrow(data)
+```
+44% of individuals in the NHANES dataset have smoked at least 100 cigarettes in their lifetime.
+
+
+(b) Divide the data into training (80%) and testing (20%) data sets. Build a classification tree using the training data to predict which individuals have smoked more than 100 cigarettes in their lifetime, based on the `Education` and `Age` variables only.
+
+```{r}
+set.seed(1);
+n <- nrow(data) # number of observations in full dataset
+n
+# random sample of 20% of row indexes 
+test_idx <- sample.int(n, size = round(0.2 * n)) 
+# training data is all observations except from training row indexes
+train <- data[-test_idx, ]
+nrow(train)
+# test data 
+test <- data[test_idx, ]
+nrow(test)
+
+rtree_fit <- rpart(Smoke100 ~ Education + Age, train)
+plot(as.party(rtree_fit), type="simple", gp=gpar(cex=0.8))
+```
+
+(c) Use the test set from part (b) to calculate the confusion matrix for two cut-points: 0.5 and the proportion of individuals in the NHANES data that have smoked at least 100 cigarettes in their lifetime (use the value from part (a)).  For each cutpoint, use the confusion matrix to calculate the following values: (i) True positive rate (sensitivity), (ii) True negative rate (specificity); (iii) False positive rate; (iv) False negative rate; (v) Accuracy.  Which values stay the same and which are the same for the different cut-points?
+
+```{r}
+predicted_tree <- predict(object = rtree_fit, newdata = test, 
+                          type = "prob")
+m50 <- table(predicted_tree[,2] >= 0.50,test$Smoke100)
+
+m44 <- table(predicted_tree[,2] >= 0.44,test$Smoke100)
+
+# Calculations for cutpoint of 0.50
+tp50 <- m50[2,2] / sum(m50[2,])
+tn50 <- m50[1,1] / sum(m50[1,])
+fpr50 <- 1 - tn50;
+fnr50 <- 1 - tp50;
+accuracy50 <- sum(diag(m50))/sum(m50)
+c(tp50, tn50, fpr50, fnr50, accuracy50)
+
+# Calculations for cutpoint of 0.44
+tp44 <- m44[2,2] / sum(m44[2,])
+tn44 <- m44[1,1] / sum(m44[1,])
+fpr44 <- 1 - tn44;
+fnr44 <- 1 - tp44;
+accuracy44 <- sum(diag(m44))/sum(m44)
+c(tp44, tn44, fpr44, fnr44, accuracy44)
+```
+
+All of the values change since the cut-point only changes how the predictions are classified (i.e., the FPR and FNR).
+
+
+
+(d) Use the training and testing sets that you created in part (b) to create a classification tree to predict `Smoke100`, but use all the variables in the NHANES training data (apart from SmokeNow and Smoke100n). Plot the ROC curves for both classification trees predicting `Smoke100` on a single plot (see sample code below). How do the ROC curves help you determine which model is more accurate?
+
+Hint: The R syntax for using all the variables in the data frame not otherwise in the formula is to use . in place of the dependent variable.
+
+Some starter code for this question is below.
+
+```{r, eval=FALSE}
+train <- train %>% select(-one_of("SmokeNow", "Smoke100n"))
+tree_full <- rpart(Smoke100 ~ ., data = train, parms = list(split = "gini"))
+
+# Add your code here ...
+
+plot_dat <- cbind(rbind(perf_df_full,perf_df), model = c(rep("All Vars",nrow(perf_df_full)),rep("Two Vars",nrow(perf_df))))
+ggplot(data = plot_dat, aes(x = fpr, y = tpr, colour = model)) + 
+  geom_line() + geom_abline(intercept = 0, slope = 1, lty = 3) + 
+  ylab(perf@y.name) + 
+  xlab(perf@x.name)
+```
+
+
+```{r}
+pred <- ROCR::prediction(predictions = predicted_tree[,2], test$SleepTrouble)
+perf <- ROCR::performance(pred, 'tpr', 'fpr')
+perf_df <- data.frame(perf@x.values, perf@y.values) 
+names(perf_df) <- c("fpr", "tpr") 
+```
+
+
+```{r}
+train <- train %>% select(-one_of("SmokeNow", "Smoke100n"))
+tree_full <- rpart(Smoke100 ~ ., train, parms=list(split="gini"))
+
+
+predicted_tree_full <- predict(object = tree_full, newdata = test, type = "prob")
+confusion_matrix <- table(predicted_tree_full[,2] >= 0.5,test$Smoke100)
+row.names(confusion_matrix) <- c("No","Yes")
+confusion_matrix
+
+# Accuracy
+accuracy <- sum(diag(confusion_matrix))/sum(confusion_matrix)
+
+
+pred <- ROCR::prediction(predictions = predicted_tree_full[,2], test$Smoke100)
+perf <- ROCR::performance(pred, 'tpr', 'fpr')
+perf_df_full <- data.frame(perf@x.values, perf@y.values) 
+names(perf_df_full) <- c("fpr", "tpr")
+
+plot_dat <- cbind(rbind(perf_df_full,perf_df), model = c(rep("All Vars",nrow(perf_df_full)),rep("Two Vars",nrow(perf_df))))
+ggplot(data = plot_dat, aes(x = fpr, y = tpr, colour = model)) + 
+  geom_line() + geom_abline(intercept = 0, slope = 1, lty = 3) + 
+  ylab(perf@y.name) + 
+  xlab(perf@x.name)
+```
+
+
+The tree classifier using all the variables in the dataset has much better performance than the classifier using only `Education` and `Age` as predictors.  The plot shows that the ROC curve for the model with all variables is above the ROC curve for the model with two variables, which indicates that the model with all variables is more accurate overall.
+
+
