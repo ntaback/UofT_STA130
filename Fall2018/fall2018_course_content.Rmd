@@ -400,15 +400,46 @@ Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data scien
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week9/Tutorial/Week9PracticeProblems_questions.html) 
 
-<div class=second>
 
 # Week 10
 
 ## November 19 Class
 
-### Slides and References
+### Topics
+
+- Relationships between two variables
+- Linear Relationships: The equation of a straight line
+- Relationships between two variables
+- Linear regression models 
+- Estimating the coefficients: Least Squares
+- Interpreting the slope with a continuous explanatory variable
+- Prediction/Supervised learning using a linear regression model
+- R^2^ - Coefficient of Determination
+- Introduction to Multiple Regression
+
+
+### Slides
+
+Prof. Taback's class slides - Mon 10:00 (L0101):
+
+- [html](week10/sta130_class10_nt.html)
+
+Prof. Moon's class slides - Mon 14:00 (L0201):
+
+- [pdf](https://www.dropbox.com/s/63iosrimq38im41/slides_regression_nm.pdf?dl=0)
+
+### References
+
+Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data science with R. CRC Press, 2017. Pages 189, 465-471.  Available on Quercus for [STA130-L0101 here](https://q.utoronto.ca/courses/65730/pages/regression-references).
 
 ## November 23 Tutorial
+
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week10/Tutorial/howtoanswertutq_nov23.html) before answering practice problems using RStudio.
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week10/Tutorial/practice_probs_nov23.html) 
+
+
+<div class=second>
 
 # Week 11
 

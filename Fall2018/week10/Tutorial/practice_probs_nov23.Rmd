@@ -1,0 +1,122 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 10 Practice Problems 
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on November 23?
+
+- R output (e.g., plots and explanations) for Questions 1d, 2e, 2f, 3c, 3d  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion       | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+
+# Practice Problems
+
+
+
+## Question 1
+In this question, you will derive the least squares estimators of the intercept $\beta_0$ and two regression coefficients $\beta_1$ and $\beta_2$ for a linear regression model with two covariates, $x_1$ and $x_2$.
+
+(a) Write down the linear regression model. Explain each term in the model.
+
+
+(b) Write an expression for the sum of squared errors, $L(\beta_0, \beta_1, \beta_2)$
+
+
+
+(c) Calculate the partial derivatives of $L$ with respect to $\beta_0$, $\beta_1$, and $\beta_2$.
+
+
+(d) Write one sentence explaining how you could find the least squares esimates $\hat\beta_0$, $\hat\beta_1$, and $\hat\beta_2$ (you do not need to find the esimates).
+
+
+
+## Question 2
+In this question, you'll use the `mtcars` dataset, (available in the `datasets` library), which consists of a sample of 11 variables for 32 car models from the 1974 Motor Trend US magazine. Your goal in this question is to investigate the effect of various factors on gas mileage (`mpg`)
+
+(a) Produce a scatterplot of gas mileage (`mpg`) vs horsepower (`hp`).  Write one sentence commenting on the association between these two variables.
+
+
+
+
+(b) Produce a scatterplot of gas mileage (`mpg`) vs the rear axle ratio (`drat`).  Write one sentence commenting on the association between these two variables.
+
+
+
+(c) Based on the plots in (a) and (b), which factor do you think is more useful for predicting `mpg`?  Explain in 1-2 sentences.
+
+
+
+(d) Fit two simple linear regression models to predict gas mileage: one with weight as a predictor and the other with rear axle ratio as a predictor.  Compare the coefficient of determination in these two models and interpret these values in 1-2 sentences.
+
+
+
+(e) Fit a linear regression model with both horsepower and rear axle ratio as predictors for gas mileage. Does this model explain more of the variability in gas mileage than the models from (d)?
+
+
+(f) Based on the model you fit in part (e), what would be the predicted gas mileage for a car with a horsepower of 25 and rear axle ratio of 6. Do you think this prediction is reliable?  Write 1-2 sentences explaining why or why not.
+Hint: look at the range of values for `mpg`, `hp` and `drat` in the dataset.
+
+
+
+
+## Question 3
+The Housing data for 506 census tracts of Boston from the 1970 census. The dataframe `BostonHousing2` contains the original corrected data by Harrison and Rubinfeld (1979).
+
+In this question you will build a linear regression model to predict the median value of owner occupied homes in USD 1000's `medv`.
+
+```{r}
+library(mlbench)
+data("BostonHousing2")
+glimpse(BostonHousing2)
+```
+
+(a) Create a scatterplot of median value of homes `medv` and percentage of lower status of the population that lives in the census tract `lstat`.  Describe the relationship.
+
+
+
+
+(b) Write out the mathematical description of a simple linear regression model of `medv` on `lstat`.  Describe each of the variables in the model.
+
+
+
+(c) Use 80% of the data to select a training set, and leave 20% of the data for testing.  Fit a linear regression model of `medv` on `lstat` on the training set.  
+
+(i) Calculate RMSE on the training and test data using the linear regression model you fit on the training set.  Is there any evidence of overfitting?  
+
+(ii) Calculate the coefficient of determination. 
+
+
+(d) Use the training and test sets to build a multiple regression model to predict `medev` where the following covariates (inputs) are used in addition to `lstat`: `crim`, `zn`, `rm`, `nox`, `age`, `tax`, `ptratio`.  Does this model provide more accurate predictions compared to the model that you fit in part (c)?  Explain.
+
