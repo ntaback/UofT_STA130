@@ -53,12 +53,11 @@ Advertising <- read_csv("Advertising.csv") %>% select(2:5)
 
 - Relationships between two variables
 - Linear Relationships: The equation of a straight line
-- Relationships between two variables
 - Linear regression models 
 - Estimating the coefficients: Least Squares
 - Interpreting the slope with a continuous explanatory variable
 - Prediction/Supervised learning using a linear regression model
-- R^2^ - Coefficient of Determination
+- $R^2$ - Coefficient of Determination
 - Introduction to Multiple Regression
 
 ---
@@ -401,7 +400,7 @@ where $x_i$'s are numbers and therfore constants.
 $$
 \begin{aligned}
 \frac{\partial L}{\partial \beta_0} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_i) = 0, \\
-\frac{\partial L}{\partial \beta_0} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_i)x_{i} =0.
+\frac{\partial L}{\partial \beta_1} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_i)x_{i} =0.
 \end{aligned}
 $$
 

@@ -410,7 +410,6 @@ Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data scien
 
 - Relationships between two variables
 - Linear Relationships: The equation of a straight line
-- Relationships between two variables
 - Linear regression models 
 - Estimating the coefficients: Least Squares
 - Interpreting the slope with a continuous explanatory variable
@@ -424,6 +423,8 @@ Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data scien
 Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [html](week10/sta130_class10_nt.html)
+
+- [pdf](week10/sta130_class10_nt.pdf)
 
 Prof. Moon's class slides - Mon 14:00 (L0201):
 
