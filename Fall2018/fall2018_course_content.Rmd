@@ -426,6 +426,8 @@ Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [pdf](week10/sta130_class10_nt.pdf)
 
+- [pdf annotated](week10/sta130_class10_nt_annotated.pdf)
+
 Prof. Moon's class slides - Mon 14:00 (L0201):
 
 - [pdf](https://www.dropbox.com/s/63iosrimq38im41/slides_regression_nm.pdf?dl=0)
