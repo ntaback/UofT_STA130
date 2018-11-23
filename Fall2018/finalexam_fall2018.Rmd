@@ -1,0 +1,66 @@
+---
+title: 'Final Exam Information - Fall 2018'
+date: 'Last updated on 2018-11-22' 
+output: 
+  html_document:
+   toc: true
+   toc_depth: 2
+   toc_float: true 
+   theme: flatly
+---
+
+<br/>
+
+# STA130 Final Exam Frequently Asked Questions
+
+## When and where is the exam?
+
+See the University of Toronto's Faculty of Arts and Science [December 2018 Examination Timetable](http://www.artsci.utoronto.ca/current/exams/dec18).
+
+## What are the rules for writing an exam at UofT? 
+
+See the University of Toronto's [Exam Rule Reminder](http://www.artsci.utoronto.ca/current/exams/reminder)
+
+## What content will be covered on the final exam? 
+
+The final exam will include **all** the material covered in the course.  The material covered in the course can be found on the [course content page](fall2018_course_content.html).
+
+## What should I study?
+
+The exam will cover all the material *before* and *after* the midterm test.  So, study:
+
+- [lecture notes](fall2018_course_content.html), 
+
+- [weekly practice problems](fall2018_course_content.html), 
+
+- [midterm tests](term_test_Fall2018.html), and 
+
+- final exam [sample questions](../exam_review_student.pdf) with [solutions](../exam_review.pdf).   
+
+## How many questions?
+
+Coming soon
+
+## How much is each question worth?
+
+Coming soon
+
+## Am I allowed to bring in an aid sheet?
+
+Yes.  You are allowed to bring an 8.5x11 inch, 2-sided, hand-written aid sheet.
+
+## Am I allowed to bring in a calculator?
+
+Yes. You are allowed to bring in a calculator.
+
+## Should I study previous STA130 final exams?
+
+Yes.  
+
+## Is there a sample exam available?
+
+Yes.  The exam from Winter 2018 is posted [on Quercus for L0101](https://q.utoronto.ca/courses/65730/pages/final-exam).  Students in L0201 will be sent instructions on how to access this exam.
+
+## Will there be office hours before the exam?
+
+Yes.  The schedule is will be posted soon.

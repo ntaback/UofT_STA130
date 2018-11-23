@@ -20,6 +20,9 @@ navbar:
     - text: Final Project
       href: Fall2018/Finalproject/sta130posterpresentation_student_Fall2018.html
       icon: fa-users
+    - text: Final Exam
+      href: Fall2018/finalexam_fall2018.html
+      icon: fa-chalkboard-teacher
   - text: Resources
     menu:
     - text: R Resources
