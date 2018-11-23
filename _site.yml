@@ -22,7 +22,7 @@ navbar:
       icon: fa-users
     - text: Final Exam
       href: Fall2018/finalexam_fall2018.html
-      icon: fa-chalkboard-teacher
+      icon: fas fa-info
   - text: Resources
     menu:
     - text: R Resources

@@ -9,6 +9,11 @@ output:
    theme: flatly
 ---
 
+```{r, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+
 <br/>
 
 # STA130 Final Exam Frequently Asked Questions
@@ -33,9 +38,7 @@ The exam will cover all the material *before* and *after* the midterm test.  So,
 
 - [weekly practice problems](fall2018_course_content.html), 
 
-- [midterm tests](term_test_Fall2018.html), and 
-
-- final exam [sample questions](../exam_review_student.pdf) with [solutions](../exam_review.pdf).   
+- [midterm tests](term_test_Fall2018.html).
 
 ## How many questions?
 
@@ -57,9 +60,9 @@ Yes. You are allowed to bring in a calculator.
 
 Yes.  
 
-## Is there a sample exam available?
+## Is a sample exam available?
 
-Yes.  The exam from Winter 2018 is posted [on Quercus for L0101](https://q.utoronto.ca/courses/65730/pages/final-exam).  Students in L0201 will be sent instructions on how to access this exam.
+Yes.  The exam from Winter 2018 is posted [on Quercus for L0101](https://q.utoronto.ca/courses/65730/pages/final-exam).  Students in L0201 will be sent instructions on how to access this exam.  In addition, final exam [sample questions](../exam_review_student.pdf) with [solutions](../exam_review.pdf) are available.   
 
 ## Will there be office hours before the exam?
 
