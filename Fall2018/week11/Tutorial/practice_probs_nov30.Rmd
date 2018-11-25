@@ -1,0 +1,157 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 11 Practice Problems
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(broom)
+library(openintro)
+
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on November 30?
+
+- R output (e.g., plots and explanations) for Questions 1b, 1i, 1j, 2b, 2e, 2f(i to iii), 3.  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion       | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+
+# Practice Problems
+
+
+## Question 1
+
+[Adapted from Exercise 7.7 in Modern Data Science with R]
+
+From the text: "The Whickham data set ... includes data on age, smoking, and mortality from a one-in-six survey of the electoral roll in Whickham ... in the United Kingdom.  The survey was conducted in 1972-1974 to study heart disease and thyroid disease.  A follow-up on those in the survey was conducted twenty years later.  Load the `mosaicData` package and look at the help file for `Whickham` to see the definition of the variables."  Note that the data frame includes the data for women only, and we will consider as our population the women in Whickham during the period of the study.  The data collected in 1972-74 are referred to as the "baseline" values.
+
+```{r}
+library(mosaicData)
+```
+
+(a) Using the `table` function, creat a contingency tables showing the counts of women who were smokers/non-smokers at baseline and their survival outcomes at the time of follow-up.
+
+
+(b) Modify the contingency table from (a) to show the proportion in each category for the joint distribution of smoking status at baseline and survival status at follow-up.
+
+(c) What percentage of the women in the study were smokers at baseline?
+Is this percentage an estimate of a joint, marginal, or conditional probability?
+
+(d) What percentage of the women in the study had died by the follow-up?
+Is this percentage an estimate of a joint, marginal, or conditional probability?
+
+(e) What percentage of smokers had died by the follow-up and what percentage of non-smokers had died at the follow-up?  Are these percentages estimates of joint, marginal, or conditional probabilities?
+How would you describe the effect of smoking on survival status?
+
+
+
+(f) Collapse the values of `age` into a new categorical variable with 3 age categories: women between the age of 18 and 44, women who are older than 44 and younger than 65, and women who are 65 and over.  Note that this is the age at the time of the first survey.  Examine the percentage of smokers and non-smokers who died at follow-up in each age category.  
+
+
+(g) Construct a plot that shows the relationship between survival status and smoking.
+
+
+(h) Construct a plot that shows the relationship between survival status and smoking for each age group.
+
+(i) For each age group, construct a contingency for smoking status and survival status.
+
+(j) Explain why age is a confounding variable.
+
+
+(k) How do we know these data are from an observational data and not from an experiment?
+
+
+   
+   
+## Question 2
+
+In this question we will again consider the Mario Kart eBay data from lecture.
+
+(a)  Some of the sellers may include Wii wheels with the game (these are steering wheel attachements to make it seem as though you are actually driving in the game).  Does including at least one Wii wheel affect the selling price?  Carry out a regression analysis to estimate the mean selling price (`totalPr`) for sellers who do and do not use stock photos.  
+Hint: Define a new categorical variable to identify which observations include at least one Wii wheel.
+
+
+(b) State the null and alternative hypotheses for testing whether or not the average selling price is different for games sold with vs without Wii wheel attachements. Write your null hypothesis in terms of the parameters in the regression model. Using the output from the regression model you fit in (a), what conclusion can you make regarding this hypothesis test?
+
+
+(c) How could you apply a method from earlier in the term to carry out the hypothesis test from part (a)? State the null and alternative hypotheses from (b) in the way you would have written them earlier in the term.
+
+
+
+(d)  Sellers are rated by buyers on eBay, captured in the variable `sellerRate`.
+To simplify our analysis, we will categorize sellers by whether their rating is low, medium or high.  Create a new variable called `seller_rating` that is "low" if `sellerRate` is less than or equal to 100, "medium" if it is between 100 and 5000, and "high" if it is greater than 5000 (as a challenge, try to do this using only one line of R code!)  
+
+
+
+
+(e) Carry out a regression analysis to predict `totalPr` using the new variable `seller_rating`.
+    
+
+    i.  How many indicator variables are in the model? Define each indicator variable in the model.
+    ii. Which seller rating group is `R` treating as the baseline category? Why?      iii.  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with low ratings?  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with medium ratings?  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with high ratings? Write 1-2 sentences commenting on what you observe. 
+
+
+(f) Now fit an appropriate regression line to examine whether `seller_rating` has an effect on the relationship between `totalPr` and `duration`
+
+    i. Write the regression equation (with $\beta$s) for the model you fit
+    ii. Is there evidence of a difference between sellers with low and high ratings in the relationship between `totalPr` and `duration`?
+    iii. Is there evidence of a difference between sellers with medium and high ratings in the relationship between `totalPr` and `duration`?  
+    iv. Is there evidence of a difference between sellers with low and medium ratings in the relationship between `totalPr` and `duration`?
+    v. Which one of these requires additional information to answer?
+    
+
+## Question 3
+
+[Adapted from [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)]    
+For each of the following situations, state a possible confounding variable:
+
+A sample of 1,302 students from UCLA were asked to fill out a survey about their height, the fastest speed they'd ever driven, and their gender. Consider the scatterplots below to answer the following questions
+
+<img src="confounding.png" alt="Drawing" style="float: left; width: 100%;"/>
+<p style="clear: both;">
+
+(a) Write 1-2 sentences describing the relationship between height and fastest driving speed.
+
+(b) Why do you think these variables are positively associated?
+
+(c) What role does gender play in the relationship between height and driving speed?
+
+
+## Question 4
+
+[Adapted from [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)]    
+
+For each of the following situations, state a possible confounding variable:
+
+(a)  Data are measured on countries.  There is a positive relationship between the percentage of internet users and life expectancy.
+
+
+(b)  Do sleep disorders lead to bullying in school children?  An article in the *New York Times* called *The School Bully is Sleepy* states the following:  
+"The University of Michigan study collected survey data from parents on each child's sleep habits and asked both parents and teachers to assess behavioral concerns.  About a third of the students studied were identified by parents or teachers as having problems with disruptive behavior or bullying.  The researchers found that children who had behavioral issues and those who were identified as bullies were twice as likely to have shown symptoms of sleep disorders."

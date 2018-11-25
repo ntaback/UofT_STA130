@@ -444,17 +444,40 @@ Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data scien
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week10/Tutorial/practice_probs_nov23.html) 
 
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems - solutions](week10/Tutorial/practice_probs_nov23_solutions.html) 
 
-<div class=second>
+
 
 # Week 11
 
 ## November 26 Class
 
-### Slides and References
+**A blog [post](https://www.geotab.com/blog/moose-car-crash/) from last term's STA130 poster fair. The pictures in this post should give student's an idea of what your posters should look like and how they will be displayed.**
 
-## November 30 Tutorial
+### Slides 
 
+Prof. Taback's class slides - Mon 10:00 (L0101):
+
+- [html](week11/sta130_class11_nt.html)
+
+- [pdf](week11/sta130_class11_nt.pdf)
+
+Prof. Moon's class slides - Mon 14:00 (L0201):
+
+- [pdf](https://www.dropbox.com/s/44bicd064mug9u3/slides_otherVariables_nm.pdf?dl=0)
+
+
+### References
+
+Section 1.4.1 of [Introductory Statistics with Randomization and Simulation](https://www.openintro.org/stat/textbook.php?stat_book=isrs) from OpenIntro
+
+## November 30 Tutorial - The last tutorial `r emo::ji("+1")`
+
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  Read [this](week11/Tutorial/howtoanswertutq_nov30.html) before answering practice problems using RStudio.
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week11/Tutorial/practice_probs_nov30.html) 
+
+<div class=second>
 
 # Week 12
 

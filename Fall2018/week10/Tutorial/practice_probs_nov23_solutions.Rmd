@@ -1,0 +1,242 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 10 Practice Problems - Solutions
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(rpart)
+library(partykit)
+
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on November 23?
+
+- R output (e.g., plots and explanations) for Questions 1d, 2e, 2f, 3c, 3d  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion       | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+
+# Practice Problems
+
+
+
+## Question 1
+In this question, you will derive the least squares estimators of the intercept $\beta_0$ and two regression coefficients $\beta_1$ and $\beta_2$ for a linear regression model with two covariates, $x_1$ and $x_2$.
+
+(a) Write down the linear regression model. Explain each term in the model.
+
+The linear regression model described in this question is
+$$ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \epsilon_i $$
+where $i=1,2,...n$ and $n$ is the number of observations.
+
+(b) Write an expression for the sum of squared errors, $L(\beta_0, \beta_1, \beta_2)$
+
+$$ L(\beta_0, \beta_1, \beta_2) = \sum_{i=1}^n \epsilon_i^2 = \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_{i1} - \beta_2 x_{i2})^2$$
+
+
+(c) Calculate the partial derivatives of $L$ with respect to $\beta_0$, $\beta_1$, and $\beta_2$.
+
+$$
+\begin{aligned}
+\frac{\partial L}{\partial \beta_0} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_{i1} - \beta_2 x_{i2}), \\
+\frac{\partial L}{\partial \beta_1} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_{i1} - \beta_2 x_{i2})x_{i1}, \\
+\frac{\partial L}{\partial \beta_2} &= -2 \sum_{i=1}^n (y_i -\beta_0 - \beta_1 x_{i1} - \beta_2 x_{i2})x_{i2}
+\end{aligned}
+$$
+
+(d) Write one sentence explaining how you could find the least squares esimates $\hat\beta_0$, $\hat\beta_1$, and $\hat\beta_2$ (you do not need to find the esimates).
+
+I would find the least squares estimates by setting the partial derivatives from (c) equal to zero and solving the resulting system of three equations.
+
+
+
+
+
+
+## Question 2
+In this question, you'll use the `mtcars` dataset (available in the `datasets` library), which consists of a sample of 11 variables for 32 car models from the 1974 Motor Trend US magazine. Your goal in this question is to investigate the effect of various factors on gas mileage (`mpg`)
+
+(a) Produce a scatterplot of gas mileage (`mpg`) vs horsepower (`hp`).  Write one sentence commenting on the association between these two variables.
+
+```{r}
+mtcars %>% ggplot(aes(x=hp, y=mpg)) + geom_point()
+```
+
+There appears to be a negative association between horsepower and gas mileage: cars with higher horsepower can travel fewer miles per gallon of gas used.
+
+
+
+(b) Produce a scatterplot of gas mileage (`mpg`) vs the rear axle ratio (`drat`).  Write one sentence commenting on the association between these two variables.
+
+```{r}
+mtcars %>% ggplot(aes(x=drat, y=mpg)) + geom_point()
+```
+
+There appears to be a positive association between horsepower and gas mileage: cars with higher rear axle ratio can travel a longer distance per gallon of gas used.
+
+(c) Based on the plots in (a) and (b), which factor do you think is more useful for predicting `mpg`?  Explain in 1-2 sentences.
+
+From the scatterplots in (a) and (b), we see that horsepower and rear axle ratio are both associated with gas mileage.  However, the association between horsepower and gas mileage appears to be stronger than the association between rear axle ratio and gas mileage, since the points in (a) are more tightly concentrated in a straight line than those in (b).
+
+(d) Fit two simple linear regression models to predict gas mileage: one with weight as a predictor and the other with rear axle ratio as a predictor.  Compare the coefficient of determination in these two models and interpret these values in 1-2 sentences.
+
+```{r}
+lm_hp <- lm(mpg ~ hp, data = mtcars)
+summary(lm_hp)
+
+lm_drat <- lm(mpg ~ drat, data = mtcars)
+summary(lm_drat)
+```
+
+When we fit a simple linear regression model for gas mileage with only horsepower as a predictor, we get $R^2 = 0.6024$, while the model with only rear axle ratio as a predictor has $R^2 = 0.464$.  In other words, regressing on horsepower explains 60\% of the variation in gas mileage, but regressing on rear axle ratio only explains 46\% of this variation.
+
+
+(e) Fit a linear regression model with both horsepower and rear axle ratio as predictors for gas mileage. Does this model explain more of the variability in gas mileage than the models from (d)?
+
+```{r}
+lm_mult <- lm(mpg ~ hp + drat, data = mtcars)
+summary(lm_mult)
+```
+The linear regression model for gas mileage with two predictors (horsepower and rear axle ratio) has a coefficient of determination $R^2=0.7412$, which means that it explains 74\% of the variability in gas mileage.  This is a large improvement over both models fit in part (d), which had $R^2$ values of 0.6024 and 0.464 respectively.
+
+(f) Based on the model you fit in part (e), what would be the predicted gas mileage for a car with a horsepower of 25 and rear axle ratio of 6. Do you think this prediction is reliable?  Write 1-2 sentences explaining why or why not.
+Hint: look at the range of values for `mpg`, `hp` and `drat` in the dataset.
+
+In part (e), we found that $\hat\beta_0 = 10.79$, $\hat\beta_{hp} = -0.05$, and $\hat\beta_{drat} = 4.70$.  Thus, the predicted value for a car with $x_{hp}=25$ and $x_{drat}=6$ would be 
+$$ \hat y = 10.79 - 0.05 * 25 + 4.70 * 6 = 40.24 $$
+The values of horsepower and rear axle ratio which we are asked to consider in this problem are outside of the range of values in our dataset.  In particular, the values of `hp` in `mtcars` range from 52 to 335, and the values of `drat` range from 2.76 to 4.93.  Since we don't know if the linear regression model is appropriate outside of this range, we should look at this predicted value with caution, as it may not be a reliable prediction.
+
+
+
+## Question 3
+The Housing data for 506 census tracts of Boston from the 1970 census. The dataframe `BostonHousing2` contains the original corrected data by Harrison and Rubinfeld (1979).
+
+In this question you will build a linear regression model to predict the median value of owner occupied homes in USD 1000's `medv`.
+
+```{r}
+library(mlbench)
+data("BostonHousing2")
+glimpse(BostonHousing2)
+```
+
+(a) Create a scatterplot of median value of homes `medv` and percentage of lower status of the population that lives in the census tract `lstat`.  Describe the relationship.
+
+The relationship is negative-linear.  As the percentage of lower status increases the median value decreases.
+
+```{r}
+library(mlbench)
+data("BostonHousing2")
+glimpse(BostonHousing2)
+BostonHousing2 %>% ggplot(aes(lstat, medv)) + geom_point()
+```
+
+(b) Write out the mathematical description of a simple linear regression model of `medv` on `lstat`.  Describe each of the variables in the model.
+
+$y_i$ is the $i^{th}$ census track's median home value.
+$\beta_0$ is the intercept term in the model.
+$\beta_1$ is the slope term in the model.
+$x_i$ is the $i^{th}$ census track's percentage of lower status of the population.
+$\epsilon_i$ is the $i^{th}$ error term.
+
+(c) Use 80% of the data to select a training set, and leave 20% of the data for testing.  Fit a linear regression model of `medv` on `lstat` on the training set.  
+
+(i) Calculate RMSE on the training and test data using the linear regression model you fit on the training set.  Is there any evidence of overfitting?  
+
+(ii) Calculate the coefficient of determination. 
+
+```{r, cache=TRUE}
+library(mlbench)
+data("BostonHousing2")
+set.seed(10)
+n <- nrow(BostonHousing2) 
+test_idx <- sample.int(n, size = round(0.2 * n)) 
+BH_train <- BostonHousing2[-test_idx, ] 
+n_train <- nrow(BH_train)
+n_train
+BH_test <- BostonHousing2[test_idx,]
+n_test <- nrow(BH_test)
+n_test
+
+train_mod <- lm(medv ~ lstat, data = BH_train)
+summ_train_mod <- summary(train_mod)
+sr_rsq <- summ_train_mod$r.squared
+sr_rsq
+
+yhat_test <- predict(train_mod, newdata = BH_test)
+y_test <- BH_test$medv
+
+sqrt(sum((y_test - yhat_test)^2) / n_test)
+
+yhat_train <- predict(train_mod, newdata = BH_train)
+y_train <- BH_train$medv
+
+sr_rmse <- sqrt(sum((y_train - yhat_train)^2) / n_train)
+sr_rmse
+```
+
+There is no evidence of overfitting since the RMSE on the training and test sets are very close.  These values will depend on which observations were included in the training and test sets.  So if `set.seed()` were set to a different value then RMSE from the test and training sets would be different, although on average would probably be similar.
+
+$R^2=$ `r summ_train_mod$r.squared`.  This shows a modest amount of agreement between the observed and predicted values.  
+
+(d) Use the training and test sets to build a multiple regression model to predict `medev` where the following covariates (inputs) are used in addition to `lstat`: `crim`, `zn`, `rm`, `nox`, `age`, `tax`, `ptratio`.  Does this model provide more accurate predictions compared to the model that you fit in part (c)?  Explain.
+
+```{r}
+library(mlbench)
+data("BostonHousing2")
+set.seed(10)
+n <- nrow(BostonHousing2) 
+test_idx <- sample.int(n, size = round(0.2 * n)) 
+BH_train <- BostonHousing2[-test_idx, ] 
+n_train <- nrow(BH_train)
+n_train
+BH_test <- BostonHousing2[test_idx,]
+n_test <- nrow(BH_test)
+n_test
+
+train_mod <- lm(medv ~ lstat + crim + zn + rm + nox + age + tax + ptratio, data = BH_train)
+summ_train_mod <- summary(train_mod)
+mr_rsq <- summ_train_mod$r.squared
+
+
+yhat_test <- predict(train_mod, newdata = BH_test)
+y_test <- BH_test$medv
+
+
+sqrt(sum((y_test - yhat_test)^2) / n_test)
+
+yhat_train <- predict(train_mod, newdata = BH_train)
+y_train <- BH_train$medv
+
+mr_rmse <- sqrt(sum((y_train - yhat_train)^2) / n_train)
+mr_rmse
+```
+
+The RMSE has decreased from `r sr_rmse` to `r mr_rmse` and $R^2$ has increased from `r sr_rsq` to `r mr_rsq`.  Therefore the multiple linear regression model has better prediction accuracy compared to the simple linear regression model. 
+
