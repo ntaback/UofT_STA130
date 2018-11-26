@@ -450,6 +450,14 @@ Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. Modern data scien
 
 # Week 11
 
+## Topics
+
+- Inference for regression parameters
+- Regression when the independent variable is a categorical variable
+- Is the regression line the same for two groups?
+- An example of a variable affecting a relationship in a non-regression setting
+- Confounding
+
 ## November 26 Class
 
 **A blog [post](https://www.geotab.com/blog/moose-car-crash/) from last term's STA130 poster fair. The pictures in this post should give student's an idea of what your posters should look like and how they will be displayed.**

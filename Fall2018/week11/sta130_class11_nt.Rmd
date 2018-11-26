@@ -125,25 +125,26 @@ ggplot(evals, aes(x=bty_avg, y=score)) + geom_point(alpha=0.3)  + theme_bw() +
 ```
 
 ---
-
-By default, geom_smooth gives a confidence interval for the fitted line (or curve)
+## Confidence interval for the slope
+.pull-left[
+- The grey shaded area around the fitted regression line is a 95% confidence interval for the slope. 
 
 ```{r, fig.height=3}
-ggplot(evals, aes(x = bty_avg, y = score)) + 
-  geom_point(alpha = 0.3)  + theme_bw() + 
+ggplot(evals, 
+       aes(x = bty_avg,
+           y = score)) + 
+  geom_point(alpha = 0.3)  + 
+  theme_bw() + 
   geom_smooth(method = "lm")
 ```
+]
 
----
-
-## Inference for regression part 1: <br>Confidence interval for the slope
-
-The grey shaded area around the fitted regression line is a 95% confidence interval for the slope. 
-
+.pull-right[
 - The width of the confidence interval varies with the independent variable `bty_avg`.
 - The confidence interval is wider at the extremes; the regression is estimated most precisely near the mean of the independent variable.
-- The confidence interval for the slope shown is calculated based on a probability model that assumes all observations are independent and that the error terms have a symmetric, bell-shaped distribution.
-- Confidence intervals for the slope can also be calculated using the bootstrap.
+- The confidence interval for the slope shown is calculated based on a probability model, but can also be calculated using the bootstrap.
+]
+
 
 ---
 
@@ -190,10 +191,17 @@ summary(lm(score ~ bty_avg, data = evals))$coefficients
 
 ## Relationship between `score` and `gender`?
 
-```{r}
-ggplot(evals, aes(x = gender, y = score)) + 
-  geom_point(alpha = 0.3) + theme_bw() 
+.small[
+```{r, fig.height=2, echo=TRUE}
+ggplot(evals, aes(x = score)) + 
+  geom_histogram(colour = "black", fill = "grey", binwidth = 0.4) + 
+  theme_bw() + facet_wrap(~ gender)
+
+evals %>% 
+  group_by(gender) %>% 
+  summarise(n = n(), mean = mean(score))
 ```
+]
 
 ---
  
@@ -265,7 +273,7 @@ Model 1 for male professors:
 $$score_i = \beta_0 + \beta_1  + \beta_2 \, bty\_avg_i + \epsilon_i, i=1,\ldots, 463$$
 
 Model 1 for female professors:
-$$score_i = \beta_0  + \beta_2 \, bty\_avg_i + \epsilon_i, , i=1,\ldots, 463$$
+$$score_i = \beta_0  + \beta_2 \, bty\_avg_i + \epsilon_i, i=1,\ldots, 463$$
 
 *How would you describe these two lines?*
 
@@ -374,7 +382,8 @@ glimpse(marioKart)
 ---
 
 ```{r}
-ggplot(marioKart, aes(x=duration, y=totalPr)) + geom_point() + theme_bw()
+ggplot(marioKart, aes(x=duration, y=totalPr)) + 
+  geom_point() + theme_bw()
 ```
 
 ---
@@ -449,9 +458,17 @@ ggplot(marioKart2, aes(x=duration, y=totalPr, color=cond)) +
 
 ## The fitted lines
 
-.midi[
+.small[
 ```{r}
-summary(lm(totalPr ~ duration*cond, data=marioKart2))$coefficients
+summary(lm(totalPr ~ duration, data = marioKart2))$coefficients
+
+marioKart2_used <- marioKart2 %>% filter(cond == "used")
+summary(lm(totalPr ~ duration, data = marioKart2_used))$coefficients
+
+marioKart2_new <- marioKart2 %>% filter(cond == "new")
+summary(lm(totalPr ~ duration, data = marioKart2_new))$coefficients
+
+summary(lm(totalPr ~ duration*cond, data = marioKart2))$coefficients
 ```
 ]
 ---
@@ -528,46 +545,6 @@ What percentage of Treatment A surgeries resulted in a success?
 
 ---
 
-## Some notation:
-
-$P(E_1)$ is the probability of an event $E_1$  
-
-$P(E_1 \, | \, E_2)$ is the probability of $E_1$ **given** that event $E_2$ has occurred.  It is a **conditional probability**.  
-
-Example: 
-
-- What is the probability it will rain tomorrow?
-- What is the probability it will rain tomorrow given that it is raining today?
-
----
-The table below shows the joint distribution of `outcome` and `treatment`.
-
-```{r, echo=TRUE}
-addmargins(prop.table(tab))
-```
-
-
-$$P(\mbox{success}) = 0.80285714$$
-$$P(\mbox{success} \, | \, \mbox{treatment A}) = 0.39/0.50 = 0.78$$
-$$P(\mbox{success} \, | \, \mbox{treatment B}) = 0.41285714/0.5 = 0.8257143$$
-
----
-
-Does there appear to be a relationship between success and treatment?
-
-*Yes!  Success is more likely with treatment B.*
----
-
-## Independence
-
-$E_1$ and $E_2$ are **independent** if $P(E_1 \, | \, E_2) = P(E_1)$.
-
-That is, the conditional distribution of one variable is the same for all values of the other variable.
-
-It appears that success and treatment are not independent.
-
----
-
 ## Some additional information
 
 - A is an invasive open surgery treatment 
@@ -616,24 +593,25 @@ Be careful drawing conclusions from data!
 It's important to understand how the data were collected and what other factors might have an affect.
 
 ---
-
+.small[
 Visualizing the kidney stone data: treatment and outcome
 
-```{r}
+```{r, fig.height=1.8}
 ggplot(kidney_stones, aes(x=treatment, fill=outcome)) + 
-  geom_bar(position = "fill") + labs(y="Proportion") + theme_bw()
+  geom_bar(position = "fill") + 
+  labs(y = "Proportion") + theme_bw()
 ```
 
----
 
 Visualizing the kidney stone data: treatment and outcome by size
 
-```{r, fig.height=3}
+```{r, fig.height=1.8}
 ggplot(kidney_stones, aes(x=treatment, fill=outcome)) + 
   geom_bar(position = "fill") + labs(y = "Proportion") + 
-  facet_grid(. ~ size) + theme_bw()
+  facet_grid(. ~ size) + 
+  theme_bw()
 ```
-
+]
 ---
 
 # Confounding
@@ -642,17 +620,29 @@ ggplot(kidney_stones, aes(x=treatment, fill=outcome)) +
 ## What is a **confounding variable**?
 
 * When examining the relationship between two variables in observational studies, it is important to consider the possible effects of other variables.
+
+--
+
 * A third variable is a **confounding variable** if it affects the nature of the relationship between two other variables, so that it is impossible to know if one variable causes another, or if the observed relationship is due to the third variable.
+
+--
+
 * The possible presence of confounding variables means we must be cautious when interpreting relationships.
 
 ---
 
-Examples of situations that may have confounding variables:
+## Examples of confounding?
 
 * A 2012 [study](http://www.pnas.org/content/early/2012/08/22/1206820109) showed that heavy use of marijuana in adolescence can negatively affect IQ.  
 *Is it possible that there are other variables, such as socioeconomic status, that is associated with both marijuana use and IQ?*
+
+--
+
 * Another 2012 [study](http://www.nejm.org/doi/full/10.1056/NEJMoa1112010) showed that coffee drinking was inversely related to mortality.  
 *Should we all drink more coffee so we will live longer?  Or is it possible that healthy people, who will live longer because they are healthy, are also more likely to drink coffee than unhealthy people?* 
+
+--
+
 * Many nutrition studies.  
 *Are people who are likely to stick to a diet different than those who won't in important ways?*
 
@@ -661,18 +651,34 @@ Examples of situations that may have confounding variables:
 ## How can confounding be avoided?
 
 * Data can be collected through *experiments* or *observational studies*.
+
+--
+
 * In **observational studies**, data are collected without intervention.  The data are measurements of existing characteristics of the individuals being measured.
+
+--
+
 * In **experiments**, an investigator imposes an intervention on the individuals being studied, randomly assigning some individuals to one treatment and randomly assigning other individuals to another treatment (sometimes this other treatment is a *control*).
-    * Randomized experiments are often used when we want to be able to say a treatment **causes** a change in a measurement.  
-    * Other than the difference in treatment received, any differences between the individuals in the treatment and control groups are just due to random chance in their group assignment.  
+
+--
+
+* Randomized experiments are often used when we want to be able to say a treatment **causes** a change in a measurement.  
+
+--
+
+* Other than the difference in treatment received, any differences between the individuals in the treatment and control groups are just due to random chance in their group assignment.  
     
 ---
 ## How can confounding be avoided?
 
 * In a randomized experiment, if there is a difference in our measurement of interest, we *may* be able to conclude it was caused by the treatment, and not due to some other systematic difference that can confound our interpretation of the effect of the treatment.
+
+--
+
 * Example experiment from Week 5 lecture:  
 Students were randomly assigned to be sleep-deprived or to have unrestricted sleep and how they learned a visual discrimination task was compared between these two groups.
+
+--
 * It's not always practical or ethical to carry out an experiment.  For example, it would be considered unethical to randomly assign people to smoke marijuana.
 
-**Great care must be taken to deal with potential confounders in observational studies.**
 
