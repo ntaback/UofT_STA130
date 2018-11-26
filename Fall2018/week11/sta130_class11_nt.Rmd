@@ -193,9 +193,9 @@ summary(lm(score ~ bty_avg, data = evals))$coefficients
 
 .small[
 ```{r, fig.height=2, echo=TRUE}
-ggplot(evals, aes(x = score)) + 
-  geom_histogram(colour = "black", fill = "grey", binwidth = 0.4) + 
-  theme_bw() + facet_wrap(~ gender)
+ggplot(evals, aes(x = gender, y = score)) + 
+  geom_point(alpha = 1/5) + 
+  theme_bw() 
 
 evals %>% 
   group_by(gender) %>% 
@@ -275,7 +275,8 @@ $$score_i = \beta_0 + \beta_1  + \beta_2 \, bty\_avg_i + \epsilon_i, i=1,\ldots,
 Model 1 for female professors:
 $$score_i = \beta_0  + \beta_2 \, bty\_avg_i + \epsilon_i, i=1,\ldots, 463$$
 
-*How would you describe these two lines?*
+<img src="poll11.png" alt="Drawing" style="float: center; width: 80%; height: 60%"/>
+
 
 ---
 
