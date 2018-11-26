@@ -470,6 +470,10 @@ Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [pdf](week11/sta130_class11_nt.pdf)
 
+- [pdf -annotated](week11/sta130_class11_nt_annotated.pdf)
+
+[NYTimes: How Cheap Labor Drives China’s A.I. Ambitions](https://nyti.ms/2zqHvgD) discussed at the beginning of class.
+
 Prof. Moon's class slides - Mon 14:00 (L0201):
 
 - [pdf](https://www.dropbox.com/s/44bicd064mug9u3/slides_otherVariables_nm.pdf?dl=0)

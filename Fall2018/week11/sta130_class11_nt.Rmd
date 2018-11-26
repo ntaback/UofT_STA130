@@ -275,8 +275,6 @@ $$score_i = \beta_0 + \beta_1  + \beta_2 \, bty\_avg_i + \epsilon_i, i=1,\ldots,
 Model 1 for female professors:
 $$score_i = \beta_0  + \beta_2 \, bty\_avg_i + \epsilon_i, i=1,\ldots, 463$$
 
-<img src="poll11.png" alt="Drawing" style="float: center; width: 80%; height: 60%"/>
-
 
 ---
 
