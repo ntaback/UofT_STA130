@@ -37,6 +37,8 @@ The final project for this course will be a statistical analysis of data from [T
 
 # The Poster
 
+![STA130 Poster Example](sta130posterexample.png)
+
 - The poster boards on which you will display your work are 6 feet wide by 3 feet high.  You must ensure that what your group decides to post will fit on one board.
 - Groups can attach individual sheets of paper to the poster board using the velcro that will be provided.  No other methods of attachment to the board are permitted. 
 - You should produce your poster using R markdown to create slides.  We recommend ioslides.  You can then print the slides on 8.5 x 11 inch sheets of paper, to be posted on the poster board.  The skeleton of an R markdown document to produce the slides for your poster is [here](../../project/sta130_project_template.Rmd).  When planning your pages, think of your poster as a grid of these pages, which you will arrange in columns, to effectively show your work.  
