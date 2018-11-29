@@ -478,6 +478,8 @@ Prof. Moon's class slides - Mon 14:00 (L0201):
 
 - [pdf](https://www.dropbox.com/s/44bicd064mug9u3/slides_otherVariables_nm.pdf?dl=0)
 
+- [pdf -annotated](week11/slides_otherVariables_nm_annotated.pdf)
+
 
 ### References
 
