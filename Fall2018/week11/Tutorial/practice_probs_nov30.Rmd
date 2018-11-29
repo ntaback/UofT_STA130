@@ -94,7 +94,8 @@ How would you describe the effect of smoking on survival status?
 
 In this question we will again consider the Mario Kart eBay data from lecture.
 
-(a)  Some of the sellers may include Wii wheels with the game (these are steering wheel attachements to make it seem as though you are actually driving in the game).  Does including at least one Wii wheel affect the selling price?  Carry out a regression analysis to estimate the mean selling price (`totalPr`) for sellers who do and do not use stock photos.  
+(a)  Some of the sellers may include Wii wheels with the game (these are steering wheel attachements to make it seem as though you are actually driving in the game).  Does including at least one Wii wheel affect the selling price?  Carry out a regression analysis to estimate the mean selling price (`totalPr`) for sellers who do and do not use Wii wheels.  
+
 Hint: Define a new categorical variable to identify which observations include at least one Wii wheel.
 
 
