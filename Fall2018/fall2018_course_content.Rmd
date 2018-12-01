@@ -491,15 +491,54 @@ Section 1.4.1 of [Introductory Statistics with Randomization and Simulation](htt
 
 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week11/Tutorial/practice_probs_nov30.html) 
 
-<div class=second>
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems](week11/Tutorial/practice_probs_nov30.html) 
+
+<span class="glyphicon glyphicon-hand-right" aria-hidden="true"> </span> [Practice problems - solutions](week11/Tutorial/practice_probs_nov30_solutions.html) 
+
 
 # Week 12
 
+## Topics
+
+
 ## December 3 Class
 
-### Slides and References
+- Finish confounding from last class 
+- Identification of ethical considerations involving research where data is collected:
+      - History of Ethical Codes: Nuremberg Code; and Declaration of Helsinki. 
+      - Tuskegee Syphilis Study
+      - Informed consent
+      - Ethical issues in Data Science Research
+      - Ethical issues using Public Data 
+      - Bias and Inclusion in AI Systems
 
-## STA130 Poster Fair - Thursday, December 6
 
-</div>
+### Slides 
+
+Prof. Taback's class slides - Mon 10:00 (L0101):
+
+- [html](week12/sta130_class12_nt.html)
+
+
+### References
+
+- [Ten simple rules for responsible big data research](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005399)
+Zook M, Barocas S, boyd d, Crawford K, Keller E, et al. (2017) Ten simple rules for responsible big data research. PLOS Computational Biology 13(3): e1005399.
+
+- [How Informed Consent Has Failed](https://techcrunch.com/2014/07/26/how-informed-consent-has-failed/).
+
+- [A Code of Ethics for Data Science](https://medium.com/@dpatil/a-code-of-ethics-for-data-science-cda27d1fac1).
+
+- [Amazon scraps secret AI recruiting tool that showed bias against women](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G).
+
+
+## Practice problems
+
+Practice problems for ethics in data science are available [here](week12/Tutorial/Week12PracticeProblems_student.html).  
+
+Example solutions for these problems are available [here](week12/Tutorial/Week12PracticeProblems-solutions.html).
+
+## STA130 Poster Fair `r emo::ji("art")` - Thursday, December 6 (the last STA130 class) `r emo::ji("happy")`
+
+See information on [final project](Finalproject/sta130posterpresentation_student_Fall2018.html).
 

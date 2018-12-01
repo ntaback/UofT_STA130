@@ -1,0 +1,37 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "A. Gibbs and N. Taback"
+subtitle: Week 11 Practice Problems
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(tidyverse)
+```
+
+# Instructions
+
+Answer all the questions.  None of these questions will be graded in tutorial.
+
+# Practice Problems
+
+# Question 1
+
+What type of review would a university ethics board apply to a study of publicly available social media posts of university students' political beliefs?  Discuss any ethical considerations.
+
+# Question 2
+
+(Exercise 6.3) A company uses a machine learning algorithm to determine which job advertisement to display for users searching for technology jobs. Based on past results, the algorithm tends to display lower paying jobs for women than for men (after controlling for other characteristics than gender). What ethical considerations might be considered when reviewing this algorithm?
+
+
+# Question 3
+
+(Exercise 6.5) A data scientist compiled data from several public sources (voter registration, political contributions, tax records) that were used to predict sexual orientation of individuals in a community. What ethical considerations arise that should guide use of such data sets?
+
+# Question 4
+
+Read the section on Responsibilities to Research Subjects in the [American Statistical Association's Ethical Guidelines for Statistical Practice](http://www.amstat.org/ASA/Your-Career/Ethical-Guidelines-for-Statistical-Practice.aspx).  Do these guidelines suggest that the data scientists at Cambridge Analytica were unethical when they linked the Facebook profiles to other databases to target Facebook users (see [NYT story](https://www.nytimes.com/2018/03/17/us/politics/cambridge-analytica-trump-campaign.html?action=click&contentCollection=Technology&module=RelatedCoverage&region=EndOfArticle&pgtype=article) or search for other recent articles)?  Explain. (NB:  A  question of this nature would not appear the final exam) 

@@ -1,0 +1,307 @@
+---
+title: "STA130H1 -- Fall 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 11 Practice Problems - Solutions
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(broom)
+library(openintro)
+
+opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+# Instructions
+
+## What should I bring to tutorial on November 30?
+
+- R output (e.g., plots and explanations) for Questions 1b, 1i, 1j, 2b, 2e, 2f(i to iii), 3.  You can either bring a hardcopy or bring your laptop with the output.
+
+# Tutorial Grading
+
+Tutorial grades will be assigned according to the following marking scheme.
+
+|                                    | Mark |
+|------------------------------------|------|
+| Attendance for the entire tutorial | 1    |
+| Assigned homework completion       | 1    |
+| In-class exercises                 | 4    |
+| Total                              | 6    |
+
+
+
+
+# Practice Problems
+
+
+## Question 1
+
+[Adapted from Exercise 7.7 in the textbook]  
+From the text: "The Whickham data set ... includes data on age, smoking, and mortality from a one-in-six survey of the electoral roll in Whickham ... in the United Kingdom.  The survey was conducted in 1972-1974 to study heart disease and thyroid disease.  A follow-up on those in the survey was conducted twenty years later.  Load the `mosaicData` package and look at the help file for `Whickham` to see the definition of the variables."  Note that the data frame includes the data for women only, and we will consider as our population the women in Whickham during the period of the study.  The data collected in 1972-74 are referred to as the "baseline" values.
+
+```{r}
+library(mosaicData)
+```
+
+(a) Using the `table` function, creat a contingency tables showing the counts of women who were smokers/non-smokers at baseline and their survival outcomes at the time of follow-up.
+
+```{r}
+tab <- table(Whickham$smoker, Whickham$outcome)
+addmargins(tab)
+```
+
+(b) Modify the contingency table from (a) to show the proportion in each category for the joint distribution of smoking status at baseline and survival status at follow-up.
+
+```{r}
+addmargins(prop.table(tab))
+```
+
+(c) What percentage of the women in the study were smokers at baseline?
+Is this percentage an estimate of a joint, marginal, or conditional probability?
+
+```{r}
+Whickham %>% count(smoker) %>%
+  mutate(smoker_perc = n / sum(n))
+```
+
+44.2% of the women in the study were smokers at baseline.  This is an estimate of the marginal probability of being a smoker in this population as it is not related to any other variable.
+
+(d) What percentage of the women in the study had died by the follow-up?
+Is this percentage an estimate of a joint, marginal, or conditional probability?
+
+```{r}
+Whickham %>% count(outcome) %>%
+  mutate(outcome_perc = n / sum(n))
+```
+
+28.1% of the women in the study died by the time of the follow-up.  This is an estimate of the marginal probability of dying in this population as it is not related to any other variable.
+
+(e) What percentage of smokers had died by the follow-up and what percentage of non-smokers had died at the follow-up?  Are these percentages estimates of joint, marginal, or conditional probabilities?
+How would you describe the effect of smoking on survival status?
+
+```{r}
+Whickham %>% 
+  count(smoker, outcome) %>%
+  group_by(smoker) %>%
+  mutate(outcome_perc = n / sum(n)) %>%
+  filter(outcome=="Dead")
+```
+
+31.4% of smokers had died by the follow-up and 23.9% of the non-smokers had died by the follow-up.  These are estimates of the conditional probability of dying, given whether the women was a smoker or non-smoker at baseline.  It appears that smoking and survival status are not independent.  In fact, despite that this seems opposite to what you would expect would be the case, smokers seem to be more likely to have survived the 20 years to follow-up.
+
+(f) Collapse the values of `age` into a new categorical variable with 3 age categories: women between the age of 18 and 44, women who are older than 44 and younger than 65, and women who are 65 and over.  Note that this is the age at the time of the first survey.  Examine the percentage of smokers and non-smokers who died at follow-up in each age category.  
+
+```{r}
+Whickham <- Whickham %>% 
+  mutate(cat_age = ifelse(age <= 44, "18-44", ifelse(age <= 64, "45-64", "65+")))
+Whickham %>% 
+  count(cat_age, smoker, outcome) %>%
+  group_by(cat_age, smoker) %>%
+  mutate(outcome_perc = n / sum(n)) %>%
+  filter(outcome=="Dead")
+```
+
+Of the women who were 18-44 years old, 3.5% of the non-smokers had died by follow-up and 5.3% of the smokers had died by follow-up.
+Of the women who were 45-64 years old, 26.5% of the non-smokers had died by follow-up and 32.4% of the smokers had died by follow-up.
+Of the women who were at least 65 years old, 85.5% of the non-smokers had died by follow-up and 88.0% of the smokers had died by follow-up.
+Note that, in each age category, a higher percentage of smokers than non-smokers died.
+
+(g) Construct a plot that shows the relationship between survival status and smoking.
+
+```{r}
+ggplot(Whickham, aes(x=smoker, fill=outcome)) + 
+  geom_bar(position = "fill") + labs(y="Proportion") + theme_bw()
+```
+
+(h) Construct a plot that shows the relationship between survival status and smoking for each age group.
+
+```{r}
+ggplot(Whickham, aes(x=smoker, fill=outcome)) + geom_bar(position = "fill") + 
+  labs(y="Proportion") + facet_grid(. ~ cat_age) + theme_bw()
+```
+
+(i) For each age group, construct a contingency for smoking status and survival status.
+
+```{r}
+young <- Whickham %>% filter(cat_age == "18-44")
+prop.table(table(young$smoker, young$outcome))
+
+middle <- Whickham %>% filter(cat_age == "45-64")
+prop.table(table(middle$smoker, middle$outcome))
+
+old <- Whickham %>% filter(cat_age == "65+")
+prop.table(table(old$smoker, old$outcome))
+```
+
+
+(j) Explain why age is a confounding variable.
+
+Looking at the relationship of smoking and survival status, a higher percentage of non-smokers were dead at follow-up.  However, within each age category, this is reversed; a higher percentage of smokers were dead at follow-up.  (Note: To understand why this happens, look at the percentages of smokers within each age category.)
+
+(k) How do we know these data are from an observational data and not from an experiment?
+
+There was no intervention imposed on the people by the researchers.  
+
+
+   
+   
+## Question 2
+
+In this question we will again consider the Mario Kart eBay data from lecture.
+
+(a)  Some of the sellers may include Wii wheels with the game (these are steering wheel attachements to make it seem as though you are actually driving in the game).  Does including at least one Wii wheel affect the selling price?  Carry out a regression analysis to estimate the mean selling price (`totalPr`) for sellers who do and do not use Wii wheels.  
+Hint: Define a new categorical variable to identify which observations include at least one Wii wheel.
+
+```{r}
+marioKart2 <- marioKart %>% filter(totalPr < 100) %>%
+  mutate(at_least_one_wheel = factor(ifelse(wheels > 0, yes="yes", no="no")))
+summary(lm(totalPr ~ at_least_one_wheel, data = marioKart2))
+```
+
+For sellers who include least one Wii wheel, the average total price is $38.91 + 11.45$, while for sellers who do not include any Wii wheels, the average total price is $38.91$. 
+    
+(b) State the null and alternative hypotheses for testing whether or not the average selling price is different for games sold with vs without Wii wheel attachements. Write your null hypothesis in terms of the parameters in the regression model. Using the output from the regression model you fit in (a), what conclusion can you make regarding this hypothesis test?
+
+The difference between the mean selling price for games sold with and without Wii wheels is $\beta_1$.  We observed a difference in mean selling price of $11.45$. The p-value for testing the null hypothesis $H_0: \beta_1 = 0$ vs $H_A: \beta_1 \neq 0$ is much smaller than 0.001, so we have strong evidence suggesting that the mean selling price is not the same when sellers include at least one Wii wheel attachement and when they do not.
+
+
+(c) How could you apply a method from earlier in the term to carry out the hypothesis test from part (a)? State the null and alternative hypotheses from (b) in the way you would have written them earlier in the term.
+
+This is a 2-sample hypothesis test, where we are interested in comparing the average price for games sold with at least one Wii wheel attachement vs games sold with no Wii wheel attachements.  In Week 5 we talked about how to do hypothesis test to compare the means of two groups, and the corresponding null and alternative hypotheses would be:
+
+$H_0: \mu_{noWheels} = \mu_{withWheels}$ vs $H_A: \mu_{noWheels} != \mu_{withWheels}$, where $\mu_{noWheels}$ is the mean selling price for games sold without Wii wheels and $\mu_{withWheels}$ is the mean selling price for games sold with at least one Wii wheel.
+
+
+(d)  Sellers are rated by buyers on eBay, captured in the variable `sellerRate`.
+To simplify our analysis, we will categorize sellers by whether their rating is low, medium or high.  Create a new variable called `seller_rating` that is "low" if `sellerRate` is less than or equal to 100, "medium" if it is between 100 and 5000, and "high" if it is greater than 5000 (as a challenge, try to do this using only one line of R code!)  
+
+Produce plots to visualize the distribution of `totalPr` for each category of `seller_rating`, and write 1-2 sentences describing what you observe.  Plot `totalPr` as a function of `sellerRate` and comment on which version of seller rating is more useful and why.
+
+```{r}
+
+marioKart2 <- marioKart2 %>% mutate(seller_rating = ifelse(sellerRate <= 100, yes="low", no=ifelse(sellerRate <= 5000, yes="medium", no="high")))
+
+marioKart2 %>% ggplot(aes(x=seller_rating, y=totalPr, group=seller_rating)) + geom_boxplot()
+```
+From the side-by-side boxplots, we see that the selling price tends to be lowest for sellers with many ratings and highest for sellers with a medium number of ratings. 
+
+```{r}
+marioKart2 %>% ggplot(aes(x=sellerRate, y=totalPr)) + geom_point()
+```
+Since most of the seller ratings are small (i.e. < 5000) relative to the largest values (i.e. > 100,000), it is difficult to see any pattern between sellerRate and totalPr. Categorizing seller ratings into three categories helps us to get an overall sense of the association between a seller's rating and their selling prices.
+
+
+(e) Carry out a regression analysis to predict `totalPr` using the new variable `seller_rating`.
+    
+```{r}
+summary(lm(totalPr ~ seller_rating, data=marioKart2))$coefficients
+```
+
+i.  How many indicator variables are in the model? Define each indicator variable in the model.
+
+There are 2: 
+  - `seller_ratinglow` that is 1 if `seller_rating` is low and 0 otherwise
+  - `seller_ratingmedium` that is 1 if `seller_rating` is medium and 0 otherwise
+
+
+ii. Which seller rating group is `R` treating as the baseline category? Why?
+
+R is treating the "high" category of `seller_rating` as the baseline category because by default, the baseline group is the one that comes first alphabetically.
+
+
+iii.  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with low ratings?  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with medium ratings?  What is the estimate from the fitted regression line for the mean `totalPr`  for sellers with high ratings? Write 1-2 sentences commenting on what you observe. 
+
+For sellers with low ratings: $$\widehat{totalPr} = 46.46 - 1.23 = 45.23$$
+
+For sellers with medium ratings: $$\widehat{totalPr} = 46.46 + 2.13 = 48.69$$
+
+For sellers with high ratings: $$\widehat{totalPr} = 46.46 $$
+  
+As we saw in the boxplots in (d), the sellers with a medium number of ratings have the highest average selling price, while those with a large number of ratings have the lowest average selling price. 
+  
+
+(f) Now fit an appropriate regression line to examine whether `seller_rating` has an effect on the relationship between `totalPr` and `duration`
+
+```{r}
+ggplot(marioKart2, aes(x=duration, y=totalPr, color=seller_rating)) + geom_point() + geom_smooth(method="lm", fill=NA) + theme_bw()
+summary(lm(totalPr ~ seller_rating * duration, data=marioKart2))$coefficients
+```
+
+    i. Write the regression equation (with $\beta$s) for the model you fit
+    
+The regression equation is 
+
+$$totalPr = \beta_0 + \beta_1 \, seller\_rating\_is\_low + \beta_2 \, seller\_rating\_is\_medium + \beta_3 \, duration \\
++ \beta_4 \, seller\_rating\_is\_low \times duration + \beta_5 \, seller\_rating\_is\_medium \times duration + \epsilon$$
+    
+    ii. Is there evidence of a difference between sellers with low and high ratings in the relationship between `totalPr` and `duration`?
+    
+From the plot, we see that there does not appear to be a relationship between `totalPr` and `duration` for sellers with low ratings, and there appears to be a negative relationship for sellers with high ratings.  To test whether the observed difference between these slopes is due to chance, we consider the test with null hypothesis $H_0: \beta_4 = 0$.  The P-value for this test is 0.024, so we have moderate evidence of a difference in slopes between raters with low and high ratings.
+    
+    iii. Is there evidence of a difference between sellers with medium and high ratings in the relationship between `totalPr` and `duration`?  
+    
+From the plot, we see that there appears to be a negative relationship between `totalPr` and `duration` for sellers with both medium and high ratings, with a more negative slope for sellers with high ratings.  To test whether the observed difference between these slopes is due to chance, we consider the test with null hypothesis $H_0: \beta_5 = 0$.  The P-value for this test is 0.23, so we have no evidence of a difference in slopes between raters with medium and high ratings.  
+We can also consider whether sellers with medium and high ratings have the same intercept by considering the test with null hypothesis $H_0: \beta_2 = 0$.  The P-value of this test is 0.91.  So we have no evidence of a difference in the intercepts.
+Thus, we have no evidence of a difference between sellers with medium and high ratings in the relationship between `totalPr` and `duration`
+
+
+    iv. Is there evidence of a difference between sellers with low and medium ratings in the relationship between `totalPr` and `duration`?
+    
+In order to test whether we have evidence of a difference in slopes between sellers with low and medium ratings, we need to carry out a test with null hypothesis $H_0: \beta_4 = \beta_5$.  Similarly, in order to test whether we have evidence of a difference in intercepts between sellers with low and medium ratings, we need to carry out a test with null hypothesis $H_0: \beta_1 = \beta_2$.  The `R` output for this regression does not give us the P-values for these tests.
+
+
+    v. Which one of these requires additional information to answer?
+    
+As noted in iv., we don't have output for tests to consider whether the relationship is the same between two groups when neither of the groups is the baseline category.  It is possible to force `R` to treat another variable as the baseline category and then re-run the regression to get the reults of tests needed for the comparisons in iv.
+
+
+
+## Question 3
+
+[Adapted from [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)]    
+For each of the following situations, state a possible confounding variable:
+
+A sample of 1,302 students from UCLA were asked to fill out a survey about their height, the fastest speed they'd ever driven, and their gender. Consider the scatterplots below to answer the following questions
+
+<img src="confounding.png" alt="Drawing" style="float: left; width: 100%;"/>
+<p style="clear: both;">
+
+(a) Write 1-2 sentences describing the relationship between height and fastest driving speed.
+
+There is a relatively weak positive relationship between height and the fastest speed ever driven. The relationship is not obviously non-linear, but is not particularly strong.
+
+(b) Why do you think these variables are positively associated?
+
+There is no obvious reason why taller people should drive faster than shorter people. However, gender is a likely confounding variable: men tend to be taller than women, and it is plausible that men (on average) may drive faster than women.
+
+(c) What role does gender play in the relationship between height and driving speed?
+
+On average, men are taller than women and also tend to drive faster.  This suggests that gender is a confounder for the association between height and maximum driving speed.
+
+## Question 4
+
+[Adapted from [*Introductory Statistics with Randomization and Simulation* from OpenIntro](https://www.openintro.org/stat/textbook.php?stat_book=isrs)]    
+
+For each of the following situations, state a possible confounding variable:
+
+(a)  Data are measured on countries.  There is a positive relationship between the percentage of internet users and life expectancy.
+
+The wealth of a country (for example, its GDP) is a possible confounding variable.  The positive relationship between the percentage of internet users and life expectancy is not because using the internet leads to longer lives, but because wealthy countries tend to have both better health and more internet users.
+
+
+(b)  Do sleep disorders lead to bullying in school children?  An article in the *New York Times* called *The School Bully is Sleepy* states the following:  
+"The University of Michigan study collected survey data from parents on each child's sleep habits and asked both parents and teachers to assess behavioral concerns.  About a third of the students studied were identified by parents or teachers as having problems with disruptive behavior or bullying.  The researchers found that children who had behavioral issues and those who were identified as bullies were twice as likely to have shown symptoms of sleep disorders."
+
+Children who bully and / or have behavioral issues may also have a hormonal imbalance or a negative situation in their lives that also affects their ability to sleep well.

@@ -1,0 +1,30 @@
+---
+title: "Week 11 Problems"
+output: html_document
+---
+
+# Question 1
+
+What type of review would a university ethics board apply to a study of publicly available social media posts of university students' political beliefs?  Discuss any ethical considerations.
+
+The usual criteria for human subjects' protection assumes that once data is publicly available then it poses no new risks.  But, there is ample evidence that publicly available data can still pose significant risks to users especially if it is identifiable. 
+
+# Question 2
+
+(Exercise 6.3) A company uses a machine learning algorithm to determine which job advertisement to display for users searching for technology jobs. Based on past results, the algorithm tends to display lower paying jobs for women than for men (after controlling for other characteristics than gender). What ethical considerations might be considered when reviewing this algorithm?
+
+One important ethical considerations is that the algorithm may have been built using biased training data this is sometimes referred to as algorithmic bias). Other considerations could include using algorithms to display jobs to users without human intervention. 
+
+# Question 3
+
+(Exercise 6.5) A data scientist compiled data from several public sources (voter registration, political contributions, tax records) that were used to predict sexual orientation of individuals in a community. What ethical considerations arise that should guide use of such data sets?
+
+There may be unintended consequences in terms of user reidentification that arise from posting data sets. To help minimize possible damage, analysts should remove certain variables (not just username) that would make it more straightforward to reidentify the users.  In addition, consideration should be given to consent of the subjects in the data sets.  
+
+# Question 4
+
+Read the section on Responsibilities to Research Subjects in the [American Statistical Association's Ethical Guidelines for Statistical Practice](http://www.amstat.org/ASA/Your-Career/Ethical-Guidelines-for-Statistical-Practice.aspx).  Do these guidelines suggest that the data scientists at Cambridge Analytica were unethical when they linked the Facebook profiles to other databases to target Facebook users (see [NYT story](https://www.nytimes.com/2018/03/17/us/politics/cambridge-analytica-trump-campaign.html?action=click&contentCollection=Technology&module=RelatedCoverage&region=EndOfArticle&pgtype=article) or search for other recent articles)?  Explain.  (NB:  A  question of this nature would not appear the final exam) 
+
+It's not clear that the psychologist Aleksandr Kogan broke Facebook's (FB) policy [see CNN article](http://money.cnn.com/2018/03/20/technology/aleksandr-kogan-interview/index.html). If he didn't break FB's policy then linking the data with other available data and using it to send ads to Facebook users doesn't seem violate any laws.  On the other hand if he did break FB's policy then the data was not approved for secondary and indirect use as per section 5. of the Responsibilities to Research Subjects.
+
+> Anticipates and solicits approval for secondary and indirect uses of the data, including linkage to other data sets, when obtaining approvals from research subjects, and obtains approvals appropriate to allow for peer review and independent replication of analyses.

@@ -1,0 +1,43 @@
+---
+title: "STA130H1 -- Winter 2018"
+author: "N. Moon and N. Taback"
+subtitle: Week 12 Practice Problems
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(tidyverse)
+```
+
+# Instructions
+
+Answer all the questions.  None of these questions will be graded.
+
+# Practice Problems
+
+# Question 1
+
+Read the Harvard Business Review [article](https://hbr.org/2016/12/hiring-algorithms-are-not-neutral), Hiring Algorithms are Not Neutral, by Gideon Mann and Cathy O'Neil.  
+
+(a)  What is the primary ethical issue discussed in the article?
+
+(b)  What does the article suggest that HR departments should do to avoid algorithmic bias?
+
+
+# Question 2
+
+What type of review would a university ethics board apply to a study of publicly available social media posts of university students' political beliefs?  Discuss any ethical considerations.
+
+
+# Question 3
+
+(modified from Exercise 6.2 in Modern Data Science with R) Kathy, a data science student, found two publicly available data sets posted on a website.  Both data sets were obtained by scraping two social media sites. Kathy joined the datasets by screen name and was able to create a new data set that included: screen name; email address; geographic location; IP (Internet protocol) address, demographic profiles, and preferences for relationships. If email address were removed then is it problematic to post this data set on a social media site?
+
+
+# Question 4
+
+Read the section on Responsibilities to Research Subjects in the [American Statistical Association's Ethical Guidelines for Statistical Practice](http://www.amstat.org/ASA/Your-Career/Ethical-Guidelines-for-Statistical-Practice.aspx).  Do these guidelines suggest that the data scientists at Cambridge Analytica were unethical when they linked the Facebook profiles to other databases to target Facebook users (see [NYT story](https://www.nytimes.com/2018/03/17/us/politics/cambridge-analytica-trump-campaign.html?action=click&contentCollection=Technology&module=RelatedCoverage&region=EndOfArticle&pgtype=article) or search for other recent articles)?  Explain. 

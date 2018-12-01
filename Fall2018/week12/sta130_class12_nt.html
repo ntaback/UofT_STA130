@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>STA130H1F</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Prof. Nathan Taback" />
+    <meta name="date" content="2018-12-03" />
+    <link href="libs/font-awesome/css/fa-svg-with-js.css" rel="stylesheet" />
+    <script src="libs/font-awesome/js/fontawesome-all.min.js"></script>
+    <script src="libs/font-awesome/js/fa-v4-shims.min.js"></script>
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STA130H1F
+## Class #12
+### Prof. Nathan Taback
+### 2018-12-03
+
+---
+
+
+
+
+## Today's Class
+
+- Conduct during final exams at UofT
+
+- Finish confounding from last class 
+
+- Ethical Issues in Data Science Research
+---
+
+## A Classic Example: Treatment for kidney stones
+
+Source of data: *British Medical Journal (Clinical Research Edition)* March 29, 1986
+
+
+
+- Observations are patients being treated for kidney stones.  
+- `treatment` is one of 2 treatments (`Open` or `Invasive`)
+- `outcome` is `success` or `failure` of the treatment
+- Doctors get to choose the treatment, depending on the patient
+- What might influence how a doctor chooses a treatment for their patient?
+
+---
+
+## Kidney stone example
+
+
+
+```r
+tab &lt;- table(kidney_stones$outcome, 
+             kidney_stones$treatment, deparse.level = 2)
+addmargins(prop.table(tab))
+```
+
+```
+##                      kidney_stones$treatment
+## kidney_stones$outcome   Invasive       Open        Sum
+##               failure 0.08714286 0.11000000 0.19714286
+##               success 0.41285714 0.39000000 0.80285714
+##               Sum     0.50000000 0.50000000 1.00000000
+```
+
+
+
+---
+
+## Kidney stones come in various sizes
+
+
+```r
+kidney_stones %&gt;% 
+  count(size, treatment, outcome) %&gt;%
+  group_by(size, treatment) %&gt;%
+  mutate(per_success = n / sum(n))
+```
+
+```
+## # A tibble: 8 x 5
+## # Groups:   size, treatment [4]
+##   size  treatment outcome     n per_success
+##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;int&gt;       &lt;dbl&gt;
+## 1 large Invasive  failure    25      0.312 
+## 2 large Invasive  success    55      0.688 
+## 3 large Open      failure    71      0.270 
+## 4 large Open      success   192      0.730 
+## 5 small Invasive  failure    36      0.133 
+## 6 small Invasive  success   234      0.867 
+## 7 small Open      failure     6      0.0690
+## 8 small Open      success    81      0.931
+```
+
+---
+
+.small[
+Column percentages (conditional distribution of success given treatment):
+
+
+```r
+prop.table(table(kidney_stones$outcome, kidney_stones$treatment), margin = 2)
+```
+
+```
+##          
+##            Invasive      Open
+##   failure 0.1742857 0.2200000
+##   success 0.8257143 0.7800000
+```
+
+```r
+large &lt;- kidney_stones %&gt;% filter(size == "large")
+prop.table(table(large$outcome, large$treatment),margin = 2)
+```
+
+```
+##          
+##           Invasive     Open
+##   failure 0.312500 0.269962
+##   success 0.687500 0.730038
+```
+
+```r
+small &lt;- kidney_stones %&gt;% filter(size == "small")
+prop.table(table( small$outcome, small$treatment), margin = 2)
+```
+
+```
+##          
+##             Invasive       Open
+##   failure 0.13333333 0.06896552
+##   success 0.86666667 0.93103448
+```
+]
+
+
+*Which treatment is better?*
+
+---
+
+This example is another case of **Simpson's paradox**.  
+
+### Moral of the story:
+
+Be careful drawing conclusions from data!  
+It's important to understand how the data were collected and what other factors might have an affect.
+
+---
+.small[
+Visualizing the kidney stone data: treatment and outcome
+
+
+```r
+ggplot(kidney_stones, aes(x=treatment, fill=outcome)) + 
+  geom_bar(position = "fill") + 
+  labs(y = "Proportion") + theme_bw()
+```
+
+![](sta130_class12_nt_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+
+Visualizing the kidney stone data: treatment and outcome by size
+
+
+```r
+ggplot(kidney_stones, aes(x=treatment, fill=outcome)) + 
+  geom_bar(position = "fill") + labs(y = "Proportion") + 
+  facet_grid(. ~ size) + 
+  theme_bw()
+```
+
+![](sta130_class12_nt_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+]
+---
+
+# Confounding
+---
+
+## What is a **confounding variable**?
+
+* When examining the relationship between two variables in observational studies, it is important to consider the possible effects of other variables.
+
+--
+
+* A third variable is a **confounding variable** if it affects the nature of the relationship between two other variables, so that it is impossible to know if one variable causes another, or if the observed relationship is due to the third variable.
+
+--
+
+* The possible presence of confounding variables means we must be cautious when interpreting relationships.
+
+---
+
+## Examples of confounding?
+
+* A 2012 [study](http://www.pnas.org/content/early/2012/08/22/1206820109) showed that heavy use of marijuana in adolescence can negatively affect IQ.  
+*Is it possible that there are other variables, such as socioeconomic status, that is associated with both marijuana use and IQ?*
+
+--
+
+* Another 2012 [study](http://www.nejm.org/doi/full/10.1056/NEJMoa1112010) showed that coffee drinking was inversely related to mortality.  
+*Should we all drink more coffee so we will live longer?  Or is it possible that healthy people, who will live longer because they are healthy, are also more likely to drink coffee than unhealthy people?* 
+
+--
+
+* Many nutrition studies.  
+*Are people who are likely to stick to a diet different than those who won't in important ways?*
+
+---
+
+## How can confounding be avoided?
+
+* Data can be collected through *experiments* or *observational studies*.
+
+--
+
+* In **observational studies**, data are collected without intervention.  The data are measurements of existing characteristics of the individuals being measured.
+
+--
+
+* In **experiments**, an investigator imposes an intervention on the individuals being studied, randomly assigning some individuals to one treatment and randomly assigning other individuals to another treatment (sometimes this other treatment is a *control*).
+
+--
+
+* Randomized experiments are often used when we want to be able to say a treatment **causes** a change in a measurement.  
+
+--
+
+* Other than the difference in treatment received, any differences between the individuals in the treatment and control groups are just due to random chance in their group assignment.  
+    
+---
+## How can confounding be avoided?
+
+* In a randomized experiment, if there is a difference in our measurement of interest, we *may* be able to conclude it was caused by the treatment, and not due to some other systematic difference that can confound our interpretation of the effect of the treatment.
+
+--
+
+* Example experiment from Week 5 lecture:  
+Students were randomly assigned to be sleep-deprived or to have unrestricted sleep and how they learned a visual discrimination task was compared between these two groups.
+
+--
+* It's not always practical or ethical to carry out an experiment.  For example, it would be considered unethical to randomly assign people to smoke marijuana.
+
+
+---
+
+#Ethical Issues in Data Science
+
+Identification of ethical considerations involving research where data is collected:
+
+- History of Ethical Codes: Nuremberg Code; and Declaration of Helsinki. 
+- Tuskegee Syphilis Study
+- Informed consent
+- Ethical issues in Data Science Research
+- Ethical issues using Public Data 
+- Bias and Inclusion in AI Systems
+
+
+---
+## Class Survey
+
+&lt;img src="survey.png" height="400" width="700"&gt;
+---
+
+## Research Ethics
+
+- Medical and scientific research involving humans usually require approval and monitoring by an ethics board.
+- UofT and other universities have several ethics review boards.
+- For example, if a survey is given to STA130 students then unless we are given permission, by the UofT ethics board, and students in the course then we would not be able to publish the findings (even the summary statistics) of the survey.   
+- Why are institutions such as Universities so cautious?
+
+---
+
+# History of Ethical Codes
+---
+
+## Nazi Medical Experiments
+
+.pull-left[
+Experiments on prisoners included: 
+
+- Injecting dye into the eyes of twins to study conjoined twins.
+
+- Removal of bones, muscles, nerves without anesthesia to study bone, muscle, and nerve regeneration.
+
+- Infection with malaria then treated with various drugs to test efficacy.
+]
+
+
+.pull-right[
+&lt;img src="nazimedicalexpt2.png" height="500" width="400"&gt;
+]
+
+---
+## Government Misuse of Data
+
+- Systematic killing of several million Jews in Europe required extensive planning, organization, and coordination.
+
+--
+- Government statistical agencies conducted special censuses or population registries in certain places.
+
+--
+- The completed forms from these data collections were used to provide names and addresses of Jews to be included in transports to concentration camps and extermination camps. 
+
+--
+
+- The 1930 Dutch census were one of several data sources used to identify high density of Jewish population.
+
+--
+
+- 1940 U.S. population census collected information on ancestory.
+
+--
+
+- This data was used in internment of Japanese-Americans at the outbreak of World War II.
+
+(Sletzer, 1998)
+
+---
+
+## Nuremberg Code
+
+
+.pull-left[
+- Ethical codes often emerge out of crisis events.
+- The Nuremberg code was formulated in August 1947, in Nuremberg, Germany, by American judges sitting in judgment of Nazi doctors accused of conducting murderous and torturous human experiments in the concentration camps.
+- The judges at Nuremberg realized the importance of Hippocratic code (do no harm) was not sufficient.
+]
+
+.pull-right[
+&lt;img src="nurembergtrial.png" height="500" width="400"&gt;
+]
+---
+
+## Nuremberg Code
+
+The Nuremberg code codified many of our standard principles of ethical research today including: 
+
+- research must appropriately balance risk and potential reward (e.g., clinical equipoise), 
+- researchers must be well versed in their discipline and ground human experiments in animal trials.
+
+---
+
+## Ethical Scandals lead to U.S. Law
+
+- Ethical codes did not carry the weight of law in the U.S. until after a series of scandals in the 1960s and 1970s.
+- This led to the 1974 National Research Act, which established the National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research. 
+- A notable result of the commission was establishing institutional __ethics review boards__ (also known as IRB or REB) which act as independent panels that review research proposals to assess possible harms to human subjects.
+- This gives research institutions the power and responsibility to self-regulate through these boards.
+
+---
+
+## Ethical Scandals: Tuskeege Syphillus Study
+
+- The Tuskeege syphilis study was one of the most notable scandals.
+- In 1932 US government scientists enrolled 400 African American males from Alabama, known to be infected with syphilis (a sexually transmitted infection that can cause serious health problems).
+- Study participants were followed-up to examine long-term effects of syphilis.
+
+---
+
+##  Ethical Scandals: Tuskeege Syphillus Study
+
+.pull-left[
+- Study participants told they were being treated for “bad blood” but received no medical intervention.
+- The subjects were never told they had syphilis. 
+Subjects were denied access to treatment, even for years after penicillin came into use in 1947.
+- Study lasted for four decades; exposed in 1972. 
+]
+
+
+.pull-right[&lt;a href="https://www.nytimes.com/2016/06/18/upshot/long-term-mistrust-from-tuskegee-experiment-a-study-seems-to-overstate-the-case.html"&gt;
+&lt;img src="tuskegeenyt.png" height="500" width="400"&gt;
+&lt;/a&gt;
+]
+
+---
+
+##  Ethical Scandals: Tuskeege Syphillus Study
+
+.pull-left[
+By 1972, 
+
+ - 28 study participants had died due to syphilis
+ - 100 had died from conditions related to syphilis
+ - 40 wives were infected
+ - 19 infants infected
+
+On May 16 1997, President Clinton apologized for the role of US government in this study.
+]
+
+.pull-right[&lt;a href="https://www.cdc.gov/tuskegee/clintonp.htm"&gt;
+&lt;img src="tuskegeeapology.png" height="450" width="400"&gt;
+&lt;/a&gt;]
+---
+
+## Ethical Scandals: Tuskeege Syphillus Study
+
+- Subjects were not given appropriate information about the risks and benefits of the study.
+- After subjects informed about the risks and benefits they did not give their permission to participate in the study.
+
+---
+
+## Informed Consent
+
+Three elements of informed consent:
+
+1. Information
+2. Comprehension
+3. Voluntariness
+
+---
+
+## Informed Consent
+
+__Information:__ the research procedure, their purposes, risks and anticipated benefits, alternative procedures (where therapy is involved), and a statement offering the subject the opportunity to ask questions and to withdraw at any time from the research.
+
+--
+
+__Comprehension:__ The manner and context in which information is conveyed is as important as the information itself. For example, presenting information in a disorganized and rapid fashion, allowing too little time for consideration or curtailing opportunities for questioning, all may adversely affect a subject's ability to make an informed choice.
+
+--
+
+__Voluntariness:__ An agreement to participate in research constitutes a valid consent only if voluntarily given. This element of informed consent requires conditions free of coercion and undue influence.
+
+---
+
+
+&lt;img src="poll.png" height="600" width="825"&gt;
+
+---
+
+# Ethics in Data Science Research
+---
+
+## Ethics in Data Science Research 
+
+- Regulations built around the research/practice distinction in medicine are a method for signaling and negotiating temporary changes to physician-patient relationship.
+- A patient must be informed, and consent to, situations in which a physician may no longer be making or be able to make decisions in the best interest of the patient. 
+- In a research context, a physician has the best interest of the social collective as an explicit competing interest to the well-being of the patient. 
+- There is no easy analogue for the physician-researcher in data science.
+
+(Metcalfe and Crawford, 2016)
+
+---
+
+## Ethics in Data Science Research 
+
+- What are the ethical obligations data scientists have for the well-being of human subjects in data science research? How do we assess that those obligations are being met?
+- Currently there are no laws that address these questions.
+- Several organizations (e.g., [Statistical Society of Canada](https://ssc.ca/sites/ssc/files/data/Members/public/Accreditation/ethics_e.pdf), [American Statistical Association](http://www.amstat.org/ASA/Your-Career/Ethical-Guidelines-for-Statistical-Practice.aspx), [Association for Computing Machinery](https://www.acm.org/about-acm/acm-code-of-ethics-and-professional-conduct)) have developed detailed statements on topics such as professionalism, integrity of data and methods, responsibilities to stakeholders, conflicts of interest, and the response to allegations of misconduct. 
+
+---
+
+##  Ethics in Data Science Research
+
+- One challenge in developing an analogue of medical research ethics in the data science framework is the criteria for human-subjects' protections. 
+- The criteria depends on an unstated assumption that the risk to research subjects depends on what kind of data is obtained and how it is obtained, not what is done with the data after it is obtained.
+- This assumption is based on the idea that data which is public poses no new risks for human subjects.
+- Data science drives significant changes to "how we know" by creating new knowledge through tying together previously disconnected data sets.
+
+
+(Metcalfe and Crawford, 2016)
+
+---
+
+##  Ethics in Data Science Research
+
+.pull-left[
+- Most ethics boards exempt research of existing data, documents, records, and specimens if that data is publicly available.
+- This means that most non-medical data science will receive very little review.
+(Metcalfe and Crawford, 2016)
+]
+
+
+.pull-right[&lt;a href="http://www.research.utoronto.ca/wp-content/uploads/documents/2013/05/Principles-to-Determine-Exemptions-from-Research-Ethics-Review-April-2006.pdf"&gt;
+&lt;img src="uoftethics.png" height="450" width="300"&gt;
+&lt;/a&gt;]
+---
+
+## New York City Taxi &amp; Limousine Commission
+
+- In 2013, the New York City Taxi &amp; Limousine Commission released a data set of 173 million individual cab rides. 
+- The data set included the pickup and drop off times, locations, fare and tip amounts. 
+- The taxi drivers’ medallion numbers were anonymized 
+
+(Metcalfe and Crawford, 2016)
+
+---
+## New York City Taxi &amp; Limousine Commission
+
+- Researchers were able to de-anonymized the data to reveal sensitive information such as any driver’s annual income and enabling researchers to infer their home address (Franceschi-Bicchierai, 2015). 
+- A data scientist at Neustar Research showed that by combining this data set with other forms of public information like celebrity blogs you could track well-known actors, and predict likely home addresses of people who frequented strip clubs (Tockar, 2014). 
+- Another researcher demonstrated how the taxi data set could be used to predict which drivers were devout Muslims by observing which drivers stopped at prayer times (Franceschi-Bicchierai, 2015).
+
+(Metcalfe and Crawford, 2016)
+---
+
+## Cambridge Analytica
+
+.pull-left[
+- News reports earleir this year claimed that Cambridge Analytica bought 50 million Facebook profiles from a researcher.
+
+- Only 270,000 users consented to having their data used by the researcher.
+
+- Cambridge Analytica combined The Facebook data with other databases to build profiles of these users. 
+]
+
+.pull-right[
+&lt;a href="https://www.nytimes.com/2018/03/23/technology/zuckerberg-facebook-employees.html"&gt;
+&lt;img src="nytfb.png" height="250" width="300"&gt;
+&lt;/a&gt;
+
+- This allowed the company to use the data to target users with specific ads. 
+
+- What ethical obligations should a private company have in protecting users' 
+data?
+]
+---
+
+## Ethics of Public Data
+
+- Users of data services, such as social media platforms, often know very little about how their private data will be used in research.
+- Should Facebook users now expect that their social media activities could affect their ability to get a loan or influence how they vote? 
+- Is it reasonable to assume that social behavior on Facebook is the same as social relationships outside of Facebook? Could this assumption cause economic harm to individuals and communities? 
+
+(Metcalfe and Crawford, 2016)
+
+---
+## Ethics of Public Data
+
+- If human subjects research regulations assume that public data sets are harmless, it will be nearly impossible to review the consequences of the people affected.
+- These "data subjects" may have no knowledge that they are are part of a study that might affect their future opportunities or well-being.
+
+(Metcalfe and Crawford, 2016)
+
+---
+
+## Experimentation on Data Subjects
+
+- An A/B test randomizes subjects to two conditions A and B.
+- Randomized experiments can be used to establish causation not just correlation.
+- Facebook randomized 700,000 users to two different types of newsfeeds to investigate if it could manipulate their emotions.
+- Since Facebook is a private company it was not required to use any independent review process to approve the research.
+
+---
+
+## Predicting Recidivisim
+
+- Consider a simple Artificial Intelligence system designed to predict recidivism based on a person's facial features.
+- A data set of 1,001 adult males convicted of crimes were assessed for personality traits associated with their facial features.
+- Each person in the data set was given a recidivism score (extremely unlikely to reoffend 0 - 100 extremely likely to reoffend), and physiognomy score (facial features atypical of criminal 0 - 100 facial features typical of a criminal)
+
+
+![](sta130_class12_nt_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+
+## Predicting Recidivisim
+
+- Linear regression was used to build a prediction model.
+
+
+```r
+set.seed(10)
+train &lt;- dat_crime %&gt;% sample_frac(size = 0.8)
+test &lt;- dat_crime %&gt;% anti_join(train, by = 'id')
+reg_mod &lt;- lm(recid_score ~ physiog_score, data = train)
+summary(reg_mod)$r.squared
+```
+
+```
+## [1] 0.854069
+```
+
+```r
+yhat &lt;- predict(reg_mod, newdata = test)
+y &lt;- test$recid_score
+sqrt(sum((y - yhat)^2) / length(test$recid_score))
+```
+
+```
+## [1] 2.077955
+```
+
+---
+
+
+```r
+dat_crime %&gt;%
+  ggplot(aes(x = physiog_score, y = recid_score)) + 
+  geom_point(aes(colour = "red")) + 
+  geom_smooth(method = "lm") 
+```
+
+![](sta130_class12_nt_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+---
+## Predicting Recidivisim
+
+- The company now claims that the model will work in predicting recidivism in another country.
+- The software is used a few cases at a time.
+- After 140 cases the police force that is using the software decide to evaluate the accuracy of the predictions.
+
+
+```r
+yhat &lt;- predict(reg_mod, newdata = dat_new)
+y &lt;- dat_new$recid_score
+sqrt(sum((y - yhat)^2) / length(dat_new$recid_score))
+```
+
+```
+## [1] 14.48995
+```
+
+---
+
+## Predicting Recidivisim
+
+
+![](sta130_class12_nt_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+
+## Predicting Future Crime - Pro Publica Investigation of COMPAS
+
+.pull-left[
+&lt;a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing"&gt;
+&lt;img src="propublicalugo-1.png" height="400" width="300"&gt;
+&lt;/a&gt;
+]
+
+.pull-right[
+&lt;img src="propublicalugo-2.png" height="400" width="300"&gt;
+]
+
+---
+
+## Predicting Future Crime - Pro Publica Investigation of COMPAS
+
+- [Pro Publica investigated](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing) an AI system used by courts and judges to predict recidivism.
+- Pro Publica obtained the risk scores assigned to more than 7,000 people arrested in Broward County, Florida, in 2013 and 2014. 
+- They checked to see how many were charged with new crimes over the next two years, the same benchmark used by the creators of the algorithm.
+- 20% of the people predicted to commit violent crimes actually went on to do so.
+
+---
+
+## Bias and Inclusion in AI Systems and ML Algorithms
+
+- AI systems are taught what they “know” from training data.   
+- Training data can be incomplete, biased, or skewed.  This is sometimes referred to as "algorithmic bias".
+- Training data may come from poorly defined non-representative samples of a population.
+- These problems with training data may not be obvious if the data set construction is non-transparent.
+
+
+---
+
+## Ethical Concerns in AI and ML Algorithms
+
+- Should AI systems be  used in sensitive or high-stakes contexts?   
+- Who gets to make these decisions? 
+- What is the proper degree of human involvement in various types of decision-making?
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
