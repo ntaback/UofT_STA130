@@ -519,6 +519,11 @@ Prof. Taback's class slides - Mon 10:00 (L0101):
 
 - [html](week12/sta130_class12_nt.html)
 
+- [pdf](week12/sta130_class12_nt.pdf)
+
+Prof. Taback's class slides - Mon 14:00 (L0201):
+
+- [pdf](https://www.dropbox.com/sh/gkgehox6d9htnwm/AABDMdgrFcNbnHHehbCB6oHHa?dl=0)
 
 ### References
 
