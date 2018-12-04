@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta name="author" content="Prof. Nathan Taback" />
     <meta name="date" content="2018-12-03" />
-    <link href="libs/font-awesome/css/fa-svg-with-js.css" rel="stylesheet" />
-    <script src="libs/font-awesome/js/fontawesome-all.min.js"></script>
-    <script src="libs/font-awesome/js/fa-v4-shims.min.js"></script>
+    <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="slides.css" type="text/css" />
   </head>
   <body>
@@ -371,7 +369,7 @@ Subjects were denied access to treatment, even for years after penicillin came i
 
 
 .pull-right[&lt;a href="https://www.nytimes.com/2016/06/18/upshot/long-term-mistrust-from-tuskegee-experiment-a-study-seems-to-overstate-the-case.html"&gt;
-&lt;img src="tuskegeenyt.png" height="500" width="400"&gt;
+&lt;img src="tuskegeenyt.png" height="400" width="300"&gt;
 &lt;/a&gt;
 ]
 
@@ -400,29 +398,20 @@ On May 16 1997, President Clinton apologized for the role of US government in th
 - Subjects were not given appropriate information about the risks and benefits of the study.
 - After subjects informed about the risks and benefits they did not give their permission to participate in the study.
 
----
-
-## Informed Consent
-
-Three elements of informed consent:
-
-1. Information
-2. Comprehension
-3. Voluntariness
 
 ---
 
 ## Informed Consent
 
-__Information:__ the research procedure, their purposes, risks and anticipated benefits, alternative procedures (where therapy is involved), and a statement offering the subject the opportunity to ask questions and to withdraw at any time from the research.
+**Information:** the research procedure, their purposes, risks and anticipated benefits, alternative procedures (where therapy is involved), and a statement offering the subject the opportunity to ask questions and to withdraw at any time from the research.
 
 --
 
-__Comprehension:__ The manner and context in which information is conveyed is as important as the information itself. For example, presenting information in a disorganized and rapid fashion, allowing too little time for consideration or curtailing opportunities for questioning, all may adversely affect a subject's ability to make an informed choice.
+**Comprehension:** The manner and context in which information is conveyed is as important as the information itself. For example, presenting information in a disorganized and rapid fashion, allowing too little time for consideration or curtailing opportunities for questioning, all may adversely affect a subject's ability to make an informed choice.
 
 --
 
-__Voluntariness:__ An agreement to participate in research constitutes a valid consent only if voluntarily given. This element of informed consent requires conditions free of coercion and undue influence.
+**Voluntariness:** An agreement to participate in research constitutes a valid consent only if voluntarily given. This element of informed consent requires conditions free of coercion and undue influence.
 
 ---
 
@@ -437,8 +426,16 @@ __Voluntariness:__ An agreement to participate in research constitutes a valid c
 ## Ethics in Data Science Research 
 
 - Regulations built around the research/practice distinction in medicine are a method for signaling and negotiating temporary changes to physician-patient relationship.
+
+--
 - A patient must be informed, and consent to, situations in which a physician may no longer be making or be able to make decisions in the best interest of the patient. 
+
+--
+
 - In a research context, a physician has the best interest of the social collective as an explicit competing interest to the well-being of the patient. 
+
+--
+
 - There is no easy analogue for the physician-researcher in data science.
 
 (Metcalfe and Crawford, 2016)
@@ -448,7 +445,13 @@ __Voluntariness:__ An agreement to participate in research constitutes a valid c
 ## Ethics in Data Science Research 
 
 - What are the ethical obligations data scientists have for the well-being of human subjects in data science research? How do we assess that those obligations are being met?
+
+--
+
 - Currently there are no laws that address these questions.
+
+--
+
 - Several organizations (e.g., [Statistical Society of Canada](https://ssc.ca/sites/ssc/files/data/Members/public/Accreditation/ethics_e.pdf), [American Statistical Association](http://www.amstat.org/ASA/Your-Career/Ethical-Guidelines-for-Statistical-Practice.aspx), [Association for Computing Machinery](https://www.acm.org/about-acm/acm-code-of-ethics-and-professional-conduct)) have developed detailed statements on topics such as professionalism, integrity of data and methods, responsibilities to stakeholders, conflicts of interest, and the response to allegations of misconduct. 
 
 ---
@@ -456,8 +459,17 @@ __Voluntariness:__ An agreement to participate in research constitutes a valid c
 ##  Ethics in Data Science Research
 
 - One challenge in developing an analogue of medical research ethics in the data science framework is the criteria for human-subjects' protections. 
+
+--
+
 - The criteria depends on an unstated assumption that the risk to research subjects depends on what kind of data is obtained and how it is obtained, not what is done with the data after it is obtained.
+
+--
+
 - This assumption is based on the idea that data which is public poses no new risks for human subjects.
+
+--
+
 - Data science drives significant changes to "how we know" by creating new knowledge through tying together previously disconnected data sets.
 
 
@@ -482,7 +494,13 @@ __Voluntariness:__ An agreement to participate in research constitutes a valid c
 ## New York City Taxi &amp; Limousine Commission
 
 - In 2013, the New York City Taxi &amp; Limousine Commission released a data set of 173 million individual cab rides. 
+
+--
+
 - The data set included the pickup and drop off times, locations, fare and tip amounts. 
+
+--
+
 - The taxi drivers’ medallion numbers were anonymized 
 
 (Metcalfe and Crawford, 2016)
@@ -491,7 +509,12 @@ __Voluntariness:__ An agreement to participate in research constitutes a valid c
 ## New York City Taxi &amp; Limousine Commission
 
 - Researchers were able to de-anonymized the data to reveal sensitive information such as any driver’s annual income and enabling researchers to infer their home address (Franceschi-Bicchierai, 2015). 
+
+--
 - A data scientist at Neustar Research showed that by combining this data set with other forms of public information like celebrity blogs you could track well-known actors, and predict likely home addresses of people who frequented strip clubs (Tockar, 2014). 
+
+--
+
 - Another researcher demonstrated how the taxi data set could be used to predict which drivers were devout Muslims by observing which drivers stopped at prayer times (Franceschi-Bicchierai, 2015).
 
 (Metcalfe and Crawford, 2016)
@@ -522,7 +545,13 @@ data?
 ## Ethics of Public Data
 
 - Users of data services, such as social media platforms, often know very little about how their private data will be used in research.
+
+--
+
 - Should Facebook users now expect that their social media activities could affect their ability to get a loan or influence how they vote? 
+
+--
+
 - Is it reasonable to assume that social behavior on Facebook is the same as social relationships outside of Facebook? Could this assumption cause economic harm to individuals and communities? 
 
 (Metcalfe and Crawford, 2016)
@@ -531,6 +560,9 @@ data?
 ## Ethics of Public Data
 
 - If human subjects research regulations assume that public data sets are harmless, it will be nearly impossible to review the consequences of the people affected.
+
+--
+
 - These "data subjects" may have no knowledge that they are are part of a study that might affect their future opportunities or well-being.
 
 (Metcalfe and Crawford, 2016)
@@ -540,8 +572,17 @@ data?
 ## Experimentation on Data Subjects
 
 - An A/B test randomizes subjects to two conditions A and B.
+
+--
+
 - Randomized experiments can be used to establish causation not just correlation.
+
+--
+
 - Facebook randomized 700,000 users to two different types of newsfeeds to investigate if it could manipulate their emotions.
+
+--
+
 - Since Facebook is a private company it was not required to use any independent review process to approve the research.
 
 ---
