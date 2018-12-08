@@ -12,3 +12,7 @@ div.second {
 div.third {
     opacity: 0.6;
 }
+
+div.lfont {
+  font-size: large;
+}

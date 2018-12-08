@@ -17,14 +17,25 @@ Midterm test information is available [here](Fall2018/term_test_Fall2018.html).
 
 ## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> TA Office Hours
 
+
 TA office hours will be held in SS623B (Sidney Smith lower level).  
+
+
+**Schedule for TA office hours after December 6**
+
+- Thursday, December 13, 11am-1pm
+- Friday, December 14, 11am-1pm
+- Monday, December, 17, 2-5pm
+- Tuesday, December 18, 2-5pm
+
+<div class="second">
 
 Weekly office hours will be held on:
 
 - Wednesday: 14:00 - 17:00
-
 - Thursday: 11:00 - 13:00
 
+</div>
 
 ## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Instructors
 
