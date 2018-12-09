@@ -1,6 +1,6 @@
 ---
 title: 'Final Exam Information - Fall 2018'
-date: 'Last updated on 2018-11-22' 
+date: 'Last updated on 2018-12-09' 
 output: 
   html_document:
    toc: true
