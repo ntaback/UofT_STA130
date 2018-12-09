@@ -42,11 +42,11 @@ The exam will cover all the material *before* and *after* the midterm test.  So,
 
 ## How many questions?
 
-Coming soon
+There are 26 multiple choice questions.
 
 ## How much is each question worth?
 
-Coming soon
+Each question is worth 2 marks.  
 
 ## Am I allowed to bring in an aid sheet?
 
@@ -66,4 +66,4 @@ Yes.  The exam from Winter 2018 is posted [on Quercus for L0101](https://q.utoro
 
 ## Will there be office hours before the exam?
 
-Yes.  The schedule is will be posted soon.
+TA office hours are posted [here](../index.html).
