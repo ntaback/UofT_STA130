@@ -9,6 +9,17 @@ output:
 ```{r, include=FALSE}
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
+<br>
+
+<div class=xlfont> 
+<mark>The course website for STA130 Winter 2019 can be found on [Quercus](https://q.utoronto.ca) </mark>
+
+</div>
+
+<br>
+<br>
+<br>
+
 
 ## <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Midterm Test Information
 
